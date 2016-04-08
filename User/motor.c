@@ -836,7 +836,7 @@ void Motor_Init(void)
 					while(1)
 					{
 						LCD_DispStr(304, 100, "¹âµç¿ª¹ØÒì³£", &aFont);
-					}//¹âµç¿ª¹ØÒì³£
+					}//
         }
         else
         {  

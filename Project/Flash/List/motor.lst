@@ -45956,7 +45956,7 @@ N        {
 N					while(1)
 N					{
 N						LCD_DispStr(304, 100, "¹âµç¿ª¹ØÒì³£", &aFont);
-N					}//¹âµç¿ª¹ØÒì³£
+N					}//
 N        }
 N        else
 N        {  
