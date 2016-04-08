@@ -44898,7 +44898,6 @@ Xvolatile uint16_t uhADCConvertedValue[5];
 Nu32 Intensity,Intensitys1,Intensitys2,C12[60],C13[60];
 Nconst unsigned int Speedup[200]={
 N	62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766,56978,51962,47586,43746,40357,37351,34673,32278,30125,28185,26429,24835,23384,22059,20846,19733,18709,17765,16893,16085,15335,14639,13991,13386,12821,12293,11798,11334,10898,10488,10102,9738,9394,9070,8763,8472,8197,7936,7688,7452,7228,7015,6811,6618,6433,6257,6088,5927,5773,5626,5485,5349,5220,5095,4976,4861,4751,4645,4543,4445,4351,4260,4173,4088,4007,3929,3853,3780,3709,3641,3575,3512,3450,3391,3333,3277,3223,3171,3121,3072,3024,2978,2933,2890,2848,2807,2768,2729,2692,2656,2621,2587,2554,2521,2490,2460,2430,2401,2373,2346,2320,2294,2269,2245,2221,2198,2176,2154,2133,2112,2092,2073,2054,2035,2017,2000,1983,1966,1950,1934,1919,1904,1890,1876,1862,1849,1836,1823,1811,1799,1787,1776,1765,1755,1745,1735,1725,1716,1706,1698,1689,1681,1673,1665,1658,1650,1643,1637,1630,1624,1618,1612,1607,1601,1596,1591,1587,1582,1578,1574,1570,1567,1563,1560,1557,1554,1552,1549,1547,1545,1543,1542,1540,1539,1538,1537,1536,1536,1536,1536,
-N
 N};
 N	volatile unsigned int Step_LM=0;
 Nu8 m_bChopper;	
@@ -46074,7 +46073,7 @@ N  {
 N		while(1)
 N		{}
 N  }
-W "..\User\motor.c" 941 6 variable "i" was declared but never referenced
+W "..\User\motor.c" 940 6 variable "i" was declared but never referenced
 N}
 Nvoid Sys_100msClock_Config(void)
 N{
@@ -46225,7 +46224,7 @@ N			}
 N    }
 N    Valve(151);
 N    Valve(160);					   
-W "..\User\motor.c" 1029 9 variable "j" was declared but never referenced
+W "..\User\motor.c" 1028 9 variable "j" was declared but never referenced
 N}	
 N
 N
@@ -46253,8 +46252,8 @@ N		{
 N	//		print_pressure(Y,1);
 N		}
 N	}
-W "..\User\motor.c" 1069 8 variable "j" was declared but never referenced
-W "..\User\motor.c" 1070 20 variable "Y" was set but never used
+W "..\User\motor.c" 1068 8 variable "j" was declared but never referenced
+W "..\User\motor.c" 1069 20 variable "Y" was set but never used
 N}
 N
 N  u16 n	= 0;
@@ -46391,7 +46390,7 @@ N	Valve(100);
 N	bsp_DelayMS(100);
 N	reTest = 0;
 N	return m;
-W "..\User\motor.c" 1106 6 variable "i" was declared but never referenced
+W "..\User\motor.c" 1105 6 variable "i" was declared but never referenced
 N}
 Nvoid  	Cartridge(u8 wash)
 N{
@@ -46450,7 +46449,7 @@ N    Cartridge(8);
 N    Intensityref=Intensity1;
 N    ratioc12 = (s16)((double)Intensityair / (double)Intensityref * 2000.0 - 1000.0);
 N//	print_filter(ratioc12);
-W "..\User\motor.c" 1253 8 variable "i" was declared but never referenced
-W "..\User\motor.c" 1256 9 variable "ratioc12" was set but never used
+W "..\User\motor.c" 1252 8 variable "i" was declared but never referenced
+W "..\User\motor.c" 1255 9 variable "ratioc12" was set but never used
 N}
 N
