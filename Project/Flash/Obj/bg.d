@@ -1,0 +1,9 @@
+.\flash\obj\bg.o: ..\User\images\BG.c
+.\flash\obj\bg.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\flash\obj\bg.o: ..\emWin\Include\GUI.h
+.\flash\obj\bg.o: ..\emWin\Include\GUI_ConfDefaults.h
+.\flash\obj\bg.o: ..\emWin\Config\GUIConf.h
+.\flash\obj\bg.o: ..\emWin\Include\GUI_Type.h
+.\flash\obj\bg.o: ..\emWin\Include\LCD.h
+.\flash\obj\bg.o: ..\emWin\Include\Global.h
+.\flash\obj\bg.o: ..\emWin\Include\GUI_Version.h

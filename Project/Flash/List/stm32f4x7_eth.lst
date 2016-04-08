@@ -1,0 +1,71 @@
+L 1 "..\Libraries\STM32F4x7_ETH_Driver\src\stm32f4x7_eth.c"
+N/**
+N  ******************************************************************************
+N  * @file    stm32f4x7_eth.c
+N  * @author  MCD Application Team
+N  * @version V1.1.0
+N  * @date    31-July-2013
+N  * @brief   This file is the low level driver for STM32F4x7xx Ethernet Controller.
+N  *          This driver does not include low level functions for PTP time-stamp.
+N  ******************************************************************************
+N  * @attention
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+N  *
+N  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+N  * You may not use this file except in compliance with the License.
+N  * You may obtain a copy of the License at:
+N  *
+N  *        http://www.st.com/software_license_agreement_liberty_v2
+N  *
+N  * Unless required by applicable law or agreed to in writing, software 
+N  * distributed under the License is distributed on an "AS IS" BASIS, 
+N  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+N  * See the License for the specific language governing permissions and
+N  * limitations under the License.
+N  *
+N  ******************************************************************************
+N  */
+N
+N/* Includes ------------------------------------------------------------------*/
+N#include "stm32f4x7_eth.h"
+L 1 "..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h" 1
+N/**
+N  ******************************************************************************
+N  * @file    stm32f4x7_eth.h
+N  * @author  MCD Application Team
+N  * @version V1.1.0
+N  * @date    31-July-2013
+N  * @brief   This file contains all the functions prototypes for the Ethernet
+N  *          firmware driver.
+N  ******************************************************************************
+N  * @attention
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+N  *
+N  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+N  * You may not use this file except in compliance with the License.
+N  * You may obtain a copy of the License at:
+N  *
+N  *        http://www.st.com/software_license_agreement_liberty_v2
+N  *
+N  * Unless required by applicable law or agreed to in writing, software 
+N  * distributed under the License is distributed on an "AS IS" BASIS, 
+N  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+N  * See the License for the specific language governing permissions and
+N  * limitations under the License.
+N  *
+N  ******************************************************************************
+N  */
+N
+N/* Define to prevent recursive inclusion -------------------------------------*/
+N#ifndef __STM32F4x7_ETH_H
+N#define __STM32F4x7_ETH_H
+N
+N#ifdef __cplusplus
+S extern "C" {
+N#endif
+N
+N/* Includes ------------------------------------------------------------------*/
+C "..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h" 38 32 cannot open source input file "stm32f4x7_eth_conf.h": No such file or directory
+N#include "stm32f4x7_eth_conf.h"

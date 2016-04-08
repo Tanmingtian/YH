@@ -1,0 +1,65 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: t t, t, LIC=WHY30-BQN4Q-PZ9WB-2LCKV-C7LGI-2AR5Q
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Standard  Version: 5.14.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      Segger\JL2CM3.dll V2.99.13.0
+Dialog DLL:      TCM.DLL V1.14.4.0
+ 
+<h2>Project:</h2>
+C:\Users\T\Desktop\YH_SingleChannel_port\Project\project.uvproj
+Project File Date:  04/06/2016
+
+<h2>Output:</h2>
+Build target 'Flash'
+compiling main.c...
+compiling measurement.c...
+..\User\measurement.c(73): warning:  #177-D: variable "fProgess1" was declared but never referenced
+        uint16_t fProgess=0,fProgess1=0;
+..\User\measurement.c: 1 warning, 0 errors
+compiling motor.c...
+..\User\motor.c(941): warning:  #177-D: variable "i" was declared but never referenced
+        u8 i;
+..\User\motor.c(1029): warning:  #177-D: variable "j" was declared but never referenced
+          u8    i,j;
+..\User\motor.c(1069): warning:  #177-D: variable "j" was declared but never referenced
+    u8 i,j;     
+..\User\motor.c(1070): warning:  #550-D: variable "Y" was set but never used
+        u16 Press[10]={0},Y;
+..\User\motor.c(1106): warning:  #177-D: variable "i" was declared but never referenced
+        int     i;
+..\User\motor.c(1253): warning:  #177-D: variable "i" was declared but never referenced
+      u8 i;
+..\User\motor.c(1256): warning:  #550-D: variable "ratioc12" was set but never used
+      s16 ratioc12 ;
+..\User\motor.c: 7 warnings, 0 errors
+compiling stm32f4xx_it.c...
+..\User\bsp_stm32f4xx\stm32f4xx_it.c(144): warning:  #188-D: enumerated type mixed with another type
+        BitAction f=0;
+..\User\bsp_stm32f4xx\stm32f4xx_it.c: 1 warning, 0 errors
+compiling bsp_timer.c...
+compiling bsp.c...
+linking...
+Program Size: Code=48728 RO-data=412392 RW-data=4916 ZI-data=34948  
+FromELF: creating hex file...
+After Build - User command #1: CopyHex_Flash.bat
+C:\Users\T\Desktop\YH_SingleChannel_port\Project>copy Flash\Obj\output.hex ..\output(mdk).hex 
+已复制         1 个文件。
+".\Flash\Obj\output.axf" - 0 Error(s), 9 Warning(s).
+</pre>
+</body>
+</html>

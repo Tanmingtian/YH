@@ -1,0 +1,132 @@
+/*
+******************************************************************
+**                      uCGUIBuilder                            **
+**                  Version:   4.0.0.0                          **
+**                     2012 / 04                               **
+**                   CpoyRight to: wyl                          **
+**              Email:ucguibuilder@163.com                        **
+**          This text was Created by uCGUIBuilder               **
+******************************************************************/
+
+#include <stddef.h>
+#include "GUI.h"
+#include "DIALOG.h"
+#include "measurement.h"
+#include "WM.h"
+#include "BUTTON.h"
+#include "CHECKBOX.h"
+#include "DROPDOWN.h"
+#include "EDIT.h"
+#include "FRAMEWIN.h"
+#include "LISTBOX.h"
+#include "MULTIEDIT.h"
+#include "RADIO.h"
+#include "SLIDER.h"
+#include "TEXT.h"
+#include "PROGBAR.h"
+#include "SCROLLBAR.h"
+#include "LISTVIEW.h"
+#include "bsp.h"	
+#include "motor.h"
+
+/* 返回按钮的坐标(屏幕右下角) */
+#define BUTTON_RET_H	80
+#define BUTTON_RET_W	180
+#define	BUTTON_RET_X	(g_LcdWidth - BUTTON_RET_W - 200)
+#define	BUTTON_RET_Y	(g_LcdHeight - BUTTON_RET_H - 100)
+void MainTask(void)
+{
+	uint8_t fButton=0;
+	uint8_t ucTouch;		/* 触摸事件 */
+	uint8_t fRefresh;		/* 刷屏请求标志,1表示需要刷新 */
+	FONT_T  tFontBtn;	/* 定义一个字体结构体变量，用于设置字体参数 */
+	int16_t tpX, tpY;
+	BUTTON_T tBtn;
+	LCD_ClrScr(CL_BLUE);  	/* 清屏，背景蓝色 */
+	{	/* 按钮字体 */
+		tFontBtn.FontCode = FC_ST_48;
+		tFontBtn.BackColor = CL_MASK;	/* 透明色 */
+		tFontBtn.FrontColor = CL_BLACK;
+		tFontBtn.Space = 1;
+	}
+	fRefresh = 1;	/* 1表示需要刷新LCD */
+	while (1)
+	{
+		bsp_Idle();
+
+		if (fRefresh)
+		{
+			fRefresh = 0;
+
+			/* 显示按钮 */
+			{
+				tBtn.Font = &tFontBtn;
+
+				tBtn.Left = BUTTON_RET_X;
+				tBtn.Top = BUTTON_RET_Y;
+				tBtn.Height = BUTTON_RET_H;
+				tBtn.Width = BUTTON_RET_W;
+				tBtn.Focus = 0;	/* 失去焦点 */
+				tBtn.pCaption = "测量";
+				LCD_DrawButton(&tBtn);
+			}
+		}
+		
+		ucTouch = TOUCH_GetKey(&tpX, &tpY);	/* 读取触摸事件 */
+		if (ucTouch != TOUCH_NONE)
+		{
+			switch (ucTouch)
+			{
+				case TOUCH_DOWN:		/* 触笔按下事件 */
+					if (TOUCH_InRect(tpX, tpY, BUTTON_RET_X, BUTTON_RET_Y, BUTTON_RET_H, BUTTON_RET_W))
+					{
+						tBtn.Font = &tFontBtn;
+
+						tBtn.Left = BUTTON_RET_X;
+						tBtn.Top = BUTTON_RET_Y;
+						tBtn.Height = BUTTON_RET_H;
+						tBtn.Width = BUTTON_RET_W;
+						tBtn.Focus = 1;	/* 焦点 */
+						tBtn.pCaption = "测量";
+						LCD_DrawButton(&tBtn);
+					}
+					break;
+
+				case TOUCH_RELEASE:		/* 触笔释放事件 */
+					if (TOUCH_InRect(tpX, tpY, BUTTON_RET_X, BUTTON_RET_Y, BUTTON_RET_H, BUTTON_RET_W))
+					{
+						if(fButton==0)
+						{
+							fButton=1;
+							tBtn.Font = &tFontBtn;
+
+							tBtn.Left = BUTTON_RET_X;
+							tBtn.Top = BUTTON_RET_Y;
+							tBtn.Height = BUTTON_RET_H;
+							tBtn.Width = BUTTON_RET_W;
+							tBtn.Focus = 1;	/* 焦点 */
+							tBtn.pCaption = "停止";
+							LCD_DrawButton(&tBtn);
+						}
+						else return;
+
+					}
+					else	/* 按钮失去焦点 */
+					{
+						tBtn.Font = &tFontBtn;
+
+						tBtn.Left = BUTTON_RET_X;
+						tBtn.Top = BUTTON_RET_Y;
+						tBtn.Height = BUTTON_RET_H;
+						tBtn.Width = BUTTON_RET_W;
+						tBtn.Focus = 0;	/* 焦点 */
+						tBtn.pCaption = "返回";
+						LCD_DrawButton(&tBtn);
+
+					}
+			}
+		}
+	}
+	
+}
+
