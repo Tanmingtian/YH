@@ -58467,7 +58467,7 @@ N//		{
 N//			break;
 N//		}
 N//	}
-N	Motor_Init();	
+N//	Motor_Init();	
 N	PowerCheck();
 N	m=Test();
 N

@@ -43,7 +43,7 @@ void SystemCheck(void)
 //			break;
 //		}
 //	}
-	Motor_Init();	
+//	Motor_Init();	
 	PowerCheck();
 	m=Test();
 

@@ -38,23 +38,22 @@
 ;;;43     //			break;
 ;;;44     //		}
 ;;;45     //	}
-;;;46     	Motor_Init();	
-000006  f7fffffe          BL       Motor_Init
+;;;46     //	Motor_Init();	
 ;;;47     	PowerCheck();
-00000a  f7fffffe          BL       PowerCheck
+000006  f7fffffe          BL       PowerCheck
 ;;;48     	m=Test();
-00000e  f7fffffe          BL       Test
-000012  4902              LDR      r1,|L1.28|
-000014  6008              STR      r0,[r1,#0]  ; m
+00000a  f7fffffe          BL       Test
+00000e  4902              LDR      r1,|L1.24|
+000010  6008              STR      r0,[r1,#0]  ; m
 ;;;49     
 ;;;50     	PerkCheck();
-000016  f7fffffe          BL       PerkCheck
+000012  f7fffffe          BL       PerkCheck
 ;;;51     }
-00001a  bd10              POP      {r4,pc}
+000016  bd10              POP      {r4,pc}
 ;;;52     /*
                           ENDP
 
-                  |L1.28|
+                  |L1.24|
                           DCD      m
 
                           AREA ||i.main||, CODE, READONLY, ALIGN=2
