@@ -20,8 +20,11 @@ u16		ADCResult[36];
 u16		ADCConv[ADCNUM]; 
 __IO uint16_t uhADCConvertedValue[5];
 u32 Intensity,Intensitys1,Intensitys2,C12[60],C13[60];
+//const unsigned int Speedup[200]={
+//	62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766,56978,51962,47586,43746,40357,37351,34673,32278,30125,28185,26429,24835,23384,22059,20846,19733,18709,17765,16893,16085,15335,14639,13991,13386,12821,12293,11798,11334,10898,10488,10102,9738,9394,9070,8763,8472,8197,7936,7688,7452,7228,7015,6811,6618,6433,6257,6088,5927,5773,5626,5485,5349,5220,5095,4976,4861,4751,4645,4543,4445,4351,4260,4173,4088,4007,3929,3853,3780,3709,3641,3575,3512,3450,3391,3333,3277,3223,3171,3121,3072,3024,2978,2933,2890,2848,2807,2768,2729,2692,2656,2621,2587,2554,2521,2490,2460,2430,2401,2373,2346,2320,2294,2269,2245,2221,2198,2176,2154,2133,2112,2092,2073,2054,2035,2017,2000,1983,1966,1950,1934,1919,1904,1890,1876,1862,1849,1836,1823,1811,1799,1787,1776,1765,1755,1745,1735,1725,1716,1706,1698,1689,1681,1673,1665,1658,1650,1643,1637,1630,1624,1618,1612,1607,1601,1596,1591,1587,1582,1578,1574,1570,1567,1563,1560,1557,1554,1552,1549,1547,1545,1543,1542,1540,1539,1538,1537,1536,1536,1536,1536,
+//};
 const unsigned int Speedup[200]={
-	62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766,56978,51962,47586,43746,40357,37351,34673,32278,30125,28185,26429,24835,23384,22059,20846,19733,18709,17765,16893,16085,15335,14639,13991,13386,12821,12293,11798,11334,10898,10488,10102,9738,9394,9070,8763,8472,8197,7936,7688,7452,7228,7015,6811,6618,6433,6257,6088,5927,5773,5626,5485,5349,5220,5095,4976,4861,4751,4645,4543,4445,4351,4260,4173,4088,4007,3929,3853,3780,3709,3641,3575,3512,3450,3391,3333,3277,3223,3171,3121,3072,3024,2978,2933,2890,2848,2807,2768,2729,2692,2656,2621,2587,2554,2521,2490,2460,2430,2401,2373,2346,2320,2294,2269,2245,2221,2198,2176,2154,2133,2112,2092,2073,2054,2035,2017,2000,1983,1966,1950,1934,1919,1904,1890,1876,1862,1849,1836,1823,1811,1799,1787,1776,1765,1755,1745,1735,1725,1716,1706,1698,1689,1681,1673,1665,1658,1650,1643,1637,1630,1624,1618,1612,1607,1601,1596,1591,1587,1582,1578,1574,1570,1567,1563,1560,1557,1554,1552,1549,1547,1545,1543,1542,1540,1539,1538,1537,1536,1536,1536,1536,
+	57641,8106,3603,2027,1297,901,662,507,400,324,268,225,192,166,144,127,112,100,90,81,74,67,61,56,52,48,45,42,39,36,34,32,30,28,27,25,24,23,21,20,19,19,18,17,16,16,15,14,14,13,13,12,12,11,11,11,10,10,10,9,9,9,8,8,8,8,7,7,7,7,7,6,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 };
 	volatile unsigned int Step_LM=0;
 u8 m_bChopper;	
@@ -55,19 +58,20 @@ u8 prnerr=0;
 u8  TripSwitchStatus=0;
 void LightModulation_Config()
 {
+	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	GPIO_InitTypeDef GPIO_InitStructure;
 	//CL
-//	GPIO_InitStructure.GPIO_Pin =GPIO_Pin_M2CL;
-//	GPIO_InitStructure.GPIO_Mode 	= GPIO_Mode_AF;
-//	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-//	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-//	GPIO_Init(GPIO_M2CL, &GPIO_InitStructure);
-	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-  GPIO_Init(GPIOA,&GPIO_InitStructure);
+	GPIO_InitStructure.GPIO_Pin =GPIO_Pin_M2CL;
+	GPIO_InitStructure.GPIO_Mode 	= GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_Init(GPIO_M2CL, &GPIO_InitStructure);
+//	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+//  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+//  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+//  GPIO_Init(GPIOA,&GPIO_InitStructure);
 	//Reset
 	GPIO_InitStructure.GPIO_Pin =GPIO_Pin_M2RESET;
 	GPIO_Init(GPIO_M2RESET, &GPIO_InitStructure);
@@ -75,9 +79,21 @@ void LightModulation_Config()
 	GPIO_InitStructure.GPIO_Pin =GPIO_Pin_M2EN;
 	GPIO_Init(GPIO_M2EN, &GPIO_InitStructure); 
 
-	GPIO_WriteBit(GPIO_M2EN,GPIO_Pin_M2EN,Bit_RESET);	  //Ê¹ÄÜ0
+	GPIO_WriteBit(GPIO_M2EN,GPIO_Pin_M2EN,Bit_RESET);	  //
 	bsp_DelayMS(50);
-	GPIO_WriteBit(GPIO_M2RESET,GPIO_Pin_M2RESET,Bit_SET);//¸´Î»1
+	GPIO_WriteBit(GPIO_M2RESET,GPIO_Pin_M2RESET,Bit_SET);//
+		//set up timer2
+	TIM_TimeBaseStructure.TIM_Period	= 1125; 
+	TIM_TimeBaseStructure.TIM_Prescaler = 0;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseStructure.TIM_RepetitionCounter=0;
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	//¼ÆÊýÆ÷ÉÏÒçÖÐ¶ÏÉè¶¨
+	TIM_ClearFlag(TIM3, TIM_FLAG_Update);/*Çå³ý¸üÐÂ±êÖ¾Î»*/
+	TIM_ARRPreloadConfig(TIM3, DISABLE);/*Ô¤×°ÔØ¼Ä´æÆ÷µÄÄÚÈÝ±»Á¢¼´´«ËÍµ½Ó°×Ó¼Ä´æÆ÷ */
+	//¹Ø±Õ¶¨Ê±Æ÷
+	TIM_ITConfig(TIM3, TIM_IT_Update, DISABLE);
 }
 
 void LightModulation(u8 status)
@@ -90,55 +106,13 @@ void LightModulation(u8 status)
 	if(status==ON)
 	{
 		Step_LM=0;
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_Init(GPIOA,&GPIO_InitStructure);
-		GPIO_PinAFConfig(GPIOA,GPIO_PinSource8,GPIO_AF_TIM1);
-	 
-		//Ê±»ù³õÊ¼»¯
-		TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //ËÀÇø¿ØÖÆÓÃ¡£
-		TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //¼ÆÊýÆ÷·½Ïò
-		TIM_TimeBaseStructure.TIM_Prescaler = 0;   //Timer clock = sysclock /(TIM_Prescaler+1) = 84M
-		TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
-		TIM_TimeBaseStructure.TIM_Period = Speedup[0];    //Period = (TIM counter clock / TIM output clock) - 1 = 20K
-		TIM_TimeBaseInit(TIM1,&TIM_TimeBaseStructure);
-
-		GPIO_WriteBit(GPIO_M2CL,GPIO_Pin_M2CL,Bit_RESET);
-		GPIO_WriteBit(GPIO_M2EN,GPIO_Pin_M2EN,Bit_SET);
-		GPIO_WriteBit(GPIO_M2RESET,GPIO_Pin_M2RESET,Bit_RESET);
 		
-		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-		TIM_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Enable;
-		TIM_OCInitStructure.TIM_Pulse = 1535;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-		TIM_OCInitStructure.TIM_OCNPolarity = TIM_OCPolarity_Low;
-		TIM_OCInitStructure.TIM_OCIdleState = TIM_OCIdleState_Set;
-		TIM_OCInitStructure.TIM_OCNIdleState = TIM_OCNIdleState_Reset;
-		TIM_OC1Init(TIM1,&TIM_OCInitStructure);
-  	TIM1->ARR=Speedup[0]<<1;
-		TIM1->CCER=0x000B;
-		TIM1->CNT=0x08B3;
-		TIM_OC1PreloadConfig(TIM1, TIM_OCPreload_Disable);
-		TIM_ARRPreloadConfig(TIM1, ENABLE);
-		TIM_CtrlPWMOutputs(TIM1,ENABLE);
-		TIM_Cmd(TIM1,ENABLE);
-	
-		//¼ÆÊýÆ÷ÉÏÒçÖÐ¶ÏÉè¶¨
-		TIM_ClearFlag(TIM1, TIM_FLAG_Update);/*Çå³ý¸üÐÂ±êÖ¾Î»*/
-		TIM_ARRPreloadConfig(TIM1, DISABLE);/*Ô¤×°ÔØ¼Ä´æÆ÷µÄÄÚÈÝ±»Á¢¼´´«ËÍµ½Ó°×Ó¼Ä´æÆ÷ */
-		//Æô¶¯¶¨Ê±Æ÷
-		TIM_ITConfig(TIM1, TIM_IT_Update, ENABLE);   
-		TIM_Cmd(TIM1, ENABLE);   
+		TIM_Cmd(TIM3, ENABLE);   
 		m_bChopper=1;
 	}
 	if(status==OFF)
 	{		
-		TIM_CtrlPWMOutputs(TIM1, DISABLE);	
+		TIM_Cmd(TIM3, DISABLE);	
 		//¹Ø±Õ CL=0 EN=0 RESET=0
 		GPIO_WriteBit(GPIO_M2CL,GPIO_Pin_M2CL,Bit_RESET);
 		GPIO_WriteBit(GPIO_M2EN,GPIO_Pin_M2EN,Bit_RESET);

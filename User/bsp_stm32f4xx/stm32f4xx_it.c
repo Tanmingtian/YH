@@ -141,25 +141,25 @@ if(EXTI_GetITStatus(EXTI_LINE_TripSwitch) != RESET)
 }
 
 
-	BitAction f=0;
+//	BitAction f=0;
 
 //切光片电机使用TIM1中断
 void TIM1_UP_TIM10_IRQHandler(void)
 {
-	if(Step_LM<9000)	//加速过程
-	{
-		//清除中断标志
-		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
-	}
-	else
-	{					
-		//转速达到启动PWM
-		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
-		TIM1->ARR=3071;
-		TIM1->CCER=0x000B;
-		TIM1->CNT=0x08B3;
-	}	 	
+//	if(Step_LM<9000)	//加速过程
+//	{
+//		//清除中断标志
+//		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+//		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+//	}
+//	else
+//	{					
+//		//转速达到启动PWM
+//		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
+//		TIM1->ARR=3071;
+//		TIM1->CCER=0x000B;
+//		TIM1->CNT=0x08B3;
+//	}	 	
 }
 
 
@@ -206,27 +206,39 @@ void SPI2_IRQHandler(void)
 		}
 	}
 }
-//u8 flickerTimes=0; 
-///*******************************************************************************
-//* Function Name  : TIM3_IRQHandler
-//* Description    : TIM3用于系统时间中断100ms中断一次
-//* Input          : None
-//* Output         : None
-//* Return         : None
-//*******************************************************************************/
-//void TIM3_IRQHandler(void)
-//{
-//	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
-//	{
-//		flickerTimes++; 
-//		if(flickerTimes>50)
-//		{
-//			Speaker(1); 
-//			flickerTimes=0; 
-//		}
-//	}	
-//	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-//}
+u8 waitimes=0;
+/*******************************************************************************
+* Function Name  : TIM3_IRQHandler
+* Description    : TIM3用于系统时间中断50us中断一次
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void TIM3_IRQHandler(void)
+{
+	//这么基础的C语言知识都忘了！
+	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
+	static u8 flickerTimes;
+	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
+	{
+		if(Step_LM<9000)	//加速过程
+		{
+			if(waitimes++==Speedup[Step_LM++/45])
+			{
+				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
+				flickerTimes=~flickerTimes;
+				waitimes=0;
+			}
+		
+		}
+		else
+		{
+			GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)flickerTimes);
+			flickerTimes=~flickerTimes;
+		}	
+	}
+	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+}
 /*******************************************************************************
 Timer2 用于汽缸电机中断
 *******************************************************************************/

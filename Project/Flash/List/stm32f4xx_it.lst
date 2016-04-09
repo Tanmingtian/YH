@@ -43162,32 +43162,25 @@ N	}
 N}
 N
 N
-W "..\User\bsp_stm32f4xx\stm32f4xx_it.c" 144 14 enumerated type mixed with another type
-N	BitAction f=0;
+N//	BitAction f=0;
 N
 N//切光片电机使用TIM1中断
 Nvoid TIM1_UP_TIM10_IRQHandler(void)
 N{
-N	if(Step_LM<9000)	//加速过程
-N	{
-N		//清除中断标志
-N		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-X		TIM_ClearITPendingBit(((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000)), ((uint16_t)0x0001));
-N		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
-X		((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000))->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
-N	}
-N	else
-N	{					
-N		//转速达到启动PWM
-N		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
-X		TIM_ITConfig(((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000)), ((uint16_t)0x0001), DISABLE);
-N		TIM1->ARR=3071;
-X		((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000))->ARR=3071;
-N		TIM1->CCER=0x000B;
-X		((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000))->CCER=0x000B;
-N		TIM1->CNT=0x08B3;
-X		((TIM_TypeDef *) ((((uint32_t)0x40000000) + 0x00010000) + 0x0000))->CNT=0x08B3;
-N	}	 	
+N//	if(Step_LM<9000)	//加速过程
+N//	{
+N//		//清除中断标志
+N//		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+N//		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+N//	}
+N//	else
+N//	{					
+N//		//转速达到启动PWM
+N//		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
+N//		TIM1->ARR=3071;
+N//		TIM1->CCER=0x000B;
+N//		TIM1->CNT=0x08B3;
+N//	}	 	
 N}
 N
 N
@@ -43240,27 +43233,43 @@ N			}
 N		}
 N	}
 N}
-N//u8 flickerTimes=0; 
-N///*******************************************************************************
-N//* Function Name  : TIM3_IRQHandler
-N//* Description    : TIM3用于系统时间中断100ms中断一次
-N//* Input          : None
-N//* Output         : None
-N//* Return         : None
-N//*******************************************************************************/
-N//void TIM3_IRQHandler(void)
-N//{
-N//	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
-N//	{
-N//		flickerTimes++; 
-N//		if(flickerTimes>50)
-N//		{
-N//			Speaker(1); 
-N//			flickerTimes=0; 
-N//		}
-N//	}	
-N//	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-N//}
+Nu8 waitimes=0;
+N/*******************************************************************************
+N* Function Name  : TIM3_IRQHandler
+N* Description    : TIM3用于系统时间中断50us中断一次
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid TIM3_IRQHandler(void)
+N{
+N	//这么基础的C语言知识都忘了！
+N	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
+N	static u8 flickerTimes;
+N	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
+X	if(TIM_GetFlagStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)),((uint16_t)0x0001))!=RESET)
+N	{
+N		if(Step_LM<9000)	//加速过程
+N		{
+N			if(waitimes++==Speedup[Step_LM++/45])
+N			{
+N				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
+X				GPIO_WriteBit(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1800)), ((uint16_t)0x0080),(BitAction)flickerTimes);
+N				flickerTimes=~flickerTimes;
+N				waitimes=0;
+N			}
+N		
+N		}
+N		else
+N		{
+N			GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)flickerTimes);
+X			GPIO_WriteBit(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1C00)), ((uint16_t)0x0800),(BitAction)flickerTimes);
+N			flickerTimes=~flickerTimes;
+N		}	
+N	}
+N	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+X	TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0001));
+N}
 N/*******************************************************************************
 NTimer2 用于汽缸电机中断
 N*******************************************************************************/
