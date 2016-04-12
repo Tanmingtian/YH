@@ -42696,8 +42696,8 @@ N#endif
 N//定义切光片电机端口
 N#ifndef GPIO_M2
 N	#define GPIO_M2
-N	#define GPIO_M2CL 		GPIOG
-N	#define GPIO_Pin_M2CL 	GPIO_Pin_7
+N	#define GPIO_M2CL 		GPIOA
+N	#define GPIO_Pin_M2CL 	GPIO_Pin_0
 N	#define GPIO_M2RESET 	GPIOH
 N	#define GPIO_Pin_M2RESET GPIO_Pin_8
 N	#define GPIO_M2EN		GPIOG
@@ -43165,22 +43165,28 @@ N
 N//	BitAction f=0;
 N
 N//切光片电机使用TIM1中断
-Nvoid TIM1_UP_TIM10_IRQHandler(void)
+Nvoid TIM5_IRQHandler(void)
 N{
-N//	if(Step_LM<9000)	//加速过程
-N//	{
-N//		//清除中断标志
-N//		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-N//		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
-N//	}
-N//	else
-N//	{					
-N//		//转速达到启动PWM
-N//		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
-N//		TIM1->ARR=3071;
-N//		TIM1->CCER=0x000B;
-N//		TIM1->CNT=0x08B3;
-N//	}	 	
+N	if(Step_LM<9000)	//加速过程
+N	{
+N		//清除中断标志
+N		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0001));
+N		TIM5->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+X		((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00))->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+N	}
+N	else
+N	{					
+N		//转速达到启动PWM
+N		TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
+X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0001), DISABLE);
+N		TIM5->ARR=4500;
+X		((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00))->ARR=4500;
+N		TIM5->CCER=0x000B;
+X		((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00))->CCER=0x000B;
+N		TIM5->CNT=0x08B3;
+X		((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00))->CNT=0x08B3;
+N	}	 	
 N}
 N
 N
@@ -43241,109 +43247,91 @@ N* Input          : None
 N* Output         : None
 N* Return         : None
 N*******************************************************************************/
-Nvoid TIM3_IRQHandler(void)
-N{
-N	//这么基础的C语言知识都忘了！
-N	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
-N	static u8 flickerTimes;
-N	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
-X	if(TIM_GetFlagStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)),((uint16_t)0x0001))!=RESET)
-N	{
-N		if(Step_LM<9000)	//加速过程
-N		{
-N			if(waitimes++==Speedup[Step_LM++/45])
-N			{
-N				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
-X				GPIO_WriteBit(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1800)), ((uint16_t)0x0080),(BitAction)flickerTimes);
-N				flickerTimes=~flickerTimes;
-N				waitimes=0;
-N			}
-N		
-N		}
-N		else
-N		{
-N			GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)flickerTimes);
-X			GPIO_WriteBit(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1C00)), ((uint16_t)0x0800),(BitAction)flickerTimes);
-N			flickerTimes=~flickerTimes;
-N		}	
-N	}
-N	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-X	TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0001));
-N}
+N//void TIM3_IRQHandler(void)
+N//{
+N//	//这么基础的C语言知识都忘了！
+N//	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
+N//	static u8 flickerTimes;
+N//	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
+N//	{
+N//		if(Step_LM<9000)	//加速过程
+N//		{
+N//			if(waitimes++==Speedup[Step_LM++/45])
+N//			{
+N//				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
+N//				flickerTimes=~flickerTimes;
+N//				waitimes=0;
+N//			}
+N//		
+N//		}
+N//		else
+N//		{
+N//			GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
+N//			flickerTimes=~flickerTimes;
+N//		}	
+N//	}
+N//	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+N//}
 N/*******************************************************************************
 NTimer2 用于汽缸电机中断
 N*******************************************************************************/
-Nvoid TIM2_IRQHandler(void)
-N{ 
-N	static u8 pulsetype;
-N	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
-X	if(TIM_GetFlagStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000)),((uint16_t)0x0001))!=RESET)
-N	{
-N		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
-X		GPIO_WriteBit(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1C00)), ((uint16_t)0x0800),(BitAction)pulsetype);
-N		pulsetype=~pulsetype;
-N		
-N		//如果脉冲够数
-N		if(PulseCount>=PulseNum+AddedNum)
-N		{
-N			//关闭中断及timer2
-N			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
-X			TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000)), ((uint16_t)0x0001), DISABLE);
-N			TIM_Cmd(TIM2,DISABLE);
-X			TIM_Cmd(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000)),DISABLE);
-N		}
-N		//加压有加减速
-N		if(flagPress)
-N		{
-N			//如果出于匀速运行阶段
-N			if(PulseCount>294&&PulseCount<=PulseNum-294)
-N				TIM2->ARR=1157;
-X				((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=1157;
-N			//如果处于加速阶段
-N			else if(PulseCount<294)
-N				TIM2->ARR=moto_ac[PulseCount/2];
-X				((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=moto_ac[PulseCount/2];
-N			//如果出于减速阶段
-N			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
-N				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
-X				((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=moto_ac[(PulseNum-PulseCount)/2];
-N			//如果是AddedNum 部分，最低速度运行
-N			else
-N				TIM2->ARR=moto_ac[0];				
-X				((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=moto_ac[0];				
-N		}
-N		else
-N		{	//匀速
-N			if(StartSpeed==TargeSpeed)
-N			{
-N				TIM2->ARR=1157;
-X				((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=1157;
-N			}
-N			else
-N			{
-N				//不加压有加减速
-N				//如果出于匀速运行阶段
-N				if(PulseCount>324&&PulseCount<=PulseNum-324)
-N					TIM2->ARR=556;
-X					((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=556;
-N				//如果处于加速阶段
-N				else if(PulseCount<324)
-N					TIM2->ARR=Speedup_moto[PulseCount/2];
-X					((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=Speedup_moto[PulseCount/2];
-N				//如果出于减速阶段
-N				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
-N					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
-X					((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
-N				//如果是AddedNum 部分，最低速度运行
-N				else
-N					TIM2->ARR=Speedup_moto[0];	
-X					((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000))->ARR=Speedup_moto[0];	
-N			}
-N		}
-N		PulseCount++;
-N		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
-X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000)), ((uint16_t)0x0001));	
-N	}
-N}	
+N//void TIM2_IRQHandler(void)
+N//{ 
+N//	static u8 pulsetype;
+N//	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
+N//	{
+N//		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
+N//		pulsetype=~pulsetype;
+N//		
+N//		//如果脉冲够数
+N//		if(PulseCount>=PulseNum+AddedNum)
+N//		{
+N//			//关闭中断及timer2
+N//			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
+N//			TIM_Cmd(TIM2,DISABLE);
+N//		}
+N//		//加压有加减速
+N//		if(flagPress)
+N//		{
+N//			//如果出于匀速运行阶段
+N//			if(PulseCount>294&&PulseCount<=PulseNum-294)
+N//				TIM2->ARR=1157;
+N//			//如果处于加速阶段
+N//			else if(PulseCount<294)
+N//				TIM2->ARR=moto_ac[PulseCount/2];
+N//			//如果出于减速阶段
+N//			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
+N//				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
+N//			//如果是AddedNum 部分，最低速度运行
+N//			else
+N//				TIM2->ARR=moto_ac[0];				
+N//		}
+N//		else
+N//		{	//匀速
+N//			if(StartSpeed==TargeSpeed)
+N//			{
+N//				TIM2->ARR=1157;
+N//			}
+N//			else
+N//			{
+N//				//不加压有加减速
+N//				//如果出于匀速运行阶段
+N//				if(PulseCount>324&&PulseCount<=PulseNum-324)
+N//					TIM2->ARR=556;
+N//				//如果处于加速阶段
+N//				else if(PulseCount<324)
+N//					TIM2->ARR=Speedup_moto[PulseCount/2];
+N//				//如果出于减速阶段
+N//				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
+N//					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
+N//				//如果是AddedNum 部分，最低速度运行
+N//				else
+N//					TIM2->ARR=Speedup_moto[0];	
+N//			}
+N//		}
+N//		PulseCount++;
+N//		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
+N//	}
+N//}	
 N
 N/***************************** END OF FILE *********************************/

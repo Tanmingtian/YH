@@ -142,11 +142,11 @@
                   |L2.152|
                           DCD      one_second
 
-                          AREA ||i.TIM5_IRQHandler||, CODE, READONLY, ALIGN=2
+                          AREA ||i.TIM3_IRQHandler||, CODE, READONLY, ALIGN=2
 
-                  TIM5_IRQHandler PROC
+                  TIM3_IRQHandler PROC
 ;;;554    //void TIM4_IRQHandler(void)
-;;;555    void TIM5_IRQHandler(void)
+;;;555    void TIM3_IRQHandler(void)
 000000  b510              PUSH     {r4,lr}
 ;;;556    {
 ;;;557        if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC1))
@@ -250,7 +250,7 @@
                           ENDP
 
                   |L3.140|
-                          DCD      0x40000c00
+                          DCD      0x40000400
                   |L3.144|
                           DCD      s_TIM_CallBack1
                   |L3.148|
@@ -538,7 +538,7 @@
 ;;;424      	/* 使能TIM时钟 */
 ;;;425    	RCC_APB1PeriphClockCmd(TIM_HARD_RCC, ENABLE);
 000002  2101              MOVS     r1,#1
-000004  2008              MOVS     r0,#8
+000004  2002              MOVS     r0,#2
 000006  f7fffffe          BL       RCC_APB1PeriphClockCmd
 ;;;426    
 ;;;427        /*-----------------------------------------------------------------------
@@ -596,7 +596,7 @@
 ;;;461    		NVIC_InitTypeDef NVIC_InitStructure;	/* 中断结构体在 misc.h 中定义 */
 ;;;462    
 ;;;463    		NVIC_InitStructure.NVIC_IRQChannel = TIM_HARD_IRQn;
-00003c  2032              MOVS     r0,#0x32
+00003c  201d              MOVS     r0,#0x1d
 00003e  f88d0000          STRB     r0,[sp,#0]
 ;;;464    
 ;;;465    		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 4;	/* 比串口优先级低 */
@@ -622,7 +622,7 @@
                   |L9.96|
                           DCD      0x000f4240
                   |L9.100|
-                          DCD      0x40000c00
+                          DCD      0x40000400
 
                           AREA ||i.bsp_InitTimer||, CODE, READONLY, ALIGN=2
 
@@ -1004,7 +1004,7 @@
                           ENDP
 
                   |L13.180|
-                          DCD      0x40000c00
+                          DCD      0x40000400
                   |L13.184|
                           DCD      s_TIM_CallBack1
                   |L13.188|

@@ -42810,8 +42810,8 @@ N#endif
 N//定义切光片电机端口
 N#ifndef GPIO_M2
 N	#define GPIO_M2
-N	#define GPIO_M2CL 		GPIOG
-N	#define GPIO_Pin_M2CL 	GPIO_Pin_7
+N	#define GPIO_M2CL 		GPIOA
+N	#define GPIO_Pin_M2CL 	GPIO_Pin_0
 N	#define GPIO_M2RESET 	GPIOH
 N	#define GPIO_Pin_M2RESET GPIO_Pin_8
 N	#define GPIO_M2EN		GPIOG
@@ -42999,9 +42999,9 @@ N	定义用于硬件定时器的TIM， 可以使 TIM2 - TIM5
 N	TIM3 和TIM4 是16位
 N	TIM2 和TIM5 是32位
 N*/
-N#define TIM_HARD		TIM5
-N#define TIM_HARD_IRQn	TIM5_IRQn
-N#define TIM_HARD_RCC	RCC_APB1Periph_TIM5
+N#define TIM_HARD		TIM3
+N#define TIM_HARD_IRQn	TIM3_IRQn
+N#define TIM_HARD_RCC	RCC_APB1Periph_TIM3
 N
 N
 N/* 这2个全局变量转用于 bsp_DelayMS() 函数 */
@@ -43417,7 +43417,7 @@ N	uint32_t uiTIMxCLK;
 N
 N  	/* 使能TIM时钟 */
 N	RCC_APB1PeriphClockCmd(TIM_HARD_RCC, ENABLE);
-X	RCC_APB1PeriphClockCmd(((uint32_t)0x00000008), ENABLE);
+X	RCC_APB1PeriphClockCmd(((uint32_t)0x00000002), ENABLE);
 N
 N    /*-----------------------------------------------------------------------
 N		system_stm32f4xx.c 文件中 void SetSysClock(void) 函数对时钟的配置如下：
@@ -43446,20 +43446,20 @@ N	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 X	TIM_TimeBaseStructure.TIM_CounterMode = ((uint16_t)0x0000);
 N
 N	TIM_TimeBaseInit(TIM_HARD, &TIM_TimeBaseStructure);
-X	TIM_TimeBaseInit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), &TIM_TimeBaseStructure);
+X	TIM_TimeBaseInit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), &TIM_TimeBaseStructure);
 N
 N	//TIM_ARRPreloadConfig(TIMx, ENABLE);
 N
 N	/* TIMx enable counter */
 N	TIM_Cmd(TIM_HARD, ENABLE);
-X	TIM_Cmd(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ENABLE);
+X	TIM_Cmd(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ENABLE);
 N
 N	/* 配置TIM定时中断 (Update) */
 N	{
 N		NVIC_InitTypeDef NVIC_InitStructure;	/* 中断结构体在 misc.h 中定义 */
 N
 N		NVIC_InitStructure.NVIC_IRQChannel = TIM_HARD_IRQn;
-X		NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;
+X		NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
 N
 N		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 4;	/* 比串口优先级低 */
 N		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
@@ -43500,18 +43500,18 @@ N        _uiTimeOut -= 5;
 N    }
 N
 N    cnt_now = TIM_GetCounter(TIM_HARD);    	/* 读取当前的计数器值 */
-X    cnt_now = TIM_GetCounter(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)));    	 
+X    cnt_now = TIM_GetCounter(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)));    	 
 N    cnt_tar = cnt_now + _uiTimeOut;			/* 计算捕获的计数器值 */
 N    if (_CC == 1)
 N    {
 N        s_TIM_CallBack1 = (void (*)(void))_pCallBack;
 N
 N        TIM_SetCompare1(TIM_HARD, cnt_tar);      	/* 设置捕获比较计数器CC1 */
-X        TIM_SetCompare1(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), cnt_tar);      	 
+X        TIM_SetCompare1(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), cnt_tar);      	 
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC1);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0002));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0002));
 N		TIM_ITConfig(TIM_HARD, TIM_IT_CC1, ENABLE);	/* 使能CC1中断 */
-X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0002), ENABLE);	 
+X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0002), ENABLE);	 
 N
 N    }
 N    else if (_CC == 2)
@@ -43519,33 +43519,33 @@ N    {
 N		s_TIM_CallBack2 = (void (*)(void))_pCallBack;
 N
 N        TIM_SetCompare2(TIM_HARD, cnt_tar);      	/* 设置捕获比较计数器CC2 */
-X        TIM_SetCompare2(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), cnt_tar);      	 
+X        TIM_SetCompare2(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), cnt_tar);      	 
 N		TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC2);
-X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0004));
+X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0004));
 N		TIM_ITConfig(TIM_HARD, TIM_IT_CC2, ENABLE);	/* 使能CC2中断 */
-X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0004), ENABLE);	 
+X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0004), ENABLE);	 
 N    }
 N    else if (_CC == 3)
 N    {
 N        s_TIM_CallBack3 = (void (*)(void))_pCallBack;
 N
 N        TIM_SetCompare3(TIM_HARD, cnt_tar);      	/* 设置捕获比较计数器CC3 */
-X        TIM_SetCompare3(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), cnt_tar);      	 
+X        TIM_SetCompare3(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), cnt_tar);      	 
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC3);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0008));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0008));
 N		TIM_ITConfig(TIM_HARD, TIM_IT_CC3, ENABLE);	/* 使能CC3中断 */
-X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0008), ENABLE);	 
+X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0008), ENABLE);	 
 N    }
 N    else if (_CC == 4)
 N    {
 N        s_TIM_CallBack4 = (void (*)(void))_pCallBack;
 N
 N        TIM_SetCompare4(TIM_HARD, cnt_tar);      	/* 设置捕获比较计数器CC4 */
-X        TIM_SetCompare4(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), cnt_tar);      	 
+X        TIM_SetCompare4(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), cnt_tar);      	 
 N		TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC4);
-X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0010));
+X		TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0010));
 N		TIM_ITConfig(TIM_HARD, TIM_IT_CC4, ENABLE);	/* 使能CC4中断 */
-X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0010), ENABLE);	 
+X		TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0010), ENABLE);	 
 N    }
 N	else
 N    {
@@ -43564,51 +43564,51 @@ N*/
 N//void TIM2_IRQHandler(void)
 N//void TIM3_IRQHandler(void)
 N//void TIM4_IRQHandler(void)
-Nvoid TIM5_IRQHandler(void)
+Nvoid TIM3_IRQHandler(void)
 N{
 N    if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC1))
-X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0002)))
+X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0002)))
 N    {
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC1);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0002));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0002));
 N        TIM_ITConfig(TIM_HARD, TIM_IT_CC1, DISABLE);	/* 禁能CC1中断 */
-X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0002), DISABLE);	 
+X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0002), DISABLE);	 
 N
 N        /* 先关闭中断，再执行回调函数。因为回调函数可能需要重启定时器 */
 N        s_TIM_CallBack1();
 N    }
 N
 N    if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC2))
-X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0004)))
+X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0004)))
 N    {
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC2);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0004));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0004));
 N        TIM_ITConfig(TIM_HARD, TIM_IT_CC2, DISABLE);	/* 禁能CC2中断 */
-X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0004), DISABLE);	 
+X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0004), DISABLE);	 
 N
 N        /* 先关闭中断，再执行回调函数。因为回调函数可能需要重启定时器 */
 N        s_TIM_CallBack2();
 N    }
 N
 N    if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC3))
-X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0008)))
+X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0008)))
 N    {
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC3);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0008));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0008));
 N        TIM_ITConfig(TIM_HARD, TIM_IT_CC3, DISABLE);	/* 禁能CC3中断 */
-X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0008), DISABLE);	 
+X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0008), DISABLE);	 
 N
 N        /* 先关闭中断，再执行回调函数。因为回调函数可能需要重启定时器 */
 N        s_TIM_CallBack3();
 N    }
 N
 N    if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC4))
-X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0010)))
+X    if (TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0010)))
 N    {
 N        TIM_ClearITPendingBit(TIM_HARD, TIM_IT_CC4);
-X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0010));
+X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0010));
 N        TIM_ITConfig(TIM_HARD, TIM_IT_CC4, DISABLE);	/* 禁能CC4中断 */
-X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0C00)), ((uint16_t)0x0010), DISABLE);	 
+X        TIM_ITConfig(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)), ((uint16_t)0x0010), DISABLE);	 
 N
 N        /* 先关闭中断，再执行回调函数。因为回调函数可能需要重启定时器 */
 N        s_TIM_CallBack4();

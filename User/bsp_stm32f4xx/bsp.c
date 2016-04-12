@@ -23,7 +23,7 @@ void NVIC_Configuration(void)
   NVIC_Init(&NVIC_InitStructure);
 
 	/* TIM1 update Channel configuration */
-	NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_TIM10_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM8_UP_TIM13_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 4;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
@@ -35,11 +35,12 @@ void NVIC_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 	//timer3
-	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);	  
+	NVIC_Init(&NVIC_InitStructure);	 
+ 
 }
 /*
 *********************************************************************************************************
@@ -54,7 +55,7 @@ void bsp_Init(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA|RCC_AHB1Periph_GPIOB|RCC_AHB1Periph_GPIOC|RCC_AHB1Periph_GPIOD|RCC_AHB1Periph_GPIOE|RCC_AHB1Periph_GPIOF|RCC_AHB1Periph_GPIOG|RCC_AHB1Periph_GPIOH|RCC_AHB1Periph_GPIOI, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1|RCC_APB2Periph_ADC1|RCC_APB2Periph_USART1,ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4|RCC_APB1Periph_SPI2 ,ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4|RCC_APB1Periph_TIM5|RCC_APB1Periph_SPI2 ,ENABLE);
 	NVIC_Configuration();
 	bsp_InitTimer();	/* 初始化系统滴答定时器 (此函数会开中断) */
 	bsp_InitExtSRAM();	/* 配置FSMC总线, 用于SRAM访问 */

@@ -353,412 +353,80 @@
                   |L7.208|
                           DCD      AK_Right_Data
 
-                          AREA ||i.TIM1_UP_TIM10_IRQHandler||, CODE, READONLY, ALIGN=1
+                          AREA ||i.TIM5_IRQHandler||, CODE, READONLY, ALIGN=2
 
-                  TIM1_UP_TIM10_IRQHandler PROC
+                  TIM5_IRQHandler PROC
 ;;;146    //切光片电机使用TIM1中断
-;;;147    void TIM1_UP_TIM10_IRQHandler(void)
-000000  4770              BX       lr
+;;;147    void TIM5_IRQHandler(void)
+000000  b510              PUSH     {r4,lr}
 ;;;148    {
-;;;149    //	if(Step_LM<9000)	//加速过程
-;;;150    //	{
-;;;151    //		//清除中断标志
-;;;152    //		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-;;;153    //		TIM1->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
-;;;154    //	}
-;;;155    //	else
-;;;156    //	{					
-;;;157    //		//转速达到启动PWM
-;;;158    //		TIM_ITConfig(TIM1, TIM_IT_Update, DISABLE);
-;;;159    //		TIM1->ARR=3071;
-;;;160    //		TIM1->CCER=0x000B;
-;;;161    //		TIM1->CNT=0x08B3;
-;;;162    //	}	 	
+;;;149    	if(Step_LM<9000)	//加速过程
+000002  4818              LDR      r0,|L8.100|
+000004  6800              LDR      r0,[r0,#0]  ; Step_LM
+000006  f2423128          MOV      r1,#0x2328
+00000a  4288              CMP      r0,r1
+00000c  d216              BCS      |L8.60|
+;;;150    	{
+;;;151    		//清除中断标志
+;;;152    		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+00000e  2101              MOVS     r1,#1
+000010  4815              LDR      r0,|L8.104|
+000012  f7fffffe          BL       TIM_ClearITPendingBit
+;;;153    		TIM5->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+000016  4913              LDR      r1,|L8.100|
+000018  6808              LDR      r0,[r1,#0]  ; Step_LM
+00001a  1c41              ADDS     r1,r0,#1
+00001c  4a11              LDR      r2,|L8.100|
+00001e  6011              STR      r1,[r2,#0]  ; Step_LM
+000020  212d              MOVS     r1,#0x2d
+000022  fbb0f1f1          UDIV     r1,r0,r1
+000026  b2c9              UXTB     r1,r1
+000028  4a10              LDR      r2,|L8.108|
+00002a  f8521021          LDR      r1,[r2,r1,LSL #2]
+00002e  2201              MOVS     r2,#1
+000030  ebc20141          RSB      r1,r2,r1,LSL #1
+000034  4a0c              LDR      r2,|L8.104|
+000036  322c              ADDS     r2,r2,#0x2c
+000038  6011              STR      r1,[r2,#0]
+00003a  e011              B        |L8.96|
+                  |L8.60|
+;;;154    	}
+;;;155    	else
+;;;156    	{					
+;;;157    		//转速达到启动PWM
+;;;158    		TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
+00003c  2200              MOVS     r2,#0
+00003e  2101              MOVS     r1,#1
+000040  4809              LDR      r0,|L8.104|
+000042  f7fffffe          BL       TIM_ITConfig
+;;;159    		TIM5->ARR=4500;
+000046  f2411094          MOV      r0,#0x1194
+00004a  4907              LDR      r1,|L8.104|
+00004c  312c              ADDS     r1,r1,#0x2c
+00004e  6008              STR      r0,[r1,#0]
+;;;160    		TIM5->CCER=0x000B;
+000050  200b              MOVS     r0,#0xb
+000052  4905              LDR      r1,|L8.104|
+000054  3120              ADDS     r1,r1,#0x20
+000056  8008              STRH     r0,[r1,#0]
+;;;161    		TIM5->CNT=0x08B3;
+000058  f64000b3          MOV      r0,#0x8b3
+00005c  1d09              ADDS     r1,r1,#4
+00005e  6008              STR      r0,[r1,#0]
+                  |L8.96|
+;;;162    	}	 	
 ;;;163    }
+000060  bd10              POP      {r4,pc}
 ;;;164    
                           ENDP
 
-
-                          AREA ||i.TIM2_IRQHandler||, CODE, READONLY, ALIGN=2
-
-                  TIM2_IRQHandler PROC
-;;;244    *******************************************************************************/
-;;;245    void TIM2_IRQHandler(void)
-000000  b510              PUSH     {r4,lr}
-;;;246    { 
-;;;247    	static u8 pulsetype;
-;;;248    	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
-000002  2101              MOVS     r1,#1
-000004  0788              LSLS     r0,r1,#30
-000006  f7fffffe          BL       TIM_GetFlagStatus
-00000a  2800              CMP      r0,#0
-00000c  d075              BEQ      |L9.250|
-;;;249    	{
-;;;250    		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
-00000e  4864              LDR      r0,|L9.416|
-000010  7802              LDRB     r2,[r0,#0]  ; pulsetype
-000012  f44f6100          MOV      r1,#0x800
-000016  4863              LDR      r0,|L9.420|
-000018  f7fffffe          BL       GPIO_WriteBit
-;;;251    		pulsetype=~pulsetype;
-00001c  4860              LDR      r0,|L9.416|
-00001e  7800              LDRB     r0,[r0,#0]  ; pulsetype
-000020  43c0              MVNS     r0,r0
-000022  495f              LDR      r1,|L9.416|
-000024  7008              STRB     r0,[r1,#0]
-;;;252    		
-;;;253    		//如果脉冲够数
-;;;254    		if(PulseCount>=PulseNum+AddedNum)
-000026  4860              LDR      r0,|L9.424|
-000028  8800              LDRH     r0,[r0,#0]  ; PulseNum
-00002a  4960              LDR      r1,|L9.428|
-00002c  8809              LDRH     r1,[r1,#0]  ; AddedNum
-00002e  4408              ADD      r0,r0,r1
-000030  495f              LDR      r1,|L9.432|
-000032  8809              LDRH     r1,[r1,#0]  ; PulseCount
-000034  4288              CMP      r0,r1
-000036  dc09              BGT      |L9.76|
-;;;255    		{
-;;;256    			//关闭中断及timer2
-;;;257    			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
-000038  2200              MOVS     r2,#0
-00003a  2101              MOVS     r1,#1
-00003c  0788              LSLS     r0,r1,#30
-00003e  f7fffffe          BL       TIM_ITConfig
-;;;258    			TIM_Cmd(TIM2,DISABLE);
-000042  2100              MOVS     r1,#0
-000044  f04f4080          MOV      r0,#0x40000000
-000048  f7fffffe          BL       TIM_Cmd
-                  |L9.76|
-;;;259    		}
-;;;260    		//加压有加减速
-;;;261    		if(flagPress)
-00004c  4859              LDR      r0,|L9.436|
-00004e  7800              LDRB     r0,[r0,#0]  ; flagPress
-000050  b3e8              CBZ      r0,|L9.206|
-;;;262    		{
-;;;263    			//如果出于匀速运行阶段
-;;;264    			if(PulseCount>294&&PulseCount<=PulseNum-294)
-000052  4857              LDR      r0,|L9.432|
-000054  8800              LDRH     r0,[r0,#0]  ; PulseCount
-000056  f5b07f93          CMP      r0,#0x126
-00005a  dd0c              BLE      |L9.118|
-00005c  4852              LDR      r0,|L9.424|
-00005e  8800              LDRH     r0,[r0,#0]  ; PulseNum
-000060  f5a07093          SUB      r0,r0,#0x126
-000064  4952              LDR      r1,|L9.432|
-000066  8809              LDRH     r1,[r1,#0]  ; PulseCount
-000068  4288              CMP      r0,r1
-00006a  db04              BLT      |L9.118|
-;;;265    				TIM2->ARR=1157;
-00006c  f2404085          MOV      r0,#0x485
-000070  0781              LSLS     r1,r0,#30
-000072  62c8              STR      r0,[r1,#0x2c]
-000074  e089              B        |L9.394|
-                  |L9.118|
-;;;266    			//如果处于加速阶段
-;;;267    			else if(PulseCount<294)
-000076  484e              LDR      r0,|L9.432|
-000078  8800              LDRH     r0,[r0,#0]  ; PulseCount
-00007a  f5b07f93          CMP      r0,#0x126
-00007e  da0b              BGE      |L9.152|
-;;;268    				TIM2->ARR=moto_ac[PulseCount/2];
-000080  494b              LDR      r1,|L9.432|
-000082  8808              LDRH     r0,[r1,#0]  ; PulseCount
-000084  eb0071d0          ADD      r1,r0,r0,LSR #31
-000088  1049              ASRS     r1,r1,#1
-00008a  4a4b              LDR      r2,|L9.440|
-00008c  f8521021          LDR      r1,[r2,r1,LSL #2]
-000090  f04f4280          MOV      r2,#0x40000000
-000094  62d1              STR      r1,[r2,#0x2c]
-000096  e078              B        |L9.394|
-                  |L9.152|
-;;;269    			//如果出于减速阶段
-;;;270    			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
-000098  4843              LDR      r0,|L9.424|
-00009a  8800              LDRH     r0,[r0,#0]  ; PulseNum
-00009c  4944              LDR      r1,|L9.432|
-00009e  8809              LDRH     r1,[r1,#0]  ; PulseCount
-0000a0  1a40              SUBS     r0,r0,r1
-0000a2  f5b07f93          CMP      r0,#0x126
-0000a6  da17              BGE      |L9.216|
-0000a8  483f              LDR      r0,|L9.424|
-0000aa  8800              LDRH     r0,[r0,#0]  ; PulseNum
-0000ac  4940              LDR      r1,|L9.432|
-0000ae  8809              LDRH     r1,[r1,#0]  ; PulseCount
-0000b0  1a40              SUBS     r0,r0,r1
-0000b2  2800              CMP      r0,#0
-0000b4  dd10              BLE      |L9.216|
-;;;271    				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
-0000b6  493c              LDR      r1,|L9.424|
-0000b8  8809              LDRH     r1,[r1,#0]  ; PulseNum
-0000ba  4a3d              LDR      r2,|L9.432|
-0000bc  8812              LDRH     r2,[r2,#0]  ; PulseCount
-0000be  1a88              SUBS     r0,r1,r2
-0000c0  eb0071d0          ADD      r1,r0,r0,LSR #31
-0000c4  1049              ASRS     r1,r1,#1
-0000c6  4a3c              LDR      r2,|L9.440|
-0000c8  f8521021          LDR      r1,[r2,r1,LSL #2]
-0000cc  e000              B        |L9.208|
-                  |L9.206|
-0000ce  e009              B        |L9.228|
-                  |L9.208|
-0000d0  f04f4280          MOV      r2,#0x40000000
-0000d4  62d1              STR      r1,[r2,#0x2c]
-0000d6  e058              B        |L9.394|
-                  |L9.216|
-;;;272    			//如果是AddedNum 部分，最低速度运行
-;;;273    			else
-;;;274    				TIM2->ARR=moto_ac[0];				
-0000d8  4837              LDR      r0,|L9.440|
-0000da  6800              LDR      r0,[r0,#0]  ; moto_ac
-0000dc  f04f4180          MOV      r1,#0x40000000
-0000e0  62c8              STR      r0,[r1,#0x2c]
-0000e2  e052              B        |L9.394|
-                  |L9.228|
-;;;275    		}
-;;;276    		else
-;;;277    		{	//匀速
-;;;278    			if(StartSpeed==TargeSpeed)
-0000e4  4835              LDR      r0,|L9.444|
-0000e6  7800              LDRB     r0,[r0,#0]  ; StartSpeed
-0000e8  4935              LDR      r1,|L9.448|
-0000ea  7809              LDRB     r1,[r1,#0]  ; TargeSpeed
-0000ec  4288              CMP      r0,r1
-0000ee  d105              BNE      |L9.252|
-;;;279    			{
-;;;280    				TIM2->ARR=1157;
-0000f0  f2404085          MOV      r0,#0x485
-0000f4  0781              LSLS     r1,r0,#30
-0000f6  62c8              STR      r0,[r1,#0x2c]
-0000f8  e047              B        |L9.394|
-                  |L9.250|
-0000fa  e04f              B        |L9.412|
-                  |L9.252|
-;;;281    			}
-;;;282    			else
-;;;283    			{
-;;;284    				//不加压有加减速
-;;;285    				//如果出于匀速运行阶段
-;;;286    				if(PulseCount>324&&PulseCount<=PulseNum-324)
-0000fc  482c              LDR      r0,|L9.432|
-0000fe  8800              LDRH     r0,[r0,#0]  ; PulseCount
-000100  f5b07fa2          CMP      r0,#0x144
-000104  dd0d              BLE      |L9.290|
-000106  4828              LDR      r0,|L9.424|
-000108  8800              LDRH     r0,[r0,#0]  ; PulseNum
-00010a  f5a070a2          SUB      r0,r0,#0x144
-00010e  4928              LDR      r1,|L9.432|
-000110  8809              LDRH     r1,[r1,#0]  ; PulseCount
-000112  4288              CMP      r0,r1
-000114  db05              BLT      |L9.290|
-;;;287    					TIM2->ARR=556;
-000116  f44f700b          MOV      r0,#0x22c
-00011a  f04f4180          MOV      r1,#0x40000000
-00011e  62c8              STR      r0,[r1,#0x2c]
-000120  e033              B        |L9.394|
-                  |L9.290|
-;;;288    				//如果处于加速阶段
-;;;289    				else if(PulseCount<324)
-000122  4823              LDR      r0,|L9.432|
-000124  8800              LDRH     r0,[r0,#0]  ; PulseCount
-000126  f5b07fa2          CMP      r0,#0x144
-00012a  da0b              BGE      |L9.324|
-;;;290    					TIM2->ARR=Speedup_moto[PulseCount/2];
-00012c  4920              LDR      r1,|L9.432|
-00012e  8808              LDRH     r0,[r1,#0]  ; PulseCount
-000130  eb0071d0          ADD      r1,r0,r0,LSR #31
-000134  1049              ASRS     r1,r1,#1
-000136  4a23              LDR      r2,|L9.452|
-000138  f8521021          LDR      r1,[r2,r1,LSL #2]
-00013c  f04f4280          MOV      r2,#0x40000000
-000140  62d1              STR      r1,[r2,#0x2c]
-000142  e022              B        |L9.394|
-                  |L9.324|
-;;;291    				//如果出于减速阶段
-;;;292    				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
-000144  4818              LDR      r0,|L9.424|
-000146  8800              LDRH     r0,[r0,#0]  ; PulseNum
-000148  4919              LDR      r1,|L9.432|
-00014a  8809              LDRH     r1,[r1,#0]  ; PulseCount
-00014c  1a40              SUBS     r0,r0,r1
-00014e  f5b07fa2          CMP      r0,#0x144
-000152  da15              BGE      |L9.384|
-000154  4814              LDR      r0,|L9.424|
-000156  8800              LDRH     r0,[r0,#0]  ; PulseNum
-000158  4915              LDR      r1,|L9.432|
-00015a  8809              LDRH     r1,[r1,#0]  ; PulseCount
-00015c  1a40              SUBS     r0,r0,r1
-00015e  2800              CMP      r0,#0
-000160  dd0e              BLE      |L9.384|
-;;;293    					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
-000162  4911              LDR      r1,|L9.424|
-000164  8809              LDRH     r1,[r1,#0]  ; PulseNum
-000166  4a12              LDR      r2,|L9.432|
-000168  8812              LDRH     r2,[r2,#0]  ; PulseCount
-00016a  1a88              SUBS     r0,r1,r2
-00016c  eb0071d0          ADD      r1,r0,r0,LSR #31
-000170  1049              ASRS     r1,r1,#1
-000172  4a14              LDR      r2,|L9.452|
-000174  f8521021          LDR      r1,[r2,r1,LSL #2]
-000178  f04f4280          MOV      r2,#0x40000000
-00017c  62d1              STR      r1,[r2,#0x2c]
-00017e  e004              B        |L9.394|
-                  |L9.384|
-;;;294    				//如果是AddedNum 部分，最低速度运行
-;;;295    				else
-;;;296    					TIM2->ARR=Speedup_moto[0];	
-000180  4810              LDR      r0,|L9.452|
-000182  6800              LDR      r0,[r0,#0]  ; Speedup_moto
-000184  f04f4180          MOV      r1,#0x40000000
-000188  62c8              STR      r0,[r1,#0x2c]
-                  |L9.394|
-;;;297    			}
-;;;298    		}
-;;;299    		PulseCount++;
-00018a  4809              LDR      r0,|L9.432|
-00018c  8800              LDRH     r0,[r0,#0]  ; PulseCount
-00018e  1c40              ADDS     r0,r0,#1
-000190  4907              LDR      r1,|L9.432|
-000192  8008              STRH     r0,[r1,#0]
-;;;300    		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
-000194  2101              MOVS     r1,#1
-000196  0788              LSLS     r0,r1,#30
-000198  f7fffffe          BL       TIM_ClearITPendingBit
-                  |L9.412|
-;;;301    	}
-;;;302    }	
-00019c  bd10              POP      {r4,pc}
-;;;303    
-                          ENDP
-
-00019e  0000              DCW      0x0000
-                  |L9.416|
-                          DCD      pulsetype
-                  |L9.420|
-                          DCD      0x40021c00
-                  |L9.424|
-                          DCD      PulseNum
-                  |L9.428|
-                          DCD      AddedNum
-                  |L9.432|
-                          DCD      PulseCount
-                  |L9.436|
-                          DCD      flagPress
-                  |L9.440|
-                          DCD      moto_ac
-                  |L9.444|
-                          DCD      StartSpeed
-                  |L9.448|
-                          DCD      TargeSpeed
-                  |L9.452|
-                          DCD      Speedup_moto
-
-                          AREA ||i.TIM3_IRQHandler||, CODE, READONLY, ALIGN=2
-
-                  TIM3_IRQHandler PROC
-;;;216    *******************************************************************************/
-;;;217    void TIM3_IRQHandler(void)
-000000  b510              PUSH     {r4,lr}
-;;;218    {
-;;;219    	//这么基础的C语言知识都忘了！
-;;;220    	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
-;;;221    	static u8 flickerTimes;
-;;;222    	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
-000002  2101              MOVS     r1,#1
-000004  481e              LDR      r0,|L10.128|
-000006  f7fffffe          BL       TIM_GetFlagStatus
-00000a  b330              CBZ      r0,|L10.90|
-;;;223    	{
-;;;224    		if(Step_LM<9000)	//加速过程
-00000c  481d              LDR      r0,|L10.132|
-00000e  6800              LDR      r0,[r0,#0]  ; Step_LM
-000010  f2423128          MOV      r1,#0x2328
-000014  4288              CMP      r0,r1
-000016  d221              BCS      |L10.92|
-;;;225    		{
-;;;226    			if(waitimes++==Speedup[Step_LM++/45])
-000018  491a              LDR      r1,|L10.132|
-00001a  6808              LDR      r0,[r1,#0]  ; Step_LM
-00001c  1c41              ADDS     r1,r0,#1
-00001e  4a19              LDR      r2,|L10.132|
-000020  6011              STR      r1,[r2,#0]  ; Step_LM
-000022  212d              MOVS     r1,#0x2d
-000024  fbb0f1f1          UDIV     r1,r0,r1
-000028  4a17              LDR      r2,|L10.136|
-00002a  f8522021          LDR      r2,[r2,r1,LSL #2]
-00002e  4917              LDR      r1,|L10.140|
-000030  780b              LDRB     r3,[r1,#0]  ; waitimes
-000032  7809              LDRB     r1,[r1,#0]  ; waitimes
-000034  1c49              ADDS     r1,r1,#1
-000036  4c15              LDR      r4,|L10.140|
-000038  7021              STRB     r1,[r4,#0]
-00003a  429a              CMP      r2,r3
-00003c  d11a              BNE      |L10.116|
-;;;227    			{
-;;;228    				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
-00003e  4814              LDR      r0,|L10.144|
-000040  7802              LDRB     r2,[r0,#0]  ; flickerTimes
-000042  2180              MOVS     r1,#0x80
-000044  4813              LDR      r0,|L10.148|
-000046  f7fffffe          BL       GPIO_WriteBit
-;;;229    				flickerTimes=~flickerTimes;
-00004a  4811              LDR      r0,|L10.144|
-00004c  7800              LDRB     r0,[r0,#0]  ; flickerTimes
-00004e  43c0              MVNS     r0,r0
-000050  490f              LDR      r1,|L10.144|
-000052  7008              STRB     r0,[r1,#0]
-;;;230    				waitimes=0;
-000054  2000              MOVS     r0,#0
-000056  4621              MOV      r1,r4
-000058  7008              STRB     r0,[r1,#0]
-                  |L10.90|
-00005a  e00b              B        |L10.116|
-                  |L10.92|
-;;;231    			}
-;;;232    		
-;;;233    		}
-;;;234    		else
-;;;235    		{
-;;;236    			GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)flickerTimes);
-00005c  480c              LDR      r0,|L10.144|
-00005e  7802              LDRB     r2,[r0,#0]  ; flickerTimes
-000060  f44f6100          MOV      r1,#0x800
-000064  480c              LDR      r0,|L10.152|
-000066  f7fffffe          BL       GPIO_WriteBit
-;;;237    			flickerTimes=~flickerTimes;
-00006a  4809              LDR      r0,|L10.144|
-00006c  7800              LDRB     r0,[r0,#0]  ; flickerTimes
-00006e  43c0              MVNS     r0,r0
-000070  4907              LDR      r1,|L10.144|
-000072  7008              STRB     r0,[r1,#0]
-                  |L10.116|
-;;;238    		}	
-;;;239    	}
-;;;240    	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-000074  2101              MOVS     r1,#1
-000076  4802              LDR      r0,|L10.128|
-000078  f7fffffe          BL       TIM_ClearITPendingBit
-;;;241    }
-00007c  bd10              POP      {r4,pc}
-;;;242    /*******************************************************************************
-                          ENDP
-
-00007e  0000              DCW      0x0000
-                  |L10.128|
-                          DCD      0x40000400
-                  |L10.132|
+000062  0000              DCW      0x0000
+                  |L8.100|
                           DCD      Step_LM
-                  |L10.136|
+                  |L8.104|
+                          DCD      0x40000c00
+                  |L8.108|
                           DCD      Speedup
-                  |L10.140|
-                          DCD      waitimes
-                  |L10.144|
-                          DCD      flickerTimes
-                  |L10.148|
-                          DCD      0x40021800
-                  |L10.152|
-                          DCD      0x40021c00
 
                           AREA ||i.UsageFault_Handler||, CODE, READONLY, ALIGN=1
 
@@ -766,11 +434,11 @@
 ;;;100    */
 ;;;101    void UsageFault_Handler(void)
 000000  bf00              NOP      
-                  |L11.2|
+                  |L9.2|
 ;;;102    {
 ;;;103      /* 当用法异常时进入死循环 */
 ;;;104      while (1)
-000002  e7fe              B        |L11.2|
+000002  e7fe              B        |L9.2|
 ;;;105      {
 ;;;106      }
 ;;;107    }
@@ -1098,10 +766,6 @@
                           DCD      0xffffffff
                   waitimes
 000004  00                DCB      0x00
-                  flickerTimes
-000005  00                DCB      0x00
-                  pulsetype
-000006  00                DCB      0x00
 
 ;*** Start embedded assembler ***
 

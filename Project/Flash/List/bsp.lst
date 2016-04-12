@@ -56579,8 +56579,8 @@ N#endif
 N//定义切光片电机端口
 N#ifndef GPIO_M2
 N	#define GPIO_M2
-N	#define GPIO_M2CL 		GPIOG
-N	#define GPIO_Pin_M2CL 	GPIO_Pin_7
+N	#define GPIO_M2CL 		GPIOA
+N	#define GPIO_Pin_M2CL 	GPIO_Pin_0
 N	#define GPIO_M2RESET 	GPIOH
 N	#define GPIO_Pin_M2RESET GPIO_Pin_8
 N	#define GPIO_M2EN		GPIOG
@@ -56785,7 +56785,7 @@ N  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 N  NVIC_Init(&NVIC_InitStructure);
 N
 N	/* TIM1 update Channel configuration */
-N	NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_TIM10_IRQn;
+N	NVIC_InitStructure.NVIC_IRQChannel = TIM8_UP_TIM13_IRQn;
 N	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 4;
 N	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 N	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
@@ -56797,11 +56797,12 @@ N	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 N	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 N	NVIC_Init(&NVIC_InitStructure);
 N	//timer3
-N	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+N	NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;
 N	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
 N	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 N	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-N	NVIC_Init(&NVIC_InitStructure);	  
+N	NVIC_Init(&NVIC_InitStructure);	 
+N 
 N}
 N/*
 N*********************************************************************************************************
@@ -56818,8 +56819,8 @@ N	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA|RCC_AHB1Periph_GPIOB|RCC_AHB1Perip
 X	RCC_AHB1PeriphClockCmd(((uint32_t)0x00000001)|((uint32_t)0x00000002)|((uint32_t)0x00000004)|((uint32_t)0x00000008)|((uint32_t)0x00000010)|((uint32_t)0x00000020)|((uint32_t)0x00000040)|((uint32_t)0x00000080)|((uint32_t)0x00000100), ENABLE);
 N	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1|RCC_APB2Periph_ADC1|RCC_APB2Periph_USART1,ENABLE);
 X	RCC_APB2PeriphClockCmd(((uint32_t)0x00000001)|((uint32_t)0x00000100)|((uint32_t)0x00000010),ENABLE);
-N	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4|RCC_APB1Periph_SPI2 ,ENABLE);
-X	RCC_APB1PeriphClockCmd(((uint32_t)0x00000001)|((uint32_t)0x00000002)|((uint32_t)0x00000004)|((uint32_t)0x00004000) ,ENABLE);
+N	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4|RCC_APB1Periph_TIM5|RCC_APB1Periph_SPI2 ,ENABLE);
+X	RCC_APB1PeriphClockCmd(((uint32_t)0x00000001)|((uint32_t)0x00000002)|((uint32_t)0x00000004)|((uint32_t)0x00000008)|((uint32_t)0x00004000) ,ENABLE);
 N	NVIC_Configuration();
 N	bsp_InitTimer();	/* 初始化系统滴答定时器 (此函数会开中断) */
 N	bsp_InitExtSRAM();	/* 配置FSMC总线, 用于SRAM访问 */

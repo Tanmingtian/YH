@@ -29,9 +29,9 @@
 	TIM3 和TIM4 是16位
 	TIM2 和TIM5 是32位
 */
-#define TIM_HARD		TIM5
-#define TIM_HARD_IRQn	TIM5_IRQn
-#define TIM_HARD_RCC	RCC_APB1Periph_TIM5
+#define TIM_HARD		TIM3
+#define TIM_HARD_IRQn	TIM3_IRQn
+#define TIM_HARD_RCC	RCC_APB1Periph_TIM3
 
 
 /* 这2个全局变量转用于 bsp_DelayMS() 函数 */
@@ -552,7 +552,7 @@ void bsp_StartHardTimer(uint8_t _CC, uint32_t _uiTimeOut, void * _pCallBack)
 //void TIM2_IRQHandler(void)
 //void TIM3_IRQHandler(void)
 //void TIM4_IRQHandler(void)
-void TIM5_IRQHandler(void)
+void TIM3_IRQHandler(void)
 {
     if (TIM_GetITStatus(TIM_HARD, TIM_IT_CC1))
     {

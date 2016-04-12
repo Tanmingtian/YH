@@ -57,8 +57,8 @@
 //定义切光片电机端口
 #ifndef GPIO_M2
 	#define GPIO_M2
-	#define GPIO_M2CL 		GPIOG
-	#define GPIO_Pin_M2CL 	GPIO_Pin_7
+	#define GPIO_M2CL 		GPIOA
+	#define GPIO_Pin_M2CL 	GPIO_Pin_0
 	#define GPIO_M2RESET 	GPIOH
 	#define GPIO_Pin_M2RESET GPIO_Pin_8
 	#define GPIO_M2EN		GPIOG
