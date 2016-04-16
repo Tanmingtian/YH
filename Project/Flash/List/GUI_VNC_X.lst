@@ -4827,13 +4827,13 @@ N#ifndef GUI_DEBUG_H
 N#define GUI_DEBUG_H
 N
 N#include <stddef.h>
-L 1 "C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h" 1
+L 1 "F:\keil\ARM\ARMCC\bin\..\include\stddef.h" 1
 N/* stddef.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.1.4 */
 N
 N/* Copyright (C) ARM Ltd., 1999
 N * All rights reserved
-N * RCS $Revision: 185525 $
-N * Checkin $Date: 2014-05-29 12:44:48 +0100 (Thu, 29 May 2014) $
+N * RCS $Revision: 178085 $
+N * Checkin $Date: 2012-12-11 14:54:17 +0000 (Tue, 11 Dec 2012) $
 N * Revising $Author: agrant $
 N */
 N
@@ -4849,7 +4849,7 @@ N */
 N
 N#ifndef __stddef_h
 N#define __stddef_h
-N#define __ARMCLIB_VERSION 5050106
+N#define __ARMCLIB_VERSION 5030076
 N
 N  #ifndef __STDDEF_DECLS
 N  #define __STDDEF_DECLS
@@ -4862,29 +4862,15 @@ N    #else
 N      #define __CLIBNS
 N    #endif  /* __cplusplus */
 N
-N#if __sizeof_ptr == 8
-X#if 4 == 8
-S  typedef signed long ptrdiff_t;
-N#else
-N  typedef signed int ptrdiff_t;
-N#endif
+Ntypedef signed int ptrdiff_t;
 N
 N#if defined(__cplusplus) || !defined(__STRICT_ANSI__)
 X#if 0L || !0L
 N /* unconditional in C++ and non-strict C for consistency of debug info */
-N  #if __sizeof_ptr == 8
-X  #if 4 == 8
-S    typedef unsigned long size_t;   /* see <stddef.h> */
-N  #else
-N    typedef unsigned int size_t;   /* see <stddef.h> */
-N  #endif
+N  typedef unsigned int size_t;
 N#elif !defined(__size_t)
 S  #define __size_t 1
-S  #if __sizeof_ptr == 8
-S    typedef unsigned long size_t;   /* see <stddef.h> */
-S  #else
-S    typedef unsigned int size_t;   /* see <stddef.h> */
-S  #endif
+S  typedef unsigned int size_t;   /* others (e.g. <stdio.h>) also define */
 S   /* the unsigned integral type of the result of the sizeof operator. */
 N#endif
 N
@@ -4892,15 +4878,15 @@ N#ifndef __cplusplus  /* wchar_t is a builtin type for C++ */
 N  #if !defined(__STRICT_ANSI__)
 X  #if !0L
 N  /* unconditional in non-strict C for consistency of debug info */
-N    #if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
-X    #if 0L || (0L && __ARM_SIZEOF_WCHAR_T == 4)
+N    #if defined(__WCHAR32)
+X    #if 0L
 S      typedef unsigned int wchar_t; /* also in <stdlib.h> and <inttypes.h> */
 N    #else
 N      typedef unsigned short wchar_t; /* also in <stdlib.h> and <inttypes.h> */
 N    #endif
 N  #elif !defined(__wchar_t)
 S    #define __wchar_t 1
-S    #if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
+S    #if defined(__WCHAR32)
 S      typedef unsigned int wchar_t; /* also in <stdlib.h> and <inttypes.h> */
 S    #else
 S      typedef unsigned short wchar_t; /* also in <stdlib.h> and <inttypes.h> */
@@ -4919,12 +4905,8 @@ N#undef NULL  /* others (e.g. <stdio.h>) also define */
 N#define NULL 0
 N   /* null pointer constant. */
 N
-N#ifdef __clang__
-S  #define offsetof(t, d) __builtin_offsetof(t, d)
-N#else
 N  /* EDG uses __INTADDR__ to avoid errors when strict */
 N  #define offsetof(t, memb) ((__CLIBNS size_t)__INTADDR__(&(((t *)0)->memb)))
-N#endif
 N
 N    #ifdef __cplusplus
 S         }  /* extern "C" */

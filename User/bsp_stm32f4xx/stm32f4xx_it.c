@@ -146,19 +146,22 @@ if(EXTI_GetITStatus(EXTI_LINE_TripSwitch) != RESET)
 //切光片电机使用TIM1中断
 void TIM5_IRQHandler(void)
 {
-	if(Step_LM<9000)	//加速过程
+	if(Step_LM<10000)	//加速过程
 	{
 		//清除中断标志
 		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
-		TIM5->ARR=(Speedup[(u8)((Step_LM++)/45)]<<1)-1;
+		TIM5->ARR=(Speedup[(u8)((Step_LM++)/50)]<<1)-1;
 	}
 	else
 	{					
 		//转速达到启动PWM
 		TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
-		TIM5->ARR=4500;
-		TIM5->CCER=0x000B;
-		TIM5->CNT=0x08B3;
+		TIM5->ARR=4499;
+//		TIM5->CCER=0x000B;
+//		TIM5->CNT=0x1193;//8b3
+//		TIM5->ARR=3071;
+//		TIM5->CCER=0x000B;
+//		TIM5->CNT=0x08b3;
 	}	 	
 }
 
@@ -206,99 +209,69 @@ void SPI2_IRQHandler(void)
 		}
 	}
 }
-u8 waitimes=0;
-/*******************************************************************************
-* Function Name  : TIM3_IRQHandler
-* Description    : TIM3用于系统时间中断50us中断一次
-* Input          : None
-* Output         : None
-* Return         : None
-*******************************************************************************/
-//void TIM3_IRQHandler(void)
-//{
-//	//这么基础的C语言知识都忘了！
-//	//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
-//	static u8 flickerTimes;
-//	if(TIM_GetFlagStatus(TIM3,TIM_FLAG_Update)!=RESET)
-//	{
-//		if(Step_LM<9000)	//加速过程
-//		{
-//			if(waitimes++==Speedup[Step_LM++/45])
-//			{
-//				GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
-//				flickerTimes=~flickerTimes;
-//				waitimes=0;
-//			}
-//		
-//		}
-//		else
-//		{
-//			GPIO_WriteBit(GPIO_M2CL, GPIO_Pin_M2CL,(BitAction)flickerTimes);
-//			flickerTimes=~flickerTimes;
-//		}	
-//	}
-//	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-//}
+//这么基础的C语言知识都忘了！
+//c语言的static在使用位置不同时是不同的，在全局上使用，表明该变量只能在本文件使用，在函数中使用，表该变量固定占据一个内存，且初始值在编译时决定，所以再次进入函数时，该变量不会重新被初始化且保留上一次退出函数的值。	
+
 /*******************************************************************************
 Timer2 用于汽缸电机中断
 *******************************************************************************/
-//void TIM2_IRQHandler(void)
-//{ 
-//	static u8 pulsetype;
-//	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
-//	{
-//		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
-//		pulsetype=~pulsetype;
-//		
-//		//如果脉冲够数
-//		if(PulseCount>=PulseNum+AddedNum)
-//		{
-//			//关闭中断及timer2
-//			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
-//			TIM_Cmd(TIM2,DISABLE);
-//		}
-//		//加压有加减速
-//		if(flagPress)
-//		{
-//			//如果出于匀速运行阶段
-//			if(PulseCount>294&&PulseCount<=PulseNum-294)
-//				TIM2->ARR=1157;
-//			//如果处于加速阶段
-//			else if(PulseCount<294)
-//				TIM2->ARR=moto_ac[PulseCount/2];
-//			//如果出于减速阶段
-//			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
-//				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
-//			//如果是AddedNum 部分，最低速度运行
-//			else
-//				TIM2->ARR=moto_ac[0];				
-//		}
-//		else
-//		{	//匀速
-//			if(StartSpeed==TargeSpeed)
-//			{
-//				TIM2->ARR=1157;
-//			}
-//			else
-//			{
-//				//不加压有加减速
-//				//如果出于匀速运行阶段
-//				if(PulseCount>324&&PulseCount<=PulseNum-324)
-//					TIM2->ARR=556;
-//				//如果处于加速阶段
-//				else if(PulseCount<324)
-//					TIM2->ARR=Speedup_moto[PulseCount/2];
-//				//如果出于减速阶段
-//				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
-//					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
-//				//如果是AddedNum 部分，最低速度运行
-//				else
-//					TIM2->ARR=Speedup_moto[0];	
-//			}
-//		}
-//		PulseCount++;
-//		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
-//	}
-//}	
+void TIM2_IRQHandler(void)
+{ 
+	static u8 pulsetype;
+	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
+	{
+		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
+		pulsetype=~pulsetype;
+		
+		//如果脉冲够数
+		if(PulseCount>=PulseNum+AddedNum)
+		{
+			//关闭中断及timer2
+			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
+			TIM_Cmd(TIM2,DISABLE);
+		}
+		//加压有加减速
+		if(flagPress)
+		{
+			//如果出于匀速运行阶段
+			if(PulseCount>294&&PulseCount<=PulseNum-294)
+				TIM2->ARR=1157;
+			//如果处于加速阶段
+			else if(PulseCount<294)
+				TIM2->ARR=moto_ac[PulseCount/2];
+			//如果出于减速阶段
+			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
+				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
+			//如果是AddedNum 部分，最低速度运行
+			else
+				TIM2->ARR=moto_ac[0];				
+		}
+		else
+		{	//匀速
+			if(StartSpeed==TargeSpeed)
+			{
+				TIM2->ARR=1157;
+			}
+			else
+			{
+				//不加压有加减速
+				//如果出于匀速运行阶段
+				if(PulseCount>324&&PulseCount<=PulseNum-324)
+					TIM2->ARR=556;
+				//如果处于加速阶段
+				else if(PulseCount<324)
+					TIM2->ARR=Speedup_moto[PulseCount/2];
+				//如果出于减速阶段
+				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
+					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
+				//如果是AddedNum 部分，最低速度运行
+				else
+					TIM2->ARR=Speedup_moto[0];	
+			}
+		}
+		PulseCount++;
+		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
+	}
+}	
 
 /***************************** END OF FILE *********************************/

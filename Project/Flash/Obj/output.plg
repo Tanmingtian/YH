@@ -4,433 +4,92 @@
 <h1>礦ision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\T\Desktop\YH_SingleChannel_port\Project\project.uvproj
-Project File Date:  04/01/2016
+Project File Date:  04/06/2016
 
 <h2>Output:</h2>
-Build target 'Flash'
+Rebuild target 'Flash'
 compiling main.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\User\main.c(20): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(21): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(25): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(28): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(29): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(30): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(30): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(33): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(34): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\User\main.c(35): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\User\main.c(82): warning:  #111-D: statement is unreachable
 compiling main_menu.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling param.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling measurement.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 ..\User\measurement.c(73): warning:  #177-D: variable "fProgess1" was declared but never referenced
 compiling motor.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\User\motor.c(952): warning:  #177-D: variable "i" was declared but never referenced
-..\User\motor.c(1047): warning:  #177-D: variable "j" was declared but never referenced
-..\User\motor.c(1087): warning:  #177-D: variable "j" was declared but never referenced
-..\User\motor.c(1088): warning:  #550-D: variable "Y" was set but never used
-..\User\motor.c(1123): warning:  #177-D: variable "i" was declared but never referenced
-..\User\motor.c(1264): warning:  #177-D: variable "i" was declared but never referenced
-..\User\motor.c(1267): warning:  #550-D: variable "ratioc12" was set but never used
+..\User\motor.c(945): warning:  #177-D: variable "i" was declared but never referenced
+..\User\motor.c(1033): warning:  #177-D: variable "j" was declared but never referenced
+..\User\motor.c(1073): warning:  #177-D: variable "j" was declared but never referenced
+..\User\motor.c(1074): warning:  #550-D: variable "Y" was set but never used
+..\User\motor.c(1110): warning:  #177-D: variable "i" was declared but never referenced
+..\User\motor.c(1257): warning:  #177-D: variable "i" was declared but never referenced
+..\User\motor.c(1260): warning:  #550-D: variable "ratioc12" was set but never used
 compiling stm32f4xx_it.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\User\bsp_stm32f4xx\stm32f4xx_it.c(144): warning:  #188-D: enumerated type mixed with another type
 compiling bsp_uart.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_fsmc_sram.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_printf.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_sdio_sd.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_timer.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_eeprom_24xx.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_tft_lcd.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_touch.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_ra8875_flash.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_ra8875_port.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_gt811.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_nor_flash.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_spi_bus.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling LCD_ILI9488.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_tsc2046.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_tim_pwm.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_i2c_gpio.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_cpu_flash.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling bsp_adc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
+assembling startup_stm32f427x.s...
 compiling stm32f4xx_rcc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c(516): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t, uint32_t)" (declared at line 542 of "..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h")
-..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c(552): error:  #247: function "RCC_PLLI2SConfig" has already been defined
 compiling stm32f4xx_syscfg.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling misc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_gpio.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
 compiling stm32f4xx_usart.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_exti.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_iwdg.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_wwdg.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_crc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_spi.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-compiling stm32f4xx_fsmc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_sdio.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_dma.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_flash.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
 compiling stm32f4xx_tim.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling stm32f4xx_adc.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
+compiling stm32f4xx_fmc.c...
 compiling system_stm32f4xx.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-..\User\bsp_stm32f4xx\system_stm32f4xx.c(305): warning:  #47-D: incompatible redefinition of macro "PLL_N" (declared at line 299)
-..\User\bsp_stm32f4xx\system_stm32f4xx.c(339): error:  #148: variable "SystemCoreClock" has already been initialized
 compiling GUIDRV_Template.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling LCD_SPFD5420.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling LCD_RA8875.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
+compiling asc12.c...
+compiling asc16.c...
+compiling hz12.c...
+compiling hz16.c...
+compiling hz24.c...
+compiling hz48.c...
+compiling hz96.c...
+compiling SongFont.c...
 compiling GUI_X_Touch_Analog.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
+compiling GUI_VNC_X.c...
+compiling GUI_X_Touch_StoreState.c...
 compiling GUI_X.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling GUIConf.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
 compiling LCDConf.c...
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(270): error:  #67: expected a "}"
-..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h(333): warning:  #47-D: incompatible redefinition of macro "ADC_Channel_TempSensor" (declared at line 329)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(175): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 366)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
-..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 144)
-".\Flash\Obj\output.axf" - 103 Errors, 271 Warning(s).
-Target not created
+compiling Maintaining.c...
+compiling Measureture.c...
+compiling Preferences.c...
+compiling Print.c...
+compiling QC.c...
+compiling Record.c...
+assembling cr4_fft_256_stm32.s...
+assembling cr4_fft_1024_stm32.s...
+linking...
+Program Size: Code=31696 RO-data=4324 RW-data=4712 ZI-data=34944  
+FromELF: creating hex file...
+After Build - User command #1: CopyHex_Flash.bat
+C:\Users\T\Desktop\YH_SingleChannel_port\Project>copy Flash\Obj\output.hex ..\output(mdk).hex 
+已复制         1 个文件。
+".\Flash\Obj\output.axf" - 0 Errors, 9 Warning(s).

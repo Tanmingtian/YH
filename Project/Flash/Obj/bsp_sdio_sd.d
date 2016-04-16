@@ -1,11 +1,11 @@
 .\flash\obj\bsp_sdio_sd.o: ..\User\bsp_stm32f4xx\src\bsp_sdio_sd.c
 .\flash\obj\bsp_sdio_sd.o: ..\User\bsp_stm32f4xx\inc\bsp_sdio_sd.h
 .\flash\obj\bsp_sdio_sd.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\flash\obj\bsp_sdio_sd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
-.\flash\obj\bsp_sdio_sd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\flash\obj\bsp_sdio_sd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
-.\flash\obj\bsp_sdio_sd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
-.\flash\obj\bsp_sdio_sd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\obj\bsp_sdio_sd.o: F:\keil\ARM\CMSIS\Include\core_cm4.h
+.\flash\obj\bsp_sdio_sd.o: F:\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\flash\obj\bsp_sdio_sd.o: F:\keil\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\obj\bsp_sdio_sd.o: F:\keil\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\obj\bsp_sdio_sd.o: F:\keil\ARM\CMSIS\Include\core_cm4_simd.h
 .\flash\obj\bsp_sdio_sd.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\flash\obj\bsp_sdio_sd.o: ..\User\bsp_stm32f4xx\stm32f4xx_conf.h
 .\flash\obj\bsp_sdio_sd.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h

@@ -887,12 +887,11 @@ ARM Macro Assembler    Page 14
   455 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=.\flash\obj\startup_stm32f427x.d -o.\flash\obj\startup_stm32f42
-7x.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\
-Inc\ST\STM32F4xx --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION
- SETA 514" --list=.\flash\list\startup_stm32f427x.lst ..\Libraries\CMSIS\Device
-\ST\STM32F4xx\Source\Templates\arm\startup_stm32f427x.s
+Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\fla
+sh\obj\startup_stm32f427x.d -o.\flash\obj\startup_stm32f427x.o -IF:\keil\ARM\RV
+31\INC -IF:\keil\ARM\CMSIS\Include -IF:\keil\ARM\Inc\ST\STM32F4xx --predefine="
+__MICROLIB SETA 1" --list=.\flash\list\startup_stm32f427x.lst ..\Libraries\CMSI
+S\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f427x.s
 
 
 
@@ -2412,4 +2411,4 @@ es\arm\startup_stm32f427x.s
 es\arm\startup_stm32f427x.s
 Comment: __main used once
 2 symbols
-451 symbols in table
+450 symbols in table

@@ -7,11 +7,11 @@
 .\flash\obj\gui_x.o: ..\emWin\Include\Global.h
 .\flash\obj\gui_x.o: ..\emWin\Include\GUI_Version.h
 .\flash\obj\gui_x.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\flash\obj\gui_x.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
-.\flash\obj\gui_x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\flash\obj\gui_x.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
-.\flash\obj\gui_x.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
-.\flash\obj\gui_x.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\obj\gui_x.o: F:\keil\ARM\CMSIS\Include\core_cm4.h
+.\flash\obj\gui_x.o: F:\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\flash\obj\gui_x.o: F:\keil\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\obj\gui_x.o: F:\keil\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\obj\gui_x.o: F:\keil\ARM\CMSIS\Include\core_cm4_simd.h
 .\flash\obj\gui_x.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\flash\obj\gui_x.o: ..\User\bsp_stm32f4xx\stm32f4xx_conf.h
 .\flash\obj\gui_x.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h

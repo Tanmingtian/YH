@@ -1009,12 +1009,11 @@ xba09,0x0646
 xbcf0,0x0324
   373 000005DE         
   374 000005DE                 END
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=.\flash\obj\cr4_fft_256_stm32.d -o.\flash\obj\cr4_fft_256_stm32
-.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\In
-c\ST\STM32F4xx --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION S
-ETA 514" --list=.\flash\list\cr4_fft_256_stm32.lst ..\User\DSP_Lib\src\cr4_fft_
-256_stm32.s
+Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\fla
+sh\obj\cr4_fft_256_stm32.d -o.\flash\obj\cr4_fft_256_stm32.o -IF:\keil\ARM\RV31
+\INC -IF:\keil\ARM\CMSIS\Include -IF:\keil\ARM\Inc\ST\STM32F4xx --predefine="__
+MICROLIB SETA 1" --list=.\flash\list\cr4_fft_256_stm32.lst ..\User\DSP_Lib\src\
+cr4_fft_256_stm32.s
 
 
 
@@ -1090,13 +1089,13 @@ Symbol: NPT
    Definitions
       At line 46 in file ..\User\DSP_Lib\src\cr4_fft_256_stm32.s
    Uses
-      At line 136 in macro /OPT
+      At line 136 in macro  OPT
       at line 228 in file ..\User\DSP_Lib\src\cr4_fft_256_stm32.s
-      At line 139 in macro /OPT
+      At line 139 in macro  OPT
       at line 228 in file ..\User\DSP_Lib\src\cr4_fft_256_stm32.s
-      At line 142 in macro /OPT
+      At line 142 in macro  OPT
       at line 228 in file ..\User\DSP_Lib\src\cr4_fft_256_stm32.s
-      At line 145 in macro /OPT
+      At line 145 in macro  OPT
       at line 228 in file ..\User\DSP_Lib\src\cr4_fft_256_stm32.s
 
 1 symbol
@@ -1115,4 +1114,4 @@ Symbol: TableFFT
       None
 Comment: TableFFT unused
 1 symbol
-361 symbols in table
+360 symbols in table

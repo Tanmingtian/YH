@@ -72,11 +72,11 @@ int main(void)
 
 //LCD_SetBackLight(g_tParam.ucBackLight);		/* 设置背光亮度。 */
 	ucStatus = MS_MAIN_MENU;	/* 初始状态 = 图标界面 */
-//	LightModulation(ON);
-//	bsp_DelayMS(20000);
-//	LightModulation(OFF);
-//	while(1)
-//	{}
+	LightModulation(ON);
+	bsp_DelayMS(20000);
+	LightModulation(OFF);
+	while(1)
+	{}
 //	ChopperCheck(1);
 
 	SystemCheck();

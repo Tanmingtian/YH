@@ -1,10 +1,10 @@
 .\flash\obj\bsp_uart.o: ..\User\bsp_stm32f4xx\src\bsp_uart.c
 .\flash\obj\bsp_uart.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\flash\obj\bsp_uart.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
-.\flash\obj\bsp_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\flash\obj\bsp_uart.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
-.\flash\obj\bsp_uart.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
-.\flash\obj\bsp_uart.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\obj\bsp_uart.o: F:\keil\ARM\CMSIS\Include\core_cm4.h
+.\flash\obj\bsp_uart.o: F:\keil\ARM\ARMCC\bin\..\include\stdint.h
+.\flash\obj\bsp_uart.o: F:\keil\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\obj\bsp_uart.o: F:\keil\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\obj\bsp_uart.o: F:\keil\ARM\CMSIS\Include\core_cm4_simd.h
 .\flash\obj\bsp_uart.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\flash\obj\bsp_uart.o: ..\User\bsp_stm32f4xx\stm32f4xx_conf.h
 .\flash\obj\bsp_uart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
