@@ -16,37 +16,36 @@ extern volatile unsigned int m;
 void SystemCheck(void)
 {
 	Valve_GPIO_Config();
-//	while(1)
-//	{
-//		
-//		tempA = ADC_1(ADC_T_10A);	
-//		tempA = 3.0 * tempA / 4096.0 / 2.0;
-//		tempA = -(-232.6 * log(log10(37.4 * 1000.0 * tempA / (1.2 - tempA))) + 343.82);
-//		A1=tempA*10;
-//		tempB = ADC_1(ADC_T_10B);
-//		tempB = 3.0 * tempB / 4096.0 / 2.0;
-//		tempB = -(-232.6 * log(log10(37.4 * 1000.0 * tempB / (1.2 - tempB))) + 343.82);
-//		A2=tempB*10;
-//		tempC = ADC_1(ADC_T18);
-//		tempC = 3.0 * tempC / 4096.0;
-//		tempC = (((2500.0*4.0*tempC)/(2.5*490.0))+(2500.0*100.0)/2600.0)/(1-((4.0*tempC)/(490.0*2.5))-(100.0/2600.0));
-//		tempC = 0.001 * tempC * tempC + 2.3589 * tempC - 245.87;
-//		A3=tempC*10;
-//		tempD = ADC_1(ADC_T42);
-//		tempD = 3.0 * tempD / 4096.0;
-//		tempD = (((2500.0*4.0*tempD)/(490.0*2.5))+(2500.0*100.0)/2600.0)/(1-((4.0*tempD)/(490.0*2.5))-(100.0/2600.0));
-//		tempD = (tempD - 100.0) / 0.385 - 1;
-//		A4=tempD*10;
-//		bsp_DelayMS(5);
-//		if(A1>85&&A1<110&&A2>85&&A2<110&&A3>150&&A3<250&&A4>360&&A4<505)
-//		{
-//			break;
-//		}
-//	}
-//	Motor_Init();	
+	while(1)
+	{
+		
+		tempA = ADC_1(ADC_T_10A);	
+		tempA = 3.0 * tempA / 4096.0 / 2.0;
+		tempA = -(-232.6 * log(log10(37.4 * 1000.0 * tempA / (1.2 - tempA))) + 343.82);
+		A1=tempA*10;
+		tempB = ADC_1(ADC_T_10B);
+		tempB = 3.0 * tempB / 4096.0 / 2.0;
+		tempB = -(-232.6 * log(log10(37.4 * 1000.0 * tempB / (1.2 - tempB))) + 343.82);
+		A2=tempB*10;
+		tempC = ADC_1(ADC_T18);
+		tempC = 3.0 * tempC / 4096.0;
+		tempC = (((2500.0*4.0*tempC)/(2.5*490.0))+(2500.0*100.0)/2600.0)/(1-((4.0*tempC)/(490.0*2.5))-(100.0/2600.0));
+		tempC = 0.001 * tempC * tempC + 2.3589 * tempC - 245.87;
+		A3=tempC*10;
+		tempD = ADC_1(ADC_T42);
+		tempD = 3.0 * tempD / 4096.0;
+		tempD = (((2500.0*4.0*tempD)/(490.0*2.5))+(2500.0*100.0)/2600.0)/(1-((4.0*tempD)/(490.0*2.5))-(100.0/2600.0));
+		tempD = (tempD - 100.0) / 0.385 - 1;
+		A4=tempD*10;
+		bsp_DelayMS(5);
+		if(A1>85&&A1<110&&A2>85&&A2<110&&A3>150&&A3<250&&A4>360&&A4<505)
+		{
+			break;
+		}
+	}
+	Motor_Init();	
 	PowerCheck();
 	m=Test();
-
 	PerkCheck();
 }
 /*
@@ -57,11 +56,9 @@ void SystemCheck(void)
 *	返 回 值: 错误代码(无需处理)
 *********************************************************************************************************
 */	uint16_t ucStatus;
-
+u8 test=1;
 int main(void)
 {
-
-
 	bsp_Init();	/* 为了是main函数看起来更简洁些，我们将硬件初始化的代码封装到这个函数 */
 	LoadParam();	/* 读取应用程序参数, 该函数在param.c */
 
@@ -72,12 +69,13 @@ int main(void)
 
 //LCD_SetBackLight(g_tParam.ucBackLight);		/* 设置背光亮度。 */
 	ucStatus = MS_MAIN_MENU;	/* 初始状态 = 图标界面 */
-	LightModulation(ON);
-	bsp_DelayMS(20000);
-	LightModulation(OFF);
-	while(1)
-	{}
-//	ChopperCheck(1);
+	
+//	LightModulation(ON);
+//	while(test)
+//	{
+//		bsp_DelayMS(10000);
+//		AK_Test();
+//	}
 
 	SystemCheck();
 	while (1)

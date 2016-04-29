@@ -1,10 +1,10 @@
 .\flash\obj\lcd_spfd5420.o: ..\User\bsp_stm32f4xx\src\LCD_SPFD5420.c
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\CMSIS\Include\core_cm4.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\ARMCC\bin\..\include\stdint.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\CMSIS\Include\core_cmInstr.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\CMSIS\Include\core_cmFunc.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\flash\obj\lcd_spfd5420.o: ..\User\bsp_stm32f4xx\stm32f4xx_conf.h
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
@@ -36,7 +36,7 @@
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\flash\obj\lcd_spfd5420.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\ARMCC\bin\..\include\stdio.h
-.\flash\obj\lcd_spfd5420.o: F:\keil\ARM\ARMCC\bin\..\include\string.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\flash\obj\lcd_spfd5420.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\flash\obj\lcd_spfd5420.o: ..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h
 .\flash\obj\lcd_spfd5420.o: ..\User\fonts\fonts.h

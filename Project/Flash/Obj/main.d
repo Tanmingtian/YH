@@ -1,11 +1,11 @@
 .\flash\obj\main.o: ..\User\main.c
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\bsp.h
 .\flash\obj\main.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\flash\obj\main.o: F:\keil\ARM\CMSIS\Include\core_cm4.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\stdint.h
-.\flash\obj\main.o: F:\keil\ARM\CMSIS\Include\core_cmInstr.h
-.\flash\obj\main.o: F:\keil\ARM\CMSIS\Include\core_cmFunc.h
-.\flash\obj\main.o: F:\keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h
 .\flash\obj\main.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\stm32f4xx_conf.h
 .\flash\obj\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
@@ -37,9 +37,9 @@
 .\flash\obj\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\flash\obj\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\flash\obj\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\stdio.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\string.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\inc\bsp_led.h
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\inc\bsp_timer.h
@@ -96,7 +96,7 @@
 .\flash\obj\main.o: ..\emWin\Include\GUI_Private.h
 .\flash\obj\main.o: ..\emWin\Include\LCD_Protected.h
 .\flash\obj\main.o: ..\emWin\Include\GUI_Debug.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\stddef.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\flash\obj\main.o: ..\emWin\Include\SCROLLBAR.h
 .\flash\obj\main.o: ..\emWin\Include\WIDGET.h
 .\flash\obj\main.o: ..\emWin\Include\CALENDAR.h
@@ -129,4 +129,4 @@
 .\flash\obj\main.o: ..\User\param.h
 .\flash\obj\main.o: ..\User\motor.h
 .\flash\obj\main.o: ..\User\bsp_stm32f4xx\bsp.h
-.\flash\obj\main.o: F:\keil\ARM\ARMCC\bin\..\include\math.h
+.\flash\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

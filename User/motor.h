@@ -227,6 +227,7 @@ void Sys_100msClock_Config(void);
 void Speaker(u8 Num);
 void PowerCheck(void);
 s16 Test(void);
+void AK_Test(void);
 void PerkCheck(void);
 void Valve(unsigned char Vnum);
 void Motorun(u8 En,u16 FPulseNum,u8 Cw,u8 IfConv,
