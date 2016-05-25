@@ -2,79 +2,14 @@
 ; commandline ArmCC [--list --split_sections --debug -c --asm --interleave -o.\flash\obj\bsp_printf.o --asm_dir=.\Flash\List\ --list_dir=.\Flash\List\ --depend=.\flash\obj\bsp_printf.d --cpu=Cortex-M4.fp --apcs=interwork -O0 --diag_suppress=9931,870 -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F4xx -D__MICROLIB -D__UVISION_VERSION=514 -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx --omf_browse=.\flash\obj\bsp_printf.crf ..\User\bsp_stm32f4xx\src\bsp_printf.c]
                           THUMB
 
-                          AREA ||i.fgetc||, CODE, READONLY, ALIGN=2
-
-                  fgetc PROC
-;;;54     */
-;;;55     int fgetc(FILE *f)
-000000  b510              PUSH     {r4,lr}
-;;;56     {
-000002  4604              MOV      r4,r0
-;;;57     	/* 等待串口1输入数据 */
-;;;58     	while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
-000004  bf00              NOP      
-                  |L1.6|
-000006  2120              MOVS     r1,#0x20
-000008  4804              LDR      r0,|L1.28|
-00000a  f7fffffe          BL       USART_GetFlagStatus
-00000e  2800              CMP      r0,#0
-000010  d0f9              BEQ      |L1.6|
-;;;59     
-;;;60     	return (int)USART_ReceiveData(USART1);
-000012  4802              LDR      r0,|L1.28|
-000014  f7fffffe          BL       USART_ReceiveData
-;;;61     }
-000018  bd10              POP      {r4,pc}
-                          ENDP
-
-00001a  0000              DCW      0x0000
-                  |L1.28|
-                          DCD      0x40011000
-
-                          AREA ||i.fputc||, CODE, READONLY, ALIGN=2
-
-                  fputc PROC
-;;;34     */
-;;;35     int fputc(int ch, FILE *f)
-000000  b570              PUSH     {r4-r6,lr}
-;;;36     {
-000002  4604              MOV      r4,r0
-000004  460d              MOV      r5,r1
-;;;37     	/* 写一个字节到USART1 */
-;;;38     	USART_SendData(USART1, (uint8_t) ch);
-000006  b2e1              UXTB     r1,r4
-000008  4805              LDR      r0,|L2.32|
-00000a  f7fffffe          BL       USART_SendData
-;;;39     
-;;;40     	/* 等待发送结束 */
-;;;41     	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
-00000e  bf00              NOP      
-                  |L2.16|
-000010  2140              MOVS     r1,#0x40
-000012  4803              LDR      r0,|L2.32|
-000014  f7fffffe          BL       USART_GetFlagStatus
-000018  2800              CMP      r0,#0
-00001a  d0f9              BEQ      |L2.16|
-;;;42     	{}
-;;;43     
-;;;44     	return ch;
-00001c  4620              MOV      r0,r4
-;;;45     }
-00001e  bd70              POP      {r4-r6,pc}
-;;;46     
-                          ENDP
-
-                  |L2.32|
-                          DCD      0x40011000
-
 ;*** Start embedded assembler ***
 
 #line 1 "..\\User\\bsp_stm32f4xx\\src\\bsp_printf.c"
 	AREA ||.rev16_text||, CODE
 	THUMB
-	EXPORT |__asm___12_bsp_printf_c_fputc____REV16|
+	EXPORT |__asm___12_bsp_printf_c____REV16|
 #line 129 "C:\\Keil_v5\\ARM\\CMSIS\\Include\\core_cmInstr.h"
-|__asm___12_bsp_printf_c_fputc____REV16| PROC
+|__asm___12_bsp_printf_c____REV16| PROC
 #line 130
 
  rev16 r0, r0
@@ -82,9 +17,9 @@
 	ENDP
 	AREA ||.revsh_text||, CODE
 	THUMB
-	EXPORT |__asm___12_bsp_printf_c_fputc____REVSH|
+	EXPORT |__asm___12_bsp_printf_c____REVSH|
 #line 144
-|__asm___12_bsp_printf_c_fputc____REVSH| PROC
+|__asm___12_bsp_printf_c____REVSH| PROC
 #line 145
 
  revsh r0, r0

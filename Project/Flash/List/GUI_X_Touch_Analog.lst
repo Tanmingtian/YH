@@ -41064,7 +41064,8 @@ N	FC_ST_16 = 0,		/* 宋体15x16点阵 （宽x高） */
 N	FC_ST_12 = 1,	/* 宋体12x12点阵 （宽x高） */
 N	FC_ST_24 = 2,
 N	FC_ST_48 = 3,
-N	FC_ST_96 = 4,
+N	FC_ST_64 = 4,
+N	FC_ST_96 = 5,
 N}FONT_CODE_E;
 N
 N/* 字体属性结构, 用于LCD_DispStr() */
@@ -41138,6 +41139,9 @@ N	/* 按钮的颜色，由底层自动管理 */
 N	FONT_T *Font;			/* 字体 */
 N	char *pCaption;
 N	uint8_t Focus;			/* 焦点 */
+N	char * acLabel;   /* 按钮对应的小写字符 */
+N  char * acLabel1;  /* 按钮对应的大写字符 */
+N  char         Control;   /* 按钮对应的控制位，1表示功能按钮，0表示普通按钮 */
 N}BUTTON_T;
 N
 N/* 编辑框结构 */

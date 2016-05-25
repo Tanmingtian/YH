@@ -1,6 +1,6 @@
 Dependencies for Project 'project', Target 'Flash': (DO NOT MODIFY !)
-F (..\User\main.c)(0x572175AE)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\main.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\main.crf --depend .\flash\obj\main.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\main.c)(0x5743BA12)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\main.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\main.crf --depend .\flash\obj\main.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -37,7 +37,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -55,10 +54,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -122,13 +121,13 @@ I (..\emWin\Include\SPINBOX.h)(0x525861A0)
 I (..\emWin\Include\TEXT.h)(0x525861A0)
 I (..\emWin\Include\TREEVIEW.h)(0x525861A0)
 I (..\User\main_menu.h)(0x56035C6A)
-I (..\User\main.h)(0x55ADE7A9)
-I (..\User\measurement.h)(0x55B1B13B)
+I (..\User\main.h)(0x5743ABBC)
+I (..\User\measurement.h)(0x5743A8B4)
 I (..\User\param.h)(0x5443D326)
-I (..\User\motor.h)(0x5719C603)
+I (..\User\motor.h)(0x5742C502)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
-F (..\User\main_menu.c)(0x56035CD6)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\main_menu.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\main_menu.crf --depend .\flash\obj\main_menu.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\main_menu.c)(0x572C548D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\main_menu.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\main_menu.crf --depend .\flash\obj\main_menu.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -165,7 +164,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -183,10 +181,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -215,9 +213,9 @@ I (..\emWin\Include\LCD.h)(0x525861A0)
 I (..\emWin\Include\Global.h)(0x525861A0)
 I (..\emWin\Include\GUI_Version.h)(0x525861A0)
 I (..\User\main_menu.h)(0x56035C6A)
-I (..\User\main.h)(0x55ADE7A9)
-F (..\User\param.c)(0x543BB60A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\param.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\param.crf --depend .\flash\obj\param.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\main.h)(0x5743ABBC)
+F (..\User\param.c)(0x573ED99F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\param.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\param.crf --depend .\flash\obj\param.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -254,7 +252,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -272,10 +269,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -296,51 +293,9 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 I (..\User\param.h)(0x5443D326)
-F (..\User\measurement.c)(0x5603A687)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\measurement.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\measurement.crf --depend .\flash\obj\measurement.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
-I (..\emWin\Include\GUI.h)(0x525861A0)
-I (..\emWin\Include\GUI_ConfDefaults.h)(0x525861A0)
-I (..\emWin\Config\GUIConf.h)(0x51FDD12C)
-I (..\emWin\Include\GUI_Type.h)(0x525861A0)
-I (..\emWin\Include\LCD.h)(0x525861A0)
-I (..\emWin\Include\Global.h)(0x525861A0)
-I (..\emWin\Include\GUI_Version.h)(0x525861A0)
-I (..\emWin\Include\DIALOG.h)(0x525861A0)
-I (..\emWin\Include\WM.h)(0x525861A0)
-I (..\emWin\Include\WM_GUI.h)(0x525861A0)
-I (..\emWin\Include\BUTTON.h)(0x525861A0)
-I (..\emWin\Include\DIALOG_Intern.h)(0x525861A0)
-I (..\emWin\Include\WIDGET.h)(0x525861A0)
-I (..\emWin\Include\WM_Intern.h)(0x525861A0)
-I (..\emWin\Include\GUI_Private.h)(0x525861A0)
-I (..\emWin\Include\LCD_Protected.h)(0x525861A0)
-I (..\emWin\Include\GUI_Debug.h)(0x525861A0)
-I (..\emWin\Include\SCROLLBAR.h)(0x525861A0)
-I (..\emWin\Include\CALENDAR.h)(0x525861A0)
-I (..\emWin\Include\CHECKBOX.h)(0x525861A0)
-I (..\emWin\Include\CHOOSECOLOR.h)(0x525861A0)
-I (..\emWin\Include\CHOOSEFILE.h)(0x525861A0)
-I (..\emWin\Include\DROPDOWN.h)(0x525861A0)
-I (..\emWin\Include\LISTBOX.h)(0x525861A0)
-I (..\emWin\Include\EDIT.h)(0x525861A0)
-I (..\emWin\Include\FRAMEWIN.h)(0x525861A0)
-I (..\emWin\Include\GRAPH.h)(0x525861A0)
-I (..\emWin\Include\HEADER.h)(0x525861A0)
-I (..\emWin\Include\ICONVIEW.h)(0x525861A0)
-I (..\emWin\Include\IMAGE.h)(0x525861A0)
-I (..\emWin\Include\LISTVIEW.h)(0x525861A0)
-I (..\emWin\Include\LISTWHEEL.h)(0x525861A0)
-I (..\emWin\Include\MENU.h)(0x525861A0)
-I (..\emWin\Include\MULTIEDIT.h)(0x525861A0)
-I (..\emWin\Include\MULTIPAGE.h)(0x525861A0)
-I (..\emWin\Include\PROGBAR.h)(0x525861A0)
-I (..\emWin\Include\RADIO.h)(0x525861A0)
-I (..\emWin\Include\SLIDER.h)(0x525861A0)
-I (..\emWin\Include\SPINBOX.h)(0x525861A0)
-I (..\emWin\Include\TEXT.h)(0x525861A0)
-I (..\emWin\Include\TREEVIEW.h)(0x525861A0)
-I (..\User\measurement.h)(0x55B1B13B)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\measurement.c)(0x5744218C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\measurement.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\measurement.crf --depend .\flash\obj\measurement.d)
+I (..\User\measurement.h)(0x5743A8B4)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -377,7 +332,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -395,10 +349,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -418,11 +372,13 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-I (..\User\motor.h)(0x5719C603)
+I (..\User\motor.h)(0x5742C502)
 I (..\User\main_menu.h)(0x56035C6A)
-F (..\User\motor.c)(0x5722C5C8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\motor.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\motor.crf --depend .\flash\obj\motor.d)
-I (..\User\motor.h)(0x5719C603)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
+I (..\User\typewriting.h)(0x5742BBC6)
+F (..\User\motor.c)(0x57441C82)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\motor.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\motor.crf --depend .\flash\obj\motor.d)
+I (..\User\motor.h)(0x5742C502)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -459,7 +415,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -477,10 +432,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -503,7 +458,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
 I (..\User\DSP_Lib\inc\stm32_dsp.h)(0x55DAB8AC)
 I (..\User\DSP_Lib\inc\table_fft.h)(0x4B2998AE)
-F (..\User\bsp_stm32f4xx\stm32f4xx_it.c)(0x572161E1)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\stm32f4xx_it.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\stm32f4xx_it.crf --depend .\flash\obj\stm32f4xx_it.d)
+F (..\User\bsp_stm32f4xx\stm32f4xx_it.c)(0x5743B4F8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\stm32f4xx_it.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\stm32f4xx_it.crf --depend .\flash\obj\stm32f4xx_it.d)
 I (..\User\bsp_stm32f4xx\stm32f4xx_it.h)(0x55BEAEF3)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
@@ -541,9 +496,8 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
-I (..\User\motor.h)(0x5719C603)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\motor.h)(0x5742C502)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -561,10 +515,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -584,6 +538,88 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
+F (..\User\typewriting.c)(0x5743A8B4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\typewriting.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\typewriting.crf --depend .\flash\obj\typewriting.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
+I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x53463974)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x53463974)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x53463974)
+I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x527CECE0)
+I (..\User\bsp_stm32f4xx\stm32f4xx_conf.h)(0x52839DC2)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x55CEAE1D)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
+I (..\User\bsp_stm32f4xx\inc\bsp_led.h)(0x511E4AD2)
+I (..\User\bsp_stm32f4xx\inc\bsp_timer.h)(0x543BB414)
+I (..\User\bsp_stm32f4xx\inc\bsp_key.h)(0x5300B686)
+I (..\User\bsp_stm32f4xx\inc\bsp_tim_pwm.h)(0x530F28C6)
+I (..\User\bsp_stm32f4xx\inc\bsp_adc.h)(0x52D293EE)
+I (..\User\bsp_stm32f4xx\inc\bsp_cpu_flash.h)(0x519C6929)
+I (..\User\bsp_stm32f4xx\inc\bsp_sdio_sd.h)(0x51C5CE06)
+I (..\User\bsp_stm32f4xx\inc\bsp_i2c_gpio.h)(0x511B205F)
+I (..\User\bsp_stm32f4xx\inc\bsp_eeprom_24xx.h)(0x511B4FA4)
+I (..\User\bsp_stm32f4xx\inc\bsp_gt811.h)(0x55A627A3)
+I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
+I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
+I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
+I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
+I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
+I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
+I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
+I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
+I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_flash.h)(0x53ADF72E)
+I (..\User\bsp_stm32f4xx\inc\bsp_spi_bus.h)(0x5470A096)
+I (..\User\bsp_stm32f4xx\inc\bsp_spi_flash.h)(0x5448F9A0)
+I (..\User\bsp_stm32f4xx\inc\bsp_tm7705.h)(0x54490526)
+I (..\User\bsp_stm32f4xx\inc\bsp_ads1256.h)(0x52F4E2FC)
+I (..\User\bsp_stm32f4xx\inc\bsp_vs1053b.h)(0x51E2CF95)
+I (..\User\bsp_stm32f4xx\inc\bsp_tsc2046.h)(0x545E2349)
+I (..\User\bsp_stm32f4xx\inc\bsp_ds18b20.h)(0x52E29EAA)
+I (..\User\bsp_stm32f4xx\inc\bsp_dac8501.h)(0x545D8E6D)
+I (..\User\bsp_stm32f4xx\inc\bsp_dht11.h)(0x52F38599)
+I (..\User\bsp_stm32f4xx\inc\bsp_ir_decode.h)(0x52FB3059)
+I (..\User\bsp_stm32f4xx\inc\bsp_ps2.h)(0x530381A7)
+I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
+I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
+I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
+I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
+I (..\User\main.h)(0x5743ABBC)
+I (..\User\typewriting.h)(0x5742BBC6)
+I (..\User\fonts\pysearch.h)(0x53BA9DA0)
+I (..\User\measurement.h)(0x5743A8B4)
 F (..\User\bsp_stm32f4xx\src\bsp_uart.c)(0x5309A296)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_uart.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_uart.crf --depend .\flash\obj\bsp_uart.d)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
@@ -622,7 +658,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
 F (..\User\bsp_stm32f4xx\src\bsp_fsmc_sram.c)(0x57032A83)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_fsmc_sram.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_fsmc_sram.crf --depend .\flash\obj\bsp_fsmc_sram.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -659,7 +695,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -677,10 +712,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -700,7 +735,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\bsp_printf.c)(0x50CF18DC)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_printf.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_printf.crf --depend .\flash\obj\bsp_printf.d)
+F (..\User\bsp_stm32f4xx\src\bsp_printf.c)(0x5743B559)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_printf.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_printf.crf --depend .\flash\obj\bsp_printf.d)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -737,7 +772,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 F (..\User\bsp_stm32f4xx\src\bsp_sdio_sd.c)(0x51C3FA68)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_sdio_sd.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_sdio_sd.crf --depend .\flash\obj\bsp_sdio_sd.d)
 I (..\User\bsp_stm32f4xx\inc\bsp_sdio_sd.h)(0x51C5CE06)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
@@ -776,8 +810,8 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-F (..\User\bsp_stm32f4xx\src\bsp_timer.c)(0x570B3F05)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_timer.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_timer.crf --depend .\flash\obj\bsp_timer.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\src\bsp_timer.c)(0x5729BC99)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_timer.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_timer.crf --depend .\flash\obj\bsp_timer.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -814,7 +848,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -832,10 +865,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -855,9 +888,9 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-I (..\User\motor.h)(0x5719C603)
+I (..\User\motor.h)(0x5742C502)
 F (..\User\bsp_stm32f4xx\src\bsp_eeprom_24xx.c)(0x51C3FA68)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_eeprom_24xx.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_eeprom_24xx.crf --depend .\flash\obj\bsp_eeprom_24xx.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -894,7 +927,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -912,10 +944,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -935,8 +967,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\bsp_tft_lcd.c)(0x5705FDBC)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_tft_lcd.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_tft_lcd.crf --depend .\flash\obj\bsp_tft_lcd.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\src\bsp_tft_lcd.c)(0x5742A369)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_tft_lcd.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_tft_lcd.crf --depend .\flash\obj\bsp_tft_lcd.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -973,7 +1005,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -991,10 +1022,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1014,9 +1045,9 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-I (..\User\fonts\fonts.h)(0x55FFA0FF)
-F (..\User\bsp_stm32f4xx\src\bsp_touch.c)(0x55B82987)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_touch.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_touch.crf --depend .\flash\obj\bsp_touch.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\fonts\fonts.h)(0x5742A551)
+F (..\User\bsp_stm32f4xx\src\bsp_touch.c)(0x572AA6C8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_touch.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_touch.crf --depend .\flash\obj\bsp_touch.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1053,7 +1084,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1071,10 +1101,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1096,7 +1126,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 I (..\User\param.h)(0x5443D326)
 F (..\User\bsp_stm32f4xx\src\bsp_ra8875_flash.c)(0x54A6942F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_ra8875_flash.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_ra8875_flash.crf --depend .\flash\obj\bsp_ra8875_flash.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1133,7 +1163,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1151,10 +1180,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1174,8 +1203,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\bsp_ra8875_port.c)(0x5608A438)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_ra8875_port.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_ra8875_port.crf --depend .\flash\obj\bsp_ra8875_port.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\src\bsp_ra8875_port.c)(0x57305923)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_ra8875_port.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_ra8875_port.crf --depend .\flash\obj\bsp_ra8875_port.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1212,7 +1241,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1230,10 +1258,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1253,8 +1281,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\bsp_gt811.c)(0x55D6C1B9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_gt811.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_gt811.crf --depend .\flash\obj\bsp_gt811.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\src\bsp_gt811.c)(0x572D4940)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_gt811.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_gt811.crf --depend .\flash\obj\bsp_gt811.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1291,7 +1319,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1309,10 +1336,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1333,7 +1360,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 F (..\User\bsp_stm32f4xx\src\bsp_nor_flash.c)(0x57032BAF)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_nor_flash.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_nor_flash.crf --depend .\flash\obj\bsp_nor_flash.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1370,7 +1397,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1388,10 +1414,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1412,7 +1438,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 F (..\User\bsp_stm32f4xx\src\bsp_spi_bus.c)(0x545FFEC7)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_spi_bus.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_spi_bus.crf --depend .\flash\obj\bsp_spi_bus.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1449,7 +1475,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1467,10 +1492,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1490,88 +1515,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\LCD_ILI9488.c)(0x54459CF0)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_ili9488.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_ili9488.crf --depend .\flash\obj\lcd_ili9488.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
-I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x53463974)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x53463974)
-I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x53463974)
-I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x527CECE0)
-I (..\User\bsp_stm32f4xx\stm32f4xx_conf.h)(0x52839DC2)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x55CEAE1D)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527CEECC)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
-I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
-I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
-I (..\User\bsp_stm32f4xx\inc\bsp_led.h)(0x511E4AD2)
-I (..\User\bsp_stm32f4xx\inc\bsp_timer.h)(0x543BB414)
-I (..\User\bsp_stm32f4xx\inc\bsp_key.h)(0x5300B686)
-I (..\User\bsp_stm32f4xx\inc\bsp_tim_pwm.h)(0x530F28C6)
-I (..\User\bsp_stm32f4xx\inc\bsp_adc.h)(0x52D293EE)
-I (..\User\bsp_stm32f4xx\inc\bsp_cpu_flash.h)(0x519C6929)
-I (..\User\bsp_stm32f4xx\inc\bsp_sdio_sd.h)(0x51C5CE06)
-I (..\User\bsp_stm32f4xx\inc\bsp_i2c_gpio.h)(0x511B205F)
-I (..\User\bsp_stm32f4xx\inc\bsp_eeprom_24xx.h)(0x511B4FA4)
-I (..\User\bsp_stm32f4xx\inc\bsp_gt811.h)(0x55A627A3)
-I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
-I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
-I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
-I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
-I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
-I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
-I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
-I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
-I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_flash.h)(0x53ADF72E)
-I (..\User\bsp_stm32f4xx\inc\bsp_spi_bus.h)(0x5470A096)
-I (..\User\bsp_stm32f4xx\inc\bsp_spi_flash.h)(0x5448F9A0)
-I (..\User\bsp_stm32f4xx\inc\bsp_tm7705.h)(0x54490526)
-I (..\User\bsp_stm32f4xx\inc\bsp_ads1256.h)(0x52F4E2FC)
-I (..\User\bsp_stm32f4xx\inc\bsp_vs1053b.h)(0x51E2CF95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tsc2046.h)(0x545E2349)
-I (..\User\bsp_stm32f4xx\inc\bsp_ds18b20.h)(0x52E29EAA)
-I (..\User\bsp_stm32f4xx\inc\bsp_dac8501.h)(0x545D8E6D)
-I (..\User\bsp_stm32f4xx\inc\bsp_dht11.h)(0x52F38599)
-I (..\User\bsp_stm32f4xx\inc\bsp_ir_decode.h)(0x52FB3059)
-I (..\User\bsp_stm32f4xx\inc\bsp_ps2.h)(0x530381A7)
-I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
-I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
-I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
-I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-I (..\User\fonts\fonts.h)(0x55FFA0FF)
 F (..\User\bsp_stm32f4xx\src\bsp_tsc2046.c)(0x545E234C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_tsc2046.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_tsc2046.crf --depend .\flash\obj\bsp_tsc2046.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1608,7 +1553,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1626,10 +1570,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1650,7 +1594,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 F (..\User\bsp_stm32f4xx\src\bsp_tim_pwm.c)(0x549C2F8F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_tim_pwm.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_tim_pwm.crf --depend .\flash\obj\bsp_tim_pwm.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1687,7 +1631,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1705,10 +1648,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1728,8 +1671,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\bsp.c)(0x5721716A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp.crf --depend .\flash\obj\bsp.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\bsp.c)(0x57441C82)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp.crf --depend .\flash\obj\bsp.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1766,7 +1709,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1784,10 +1726,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1807,52 +1749,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-I (..\User\measurement.h)(0x55B1B13B)
-I (..\emWin\Include\GUI.h)(0x525861A0)
-I (..\emWin\Include\GUI_ConfDefaults.h)(0x525861A0)
-I (..\emWin\Config\GUIConf.h)(0x51FDD12C)
-I (..\emWin\Include\GUI_Type.h)(0x525861A0)
-I (..\emWin\Include\LCD.h)(0x525861A0)
-I (..\emWin\Include\Global.h)(0x525861A0)
-I (..\emWin\Include\GUI_Version.h)(0x525861A0)
-I (..\emWin\Include\DIALOG.h)(0x525861A0)
-I (..\emWin\Include\WM.h)(0x525861A0)
-I (..\emWin\Include\WM_GUI.h)(0x525861A0)
-I (..\emWin\Include\BUTTON.h)(0x525861A0)
-I (..\emWin\Include\DIALOG_Intern.h)(0x525861A0)
-I (..\emWin\Include\WIDGET.h)(0x525861A0)
-I (..\emWin\Include\WM_Intern.h)(0x525861A0)
-I (..\emWin\Include\GUI_Private.h)(0x525861A0)
-I (..\emWin\Include\LCD_Protected.h)(0x525861A0)
-I (..\emWin\Include\GUI_Debug.h)(0x525861A0)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
-I (..\emWin\Include\SCROLLBAR.h)(0x525861A0)
-I (..\emWin\Include\CALENDAR.h)(0x525861A0)
-I (..\emWin\Include\CHECKBOX.h)(0x525861A0)
-I (..\emWin\Include\CHOOSECOLOR.h)(0x525861A0)
-I (..\emWin\Include\CHOOSEFILE.h)(0x525861A0)
-I (..\emWin\Include\DROPDOWN.h)(0x525861A0)
-I (..\emWin\Include\LISTBOX.h)(0x525861A0)
-I (..\emWin\Include\EDIT.h)(0x525861A0)
-I (..\emWin\Include\FRAMEWIN.h)(0x525861A0)
-I (..\emWin\Include\GRAPH.h)(0x525861A0)
-I (..\emWin\Include\HEADER.h)(0x525861A0)
-I (..\emWin\Include\ICONVIEW.h)(0x525861A0)
-I (..\emWin\Include\IMAGE.h)(0x525861A0)
-I (..\emWin\Include\LISTVIEW.h)(0x525861A0)
-I (..\emWin\Include\LISTWHEEL.h)(0x525861A0)
-I (..\emWin\Include\MENU.h)(0x525861A0)
-I (..\emWin\Include\MULTIEDIT.h)(0x525861A0)
-I (..\emWin\Include\MULTIPAGE.h)(0x525861A0)
-I (..\emWin\Include\PROGBAR.h)(0x525861A0)
-I (..\emWin\Include\RADIO.h)(0x525861A0)
-I (..\emWin\Include\SLIDER.h)(0x525861A0)
-I (..\emWin\Include\SPINBOX.h)(0x525861A0)
-I (..\emWin\Include\TEXT.h)(0x525861A0)
-I (..\emWin\Include\TREEVIEW.h)(0x525861A0)
-I (..\User\motor.h)(0x5719C603)
-F (..\User\bsp_stm32f4xx\src\bsp_i2c_gpio.c)(0x57118A78)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_i2c_gpio.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_i2c_gpio.crf --depend .\flash\obj\bsp_i2c_gpio.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\measurement.h)(0x5743A8B4)
+I (..\User\motor.h)(0x5742C502)
+F (..\User\bsp_stm32f4xx\src\bsp_i2c_gpio.c)(0x57317DCD)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_i2c_gpio.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_i2c_gpio.crf --depend .\flash\obj\bsp_i2c_gpio.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1889,7 +1789,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1907,10 +1806,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -1931,7 +1830,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 F (..\User\bsp_stm32f4xx\src\bsp_cpu_flash.c)(0x51C3FA68)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_cpu_flash.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_cpu_flash.crf --depend .\flash\obj\bsp_cpu_flash.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1968,7 +1867,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -1986,10 +1884,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -2009,8 +1907,8 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\bsp_adc.c)(0x55C007B8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_adc.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_adc.crf --depend .\flash\obj\bsp_adc.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+F (..\User\bsp_stm32f4xx\src\bsp_adc.c)(0x573963DF)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\bsp_adc.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\bsp_adc.crf --depend .\flash\obj\bsp_adc.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -2047,7 +1945,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -2065,10 +1962,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -2088,6 +1985,85 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
+F (..\User\bsp_stm32f4xx\src\LCD_ILI9488.c)(0x54459CF0)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_ili9488.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_ili9488.crf --depend .\flash\obj\lcd_ili9488.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
+I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x53463974)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x53463974)
+I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4_simd.h)(0x53463974)
+I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x527CECE0)
+I (..\User\bsp_stm32f4xx\stm32f4xx_conf.h)(0x52839DC2)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x55CEAE1D)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527CEECC)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
+I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
+I (..\User\bsp_stm32f4xx\inc\bsp_led.h)(0x511E4AD2)
+I (..\User\bsp_stm32f4xx\inc\bsp_timer.h)(0x543BB414)
+I (..\User\bsp_stm32f4xx\inc\bsp_key.h)(0x5300B686)
+I (..\User\bsp_stm32f4xx\inc\bsp_tim_pwm.h)(0x530F28C6)
+I (..\User\bsp_stm32f4xx\inc\bsp_adc.h)(0x52D293EE)
+I (..\User\bsp_stm32f4xx\inc\bsp_cpu_flash.h)(0x519C6929)
+I (..\User\bsp_stm32f4xx\inc\bsp_sdio_sd.h)(0x51C5CE06)
+I (..\User\bsp_stm32f4xx\inc\bsp_i2c_gpio.h)(0x511B205F)
+I (..\User\bsp_stm32f4xx\inc\bsp_eeprom_24xx.h)(0x511B4FA4)
+I (..\User\bsp_stm32f4xx\inc\bsp_gt811.h)(0x55A627A3)
+I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
+I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
+I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
+I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
+I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
+I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
+I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
+I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
+I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_flash.h)(0x53ADF72E)
+I (..\User\bsp_stm32f4xx\inc\bsp_spi_bus.h)(0x5470A096)
+I (..\User\bsp_stm32f4xx\inc\bsp_spi_flash.h)(0x5448F9A0)
+I (..\User\bsp_stm32f4xx\inc\bsp_tm7705.h)(0x54490526)
+I (..\User\bsp_stm32f4xx\inc\bsp_ads1256.h)(0x52F4E2FC)
+I (..\User\bsp_stm32f4xx\inc\bsp_vs1053b.h)(0x51E2CF95)
+I (..\User\bsp_stm32f4xx\inc\bsp_tsc2046.h)(0x545E2349)
+I (..\User\bsp_stm32f4xx\inc\bsp_ds18b20.h)(0x52E29EAA)
+I (..\User\bsp_stm32f4xx\inc\bsp_dac8501.h)(0x545D8E6D)
+I (..\User\bsp_stm32f4xx\inc\bsp_dht11.h)(0x52F38599)
+I (..\User\bsp_stm32f4xx\inc\bsp_ir_decode.h)(0x52FB3059)
+I (..\User\bsp_stm32f4xx\inc\bsp_ps2.h)(0x530381A7)
+I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
+I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
+I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
+I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
+I (..\User\fonts\fonts.h)(0x5742A551)
 F (..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f427x.s)(0x527CED1A)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx--pd "__UVISION_VERSION SETA 514"--list .\flash\list\startup_stm32f427x.lst --xref -o .\flash\obj\startup_stm32f427x.o --depend .\flash\obj\startup_stm32f427x.d)
 F (..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c)(0x527CEEE4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\stm32f4xx_rcc.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\stm32f4xx_rcc.crf --depend .\flash\obj\stm32f4xx_rcc.d)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x527CEECA)
@@ -2681,7 +2657,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-F (..\User\bsp_stm32f4xx\system_stm32f4xx.c)(0x5720587B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\system_stm32f4xx.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\system_stm32f4xx.crf --depend .\flash\obj\system_stm32f4xx.d)
+F (..\User\bsp_stm32f4xx\system_stm32f4xx.c)(0x5731A52B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\system_stm32f4xx.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\system_stm32f4xx.crf --depend .\flash\obj\system_stm32f4xx.d)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -2772,9 +2748,8 @@ I (..\emWin\Include\WM_GUI.h)(0x525861A0)
 I (..\emWin\Include\LCD_SIM.h)(0x525861A0)
 I (..\emWin\Include\LCD_ConfDefaults.h)(0x525861A0)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -2793,7 +2768,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -2813,7 +2788,7 @@ I (..\User\bsp_stm32f4xx\inc\bsp_modbus.h)(0x54433617)
 I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
-F (..\User\bsp_stm32f4xx\src\LCD_SPFD5420.c)(0x55A61040)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_spfd5420.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_spfd5420.crf --depend .\flash\obj\lcd_spfd5420.d)
+F (..\User\bsp_stm32f4xx\src\LCD_SPFD5420.c)(0x5743B4F8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_spfd5420.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_spfd5420.crf --depend .\flash\obj\lcd_spfd5420.d)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -2850,12 +2825,11 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
-I (..\User\fonts\fonts.h)(0x55FFA0FF)
-F (..\User\bsp_stm32f4xx\src\LCD_RA8875.c)(0x55B8838B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_ra8875.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_ra8875.crf --depend .\flash\obj\lcd_ra8875.d)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
+I (..\User\fonts\fonts.h)(0x5742A551)
+F (..\User\bsp_stm32f4xx\src\LCD_RA8875.c)(0x57296439)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\lcd_ra8875.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\lcd_ra8875.crf --depend .\flash\obj\lcd_ra8875.d)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -2892,7 +2866,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -2910,10 +2883,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -2934,12 +2907,12 @@ I (..\User\bsp_stm32f4xx\inc\bsp_rs485_led.h)(0x544DBEA7)
 I (..\User\bsp_stm32f4xx\inc\bsp_user_lib.h)(0x545D7DF8)
 I (..\User\bsp_stm32f4xx\inc\bsp_dac8562.h)(0x545E34A5)
 F (..\User\fonts\asc12.c)(0x4FF3885E)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\asc12.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\asc12.crf --depend .\flash\obj\asc12.d)
-F (..\User\fonts\asc16.c)(0x4E9A7638)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\asc16.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\asc16.crf --depend .\flash\obj\asc16.d)
-F (..\User\fonts\fonts.h)(0x55FFA0FF)()
+F (..\User\fonts\asc16.c)(0x5742A801)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\asc16.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\asc16.crf --depend .\flash\obj\asc16.d)
+F (..\User\fonts\fonts.h)(0x5742A551)()
 F (..\User\fonts\hz12.c)(0x55AC953A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz12.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz12.crf --depend .\flash\obj\hz12.d)
 F (..\User\fonts\hz16.c)(0x55AC953A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz16.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz16.crf --depend .\flash\obj\hz16.d)
 F (..\User\fonts\hz24.c)(0x55ACB2C0)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz24.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz24.crf --depend .\flash\obj\hz24.d)
-F (..\User\fonts\hz48.c)(0x55ADA2DE)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz48.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz48.crf --depend .\flash\obj\hz48.d)
+F (..\User\fonts\hz48.c)(0x5743BA12)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz48.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz48.crf --depend .\flash\obj\hz48.d)
 F (..\User\fonts\hz96.c)(0x55ADB714)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz96.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz96.crf --depend .\flash\obj\hz96.d)
 F (..\User\fonts\SongFont.c)(0x55B1AFD3)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\songfont.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\songfont.crf --depend .\flash\obj\songfont.d)
 I (..\emWin\Include\GUI.h)(0x525861A0)
@@ -2949,6 +2922,13 @@ I (..\emWin\Include\GUI_Type.h)(0x525861A0)
 I (..\emWin\Include\LCD.h)(0x525861A0)
 I (..\emWin\Include\Global.h)(0x525861A0)
 I (..\emWin\Include\GUI_Version.h)(0x525861A0)
+F (..\User\fonts\asc48.c)(0x5641AB23)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\asc48.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\asc48.crf --depend .\flash\obj\asc48.d)
+F (..\User\fonts\asc24.c)(0x56581DEF)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\asc24.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\asc24.crf --depend .\flash\obj\asc24.d)
+F (..\User\fonts\hzk24.c)(0x56D562F4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hzk24.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hzk24.crf --depend .\flash\obj\hzk24.d)
+F (..\User\fonts\hz64.c)(0x568F0959)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\hz64.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\hz64.crf --depend .\flash\obj\hz64.d)
+F (..\User\fonts\pysearch.c)(0x56DF7AE0)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\pysearch.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\pysearch.crf --depend .\flash\obj\pysearch.d)
+I (..\User\fonts\pysearch.h)(0x53BA9DA0)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 F (..\emWin\GUI_X\GUI_X_Touch_Analog.c)(0x55B09B4B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\gui_x_touch_analog.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\gui_x_touch_analog.crf --depend .\flash\obj\gui_x_touch_analog.d)
 I (..\emWin\Include\GUI.h)(0x525861A0)
 I (..\emWin\Include\GUI_ConfDefaults.h)(0x525861A0)
@@ -2994,7 +2974,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 F (..\emWin\GUI_X\GUI_VNC_X.c)(0x50D9531E)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\Flash\\List\\" -I..\User -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\User\fonts -I..\emWin\GUI_X -I..\emWin\Config -I..\emWin\Include -I..\emWin\emWinTask -I..\User\bsp_stm32f4xx -I..\User\bsp_stm32f4xx\inc -I..\User\images -I..\User\bsp_stm32f4xx\src -I..\User\DSP_Lib\inc -I..\User\DSP_Lib\src -I..\Libraries\STM32F4x7_ETH_Driver\src -I..\Libraries\STM32F4x7_ETH_Driver\inc --diag_suppress=870-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-D__UVISION_VERSION="514" -DUSE_STDPERIPH_DRIVER -DSTM32F427_437xx -DSTM32F427_437xx-o .\flash\obj\gui_vnc_x.o --list_dir ".\\Flash\\List\\" --list --omf_browse .\flash\obj\gui_vnc_x.crf --depend .\flash\obj\gui_vnc_x.d)
 I (..\emWin\Include\GUI.h)(0x525861A0)
@@ -3070,7 +3050,7 @@ I (..\emWin\Include\GUI_Type.h)(0x525861A0)
 I (..\emWin\Include\LCD.h)(0x525861A0)
 I (..\emWin\Include\Global.h)(0x525861A0)
 I (..\emWin\Include\GUI_Version.h)(0x525861A0)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -3107,7 +3087,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -3125,10 +3104,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)
@@ -3158,7 +3137,7 @@ I (..\emWin\Include\LCD.h)(0x525861A0)
 I (..\emWin\Include\Global.h)(0x525861A0)
 I (..\emWin\Include\GUI_Version.h)(0x525861A0)
 I (..\emWin\Include\GUIDRV_Template.h)(0x525861A0)
-I (..\User\bsp_stm32f4xx\bsp.h)(0x55BEBC0A)
+I (..\User\bsp_stm32f4xx\bsp.h)(0x5743B4F8)
 I (..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x527CECDA)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cm4.h)(0x53463974)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -3195,7 +3174,6 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527CEECA)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x527CEECC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h)(0x543BBA67)
@@ -3213,10 +3191,10 @@ I (..\User\bsp_stm32f4xx\inc\bsp_fsmc_sram.h)(0x511F8099)
 I (..\User\bsp_stm32f4xx\inc\bsp_nand_flash.h)(0x54954460)
 I (..\User\bsp_stm32f4xx\inc\bsp_nor_flash.h)(0x52EB60E4)
 I (..\User\bsp_stm32f4xx\inc\LCD_RA8875.h)(0x55A60A95)
-I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x55ADA561)
+I (..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h)(0x5742AA81)
 I (..\User\bsp_stm32f4xx\inc\LCD_SPFD5420.h)(0x55A61040)
 I (..\User\bsp_stm32f4xx\inc\LCD_ILI9488.h)(0x54459BB2)
-I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x545F8476)
+I (..\User\bsp_stm32f4xx\inc\bsp_ra8875_port.h)(0x572945AE)
 I (..\User\bsp_stm32f4xx\inc\bsp_touch.h)(0x55BAC676)
 I (..\User\bsp_stm32f4xx\inc\bsp_ad7606.h)(0x51B5D034)
 I (..\User\bsp_stm32f4xx\inc\bsp_oled.h)(0x51EBEEC1)

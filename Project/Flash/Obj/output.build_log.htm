@@ -22,33 +22,21 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 C:\Users\T\Desktop\YH_SingleChannel_port\Project\project.uvproj
-Project File Date:  04/18/2016
+Project File Date:  05/23/2016
 
 <h2>Output:</h2>
 Build target 'Flash'
-compiling motor.c...
-..\User\motor.c(963): warning:  #177-D: variable "i" was declared but never referenced
-        u8 i;
-..\User\motor.c(1051): warning:  #177-D: variable "j" was declared but never referenced
-          u8    i,j;
-..\User\motor.c(1091): warning:  #177-D: variable "j" was declared but never referenced
-    u8 i,j;     
-..\User\motor.c(1092): warning:  #550-D: variable "Y" was set but never used
-        u16 Press[10]={0},Y;
-..\User\motor.c(1128): warning:  #177-D: variable "i" was declared but never referenced
-        int     i;
-..\User\motor.c(1275): warning:  #177-D: variable "i" was declared but never referenced
-      u8 i;
-..\User\motor.c(1278): warning:  #550-D: variable "ratioc12" was set but never used
-      s16 ratioc12 ;
-..\User\motor.c: 7 warnings, 0 errors
+compiling measurement.c...
+..\User\measurement.c(469): warning:  #550-D: variable "fRefresh" was set but never used
+        uint8_t fRefresh,fMeasurement=1;                /* 刷屏请求标志,1表示需要刷新 */
+..\User\measurement.c: 1 warning, 0 errors
 linking...
-Program Size: Code=52148 RO-data=412460 RW-data=4916 ZI-data=34948  
+Program Size: Code=53312 RO-data=964752 RW-data=5360 ZI-data=37312  
 FromELF: creating hex file...
 After Build - User command #1: CopyHex_Flash.bat
 C:\Users\T\Desktop\YH_SingleChannel_port\Project>copy Flash\Obj\output.hex ..\output(mdk).hex 
 已复制         1 个文件。
-".\Flash\Obj\output.axf" - 0 Error(s), 7 Warning(s).
+".\Flash\Obj\output.axf" - 0 Error(s), 1 Warning(s).
 </pre>
 </body>
 </html>

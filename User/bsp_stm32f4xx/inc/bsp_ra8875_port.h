@@ -21,7 +21,7 @@
 
 /* RA8875芯片的WAIT引脚 */
 #define PORT_WAIT	GPIOD
-#define PIN_WAIT	GPIO_Pin_3
+#define PIN_WAIT	GPIO_Pin_6
 
 #ifdef RA_HARD_SPI_EN	/* 硬件 SPI 界面 (需要改变RA8875屏上的2个电阻位置) */
 	/*
@@ -36,8 +36,8 @@
 
 		PC3/TP_INT			--- 触摸芯片中断 （对于RA8875屏，是RA8875输出的中断)
 	*/
-	#define RA8875_CS_0()	GPIOI->BSRRH = GPIO_Pin_10
-	#define RA8875_CS_1()	GPIOI->BSRRL = GPIO_Pin_10
+	#define RA8875_CS_0()	GPIOA->BSRRH = GPIO_Pin_4
+	#define RA8875_CS_1()	GPIOA->BSRRL = GPIO_Pin_4
 
 	#define SPI_WRITE_DATA	0x00
 	#define SPI_READ_DATA	0x40

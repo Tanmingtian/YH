@@ -5,7 +5,7 @@
 #include "stm32_dsp.h"
 #include "table_fft.h"
 #define ABS(A) (((A)>0)?(A):(-(A)))
-#define ADC1_DR_ADDRESS          ((uint32_t)0x4001204C)
+//#define ADC1_DR_ADDRESS          ((uint32_t)0x4001204C)
 #define NPT 256            /* NPT = No of FFT point*/
 long lBUFIN[NPT];         /* Complex input vector */
 long lBUFOUT[NPT];        /* Complex output vector */
@@ -13,28 +13,28 @@ long lBUFMAG[NPT + NPT/2];/* Magnitude vector */
 u16 temp1=3620;
 u16 temp2=3500;
 u8  	reTest;
-s16 	m=0;
 //²ÉÑùÉè¶¨
 u8		ADCIndex;
 u16		ADCResult[36];
 u16		ADCConv[ADCNUM]; 
-__IO uint16_t uhADCConvertedValue[5];
+//__IO uint16_t uhADCConvertedValue[5];
 u32 Intensity,Intensitys1,Intensitys2,C12[60],C13[60];
-const unsigned int Speedup[200]={
-	62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766,56978,51962,47586,43746,40357,37351,34673,32278,30125,28185,26429,24835,23384,22059,20846,19733,18709,17765,16893,16085,15335,14639,13991,13386,12821,12293,11798,11334,10898,10488,10102,9738,9394,9070,8763,8472,8197,7936,7688,7452,7228,7015,6811,6618,6433,6257,6088,5927,5773,5626,5485,5349,5220,5095,4976,4861,4751,4645,4543,4445,4351,4260,4173,4088,4007,3929,3853,3780,3709,3641,3575,3512,3450,3391,3333,3277,3223,3171,3121,3072,3024,2978,2933,2890,2848,2807,2768,2729,2692,2656,2621,2587,2554,2521,2490,2460,2430,2401,2373,2346,2320,2294,2269,2245,2221,2198,2176,2154,2133,2112,2092,2073,2054,2035,2017,2000,1983,1966,1950,1934,1919,1904,1890,1876,1862,1849,1836,1823,1811,1799,1787,1776,1765,1755,1745,1735,1725,1716,1706,1698,1689,1681,1673,1665,1658,1650,1643,1637,1630,1624,1618,1612,1607,1601,1596,1591,1587,1582,1578,1574,1570,1567,1563,1560,1557,1554,1552,1549,1547,1545,1543,1542,1540,1539,1538,1537,1536,1536,1536,1536,
-};
+//const unsigned int Speedup[200]={
+//	62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766, 62766,56978,51962,47586,43746,40357,37351,34673,32278,30125,28185,26429,24835,23384,22059,20846,19733,18709,17765,16893,16085,15335,14639,13991,13386,12821,12293,11798,11334,10898,10488,10102,9738,9394,9070,8763,8472,8197,7936,7688,7452,7228,7015,6811,6618,6433,6257,6088,5927,5773,5626,5485,5349,5220,5095,4976,4861,4751,4645,4543,4445,4351,4260,4173,4088,4007,3929,3853,3780,3709,3641,3575,3512,3450,3391,3333,3277,3223,3171,3121,3072,3024,2978,2933,2890,2848,2807,2768,2729,2692,2656,2621,2587,2554,2521,2490,2460,2430,2401,2373,2346,2320,2294,2269,2245,2221,2198,2176,2154,2133,2112,2092,2073,2054,2035,2017,2000,1983,1966,1950,1934,1919,1904,1890,1876,1862,1849,1836,1823,1811,1799,1787,1776,1765,1755,1745,1735,1725,1716,1706,1698,1689,1681,1673,1665,1658,1650,1643,1637,1630,1624,1618,1612,1607,1601,1596,1591,1587,1582,1578,1574,1570,1567,1563,1560,1557,1554,1552,1549,1547,1545,1543,1542,1540,1539,1538,1537,1536,1536,1536,1536,
+//};
 //const unsigned int Speedup[200]={
 //63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482, 63482,63482,56666,50896,45971,41732,38058,34853,32040,29558,27357,25395,23641,22064,20643,19357,18190,17127,16157,15268,14453,13703,13011,12372,11781,11232,10722,10247,9804,9390,9004,8641,8301,7982,7681,7399,7132,6880,6643,6418,6205,6003,5812,5630,5458,5294,5137,4989,4847,4712,4582,4459,4341,4228,4120,4017,3918,3823,3732,3644,3560,3480,3402,3327,3256,3187,3120,3056,2994,2935,2877,2822,2768,2717,2667,2619,2572,2527,2483,2441,2400,2361,2322,2285,2250,2215,2181,2148,2117,2086,2056,2027,1999,1972,1945,1919,1894,1870,1847,1824,1801,1780,1759,1738,1718,1699,1680,1662,1644,1627,1610,1594,1578,1562,1547,1532,1518,1504,1491,1477,1465,1452,1440,1428,1417,1405,1394,1384,1374,1364,1354,1344,1335,1326,1318,1309,1301,1293,1285,1278,1270,1263,1256,1250,1243,1237,1231,1225,1219,1214,1209,1204,1199,1194,1189,1185,1181,1177,1173,1169,1165,1162,1159,1156,1153,1150,1147,1145,1142,1140,1138,1136,1135,1133,1131,1130,1129,1128,1127,1126,1126,1125,1125,1125,1125,
 //};
 //const unsigned int Speedup[200]={
 //64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081, 64081,64081,59116,54714,50791,47282,44129,41286,38714,36380,34254,32314,30537,28906,27406,26023,24745,23562,22464,21444,20494,19608,18781,18008,17283,16603,15964,15363,14798,14265,13761,13286,12836,12411,12007,11625,11261,10916,10588,10275,9978,9694,9424,9165,8918,8683,8457,8241,8034,7836,7646,7464,7289,7121,6960,6805,6655,6512,6374,6241,6113,5989,5870,5755,5644,5537,5434,5334,5238,5144,5054,4967,4883,4801,4722,4645,4571,4500,4430,4362,4297,4234,4172,4112,4055,3998,3944,3891,3839,3789,3741,3694,3648,3603,3560,3518,3477,3437,3399,3361,3324,3289,3254,3220,3188,3156,3125,3094,3065,3036,3009,2982,2955,2930,2905,2880,2857,2834,2811,2789,2768,2748,2728,2708,2689,2671,2653,2636,2619,2602,2586,2571,2556,2541,2527,2513,2500,2487,2475,2462,2451,2439,2428,2418,2408,2398,2388,2379,2370,2362,2354,2346,2339,2331,2325,2318,2312,2306,2300,2295,2290,2285,2281,2277,2273,2270,2266,2263,2261,2258,2256,2255,2253,2252,2251,2250,2250,2250,
 //};
+const unsigned int Speedup[200]={65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,65059,59809,55175,51066,47405,44130,41187,38534,36133,33954,31971,30159,28501,26979,25579,24288,23095,21991,20966,20014,19128,18301,17529,16807,16130,15496,14900,14339,13811,13314,12844,12400,11981,11583,11207,10850,10511,10188,9882,9590,9313,9048,8795,8554,8324,8104,7893,7692,7499,7314,7136,6966,6803,6646,6496,6351,6212,6078,5949,5825,5705,5590,5479,5371,5268,5168,5072,4978,4888,4801,4717,4636,4557,4481,4407,4336,4267,4200,4135,4072,4011,3951,3894,3838,3784,3732,3681,3631,3583,3537,3491,3447,3405,3363,3323,3283,3245,3208,3172,3137,3103,3069,3037,3006,2975,2945,2916,2888,2861,2834,2808,2783,2758,2734,2711,2688,2666,2645,2624,2603,2584,2565,2546,2528,2510,2493,2476,2460,2444,2429,2414,2399,2385,2372,2358,2346,2333,2321,2310,2298,2287,2277,2267,2257,2247,2238,2229,2221,2212,2204,2197,2190,2183,2176,2170,2163,2158,2152,2147,2142,2137,2133,2129,2125,2122,2118,2115,2113,2110,2108,2106,2104,2103,2102,2101,2100,2100,2100,};
 volatile unsigned int Step_LM=0;
 u8 m_bChopper;	
 double 	m_lCf[9]={0} ;
 double temp;
 u8 Go=0 ;
-	u8 STATUS;
+u8 STATUS;
 u16 Pressure0=0,Pressure1=0,Pressure2=0;
 volatile unsigned int RxLeftIdx = 0;
 volatile unsigned int RxRightIdx = 0;
@@ -120,7 +120,8 @@ void LightModulation(u8 status)
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 //		TIM_OCInitStructure.TIM_OutputNState = TIM_OutputNState_Disable;
 //		TIM_OCInitStructure.TIM_Pulse = 2249;
-		TIM_OCInitStructure.TIM_Pulse = 1535;
+//		TIM_OCInitStructure.TIM_Pulse = 1535;
+		TIM_OCInitStructure.TIM_Pulse = 2099;
 		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
 //		TIM_OCInitStructure.TIM_OCNPolarity = TIM_OCPolarity_Low;
 //		TIM_OCInitStructure.TIM_OCIdleState = TIM_OCIdleState_Set;
@@ -187,14 +188,15 @@ unsigned int ADC_1(unsigned char ch)
 	u32 res=0;
 	u8 i=0;
 	u16  ADCConvPress[ADCNUM];
-	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_480Cycles);
+//	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_15Cycles);
 	// Start ADC1 Software Conversion 
-	ADC_Cmd(ADC1, ENABLE);
-  ADC_SoftwareStartConv(ADC1);
+//	ADC_Cmd(ADC1, ENABLE);
+//  ADC_SoftwareStartConv(ADC1);
 	for(i=0;i<ADCNUM;i++)
 	{
-		while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
-		ADCConvPress[i]=ADC_GetConversionValue(ADC1);
+//		while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
+//		ADCConvPress[i]=ADC_GetConversionValue(ADC1);
+		ADCConvPress[i]=uhADCConvertedValue[ch];
 	}
 	res	= weedavg(ADCConvPress,5);
 	return res;		
@@ -208,7 +210,7 @@ void AK_Conv(void)
 	RxRightIdx	= 0;	 
 	SPI_I2S_ClearITPendingBit(SPI2,SPI_I2S_IT_RXNE); 
 	SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, ENABLE);
-	//µÈ´ý¶ÁÈ¡ÖÐ¶Ï½áÊø
+	//
 	while (RxLeftIdx<DataLength*2 ||RxRightIdx<DataLength*2);
 	SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, DISABLE);
 	temp5=0;
@@ -222,50 +224,6 @@ void AK_Conv(void)
 	temp6>>=6;
 	Intensity1=sqrt(temp5);
 	Intensity2=sqrt(temp6);
-
-	AK_Left_Data[0]	= (temp5>>48)&0xFFFF;
-	AK_Left_Data[1]	= (temp5>>32)&0xFFFF;
-	AK_Left_Data[2]	= (temp5>>16)&0xFFFF;
-	AK_Left_Data[3]	= temp5&0xFFFF;
-
-	AK_Left_Data[4]	= (temp6>>48)&0xFFFF;
-	AK_Left_Data[5]	= (temp6>>32)&0xFFFF;
-	AK_Left_Data[6]	= (temp6>>16)&0xFFFF;
-	AK_Left_Data[7]	= temp6&0xFFFF; 
-//u16	i;
-//	unsigned long long temp5=0;
-//	unsigned long long temp6=0;
-// 	unsigned long long leftdata=0;
-//	unsigned long long rightdata=0;
-//	RxLeftIdx	= 0;
-//	RxRightIdx	= 0;
-
-//	SPI_I2S_ClearITPendingBit(SPI2,SPI_I2S_IT_RXNE); 
-//	SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, ENABLE);
-//   	//µÈ´ý¶ÁÈ¡ÖÐ¶Ï½áÊø
-//	while (RxLeftIdx<DataLength*2 ||RxRightIdx<DataLength*2);
-//	SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, DISABLE);
-//	for(i=0;i<DataLength;i++)
-//	{
-//		leftdata	= (ABS((s32)(AK_Left_Data [i*2]<<16	+ AK_Left_Data [i*2+1])))/0x1000; 
-//		rightdata	= (ABS((s32)(AK_Right_Data[i*2]<<16+ AK_Right_Data [i*2+1])))/0x1000;
-//		temp5 += leftdata*leftdata;
-//		temp6 += rightdata*rightdata;
-//	}
-//	temp5>>=1;
-//	temp6>>=1;
-//	Intensity=sqrt(temp5);
-//	Intensitys1=sqrt(temp5);
-//	Intensitys2=sqrt(temp6);
-//	AK_Left_Data[0]	= (temp5>>48)&0xFFFF;
-//	AK_Left_Data[1]	= (temp5>>32)&0xFFFF;
-//	AK_Left_Data[2]	= (temp5>>16)&0xFFFF;
-//	AK_Left_Data[3]	= temp5&0xFFFF;
-
-//	AK_Left_Data[4]	= (temp6>>48)&0xFFFF;
-//	AK_Left_Data[5]	= (temp6>>32)&0xFFFF;
-//	AK_Left_Data[6]	= (temp6>>16)&0xFFFF;
-//	AK_Left_Data[7]	= temp6&0xFFFF; 
 }
 void Valve(unsigned char Vnum)
 {
@@ -411,7 +369,8 @@ void Motorun(u8 En,u16 FPulseNum,u8 Cw,u8 IfConv,
 	if(Cw==BACKWARD)
 		EXTI->IMR|=0x2000;
 	//Éè¶¨timer2
-	TIM2->ARR	= 2671;//122880/StartSpeed;
+//	TIM2->ARR	= 2671;//122880/StartSpeed;
+	TIM2->ARR	= 3649;//122880/StartSpeed;
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 	TIM_Cmd(TIM2,ENABLE);
 	//Èç¹ûÐèÒªÔÚ´òÆø¹ý³ÌÖÐ½øÐÐÊý¾Ý²É¼¯
@@ -424,6 +383,7 @@ void Motorun(u8 En,u16 FPulseNum,u8 Cw,u8 IfConv,
 	//µÈ´ýÔË¶¯½áÊø
 	while(PulseCount<PulseNum+AddedNum)
 	{
+		bsp_KeyScan();
 		if(IsTripSwitchClosed() && cw_status==BACKWARD)
 			break;
 	}
@@ -548,32 +508,32 @@ void ADC_Config(void)
     ADC_DeInit();
 	/* ADC Common ÅäÖÃ ----------------------------------------------------------*/
     ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
-    ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div4;
+    ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
     ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
     ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
     ADC_CommonInit(&ADC_CommonInitStructure);
 
 	/* ADC1 regular channel 12 configuration ************************************/
 	 ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
-  ADC_InitStructure.ADC_ScanConvMode = DISABLE;
-  ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;
+  ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
   ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
   ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
-  ADC_InitStructure.ADC_NbrOfConversion = 1;
+  ADC_InitStructure.ADC_NbrOfConversion = 5;
   ADC_Init(ADC1, &ADC_InitStructure);        
 //	ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE);
     
      /* Enable ADC1 DMA */
 //    ADC_DMACmd(ADC1, ENABLE);
-		ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 5, ADC_SampleTime_480Cycles);
+		ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 5, ADC_SampleTime_15Cycles);
     /* ADC1 regular channel18 (VBAT) configuration ******************************/
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_480Cycles);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_15Cycles);
     /* ADC1 regular channel18 (VBAT) configuration *****************************/
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_9, 2, ADC_SampleTime_480Cycles);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_9, 2, ADC_SampleTime_15Cycles);
     
     /* ADC1 regular channels 10, 11 configuration */ 
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 3, ADC_SampleTime_480Cycles);
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_15, 4, ADC_SampleTime_480Cycles);   
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 3, ADC_SampleTime_15Cycles);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_15, 4, ADC_SampleTime_15Cycles);   
 
     /* Enable VBAT channel */
 //    ADC_VBATCmd(ENABLE); 
@@ -792,39 +752,39 @@ void EXTI_Config(void)
 
 void pprint(unsigned char ch)                             
 { 	  
-	u16 i=3000;
-//	unsigned char  tValue; 
-	while(BUSY) 
-	{
-	 	i--;
-		if(i<10)return;			
-	}; 
-//	tValue=~ch; 
-	GPIOD->BSRRL=(unsigned int)ch; 
-//	GPIOD->BRR=(unsigned int)tValue;          
-	STB=0;                                              
-	bsp_DelayMS(5);
-	STB=1;                                               
+//	u16 i=3000;
+////	unsigned char  tValue; 
+//	while(BUSY) 
+//	{
+//	 	i--;
+//		if(i<10)return;			
+//	}; 
+////	tValue=~ch; 
+//	GPIOD->BSRRL=(unsigned int)ch; 
+////	GPIOD->BRR=(unsigned int)tValue;          
+//	STB=0;                                              
+//	bsp_DelayMS(5);
+//	STB=1;                                               
 }
 void PRINT_Init (void)
 {
-   u16 i=500;
-	while(BUSY)
-	{
-		i--;
-		if(i==0)
-		{			
-			prnerr=1;
-			break;
-		}	
-	}
-	if(!prnerr)
-	{
-		BUSY = 1;		 
-		STB  = 1; 
-		pprint(0x1b);
-		pprint(0x40);     
-	}
+//   u16 i=500;
+//	while(BUSY)
+//	{
+//		i--;
+//		if(i==0)
+//		{			
+//			prnerr=1;
+//			break;
+//		}	
+//	}
+//	if(!prnerr)
+//	{
+//		BUSY = 1;		 
+//		STB  = 1; 
+//		pprint(0x1b);
+//		pprint(0x40);     
+//	}
 //	pprint(0x1c);pprint(0x26);  
 }
 u8 Trip2;

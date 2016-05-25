@@ -276,7 +276,7 @@ void bsp_StartTimer(uint8_t _id, uint32_t _period)
 	if (_id >= TMR_COUNT)
 	{
 		/* 打印出错的源代码文件名、函数名称 */
-		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
+//		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 		while(1); /* 参数异常，死机等待看门狗复位 */
 	}
 
@@ -304,7 +304,7 @@ void bsp_StartAutoTimer(uint8_t _id, uint32_t _period)
 	if (_id >= TMR_COUNT)
 	{
 		/* 打印出错的源代码文件名、函数名称 */
-		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
+//		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 		while(1); /* 参数异常，死机等待看门狗复位 */
 	}
 
@@ -331,7 +331,7 @@ void bsp_StopTimer(uint8_t _id)
 	if (_id >= TMR_COUNT)
 	{
 		/* 打印出错的源代码文件名、函数名称 */
-		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
+//		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 		while(1); /* 参数异常，死机等待看门狗复位 */
 	}
 

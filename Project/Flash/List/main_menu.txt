@@ -615,19 +615,19 @@
 000010  2000              MOVS     r0,#0
 000012  f8ad0014          STRH     r0,[sp,#0x14]
 ;;;138    		tIconFont.FrontColor = MAIN_TEXT_COLOR;	/* 字体颜色 */
-000016  48ac              LDR      r0,|L6.712|
+000016  48ad              LDR      r0,|L6.716|
 000018  8800              LDRH     r0,[r0,#0]  ; g_LcdWidth
 00001a  f5b07ff0          CMP      r0,#0x1e0
 00001e  d106              BNE      |L6.46|
-000020  48aa              LDR      r0,|L6.716|
-000022  49ab              LDR      r1,|L6.720|
+000020  48ab              LDR      r0,|L6.720|
+000022  49ac              LDR      r1,|L6.724|
 000024  8809              LDRH     r1,[r1,#0]  ; s_ColorIndex
 000026  eb0000c1          ADD      r0,r0,r1,LSL #3
 00002a  88c0              LDRH     r0,[r0,#6]
 00002c  e005              B        |L6.58|
                   |L6.46|
-00002e  48a9              LDR      r0,|L6.724|
-000030  49a7              LDR      r1,|L6.720|
+00002e  48aa              LDR      r0,|L6.728|
+000030  49a8              LDR      r1,|L6.724|
 000032  8809              LDRH     r1,[r1,#0]  ; s_ColorIndex
 000034  eb0000c1          ADD      r0,r0,r1,LSL #3
 000038  88c0              LDRH     r0,[r0,#6]
@@ -647,160 +647,161 @@
 00004c  2601              MOVS     r6,#1
                   |L6.78|
 ;;;146    	while (1)
-00004e  e139              B        |L6.708|
+00004e  e13b              B        |L6.712|
                   |L6.80|
 ;;;147    	{
-;;;148    //		bsp_Idle();
+;;;148    		bsp_Idle();
+000050  f7fffffe          BL       bsp_Idle
 ;;;149    
 ;;;150    		if (fRefresh)
-000050  b116              CBZ      r6,|L6.88|
+000054  b116              CBZ      r6,|L6.92|
 ;;;151    		{
 ;;;152    			fRefresh = 0;
-000052  2600              MOVS     r6,#0
+000056  2600              MOVS     r6,#0
 ;;;153    
 ;;;154    			/* 显示图标阵列 */
 ;;;155    			ArrayIcon();	/* 排列图标 */
-000054  f7fffffe          BL       ArrayIcon
-                  |L6.88|
+000058  f7fffffe          BL       ArrayIcon
+                  |L6.92|
 ;;;156    //			bsp_DelayMS(1000);
 ;;;157    		}
 ;;;158    
 ;;;159    		ucTouch = TOUCH_GetKey(&tpX, &tpY);	/* 读取触摸事件 */
-000058  a903              ADD      r1,sp,#0xc
-00005a  a804              ADD      r0,sp,#0x10
-00005c  f7fffffe          BL       TOUCH_GetKey
-000060  4605              MOV      r5,r0
+00005c  a903              ADD      r1,sp,#0xc
+00005e  a804              ADD      r0,sp,#0x10
+000060  f7fffffe          BL       TOUCH_GetKey
+000064  4605              MOV      r5,r0
 ;;;160    		if (ucTouch != TOUCH_NONE)
-000062  2d00              CMP      r5,#0
-000064  d0f3              BEQ      |L6.78|
+000066  2d00              CMP      r5,#0
+000068  d0f1              BEQ      |L6.78|
 ;;;161    		{
 ;;;162    			switch (ucTouch)
-000066  2d01              CMP      r5,#1
-000068  d004              BEQ      |L6.116|
-00006a  2d02              CMP      r5,#2
-00006c  d049              BEQ      |L6.258|
-00006e  2d03              CMP      r5,#3
-000070  d17e              BNE      |L6.368|
-000072  e0bc              B        |L6.494|
-                  |L6.116|
+00006a  2d01              CMP      r5,#1
+00006c  d004              BEQ      |L6.120|
+00006e  2d02              CMP      r5,#2
+000070  d049              BEQ      |L6.262|
+000072  2d03              CMP      r5,#3
+000074  d17e              BNE      |L6.372|
+000076  e0bc              B        |L6.498|
+                  |L6.120|
 ;;;163    			{
 ;;;164    				case TOUCH_DOWN:		/* 触笔按下事件 */
 ;;;165    					/* 绘制图标阵列 */
 ;;;166    					{
 ;;;167    						s_IconsCursor = -1;	/* -1 表示当前没有图标被激活点亮 */
-000074  f04f30ff          MOV      r0,#0xffffffff
-000078  4997              LDR      r1,|L6.728|
-00007a  8008              STRH     r0,[r1,#0]
+000078  f04f30ff          MOV      r0,#0xffffffff
+00007c  4997              LDR      r1,|L6.732|
+00007e  8008              STRH     r0,[r1,#0]
 ;;;168    
 ;;;169    						for (i = s_IconNumPerPage * s_IconsPageNo;
-00007c  4897              LDR      r0,|L6.732|
-00007e  7800              LDRB     r0,[r0,#0]  ; s_IconNumPerPage
-000080  4997              LDR      r1,|L6.736|
-000082  7809              LDRB     r1,[r1,#0]  ; s_IconsPageNo
-000084  fb10f401          SMULBB   r4,r0,r1
-000088  e026              B        |L6.216|
-                  |L6.138|
+000080  4897              LDR      r0,|L6.736|
+000082  7800              LDRB     r0,[r0,#0]  ; s_IconNumPerPage
+000084  4997              LDR      r1,|L6.740|
+000086  7809              LDRB     r1,[r1,#0]  ; s_IconsPageNo
+000088  fb10f401          SMULBB   r4,r0,r1
+00008c  e026              B        |L6.220|
+                  |L6.142|
 ;;;170    							i < s_IconNumPerPage * s_IconsPageNo + s_IconNumPerPage && i < ICONS_COUNT;
 ;;;171    							i++)
 ;;;172    						{
 ;;;173    							if (TOUCH_InRect(tpX, tpY, s_tMainIcons[i].Left, s_tMainIcons[i].Top,
-00008a  4896              LDR      r0,|L6.740|
-00008c  eb001044          ADD      r0,r0,r4,LSL #5
-000090  8900              LDRH     r0,[r0,#8]
-000092  4994              LDR      r1,|L6.740|
-000094  eb011144          ADD      r1,r1,r4,LSL #5
-000098  88c9              LDRH     r1,[r1,#6]
-00009a  4f92              LDR      r7,|L6.740|
-00009c  eb071744          ADD      r7,r7,r4,LSL #5
-0000a0  e9cd1000          STRD     r1,r0,[sp,#0]
-0000a4  88bb              LDRH     r3,[r7,#4]
-0000a6  4f8f              LDR      r7,|L6.740|
-0000a8  eb071744          ADD      r7,r7,r4,LSL #5
-0000ac  887a              LDRH     r2,[r7,#2]
-0000ae  f8bd700c          LDRH     r7,[sp,#0xc]
-0000b2  b2b9              UXTH     r1,r7
-0000b4  f8bd7010          LDRH     r7,[sp,#0x10]
-0000b8  b2b8              UXTH     r0,r7
-0000ba  f7fffffe          BL       TOUCH_InRect
-0000be  b148              CBZ      r0,|L6.212|
+00008e  4896              LDR      r0,|L6.744|
+000090  eb001044          ADD      r0,r0,r4,LSL #5
+000094  8900              LDRH     r0,[r0,#8]
+000096  4994              LDR      r1,|L6.744|
+000098  eb011144          ADD      r1,r1,r4,LSL #5
+00009c  88c9              LDRH     r1,[r1,#6]
+00009e  4f92              LDR      r7,|L6.744|
+0000a0  eb071744          ADD      r7,r7,r4,LSL #5
+0000a4  e9cd1000          STRD     r1,r0,[sp,#0]
+0000a8  88bb              LDRH     r3,[r7,#4]
+0000aa  4f8f              LDR      r7,|L6.744|
+0000ac  eb071744          ADD      r7,r7,r4,LSL #5
+0000b0  887a              LDRH     r2,[r7,#2]
+0000b2  f8bd700c          LDRH     r7,[sp,#0xc]
+0000b6  b2b9              UXTH     r1,r7
+0000b8  f8bd7010          LDRH     r7,[sp,#0x10]
+0000bc  b2b8              UXTH     r0,r7
+0000be  f7fffffe          BL       TOUCH_InRect
+0000c2  b148              CBZ      r0,|L6.216|
 ;;;174    								 s_tMainIcons[i].Height, s_tMainIcons[i].Width))
 ;;;175    							{
 ;;;176    								s_IconsCursor = i;
-0000c0  b220              SXTH     r0,r4
-0000c2  4985              LDR      r1,|L6.728|
-0000c4  8008              STRH     r0,[r1,#0]
+0000c4  b220              SXTH     r0,r4
+0000c6  4985              LDR      r1,|L6.732|
+0000c8  8008              STRH     r0,[r1,#0]
 ;;;177    								LCD_DrawIcon32(&s_tMainIcons[i], &tIconFont, 1);	/* 0 表示正常显示， 1表示选中 */
-0000c6  4987              LDR      r1,|L6.740|
-0000c8  eb011044          ADD      r0,r1,r4,LSL #5
-0000cc  2201              MOVS     r2,#1
-0000ce  a905              ADD      r1,sp,#0x14
-0000d0  f7fffffe          BL       LCD_DrawIcon32
-                  |L6.212|
-0000d4  1c60              ADDS     r0,r4,#1              ;171
-0000d6  b284              UXTH     r4,r0                 ;171
+0000ca  4987              LDR      r1,|L6.744|
+0000cc  eb011044          ADD      r0,r1,r4,LSL #5
+0000d0  2201              MOVS     r2,#1
+0000d2  a905              ADD      r1,sp,#0x14
+0000d4  f7fffffe          BL       LCD_DrawIcon32
                   |L6.216|
-0000d8  4880              LDR      r0,|L6.732|
-0000da  7800              LDRB     r0,[r0,#0]            ;170  ; s_IconNumPerPage
-0000dc  497f              LDR      r1,|L6.732|
-0000de  7809              LDRB     r1,[r1,#0]            ;170  ; s_IconNumPerPage
-0000e0  4a7f              LDR      r2,|L6.736|
-0000e2  7812              LDRB     r2,[r2,#0]            ;170  ; s_IconsPageNo
-0000e4  fb110002          SMLABB   r0,r1,r2,r0           ;170
-0000e8  42a0              CMP      r0,r4                 ;170
-0000ea  dd01              BLE      |L6.240|
-0000ec  2c06              CMP      r4,#6                 ;170
-0000ee  dbcc              BLT      |L6.138|
-                  |L6.240|
+0000d8  1c60              ADDS     r0,r4,#1              ;171
+0000da  b284              UXTH     r4,r0                 ;171
+                  |L6.220|
+0000dc  4880              LDR      r0,|L6.736|
+0000de  7800              LDRB     r0,[r0,#0]            ;170  ; s_IconNumPerPage
+0000e0  497f              LDR      r1,|L6.736|
+0000e2  7809              LDRB     r1,[r1,#0]            ;170  ; s_IconNumPerPage
+0000e4  4a7f              LDR      r2,|L6.740|
+0000e6  7812              LDRB     r2,[r2,#0]            ;170  ; s_IconsPageNo
+0000e8  fb110002          SMLABB   r0,r1,r2,r0           ;170
+0000ec  42a0              CMP      r0,r4                 ;170
+0000ee  dd01              BLE      |L6.244|
+0000f0  2c06              CMP      r4,#6                 ;170
+0000f2  dbcc              BLT      |L6.142|
+                  |L6.244|
 ;;;178    							}
 ;;;179    						}
 ;;;180    						s_down_x = tpX;
-0000f0  f8bd0010          LDRH     r0,[sp,#0x10]
-0000f4  497c              LDR      r1,|L6.744|
-0000f6  8008              STRH     r0,[r1,#0]
+0000f4  f8bd0010          LDRH     r0,[sp,#0x10]
+0000f8  497c              LDR      r1,|L6.748|
+0000fa  8008              STRH     r0,[r1,#0]
 ;;;181    						s_down_y = tpY;
-0000f8  f8bd000c          LDRH     r0,[sp,#0xc]
-0000fc  497b              LDR      r1,|L6.748|
-0000fe  8008              STRH     r0,[r1,#0]
+0000fc  f8bd000c          LDRH     r0,[sp,#0xc]
+000100  497b              LDR      r1,|L6.752|
+000102  8008              STRH     r0,[r1,#0]
 ;;;182    					}
 ;;;183    					break;
-000100  e0df              B        |L6.706|
-                  |L6.258|
+000104  e0df              B        |L6.710|
+                  |L6.262|
 ;;;184    
 ;;;185    				case TOUCH_MOVE:		/* 触笔移动事件 */
 ;;;186    					if (s_IconsCursor >= 0)
-000102  4875              LDR      r0,|L6.728|
-000104  f9b00000          LDRSH    r0,[r0,#0]  ; s_IconsCursor
-000108  2800              CMP      r0,#0
-00010a  db38              BLT      |L6.382|
+000106  4875              LDR      r0,|L6.732|
+000108  f9b00000          LDRSH    r0,[r0,#0]  ; s_IconsCursor
+00010c  2800              CMP      r0,#0
+00010e  db38              BLT      |L6.386|
 ;;;187    					{
 ;;;188    						if (TOUCH_InRect(tpX, tpY, s_tMainIcons[s_IconsCursor].Left, s_tMainIcons[s_IconsCursor].Top,
-00010c  4875              LDR      r0,|L6.740|
-00010e  4972              LDR      r1,|L6.728|
-000110  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-000114  eb001041          ADD      r0,r0,r1,LSL #5
-000118  8900              LDRH     r0,[r0,#8]
-00011a  4972              LDR      r1,|L6.740|
-00011c  4a6e              LDR      r2,|L6.728|
-00011e  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
-000122  eb011142          ADD      r1,r1,r2,LSL #5
-000126  88c9              LDRH     r1,[r1,#6]
-000128  4f6e              LDR      r7,|L6.740|
-00012a  f8dfc1ac          LDR      r12,|L6.728|
-00012e  e9cd1000          STRD     r1,r0,[sp,#0]
-000132  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
-000136  eb07174c          ADD      r7,r7,r12,LSL #5
-00013a  88bb              LDRH     r3,[r7,#4]
-00013c  4f69              LDR      r7,|L6.740|
-00013e  f8dfc198          LDR      r12,|L6.728|
-000142  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
-000146  eb07174c          ADD      r7,r7,r12,LSL #5
-00014a  887a              LDRH     r2,[r7,#2]
-00014c  f8bd700c          LDRH     r7,[sp,#0xc]
-000150  b2b9              UXTH     r1,r7
-000152  f8bd7010          LDRH     r7,[sp,#0x10]
-000156  b2b8              UXTH     r0,r7
-000158  f7fffffe          BL       TOUCH_InRect
-00015c  b978              CBNZ     r0,|L6.382|
+000110  4875              LDR      r0,|L6.744|
+000112  4972              LDR      r1,|L6.732|
+000114  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+000118  eb001041          ADD      r0,r0,r1,LSL #5
+00011c  8900              LDRH     r0,[r0,#8]
+00011e  4972              LDR      r1,|L6.744|
+000120  4a6e              LDR      r2,|L6.732|
+000122  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
+000126  eb011142          ADD      r1,r1,r2,LSL #5
+00012a  88c9              LDRH     r1,[r1,#6]
+00012c  4f6e              LDR      r7,|L6.744|
+00012e  f8dfc1ac          LDR      r12,|L6.732|
+000132  e9cd1000          STRD     r1,r0,[sp,#0]
+000136  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
+00013a  eb07174c          ADD      r7,r7,r12,LSL #5
+00013e  88bb              LDRH     r3,[r7,#4]
+000140  4f69              LDR      r7,|L6.744|
+000142  f8dfc198          LDR      r12,|L6.732|
+000146  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
+00014a  eb07174c          ADD      r7,r7,r12,LSL #5
+00014e  887a              LDRH     r2,[r7,#2]
+000150  f8bd700c          LDRH     r7,[sp,#0xc]
+000154  b2b9              UXTH     r1,r7
+000156  f8bd7010          LDRH     r7,[sp,#0x10]
+00015a  b2b8              UXTH     r0,r7
+00015c  f7fffffe          BL       TOUCH_InRect
+000160  b978              CBNZ     r0,|L6.386|
 ;;;189    								 s_tMainIcons[s_IconsCursor].Height, s_tMainIcons[s_IconsCursor].Width))
 ;;;190    						{
 ;;;191    							;
@@ -808,179 +809,179 @@
 ;;;193    						else
 ;;;194    						{
 ;;;195    							LCD_DrawIcon32(&s_tMainIcons[s_IconsCursor], &tIconFont, 0);	/* 0 表示正常显示， 1表示选中 */
-00015e  4961              LDR      r1,|L6.740|
-000160  4a5d              LDR      r2,|L6.728|
-000162  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
-000166  eb011042          ADD      r0,r1,r2,LSL #5
-00016a  2200              MOVS     r2,#0
-00016c  a905              ADD      r1,sp,#0x14
-00016e  e000              B        |L6.370|
-                  |L6.368|
-000170  e0a6              B        |L6.704|
-                  |L6.370|
-000172  f7fffffe          BL       LCD_DrawIcon32
+000162  4961              LDR      r1,|L6.744|
+000164  4a5d              LDR      r2,|L6.732|
+000166  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
+00016a  eb011042          ADD      r0,r1,r2,LSL #5
+00016e  2200              MOVS     r2,#0
+000170  a905              ADD      r1,sp,#0x14
+000172  e000              B        |L6.374|
+                  |L6.372|
+000174  e0a6              B        |L6.708|
+                  |L6.374|
+000176  f7fffffe          BL       LCD_DrawIcon32
 ;;;196    							s_IconsCursor = -1;
-000176  f04f30ff          MOV      r0,#0xffffffff
-00017a  4957              LDR      r1,|L6.728|
-00017c  8008              STRH     r0,[r1,#0]
-                  |L6.382|
+00017a  f04f30ff          MOV      r0,#0xffffffff
+00017e  4957              LDR      r1,|L6.732|
+000180  8008              STRH     r0,[r1,#0]
+                  |L6.386|
 ;;;197    						}
 ;;;198    					}
 ;;;199    
 ;;;200    					if (s_down_x > 0)
-00017e  485a              LDR      r0,|L6.744|
-000180  8800              LDRH     r0,[r0,#0]  ; s_down_x
-000182  2800              CMP      r0,#0
-000184  dd32              BLE      |L6.492|
+000182  485a              LDR      r0,|L6.748|
+000184  8800              LDRH     r0,[r0,#0]  ; s_down_x
+000186  2800              CMP      r0,#0
+000188  dd32              BLE      |L6.496|
 ;;;201    					{
 ;;;202    						if (tpX - s_down_x > 50)
-000186  f9bd0010          LDRSH    r0,[sp,#0x10]
-00018a  4957              LDR      r1,|L6.744|
-00018c  8809              LDRH     r1,[r1,#0]  ; s_down_x
-00018e  1a40              SUBS     r0,r0,r1
-000190  2832              CMP      r0,#0x32
-000192  dd10              BLE      |L6.438|
+00018a  f9bd0010          LDRSH    r0,[sp,#0x10]
+00018e  4957              LDR      r1,|L6.748|
+000190  8809              LDRH     r1,[r1,#0]  ; s_down_x
+000192  1a40              SUBS     r0,r0,r1
+000194  2832              CMP      r0,#0x32
+000196  dd10              BLE      |L6.442|
 ;;;203    						{
 ;;;204    							/* 向右滑动 */
 ;;;205    							if (s_IconsPageNo > 0)
-000194  4852              LDR      r0,|L6.736|
-000196  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
-000198  2800              CMP      r0,#0
-00019a  dd08              BLE      |L6.430|
+000198  4852              LDR      r0,|L6.740|
+00019a  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
+00019c  2800              CMP      r0,#0
+00019e  dd08              BLE      |L6.434|
 ;;;206    							{
 ;;;207    								s_IconsPageNo--;
-00019c  4850              LDR      r0,|L6.736|
-00019e  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
-0001a0  1e40              SUBS     r0,r0,#1
-0001a2  494f              LDR      r1,|L6.736|
-0001a4  7008              STRB     r0,[r1,#0]
+0001a0  4850              LDR      r0,|L6.740|
+0001a2  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
+0001a4  1e40              SUBS     r0,r0,#1
+0001a6  494f              LDR      r1,|L6.740|
+0001a8  7008              STRB     r0,[r1,#0]
 ;;;208    								DispBackground();
-0001a6  f7fffffe          BL       DispBackground
+0001aa  f7fffffe          BL       DispBackground
 ;;;209    								ArrayIcon();	/* 排列图标 */
-0001aa  f7fffffe          BL       ArrayIcon
-                  |L6.430|
+0001ae  f7fffffe          BL       ArrayIcon
+                  |L6.434|
 ;;;210    							}
 ;;;211    							s_down_x = 0;
-0001ae  2000              MOVS     r0,#0
-0001b0  494d              LDR      r1,|L6.744|
-0001b2  8008              STRH     r0,[r1,#0]
-0001b4  e01a              B        |L6.492|
-                  |L6.438|
+0001b2  2000              MOVS     r0,#0
+0001b4  494d              LDR      r1,|L6.748|
+0001b6  8008              STRH     r0,[r1,#0]
+0001b8  e01a              B        |L6.496|
+                  |L6.442|
 ;;;212    						}
 ;;;213    						else if (tpX - s_down_x < -50)
-0001b6  f9bd0010          LDRSH    r0,[sp,#0x10]
-0001ba  494b              LDR      r1,|L6.744|
-0001bc  8809              LDRH     r1,[r1,#0]  ; s_down_x
-0001be  1a40              SUBS     r0,r0,r1
-0001c0  f1100f32          CMN      r0,#0x32
-0001c4  da12              BGE      |L6.492|
+0001ba  f9bd0010          LDRSH    r0,[sp,#0x10]
+0001be  494b              LDR      r1,|L6.748|
+0001c0  8809              LDRH     r1,[r1,#0]  ; s_down_x
+0001c2  1a40              SUBS     r0,r0,r1
+0001c4  f1100f32          CMN      r0,#0x32
+0001c8  da12              BGE      |L6.496|
 ;;;214    						{
 ;;;215    							/* 向左滑动 */
 ;;;216    							if (s_IconsPageNo < s_IconsPageMax - 1)
-0001c6  484a              LDR      r0,|L6.752|
-0001c8  7800              LDRB     r0,[r0,#0]  ; s_IconsPageMax
-0001ca  1e40              SUBS     r0,r0,#1
-0001cc  4944              LDR      r1,|L6.736|
-0001ce  7809              LDRB     r1,[r1,#0]  ; s_IconsPageNo
-0001d0  4288              CMP      r0,r1
-0001d2  dd08              BLE      |L6.486|
+0001ca  484a              LDR      r0,|L6.756|
+0001cc  7800              LDRB     r0,[r0,#0]  ; s_IconsPageMax
+0001ce  1e40              SUBS     r0,r0,#1
+0001d0  4944              LDR      r1,|L6.740|
+0001d2  7809              LDRB     r1,[r1,#0]  ; s_IconsPageNo
+0001d4  4288              CMP      r0,r1
+0001d6  dd08              BLE      |L6.490|
 ;;;217    							{
 ;;;218    								s_IconsPageNo++;
-0001d4  4842              LDR      r0,|L6.736|
-0001d6  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
-0001d8  1c40              ADDS     r0,r0,#1
-0001da  4941              LDR      r1,|L6.736|
-0001dc  7008              STRB     r0,[r1,#0]
+0001d8  4842              LDR      r0,|L6.740|
+0001da  7800              LDRB     r0,[r0,#0]  ; s_IconsPageNo
+0001dc  1c40              ADDS     r0,r0,#1
+0001de  4941              LDR      r1,|L6.740|
+0001e0  7008              STRB     r0,[r1,#0]
 ;;;219    								DispBackground();
-0001de  f7fffffe          BL       DispBackground
+0001e2  f7fffffe          BL       DispBackground
 ;;;220    								ArrayIcon();	/* 排列图标 */
-0001e2  f7fffffe          BL       ArrayIcon
-                  |L6.486|
+0001e6  f7fffffe          BL       ArrayIcon
+                  |L6.490|
 ;;;221    							}
 ;;;222    							s_down_x = 0;
-0001e6  2000              MOVS     r0,#0
-0001e8  493f              LDR      r1,|L6.744|
-0001ea  8008              STRH     r0,[r1,#0]
-                  |L6.492|
+0001ea  2000              MOVS     r0,#0
+0001ec  493f              LDR      r1,|L6.748|
+0001ee  8008              STRH     r0,[r1,#0]
+                  |L6.496|
 ;;;223    						}
 ;;;224    
 ;;;225    					}
 ;;;226    					break;
-0001ec  e069              B        |L6.706|
-                  |L6.494|
+0001f0  e069              B        |L6.710|
+                  |L6.498|
 ;;;227    
 ;;;228    				case TOUCH_RELEASE:		/* 触笔释放事件 */
 ;;;229    					if (s_IconsCursor >= 0)
-0001ee  483a              LDR      r0,|L6.728|
-0001f0  f9b00000          LDRSH    r0,[r0,#0]  ; s_IconsCursor
-0001f4  2800              CMP      r0,#0
-0001f6  db62              BLT      |L6.702|
+0001f2  483a              LDR      r0,|L6.732|
+0001f4  f9b00000          LDRSH    r0,[r0,#0]  ; s_IconsCursor
+0001f8  2800              CMP      r0,#0
+0001fa  db62              BLT      |L6.706|
 ;;;230    					{
 ;;;231    						/* 按下时的坐标和弹起时坐标都在图标内才算有效点击 */
 ;;;232    						if (TOUCH_InRect(tpX, tpY, s_tMainIcons[s_IconsCursor].Left, s_tMainIcons[s_IconsCursor].Top,
-0001f8  483a              LDR      r0,|L6.740|
-0001fa  4937              LDR      r1,|L6.728|
-0001fc  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-000200  eb001041          ADD      r0,r0,r1,LSL #5
-000204  8900              LDRH     r0,[r0,#8]
-000206  4937              LDR      r1,|L6.740|
-000208  4a33              LDR      r2,|L6.728|
-00020a  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
-00020e  eb011142          ADD      r1,r1,r2,LSL #5
-000212  88c9              LDRH     r1,[r1,#6]
-000214  4f33              LDR      r7,|L6.740|
-000216  f8dfc0c0          LDR      r12,|L6.728|
-00021a  e9cd1000          STRD     r1,r0,[sp,#0]
-00021e  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
-000222  eb07174c          ADD      r7,r7,r12,LSL #5
-000226  88bb              LDRH     r3,[r7,#4]
-000228  4f2e              LDR      r7,|L6.740|
-00022a  f8dfc0ac          LDR      r12,|L6.728|
-00022e  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
-000232  eb07174c          ADD      r7,r7,r12,LSL #5
-000236  887a              LDRH     r2,[r7,#2]
-000238  f8bd700c          LDRH     r7,[sp,#0xc]
-00023c  b2b9              UXTH     r1,r7
-00023e  f8bd7010          LDRH     r7,[sp,#0x10]
-000242  b2b8              UXTH     r0,r7
-000244  f7fffffe          BL       TOUCH_InRect
-000248  b358              CBZ      r0,|L6.674|
+0001fc  483a              LDR      r0,|L6.744|
+0001fe  4937              LDR      r1,|L6.732|
+000200  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+000204  eb001041          ADD      r0,r0,r1,LSL #5
+000208  8900              LDRH     r0,[r0,#8]
+00020a  4937              LDR      r1,|L6.744|
+00020c  4a33              LDR      r2,|L6.732|
+00020e  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
+000212  eb011142          ADD      r1,r1,r2,LSL #5
+000216  88c9              LDRH     r1,[r1,#6]
+000218  4f33              LDR      r7,|L6.744|
+00021a  f8dfc0c0          LDR      r12,|L6.732|
+00021e  e9cd1000          STRD     r1,r0,[sp,#0]
+000222  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
+000226  eb07174c          ADD      r7,r7,r12,LSL #5
+00022a  88bb              LDRH     r3,[r7,#4]
+00022c  4f2e              LDR      r7,|L6.744|
+00022e  f8dfc0ac          LDR      r12,|L6.732|
+000232  f9bcc000          LDRSH    r12,[r12,#0]  ; s_IconsCursor
+000236  eb07174c          ADD      r7,r7,r12,LSL #5
+00023a  887a              LDRH     r2,[r7,#2]
+00023c  f8bd700c          LDRH     r7,[sp,#0xc]
+000240  b2b9              UXTH     r1,r7
+000242  f8bd7010          LDRH     r7,[sp,#0x10]
+000246  b2b8              UXTH     r0,r7
+000248  f7fffffe          BL       TOUCH_InRect
+00024c  b358              CBZ      r0,|L6.678|
 ;;;233    								 s_tMainIcons[s_IconsCursor].Height, s_tMainIcons[s_IconsCursor].Width)
 ;;;234    							&& TOUCH_InRect(s_down_x, s_down_y, s_tMainIcons[s_IconsCursor].Left, s_tMainIcons[s_IconsCursor].Top,
-00024a  4826              LDR      r0,|L6.740|
-00024c  4922              LDR      r1,|L6.728|
-00024e  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-000252  eb001041          ADD      r0,r0,r1,LSL #5
-000256  8900              LDRH     r0,[r0,#8]
-000258  4922              LDR      r1,|L6.740|
-00025a  4a1f              LDR      r2,|L6.728|
-00025c  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
-000260  eb011142          ADD      r1,r1,r2,LSL #5
-000264  88c9              LDRH     r1,[r1,#6]
-000266  e9cd1000          STRD     r1,r0,[sp,#0]
-00026a  481e              LDR      r0,|L6.740|
-00026c  491a              LDR      r1,|L6.728|
-00026e  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-000272  eb001041          ADD      r0,r0,r1,LSL #5
-000276  8883              LDRH     r3,[r0,#4]
-000278  481a              LDR      r0,|L6.740|
-00027a  4917              LDR      r1,|L6.728|
-00027c  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-000280  eb001041          ADD      r0,r0,r1,LSL #5
-000284  8842              LDRH     r2,[r0,#2]
-000286  4819              LDR      r0,|L6.748|
-000288  8801              LDRH     r1,[r0,#0]  ; s_down_y
-00028a  4817              LDR      r0,|L6.744|
-00028c  8800              LDRH     r0,[r0,#0]  ; s_down_x
-00028e  f7fffffe          BL       TOUCH_InRect
-000292  b130              CBZ      r0,|L6.674|
+00024e  4826              LDR      r0,|L6.744|
+000250  4922              LDR      r1,|L6.732|
+000252  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+000256  eb001041          ADD      r0,r0,r1,LSL #5
+00025a  8900              LDRH     r0,[r0,#8]
+00025c  4922              LDR      r1,|L6.744|
+00025e  4a1f              LDR      r2,|L6.732|
+000260  f9b22000          LDRSH    r2,[r2,#0]  ; s_IconsCursor
+000264  eb011142          ADD      r1,r1,r2,LSL #5
+000268  88c9              LDRH     r1,[r1,#6]
+00026a  e9cd1000          STRD     r1,r0,[sp,#0]
+00026e  481e              LDR      r0,|L6.744|
+000270  491a              LDR      r1,|L6.732|
+000272  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+000276  eb001041          ADD      r0,r0,r1,LSL #5
+00027a  8883              LDRH     r3,[r0,#4]
+00027c  481a              LDR      r0,|L6.744|
+00027e  4917              LDR      r1,|L6.732|
+000280  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+000284  eb001041          ADD      r0,r0,r1,LSL #5
+000288  8842              LDRH     r2,[r0,#2]
+00028a  4819              LDR      r0,|L6.752|
+00028c  8801              LDRH     r1,[r0,#0]  ; s_down_y
+00028e  4817              LDR      r0,|L6.748|
+000290  8800              LDRH     r0,[r0,#0]  ; s_down_x
+000292  f7fffffe          BL       TOUCH_InRect
+000296  b130              CBZ      r0,|L6.678|
 ;;;235    								 s_tMainIcons[s_IconsCursor].Height, s_tMainIcons[s_IconsCursor].Width))
 ;;;236    						{
 ;;;237    							return s_RetStatus[s_IconsCursor];	/* 返回程序状态 */
-000294  4817              LDR      r0,|L6.756|
-000296  4910              LDR      r1,|L6.728|
-000298  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
-00029c  5c40              LDRB     r0,[r0,r1]
+000298  4817              LDR      r0,|L6.760|
+00029a  4910              LDR      r1,|L6.732|
+00029c  f9b11000          LDRSH    r1,[r1,#0]  ; s_IconsCursor
+0002a0  5c40              LDRB     r0,[r0,r1]
 ;;;238    						}
 ;;;239    						else
 ;;;240    						{
@@ -996,54 +997,54 @@
 ;;;250    		}
 ;;;251    	}
 ;;;252    }
-00029e  b007              ADD      sp,sp,#0x1c
-0002a0  bdf0              POP      {r4-r7,pc}
-                  |L6.674|
-0002a2  4910              LDR      r1,|L6.740|
-0002a4  4a0c              LDR      r2,|L6.728|
-0002a6  f9b22000          LDRSH    r2,[r2,#0]            ;241  ; s_IconsCursor
-0002aa  eb011042          ADD      r0,r1,r2,LSL #5       ;241
-0002ae  2200              MOVS     r2,#0                 ;241
-0002b0  a905              ADD      r1,sp,#0x14           ;241
-0002b2  f7fffffe          BL       LCD_DrawIcon32
-0002b6  f04f30ff          MOV      r0,#0xffffffff        ;242
-0002ba  4907              LDR      r1,|L6.728|
-0002bc  8008              STRH     r0,[r1,#0]            ;242
-                  |L6.702|
-0002be  e000              B        |L6.706|
-                  |L6.704|
-0002c0  bf00              NOP                            ;248
+0002a2  b007              ADD      sp,sp,#0x1c
+0002a4  bdf0              POP      {r4-r7,pc}
+                  |L6.678|
+0002a6  4910              LDR      r1,|L6.744|
+0002a8  4a0c              LDR      r2,|L6.732|
+0002aa  f9b22000          LDRSH    r2,[r2,#0]            ;241  ; s_IconsCursor
+0002ae  eb011042          ADD      r0,r1,r2,LSL #5       ;241
+0002b2  2200              MOVS     r2,#0                 ;241
+0002b4  a905              ADD      r1,sp,#0x14           ;241
+0002b6  f7fffffe          BL       LCD_DrawIcon32
+0002ba  f04f30ff          MOV      r0,#0xffffffff        ;242
+0002be  4907              LDR      r1,|L6.732|
+0002c0  8008              STRH     r0,[r1,#0]            ;242
                   |L6.706|
-0002c2  bf00              NOP                            ;183
+0002c2  e000              B        |L6.710|
                   |L6.708|
-0002c4  e6c4              B        |L6.80|
+0002c4  bf00              NOP                            ;248
+                  |L6.710|
+0002c6  bf00              NOP                            ;183
+                  |L6.712|
+0002c8  e6c2              B        |L6.80|
 ;;;253    
                           ENDP
 
-0002c6  0000              DCW      0x0000
-                  |L6.712|
-                          DCD      g_LcdWidth
+0002ca  0000              DCW      0x0000
                   |L6.716|
-                          DCD      s_UI480
+                          DCD      g_LcdWidth
                   |L6.720|
-                          DCD      s_ColorIndex
+                          DCD      s_UI480
                   |L6.724|
-                          DCD      s_UI800
+                          DCD      s_ColorIndex
                   |L6.728|
-                          DCD      s_IconsCursor
+                          DCD      s_UI800
                   |L6.732|
-                          DCD      s_IconNumPerPage
+                          DCD      s_IconsCursor
                   |L6.736|
-                          DCD      s_IconsPageNo
+                          DCD      s_IconNumPerPage
                   |L6.740|
-                          DCD      s_tMainIcons
+                          DCD      s_IconsPageNo
                   |L6.744|
-                          DCD      s_down_x
+                          DCD      s_tMainIcons
                   |L6.748|
-                          DCD      s_down_y
+                          DCD      s_down_x
                   |L6.752|
-                          DCD      s_IconsPageMax
+                          DCD      s_down_y
                   |L6.756|
+                          DCD      s_IconsPageMax
+                  |L6.760|
                           DCD      s_RetStatus
 
                           AREA ||.constdata||, DATA, READONLY, ALIGN=2

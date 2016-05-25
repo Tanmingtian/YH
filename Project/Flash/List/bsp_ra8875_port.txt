@@ -49,7 +49,7 @@
 ;;;65     		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 ;;;66     		
 ;;;67     		/* PD3 连接到RA8875的BUSY引脚，用来识别芯片内忙 */
-;;;68     		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;//LCDPORT   D3-D6
+;;;68     		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
 ;;;69     		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 ;;;70     		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 ;;;71     		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
@@ -157,37 +157,37 @@
                           AREA ||i.RA8875_GetDispMemAddr||, CODE, READONLY, ALIGN=2
 
                   RA8875_GetDispMemAddr PROC
-;;;304    */
-;;;305    uint32_t RA8875_GetDispMemAddr(void)
+;;;292    */
+;;;293    uint32_t RA8875_GetDispMemAddr(void)
 000000  4807              LDR      r0,|L4.32|
-;;;306    {
-;;;307    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+;;;294    {
+;;;295    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 000002  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 000004  2802              CMP      r0,#2
 000006  d101              BNE      |L4.12|
-;;;308    	{
-;;;309    		return 0;
+;;;296    	{
+;;;297    		return 0;
 000008  2000              MOVS     r0,#0
                   |L4.10|
-;;;310    	}
-;;;311    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-;;;312    	{
-;;;313    		return RA8875_RAM_ADDR;
-;;;314    	}
-;;;315    	return 0;
-;;;316    }
+;;;298    	}
+;;;299    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+;;;300    	{
+;;;301    		return RA8875_RAM_ADDR;
+;;;302    	}
+;;;303    	return 0;
+;;;304    }
 00000a  4770              BX       lr
                   |L4.12|
 00000c  4804              LDR      r0,|L4.32|
-00000e  7800              LDRB     r0,[r0,#0]            ;311  ; g_RA8875_IF
-000010  2803              CMP      r0,#3                 ;311
+00000e  7800              LDRB     r0,[r0,#0]            ;299  ; g_RA8875_IF
+000010  2803              CMP      r0,#3                 ;299
 000012  d102              BNE      |L4.26|
-000014  f04f40d8          MOV      r0,#0x6c000000        ;313
+000014  f04f40d8          MOV      r0,#0x6c000000        ;301
 000018  e7f7              B        |L4.10|
                   |L4.26|
-00001a  2000              MOVS     r0,#0                 ;315
+00001a  2000              MOVS     r0,#0                 ;303
 00001c  e7f5              B        |L4.10|
-;;;317    
+;;;305    
                           ENDP
 
 00001e  0000              DCW      0x0000
@@ -197,83 +197,83 @@
                           AREA ||i.RA8875_HighSpeedSPI||, CODE, READONLY, ALIGN=2
 
                   RA8875_HighSpeedSPI PROC
-;;;423    */
-;;;424    void RA8875_HighSpeedSPI(void)
+;;;411    */
+;;;412    void RA8875_HighSpeedSPI(void)
 000000  b500              PUSH     {lr}
-;;;425    {
+;;;413    {
 000002  b085              SUB      sp,sp,#0x14
-;;;426    	SPI_InitTypeDef  SPI_InitStructure;
-;;;427    
-;;;428    	/* 打开SPI时钟 */
-;;;429    	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
+;;;414    	SPI_InitTypeDef  SPI_InitStructure;
+;;;415    
+;;;416    	/* 打开SPI时钟 */
+;;;417    	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 000004  2101              MOVS     r1,#1
 000006  0308              LSLS     r0,r1,#12
 000008  f7fffffe          BL       RCC_APB2PeriphClockCmd
-;;;430    
-;;;431    	/* 配置SPI硬件参数 */
-;;;432    	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;	/* 数据方向：2线全双工 */
+;;;418    
+;;;419    	/* 配置SPI硬件参数 */
+;;;420    	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;	/* 数据方向：2线全双工 */
 00000c  2000              MOVS     r0,#0
 00000e  f8ad0000          STRH     r0,[sp,#0]
-;;;433    	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;		/* STM32的SPI工作模式 ：主机模式 */
+;;;421    	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;		/* STM32的SPI工作模式 ：主机模式 */
 000012  f44f7082          MOV      r0,#0x104
 000016  f8ad0002          STRH     r0,[sp,#2]
-;;;434    	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;	/* 数据位长度 ： 8位 */
+;;;422    	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;	/* 数据位长度 ： 8位 */
 00001a  2000              MOVS     r0,#0
 00001c  f8ad0004          STRH     r0,[sp,#4]
-;;;435    	/* SPI_CPOL和SPI_CPHA结合使用决定时钟和数据采样点的相位关系、
-;;;436    	   本例配置: 总线空闲是高电平,第2个边沿（上升沿采样数据)
-;;;437    	*/
-;;;438    	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;			/* 时钟上升沿采样数据 */
+;;;423    	/* SPI_CPOL和SPI_CPHA结合使用决定时钟和数据采样点的相位关系、
+;;;424    	   本例配置: 总线空闲是高电平,第2个边沿（上升沿采样数据)
+;;;425    	*/
+;;;426    	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;			/* 时钟上升沿采样数据 */
 000020  2002              MOVS     r0,#2
 000022  f8ad0006          STRH     r0,[sp,#6]
-;;;439    	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;		/* 时钟的第2个边沿采样数据 */
+;;;427    	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;		/* 时钟的第2个边沿采样数据 */
 000026  2001              MOVS     r0,#1
 000028  f8ad0008          STRH     r0,[sp,#8]
-;;;440    	//SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;			/* 时钟上升沿采样数据 */
-;;;441    	//SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;		/* 时钟的第2个边沿采样数据 */	
-;;;442    	
-;;;443    	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;			/* 片选控制方式：软件控制 */
+;;;428    	//SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;			/* 时钟上升沿采样数据 */
+;;;429    	//SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;		/* 时钟的第2个边沿采样数据 */	
+;;;430    	
+;;;431    	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;			/* 片选控制方式：软件控制 */
 00002c  0240              LSLS     r0,r0,#9
 00002e  f8ad000a          STRH     r0,[sp,#0xa]
-;;;444    
-;;;445    	/*
-;;;446    	
-;;;447    		示波器实测频率 (STM32F103ZE 上测试)
-;;;448    		SPI_BaudRatePrescaler_4 时， SCK = 18M  (显示正常，触摸不正常)
-;;;449    		SPI_BaudRatePrescaler_8 时， SCK = 9M   (显示和触摸都正常)
-;;;450    		
-;;;451    		F407 的 SP1时钟=84M, 需要 8分频 = 10.5M
-;;;452    	*/
-;;;453    	
-;;;454    	/* 设置波特率预分频系数 */
-;;;455    	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;
+;;;432    
+;;;433    	/*
+;;;434    	
+;;;435    		示波器实测频率 (STM32F103ZE 上测试)
+;;;436    		SPI_BaudRatePrescaler_4 时， SCK = 18M  (显示正常，触摸不正常)
+;;;437    		SPI_BaudRatePrescaler_8 时， SCK = 9M   (显示和触摸都正常)
+;;;438    		
+;;;439    		F407 的 SP1时钟=84M, 需要 8分频 = 10.5M
+;;;440    	*/
+;;;441    	
+;;;442    	/* 设置波特率预分频系数 */
+;;;443    	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;
 000032  2018              MOVS     r0,#0x18
 000034  f8ad000c          STRH     r0,[sp,#0xc]
-;;;456    
-;;;457    	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	/* 数据位传输次序：高位先传 */
+;;;444    
+;;;445    	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	/* 数据位传输次序：高位先传 */
 000038  2000              MOVS     r0,#0
 00003a  f8ad000e          STRH     r0,[sp,#0xe]
-;;;458    	SPI_InitStructure.SPI_CRCPolynomial = 7;			/* CRC多项式寄存器，复位后为7。本例程不用 */
+;;;446    	SPI_InitStructure.SPI_CRCPolynomial = 7;			/* CRC多项式寄存器，复位后为7。本例程不用 */
 00003e  2007              MOVS     r0,#7
 000040  f8ad0010          STRH     r0,[sp,#0x10]
-;;;459    	SPI_Init(SPI1, &SPI_InitStructure);
+;;;447    	SPI_Init(SPI1, &SPI_InitStructure);
 000044  4669              MOV      r1,sp
 000046  4806              LDR      r0,|L5.96|
 000048  f7fffffe          BL       SPI_Init
-;;;460    
-;;;461    	SPI_Cmd(SPI1, DISABLE);			/* 先禁止SPI  */
+;;;448    
+;;;449    	SPI_Cmd(SPI1, DISABLE);			/* 先禁止SPI  */
 00004c  2100              MOVS     r1,#0
 00004e  4804              LDR      r0,|L5.96|
 000050  f7fffffe          BL       SPI_Cmd
-;;;462    
-;;;463    	SPI_Cmd(SPI1, ENABLE);				/* 使能SPI  */
+;;;450    
+;;;451    	SPI_Cmd(SPI1, ENABLE);				/* 使能SPI  */
 000054  2101              MOVS     r1,#1
 000056  4802              LDR      r0,|L5.96|
 000058  f7fffffe          BL       SPI_Cmd
-;;;464    }
+;;;452    }
 00005c  b005              ADD      sp,sp,#0x14
 00005e  bd00              POP      {pc}
-;;;465    
+;;;453    
                           ENDP
 
                   |L5.96|
@@ -282,105 +282,106 @@
                           AREA ||i.RA8875_InitSPI||, CODE, READONLY, ALIGN=2
 
                   RA8875_InitSPI PROC
-;;;327    */
-;;;328    void RA8875_InitSPI(void)
+;;;315    */
+;;;316    void RA8875_InitSPI(void)
 000000  b51c              PUSH     {r2-r4,lr}
-;;;329    {
-;;;330    	/*
-;;;331    		安富莱STM32-V5 开发板口线分配：  串行Flash型号为 W25Q64BVSSIG (80MHz)
-;;;332    		PB3/SPI3_SCK
-;;;333    		PB4/SPI3_MISO
-;;;334    		PB5/SPI3_MOSI
-;;;335    		PI10/TP_NCS			--- 触摸芯片的片选		(RA8875屏无需SPI接口触摸芯片）
-;;;336    
-;;;337    		STM32硬件SPI接口 = SPI3 或者 SPI1
-;;;338    
-;;;339    		由于SPI1的时钟源是84M, SPI3的时钟源是42M。为了获得更快的速度，软件上选择SPI1。
-;;;340    	*/
-;;;341    	{
-;;;342    		GPIO_InitTypeDef GPIO_InitStructure;
-;;;343    
-;;;344    		/* 使能GPIO 时钟 */
-;;;345    		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOI, ENABLE);
+;;;317    {
+;;;318    	/*
+;;;319    		安富莱STM32-V5 开发板口线分配：  串行Flash型号为 W25Q64BVSSIG (80MHz)
+;;;320    		PB3/SPI3_SCK
+;;;321    		PB4/SPI3_MISO
+;;;322    		PB5/SPI3_MOSI
+;;;323    		PI10/TP_NCS			--- 触摸芯片的片选		(RA8875屏无需SPI接口触摸芯片）
+;;;324    
+;;;325    		STM32硬件SPI接口 = SPI3 或者 SPI1
+;;;326    
+;;;327    		由于SPI1的时钟源是84M, SPI3的时钟源是42M。为了获得更快的速度，软件上选择SPI1。
+;;;328    	*/
+;;;329    	{
+;;;330    		GPIO_InitTypeDef GPIO_InitStructure;
+;;;331    
+;;;332    		/* 使能GPIO 时钟 */
+;;;333    		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOI, ENABLE);
 000002  2101              MOVS     r1,#1
 000004  f44f7081          MOV      r0,#0x102
 000008  f7fffffe          BL       RCC_AHB1PeriphClockCmd
-;;;346    
-;;;347    		/* 配置 SCK, MISO 、 MOSI 为复用功能 */
-;;;348    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI3);
-;;;349    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI3);
-;;;350    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI3);
-;;;351    		/* 配置 SCK, MISO 、 MOSI 为复用功能 */
-;;;352    		GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);//LCDPORT
+;;;334    
+;;;335    		/* 配置 SCK, MISO 、 MOSI 为复用功能 */
+;;;336    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI3);
+;;;337    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI3);
+;;;338    		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI3);
+;;;339    		/* 配置 SCK, MISO 、 MOSI 为复用功能 */
+;;;340    		GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI1);
 00000c  2205              MOVS     r2,#5
-00000e  4611              MOV      r1,r2
-000010  481b              LDR      r0,|L6.128|
+00000e  2103              MOVS     r1,#3
+000010  481a              LDR      r0,|L6.124|
 000012  f7fffffe          BL       GPIO_PinAFConfig
-;;;353    		GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
+;;;341    		GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI1);
 000016  2205              MOVS     r2,#5
-000018  2106              MOVS     r1,#6
-00001a  4819              LDR      r0,|L6.128|
+000018  2104              MOVS     r1,#4
+00001a  4818              LDR      r0,|L6.124|
 00001c  f7fffffe          BL       GPIO_PinAFConfig
-;;;354    		GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
+;;;342    		GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI1);
 000020  2205              MOVS     r2,#5
-000022  2107              MOVS     r1,#7
-000024  4816              LDR      r0,|L6.128|
+000022  4611              MOV      r1,r2
+000024  4815              LDR      r0,|L6.124|
 000026  f7fffffe          BL       GPIO_PinAFConfig
-;;;355    
-;;;356    		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+;;;343    
+;;;344    		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 00002a  2002              MOVS     r0,#2
 00002c  f88d0004          STRB     r0,[sp,#4]
-;;;357    		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;
+;;;345    		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;
 000030  2001              MOVS     r0,#1
 000032  f88d0005          STRB     r0,[sp,#5]
-;;;358    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+;;;346    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 000036  2000              MOVS     r0,#0
 000038  f88d0006          STRB     r0,[sp,#6]
-;;;359    		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+;;;347    		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 00003c  f88d0007          STRB     r0,[sp,#7]
-;;;360    
-;;;361    		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
-000040  20e0              MOVS     r0,#0xe0
+;;;348    
+;;;349    		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+000040  2038              MOVS     r0,#0x38
 000042  9000              STR      r0,[sp,#0]
-;;;362    		GPIO_Init(GPIOA, &GPIO_InitStructure);
+;;;350    		GPIO_Init(GPIOB, &GPIO_InitStructure);
 000044  4669              MOV      r1,sp
-000046  480e              LDR      r0,|L6.128|
+000046  480d              LDR      r0,|L6.124|
 000048  f7fffffe          BL       GPIO_Init
-;;;363    
-;;;364    		/* 配置片选口线为推挽输出模式 */
-;;;365    		RA8875_CS_1();		/* 片选置高，不选中 */
-00004c  f44f6080          MOV      r0,#0x400
-000050  490c              LDR      r1,|L6.132|
-000052  8308              STRH     r0,[r1,#0x18]
-;;;366    		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-000054  2001              MOVS     r0,#1
-000056  f88d0004          STRB     r0,[sp,#4]
-;;;367    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-00005a  2000              MOVS     r0,#0
-00005c  f88d0006          STRB     r0,[sp,#6]
-;;;368    		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-000060  2002              MOVS     r0,#2
-000062  f88d0005          STRB     r0,[sp,#5]
-;;;369    		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-000066  2000              MOVS     r0,#0
-000068  f88d0007          STRB     r0,[sp,#7]
-;;;370    		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-00006c  1508              ASRS     r0,r1,#20
-00006e  9000              STR      r0,[sp,#0]
-;;;371    		GPIO_Init(GPIOI, &GPIO_InitStructure);
-000070  4669              MOV      r1,sp
-000072  4804              LDR      r0,|L6.132|
-000074  f7fffffe          BL       GPIO_Init
-;;;372    	}
-;;;373    	
-;;;374    	RA8875_LowSpeedSPI();
-000078  f7fffffe          BL       RA8875_LowSpeedSPI
-;;;375    }
-00007c  bd1c              POP      {r2-r4,pc}
-;;;376    
+;;;351    
+;;;352    		/* 配置片选口线为推挽输出模式 */
+;;;353    		RA8875_CS_1();		/* 片选置高，不选中 */
+00004c  2010              MOVS     r0,#0x10
+00004e  490c              LDR      r1,|L6.128|
+000050  8308              STRH     r0,[r1,#0x18]
+;;;354    		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+000052  2001              MOVS     r0,#1
+000054  f88d0004          STRB     r0,[sp,#4]
+;;;355    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+000058  2000              MOVS     r0,#0
+00005a  f88d0006          STRB     r0,[sp,#6]
+;;;356    		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+00005e  2002              MOVS     r0,#2
+000060  f88d0005          STRB     r0,[sp,#5]
+;;;357    		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+000064  2000              MOVS     r0,#0
+000066  f88d0007          STRB     r0,[sp,#7]
+;;;358    		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+00006a  1508              ASRS     r0,r1,#20
+00006c  9000              STR      r0,[sp,#0]
+;;;359    		GPIO_Init(GPIOI, &GPIO_InitStructure);
+00006e  4669              MOV      r1,sp
+000070  4804              LDR      r0,|L6.132|
+000072  f7fffffe          BL       GPIO_Init
+;;;360    	}
+;;;361    	
+;;;362    	RA8875_LowSpeedSPI();
+000076  f7fffffe          BL       RA8875_LowSpeedSPI
+;;;363    }
+00007a  bd1c              POP      {r2-r4,pc}
+;;;364    
                           ENDP
 
-00007e  0000              DCW      0x0000
+                  |L6.124|
+                          DCD      0x40020400
                   |L6.128|
                           DCD      0x40020000
                   |L6.132|
@@ -389,71 +390,71 @@
                           AREA ||i.RA8875_LowSpeedSPI||, CODE, READONLY, ALIGN=2
 
                   RA8875_LowSpeedSPI PROC
-;;;384    */
-;;;385    void RA8875_LowSpeedSPI(void)
+;;;372    */
+;;;373    void RA8875_LowSpeedSPI(void)
 000000  b500              PUSH     {lr}
-;;;386    {
+;;;374    {
 000002  b085              SUB      sp,sp,#0x14
-;;;387    	SPI_InitTypeDef  SPI_InitStructure;
-;;;388    
-;;;389    	/* 打开SPI时钟 */
-;;;390    	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
+;;;375    	SPI_InitTypeDef  SPI_InitStructure;
+;;;376    
+;;;377    	/* 打开SPI时钟 */
+;;;378    	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 000004  2101              MOVS     r1,#1
 000006  0308              LSLS     r0,r1,#12
 000008  f7fffffe          BL       RCC_APB2PeriphClockCmd
-;;;391    
-;;;392    	/* 配置SPI硬件参数 */
-;;;393    	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;	/* 数据方向：2线全双工 */
+;;;379    
+;;;380    	/* 配置SPI硬件参数 */
+;;;381    	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;	/* 数据方向：2线全双工 */
 00000c  2000              MOVS     r0,#0
 00000e  f8ad0000          STRH     r0,[sp,#0]
-;;;394    	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;		/* STM32的SPI工作模式 ：主机模式 */
+;;;382    	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;		/* STM32的SPI工作模式 ：主机模式 */
 000012  f44f7082          MOV      r0,#0x104
 000016  f8ad0002          STRH     r0,[sp,#2]
-;;;395    	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;	/* 数据位长度 ： 8位 */
+;;;383    	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;	/* 数据位长度 ： 8位 */
 00001a  2000              MOVS     r0,#0
 00001c  f8ad0004          STRH     r0,[sp,#4]
-;;;396    	/* SPI_CPOL和SPI_CPHA结合使用决定时钟和数据采样点的相位关系、
-;;;397    	   本例配置: 总线空闲是高电平,第2个边沿（上升沿采样数据)
-;;;398    	*/
-;;;399    	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;			/* 时钟上升沿采样数据 */
+;;;384    	/* SPI_CPOL和SPI_CPHA结合使用决定时钟和数据采样点的相位关系、
+;;;385    	   本例配置: 总线空闲是高电平,第2个边沿（上升沿采样数据)
+;;;386    	*/
+;;;387    	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;			/* 时钟上升沿采样数据 */
 000020  2002              MOVS     r0,#2
 000022  f8ad0006          STRH     r0,[sp,#6]
-;;;400    	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;		/* 时钟的第2个边沿采样数据 */
+;;;388    	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;		/* 时钟的第2个边沿采样数据 */
 000026  2001              MOVS     r0,#1
 000028  f8ad0008          STRH     r0,[sp,#8]
-;;;401    	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;			/* 片选控制方式：软件控制 */
+;;;389    	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;			/* 片选控制方式：软件控制 */
 00002c  0240              LSLS     r0,r0,#9
 00002e  f8ad000a          STRH     r0,[sp,#0xa]
-;;;402    
-;;;403    	/* 设置波特率预分频系数 */
-;;;404    	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
+;;;390    
+;;;391    	/* 设置波特率预分频系数 */
+;;;392    	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
 000032  2028              MOVS     r0,#0x28
 000034  f8ad000c          STRH     r0,[sp,#0xc]
-;;;405    
-;;;406    	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	/* 数据位传输次序：高位先传 */
+;;;393    
+;;;394    	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	/* 数据位传输次序：高位先传 */
 000038  2000              MOVS     r0,#0
 00003a  f8ad000e          STRH     r0,[sp,#0xe]
-;;;407    	SPI_InitStructure.SPI_CRCPolynomial = 7;			/* CRC多项式寄存器，复位后为7。本例程不用 */
+;;;395    	SPI_InitStructure.SPI_CRCPolynomial = 7;			/* CRC多项式寄存器，复位后为7。本例程不用 */
 00003e  2007              MOVS     r0,#7
 000040  f8ad0010          STRH     r0,[sp,#0x10]
-;;;408    	SPI_Init(SPI1, &SPI_InitStructure);
+;;;396    	SPI_Init(SPI1, &SPI_InitStructure);
 000044  4669              MOV      r1,sp
 000046  4806              LDR      r0,|L7.96|
 000048  f7fffffe          BL       SPI_Init
-;;;409    
-;;;410    	SPI_Cmd(SPI1, DISABLE);			/* 先禁止SPI  */
+;;;397    
+;;;398    	SPI_Cmd(SPI1, DISABLE);			/* 先禁止SPI  */
 00004c  2100              MOVS     r1,#0
 00004e  4804              LDR      r0,|L7.96|
 000050  f7fffffe          BL       SPI_Cmd
-;;;411    
-;;;412    	SPI_Cmd(SPI1, ENABLE);				/* 使能SPI  */
+;;;399    
+;;;400    	SPI_Cmd(SPI1, ENABLE);				/* 使能SPI  */
 000054  2101              MOVS     r1,#1
 000056  4802              LDR      r0,|L7.96|
 000058  f7fffffe          BL       SPI_Cmd
-;;;413    }
+;;;401    }
 00005c  b005              ADD      sp,sp,#0x14
 00005e  bd00              POP      {pc}
-;;;414    
+;;;402    
                           ENDP
 
                   |L7.96|
@@ -468,7 +469,7 @@
 ;;;88     {
 ;;;89     	if ((PORT_WAIT->IDR & PIN_WAIT) == 0) 
 000002  6800              LDR      r0,[r0,#0]
-000004  f0000008          AND      r0,r0,#8
+000004  f0000040          AND      r0,r0,#0x40
 000008  b908              CBNZ     r0,|L8.14|
 ;;;90     		return 1;
 00000a  2001              MOVS     r0,#1
@@ -490,203 +491,186 @@
                           AREA ||i.RA8875_ReadData||, CODE, READONLY, ALIGN=2
 
                   RA8875_ReadData PROC
-;;;187    */
-;;;188    uint8_t RA8875_ReadData(void)
+;;;178    */
+;;;179    uint8_t RA8875_ReadData(void)
 000000  b510              PUSH     {r4,lr}
-;;;189    {
-;;;190    	uint8_t value;
-;;;191    	
-;;;192    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
-000002  4816              LDR      r0,|L9.92|
-000004  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-000006  2802              CMP      r0,#2
-000008  d10e              BNE      |L9.40|
-;;;193    	{
-;;;194    		
-;;;195    		RA8875_CS_0();
-00000a  0240              LSLS     r0,r0,#9
-00000c  4914              LDR      r1,|L9.96|
-00000e  8348              STRH     r0,[r1,#0x1a]
-;;;196    		SPI_ShiftByte(SPI_READ_DATA);
-000010  2040              MOVS     r0,#0x40
-000012  f7fffffe          BL       SPI_ShiftByte
-;;;197    		value = SPI_ShiftByte(0x00);
-000016  2000              MOVS     r0,#0
-000018  f7fffffe          BL       SPI_ShiftByte
-00001c  4604              MOV      r4,r0
-;;;198    		RA8875_CS_1();
-00001e  f44f6080          MOV      r0,#0x400
-000022  490f              LDR      r1,|L9.96|
+;;;180    {
+;;;181    	uint8_t value = 0;
+000002  2400              MOVS     r4,#0
+;;;182    	
+;;;183    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+000004  480d              LDR      r0,|L9.60|
+000006  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+000008  2802              CMP      r0,#2
+00000a  d10d              BNE      |L9.40|
+;;;184    	{
+;;;185    		RA8875_CS_0();
+00000c  2010              MOVS     r0,#0x10
+00000e  490c              LDR      r1,|L9.64|
+000010  8348              STRH     r0,[r1,#0x1a]
+;;;186    		SPI_ShiftByte(SPI_READ_DATA);
+000012  2040              MOVS     r0,#0x40
+000014  f7fffffe          BL       SPI_ShiftByte
+;;;187    		value = SPI_ShiftByte(0x00);
+000018  2000              MOVS     r0,#0
+00001a  f7fffffe          BL       SPI_ShiftByte
+00001e  4604              MOV      r4,r0
+;;;188    		RA8875_CS_1();
+000020  2010              MOVS     r0,#0x10
+000022  4907              LDR      r1,|L9.64|
 000024  8308              STRH     r0,[r1,#0x18]
-000026  e016              B        |L9.86|
+000026  e007              B        |L9.56|
                   |L9.40|
-;;;199    	}
-;;;200    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-000028  480c              LDR      r0,|L9.92|
+;;;189    	}
+;;;190    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+000028  4804              LDR      r0,|L9.60|
 00002a  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 00002c  2803              CMP      r0,#3
-00002e  d112              BNE      |L9.86|
-;;;201    	{GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
-000030  2200              MOVS     r2,#0
-000032  2101              MOVS     r1,#1
-000034  480b              LDR      r0,|L9.100|
-000036  f7fffffe          BL       GPIO_WriteBit
-;;;202    		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_SET);
-00003a  2201              MOVS     r2,#1
-00003c  2110              MOVS     r1,#0x10
-00003e  480a              LDR      r0,|L9.104|
-000040  f7fffffe          BL       GPIO_WriteBit
-;;;203    		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_RESET);
-000044  2200              MOVS     r2,#0
-000046  2120              MOVS     r1,#0x20
-000048  4807              LDR      r0,|L9.104|
-00004a  f7fffffe          BL       GPIO_WriteBit
-;;;204    		value = RA8875_RAM;		/* 读取寄存器值 */
-00004e  f04f40d8          MOV      r0,#0x6c000000
-000052  8800              LDRH     r0,[r0,#0]
-000054  b2c4              UXTB     r4,r0
-                  |L9.86|
-;;;205    	}
-;;;206    
-;;;207    	return value;	
-000056  4620              MOV      r0,r4
-;;;208    }
-000058  bd10              POP      {r4,pc}
-;;;209    
+00002e  d103              BNE      |L9.56|
+;;;191    	{
+;;;192    		value = RA8875_RAM;		/* 读取寄存器值 */
+000030  f04f40d8          MOV      r0,#0x6c000000
+000034  8800              LDRH     r0,[r0,#0]
+000036  b2c4              UXTB     r4,r0
+                  |L9.56|
+;;;193    	}
+;;;194    
+;;;195    	return value;	
+000038  4620              MOV      r0,r4
+;;;196    }
+00003a  bd10              POP      {r4,pc}
+;;;197    
                           ENDP
 
-00005a  0000              DCW      0x0000
-                  |L9.92|
+                  |L9.60|
                           DCD      g_RA8875_IF
-                  |L9.96|
-                          DCD      0x40022000
-                  |L9.100|
-                          DCD      0x40021000
-                  |L9.104|
-                          DCD      0x40020c00
+                  |L9.64|
+                          DCD      0x40020000
 
                           AREA ||i.RA8875_ReadData16||, CODE, READONLY, ALIGN=2
 
                   RA8875_ReadData16 PROC
-;;;249    */
-;;;250    uint16_t RA8875_ReadData16(void)
+;;;237    */
+;;;238    uint16_t RA8875_ReadData16(void)
 000000  b510              PUSH     {r4,lr}
-;;;251    {
-;;;252    	uint16_t value;
-;;;253    	
-;;;254    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+;;;239    {
+;;;240    	uint16_t value;
+;;;241    	
+;;;242    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 000002  4812              LDR      r0,|L10.76|
 000004  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 000006  2802              CMP      r0,#2
-000008  d117              BNE      |L10.58|
-;;;255    	{
-;;;256    		RA8875_CS_0();
-00000a  0240              LSLS     r0,r0,#9
+000008  d116              BNE      |L10.56|
+;;;243    	{
+;;;244    		RA8875_CS_0();
+00000a  2010              MOVS     r0,#0x10
 00000c  4910              LDR      r1,|L10.80|
 00000e  8348              STRH     r0,[r1,#0x1a]
-;;;257    		SPI_ShiftByte(SPI_READ_DATA);
+;;;245    		SPI_ShiftByte(SPI_READ_DATA);
 000010  2040              MOVS     r0,#0x40
 000012  f7fffffe          BL       SPI_ShiftByte
-;;;258    		value = SPI_ShiftByte(0x00);
+;;;246    		value = SPI_ShiftByte(0x00);
 000016  2000              MOVS     r0,#0
 000018  f7fffffe          BL       SPI_ShiftByte
 00001c  4604              MOV      r4,r0
-;;;259    		value <<= 8;
+;;;247    		value <<= 8;
 00001e  f64f70ff          MOV      r0,#0xffff
 000022  ea002404          AND      r4,r0,r4,LSL #8
-;;;260    		value += SPI_ShiftByte(0x00);
+;;;248    		value += SPI_ShiftByte(0x00);
 000026  2000              MOVS     r0,#0
 000028  f7fffffe          BL       SPI_ShiftByte
 00002c  4420              ADD      r0,r0,r4
 00002e  b284              UXTH     r4,r0
-;;;261    		RA8875_CS_1();
-000030  f44f6080          MOV      r0,#0x400
-000034  4906              LDR      r1,|L10.80|
-000036  8308              STRH     r0,[r1,#0x18]
-000038  e006              B        |L10.72|
-                  |L10.58|
-;;;262    	}
-;;;263    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-00003a  4804              LDR      r0,|L10.76|
-00003c  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-00003e  2803              CMP      r0,#3
-000040  d102              BNE      |L10.72|
-;;;264    	{
-;;;265    		value = RA8875_RAM;		/* 读取寄存器值 */
-000042  f04f40d8          MOV      r0,#0x6c000000
-000046  8804              LDRH     r4,[r0,#0]
-                  |L10.72|
-;;;266    	}
-;;;267    
-;;;268    	return value;	
-000048  4620              MOV      r0,r4
-;;;269    }
-00004a  bd10              POP      {r4,pc}
-;;;270    
+;;;249    		RA8875_CS_1();
+000030  2010              MOVS     r0,#0x10
+000032  4907              LDR      r1,|L10.80|
+000034  8308              STRH     r0,[r1,#0x18]
+000036  e006              B        |L10.70|
+                  |L10.56|
+;;;250    	}
+;;;251    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+000038  4804              LDR      r0,|L10.76|
+00003a  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+00003c  2803              CMP      r0,#3
+00003e  d102              BNE      |L10.70|
+;;;252    	{
+;;;253    		value = RA8875_RAM;		/* 读取寄存器值 */
+000040  f04f40d8          MOV      r0,#0x6c000000
+000044  8804              LDRH     r4,[r0,#0]
+                  |L10.70|
+;;;254    	}
+;;;255    
+;;;256    	return value;	
+000046  4620              MOV      r0,r4
+;;;257    }
+000048  bd10              POP      {r4,pc}
+;;;258    
                           ENDP
 
+00004a  0000              DCW      0x0000
                   |L10.76|
                           DCD      g_RA8875_IF
                   |L10.80|
-                          DCD      0x40022000
+                          DCD      0x40020000
 
                           AREA ||i.RA8875_ReadStatus||, CODE, READONLY, ALIGN=2
 
                   RA8875_ReadStatus PROC
-;;;278    */
-;;;279    uint8_t RA8875_ReadStatus(void)
+;;;266    */
+;;;267    uint8_t RA8875_ReadStatus(void)
 000000  b510              PUSH     {r4,lr}
-;;;280    {
-;;;281    	uint8_t value;
-;;;282    	
-;;;283    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
-000002  480e              LDR      r0,|L11.60|
-000004  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-000006  2802              CMP      r0,#2
-000008  d10e              BNE      |L11.40|
-;;;284    	{
-;;;285    		RA8875_CS_0();
-00000a  0240              LSLS     r0,r0,#9
-00000c  490c              LDR      r1,|L11.64|
-00000e  8348              STRH     r0,[r1,#0x1a]
-;;;286    		SPI_ShiftByte(SPI_READ_STATUS);
-000010  20c0              MOVS     r0,#0xc0
-000012  f7fffffe          BL       SPI_ShiftByte
-;;;287    		value = SPI_ShiftByte(0x00);
-000016  2000              MOVS     r0,#0
-000018  f7fffffe          BL       SPI_ShiftByte
-00001c  4604              MOV      r4,r0
-;;;288    		RA8875_CS_1();
-00001e  f44f6080          MOV      r0,#0x400
+;;;268    {
+;;;269    	uint8_t value = 0;
+000002  2400              MOVS     r4,#0
+;;;270    	
+;;;271    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+000004  480d              LDR      r0,|L11.60|
+000006  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+000008  2802              CMP      r0,#2
+00000a  d10d              BNE      |L11.40|
+;;;272    	{
+;;;273    		RA8875_CS_0();
+00000c  2010              MOVS     r0,#0x10
+00000e  490c              LDR      r1,|L11.64|
+000010  8348              STRH     r0,[r1,#0x1a]
+;;;274    		SPI_ShiftByte(SPI_READ_STATUS);
+000012  20c0              MOVS     r0,#0xc0
+000014  f7fffffe          BL       SPI_ShiftByte
+;;;275    		value = SPI_ShiftByte(0x00);
+000018  2000              MOVS     r0,#0
+00001a  f7fffffe          BL       SPI_ShiftByte
+00001e  4604              MOV      r4,r0
+;;;276    		RA8875_CS_1();
+000020  2010              MOVS     r0,#0x10
 000022  4907              LDR      r1,|L11.64|
 000024  8308              STRH     r0,[r1,#0x18]
 000026  e006              B        |L11.54|
                   |L11.40|
-;;;289    	}
-;;;290    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+;;;277    	}
+;;;278    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
 000028  4804              LDR      r0,|L11.60|
 00002a  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 00002c  2803              CMP      r0,#3
 00002e  d102              BNE      |L11.54|
-;;;291    	{
-;;;292    		value = RA8875_REG;
+;;;279    	{
+;;;280    		value = RA8875_REG;
 000030  4804              LDR      r0,|L11.68|
 000032  8800              LDRH     r0,[r0,#0]
 000034  b2c4              UXTB     r4,r0
                   |L11.54|
-;;;293    	}
-;;;294    	return value;	
+;;;281    	}
+;;;282    	return value;	
 000036  4620              MOV      r0,r4
-;;;295    }
+;;;283    }
 000038  bd10              POP      {r4,pc}
-;;;296    
+;;;284    
                           ENDP
 
 00003a  0000              DCW      0x0000
                   |L11.60|
                           DCD      g_RA8875_IF
                   |L11.64|
-                          DCD      0x40022000
+                          DCD      0x40020000
                   |L11.68|
                           DCD      0x6c080000
 
@@ -699,234 +683,188 @@
 ;;;134    {
 000002  4604              MOV      r4,r0
 ;;;135    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
-000004  4816              LDR      r0,|L12.96|
+000004  480b              LDR      r0,|L12.52|
 000006  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 000008  2802              CMP      r0,#2
-00000a  d10d              BNE      |L12.40|
+00000a  d10c              BNE      |L12.38|
 ;;;136    	{
-;;;137    		
-;;;138    		RA8875_CS_0();
-00000c  0240              LSLS     r0,r0,#9
-00000e  4915              LDR      r1,|L12.100|
+;;;137    		RA8875_CS_0();
+00000c  2010              MOVS     r0,#0x10
+00000e  490a              LDR      r1,|L12.56|
 000010  8348              STRH     r0,[r1,#0x1a]
-;;;139    		SPI_ShiftByte(SPI_WRITE_CMD);
+;;;138    		SPI_ShiftByte(SPI_WRITE_CMD);
 000012  2080              MOVS     r0,#0x80
 000014  f7fffffe          BL       SPI_ShiftByte
-;;;140    		SPI_ShiftByte(_ucRegAddr);
+;;;139    		SPI_ShiftByte(_ucRegAddr);
 000018  4620              MOV      r0,r4
 00001a  f7fffffe          BL       SPI_ShiftByte
-;;;141    		RA8875_CS_1();
-00001e  f44f6080          MOV      r0,#0x400
-000022  4910              LDR      r1,|L12.100|
-000024  8308              STRH     r0,[r1,#0x18]
-000026  e019              B        |L12.92|
-                  |L12.40|
-;;;142    	
-;;;143    	}
-;;;144    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-000028  480d              LDR      r0,|L12.96|
-00002a  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-00002c  2803              CMP      r0,#3
-00002e  d115              BNE      |L12.92|
-;;;145    	{GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_SET);//RS
-000030  2201              MOVS     r2,#1
-000032  4611              MOV      r1,r2
-000034  480c              LDR      r0,|L12.104|
-000036  f7fffffe          BL       GPIO_WriteBit
-;;;146    		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_RESET);
-00003a  2200              MOVS     r2,#0
-00003c  2110              MOVS     r1,#0x10
-00003e  480b              LDR      r0,|L12.108|
-000040  f7fffffe          BL       GPIO_WriteBit
-;;;147    		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_SET);
-000044  2201              MOVS     r2,#1
-000046  2120              MOVS     r1,#0x20
-000048  4808              LDR      r0,|L12.108|
-00004a  f7fffffe          BL       GPIO_WriteBit
-;;;148    		RA8875_REG = _ucRegAddr;	/* 设置寄存器地址 */	
-00004e  4808              LDR      r0,|L12.112|
-000050  8004              STRH     r4,[r0,#0]
-;;;149    		GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
-000052  2200              MOVS     r2,#0
-000054  2101              MOVS     r1,#1
-000056  4804              LDR      r0,|L12.104|
-000058  f7fffffe          BL       GPIO_WriteBit
-                  |L12.92|
-;;;150    	}
-;;;151    }
-00005c  bd10              POP      {r4,pc}
-;;;152    
+;;;140    		RA8875_CS_1();
+00001e  2010              MOVS     r0,#0x10
+000020  4905              LDR      r1,|L12.56|
+000022  8308              STRH     r0,[r1,#0x18]
+000024  e005              B        |L12.50|
+                  |L12.38|
+;;;141    	}
+;;;142    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+000026  4803              LDR      r0,|L12.52|
+000028  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+00002a  2803              CMP      r0,#3
+00002c  d101              BNE      |L12.50|
+;;;143    	{
+;;;144    		RA8875_REG = _ucRegAddr;	/* 设置寄存器地址 */
+00002e  4803              LDR      r0,|L12.60|
+000030  8004              STRH     r4,[r0,#0]
+                  |L12.50|
+;;;145    	}
+;;;146    }
+000032  bd10              POP      {r4,pc}
+;;;147    
                           ENDP
 
-00005e  0000              DCW      0x0000
-                  |L12.96|
+                  |L12.52|
                           DCD      g_RA8875_IF
-                  |L12.100|
-                          DCD      0x40022000
-                  |L12.104|
-                          DCD      0x40021000
-                  |L12.108|
-                          DCD      0x40020c00
-                  |L12.112|
+                  |L12.56|
+                          DCD      0x40020000
+                  |L12.60|
                           DCD      0x6c080000
 
                           AREA ||i.RA8875_WriteData||, CODE, READONLY, ALIGN=2
 
                   RA8875_WriteData PROC
-;;;160    */
-;;;161    void RA8875_WriteData(uint8_t _ucRegValue)
+;;;155    */
+;;;156    void RA8875_WriteData(uint8_t _ucRegValue)
 000000  b510              PUSH     {r4,lr}
-;;;162    {
+;;;157    {
 000002  4604              MOV      r4,r0
-;;;163    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
-000004  4814              LDR      r0,|L13.88|
+;;;158    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+000004  480c              LDR      r0,|L13.56|
 000006  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 000008  2802              CMP      r0,#2
-00000a  d10d              BNE      |L13.40|
-;;;164    	{
-;;;165    		
-;;;166    		RA8875_CS_0();
-00000c  0240              LSLS     r0,r0,#9
-00000e  4913              LDR      r1,|L13.92|
+00000a  d10c              BNE      |L13.38|
+;;;159    	{
+;;;160    		RA8875_CS_0();
+00000c  2010              MOVS     r0,#0x10
+00000e  490b              LDR      r1,|L13.60|
 000010  8348              STRH     r0,[r1,#0x1a]
-;;;167    		SPI_ShiftByte(SPI_WRITE_DATA);
+;;;161    		SPI_ShiftByte(SPI_WRITE_DATA);
 000012  2000              MOVS     r0,#0
 000014  f7fffffe          BL       SPI_ShiftByte
-;;;168    		SPI_ShiftByte(_ucRegValue);
+;;;162    		SPI_ShiftByte(_ucRegValue);
 000018  4620              MOV      r0,r4
 00001a  f7fffffe          BL       SPI_ShiftByte
-;;;169    		RA8875_CS_1();
-00001e  f44f6080          MOV      r0,#0x400
-000022  490e              LDR      r1,|L13.92|
-000024  8308              STRH     r0,[r1,#0x18]
-000026  e015              B        |L13.84|
-                  |L13.40|
-;;;170    	}
-;;;171    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-000028  480b              LDR      r0,|L13.88|
-00002a  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-00002c  2803              CMP      r0,#3
-00002e  d111              BNE      |L13.84|
-;;;172    	{
-;;;173    		GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
-000030  2200              MOVS     r2,#0
-000032  2101              MOVS     r1,#1
-000034  480a              LDR      r0,|L13.96|
-000036  f7fffffe          BL       GPIO_WriteBit
-;;;174    		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_RESET);
-00003a  2200              MOVS     r2,#0
-00003c  2110              MOVS     r1,#0x10
-00003e  4809              LDR      r0,|L13.100|
-000040  f7fffffe          BL       GPIO_WriteBit
-;;;175    		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_SET);
-000044  2201              MOVS     r2,#1
-000046  2120              MOVS     r1,#0x20
-000048  4806              LDR      r0,|L13.100|
-00004a  f7fffffe          BL       GPIO_WriteBit
-;;;176    		RA8875_RAM = _ucRegValue;	/* 设置寄存器地址 */
-00004e  f04f40d8          MOV      r0,#0x6c000000
-000052  8004              STRH     r4,[r0,#0]
-                  |L13.84|
-;;;177    	}
-;;;178    }
-000054  bd10              POP      {r4,pc}
-;;;179    
+;;;163    		RA8875_CS_1();
+00001e  2010              MOVS     r0,#0x10
+000020  4906              LDR      r1,|L13.60|
+000022  8308              STRH     r0,[r1,#0x18]
+000024  e006              B        |L13.52|
+                  |L13.38|
+;;;164    	}
+;;;165    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+000026  4804              LDR      r0,|L13.56|
+000028  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+00002a  2803              CMP      r0,#3
+00002c  d102              BNE      |L13.52|
+;;;166    	{
+;;;167    		RA8875_RAM = _ucRegValue;	/* 设置寄存器地址 */
+00002e  f04f40d8          MOV      r0,#0x6c000000
+000032  8004              STRH     r4,[r0,#0]
+                  |L13.52|
+;;;168    	}
+;;;169    }
+000034  bd10              POP      {r4,pc}
+;;;170    
                           ENDP
 
-000056  0000              DCW      0x0000
-                  |L13.88|
+000036  0000              DCW      0x0000
+                  |L13.56|
                           DCD      g_RA8875_IF
-                  |L13.92|
-                          DCD      0x40022000
-                  |L13.96|
-                          DCD      0x40021000
-                  |L13.100|
-                          DCD      0x40020c00
+                  |L13.60|
+                          DCD      0x40020000
 
                           AREA ||i.RA8875_WriteData16||, CODE, READONLY, ALIGN=2
 
                   RA8875_WriteData16 PROC
-;;;217    */
-;;;218    void RA8875_WriteData16(uint16_t _usRGB)
+;;;205    */
+;;;206    void RA8875_WriteData16(uint16_t _usRGB)
 000000  b510              PUSH     {r4,lr}
-;;;219    {
+;;;207    {
 000002  4604              MOV      r4,r0
-;;;220    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
-000004  4813              LDR      r0,|L14.84|
+;;;208    	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
+000004  4812              LDR      r0,|L14.80|
 000006  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
 000008  2802              CMP      r0,#2
-00000a  d11a              BNE      |L14.66|
-;;;221    	{
-;;;222    		RA8875_CS_0();
-00000c  0240              LSLS     r0,r0,#9
-00000e  4912              LDR      r1,|L14.88|
+00000a  d118              BNE      |L14.62|
+;;;209    	{
+;;;210    		RA8875_CS_0();
+00000c  2010              MOVS     r0,#0x10
+00000e  4911              LDR      r1,|L14.84|
 000010  8348              STRH     r0,[r1,#0x1a]
-;;;223    		SPI_ShiftByte(SPI_WRITE_DATA);
+;;;211    		SPI_ShiftByte(SPI_WRITE_DATA);
 000012  2000              MOVS     r0,#0
 000014  f7fffffe          BL       SPI_ShiftByte
-;;;224    		SPI_ShiftByte(_usRGB >> 8);
+;;;212    		SPI_ShiftByte(_usRGB >> 8);
 000018  1220              ASRS     r0,r4,#8
 00001a  f7fffffe          BL       SPI_ShiftByte
-;;;225    		RA8875_CS_1();
-00001e  f44f6080          MOV      r0,#0x400
-000022  490d              LDR      r1,|L14.88|
+;;;213    		RA8875_CS_1();
+00001e  2010              MOVS     r0,#0x10
+000020  490c              LDR      r1,|L14.84|
+000022  8308              STRH     r0,[r1,#0x18]
+;;;214    		
+;;;215    		/* 必须增加一些延迟，否则连续写像素可能出错 */
+;;;216    		RA8875_CS_1();
 000024  8308              STRH     r0,[r1,#0x18]
-;;;226    		
-;;;227    		/* 必须增加一些延迟，否则连续写像素可能出错 */
-;;;228    		RA8875_CS_1();
+;;;217    		RA8875_CS_1();
 000026  8308              STRH     r0,[r1,#0x18]
-;;;229    		RA8875_CS_1();
-000028  8308              STRH     r0,[r1,#0x18]
-;;;230    		
-;;;231    		RA8875_CS_0();
-00002a  8348              STRH     r0,[r1,#0x1a]
-;;;232    		SPI_ShiftByte(SPI_WRITE_DATA);
-00002c  2000              MOVS     r0,#0
-00002e  f7fffffe          BL       SPI_ShiftByte
-;;;233    		SPI_ShiftByte(_usRGB);
-000032  b2e0              UXTB     r0,r4
-000034  f7fffffe          BL       SPI_ShiftByte
-;;;234    		RA8875_CS_1();
-000038  f44f6080          MOV      r0,#0x400
-00003c  4906              LDR      r1,|L14.88|
-00003e  8308              STRH     r0,[r1,#0x18]
-000040  e006              B        |L14.80|
-                  |L14.66|
-;;;235    	}
-;;;236    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-000042  4804              LDR      r0,|L14.84|
-000044  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
-000046  2803              CMP      r0,#3
-000048  d102              BNE      |L14.80|
-;;;237    	{
-;;;238    		RA8875_RAM = _usRGB;	/* 设置寄存器地址 */
-00004a  f04f40d8          MOV      r0,#0x6c000000
-00004e  8004              STRH     r4,[r0,#0]
-                  |L14.80|
-;;;239    	}
-;;;240    }
-000050  bd10              POP      {r4,pc}
-;;;241    
+;;;218    		
+;;;219    		RA8875_CS_0();
+000028  8348              STRH     r0,[r1,#0x1a]
+;;;220    		SPI_ShiftByte(SPI_WRITE_DATA);
+00002a  2000              MOVS     r0,#0
+00002c  f7fffffe          BL       SPI_ShiftByte
+;;;221    		SPI_ShiftByte(_usRGB);
+000030  b2e0              UXTB     r0,r4
+000032  f7fffffe          BL       SPI_ShiftByte
+;;;222    		RA8875_CS_1();
+000036  2010              MOVS     r0,#0x10
+000038  4906              LDR      r1,|L14.84|
+00003a  8308              STRH     r0,[r1,#0x18]
+00003c  e006              B        |L14.76|
+                  |L14.62|
+;;;223    	}
+;;;224    	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
+00003e  4804              LDR      r0,|L14.80|
+000040  7800              LDRB     r0,[r0,#0]  ; g_RA8875_IF
+000042  2803              CMP      r0,#3
+000044  d102              BNE      |L14.76|
+;;;225    	{
+;;;226    		RA8875_RAM = _usRGB;	/* 设置寄存器地址 */
+000046  f04f40d8          MOV      r0,#0x6c000000
+00004a  8004              STRH     r4,[r0,#0]
+                  |L14.76|
+;;;227    	}
+;;;228    }
+00004c  bd10              POP      {r4,pc}
+;;;229    
                           ENDP
 
-000052  0000              DCW      0x0000
-                  |L14.84|
+00004e  0000              DCW      0x0000
+                  |L14.80|
                           DCD      g_RA8875_IF
-                  |L14.88|
-                          DCD      0x40022000
+                  |L14.84|
+                          DCD      0x40020000
 
                           AREA ||i.SPI_ShiftByte||, CODE, READONLY, ALIGN=2
 
                   SPI_ShiftByte PROC
-;;;473    */
-;;;474    static uint8_t SPI_ShiftByte(uint8_t _ucByte)
+;;;461    */
+;;;462    static uint8_t SPI_ShiftByte(uint8_t _ucByte)
 000000  b570              PUSH     {r4-r6,lr}
-;;;475    {
+;;;463    {
 000002  4604              MOV      r4,r0
-;;;476    	uint8_t ucRxByte;
-;;;477    
-;;;478    	/* 等待发送缓冲区空 */
-;;;479    	while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+;;;464    	uint8_t ucRxByte;
+;;;465    
+;;;466    	/* 等待发送缓冲区空 */
+;;;467    	while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
 000004  bf00              NOP      
                   |L15.6|
 000006  2102              MOVS     r1,#2
@@ -934,15 +872,15 @@
 00000a  f7fffffe          BL       SPI_I2S_GetFlagStatus
 00000e  2800              CMP      r0,#0
 000010  d0f9              BEQ      |L15.6|
-;;;480    
-;;;481    	/* 发送一个字节 */
-;;;482    	SPI_I2S_SendData(SPI1, _ucByte);
+;;;468    
+;;;469    	/* 发送一个字节 */
+;;;470    	SPI_I2S_SendData(SPI1, _ucByte);
 000012  4621              MOV      r1,r4
 000014  4807              LDR      r0,|L15.52|
 000016  f7fffffe          BL       SPI_I2S_SendData
-;;;483    
-;;;484    	/* 等待数据接收完毕 */
-;;;485    	while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET);
+;;;471    
+;;;472    	/* 等待数据接收完毕 */
+;;;473    	while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET);
 00001a  bf00              NOP      
                   |L15.28|
 00001c  2101              MOVS     r1,#1
@@ -950,19 +888,19 @@
 000020  f7fffffe          BL       SPI_I2S_GetFlagStatus
 000024  2800              CMP      r0,#0
 000026  d0f9              BEQ      |L15.28|
-;;;486    
-;;;487    	/* 读取接收到的数据 */
-;;;488    	ucRxByte = SPI_I2S_ReceiveData(SPI1);
+;;;474    
+;;;475    	/* 读取接收到的数据 */
+;;;476    	ucRxByte = SPI_I2S_ReceiveData(SPI1);
 000028  4802              LDR      r0,|L15.52|
 00002a  f7fffffe          BL       SPI_I2S_ReceiveData
 00002e  b2c5              UXTB     r5,r0
-;;;489    
-;;;490    	/* 返回读到的数据 */
-;;;491    	return ucRxByte;
+;;;477    
+;;;478    	/* 返回读到的数据 */
+;;;479    	return ucRxByte;
 000030  4628              MOV      r0,r5
-;;;492    }
+;;;480    }
 000032  bd70              POP      {r4-r6,pc}
-;;;493    
+;;;481    
                           ENDP
 
                   |L15.52|

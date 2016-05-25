@@ -37,7 +37,6 @@
 .\flash\obj\lcd_ili9488.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\flash\obj\lcd_ili9488.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\flash\obj\lcd_ili9488.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\flash\obj\lcd_ili9488.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\flash\obj\lcd_ili9488.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\flash\obj\lcd_ili9488.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\flash\obj\lcd_ili9488.o: ..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h

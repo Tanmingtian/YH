@@ -37,7 +37,7 @@
 //#define BSP_Printf(...)
 
 #include "stm32f4xx.h"
-#include <stdio.h>
+//#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 

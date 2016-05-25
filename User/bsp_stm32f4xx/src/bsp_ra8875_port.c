@@ -65,7 +65,7 @@ void RA8875_ConfigGPIO(void)
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 		
 		/* PD3 连接到RA8875的BUSY引脚，用来识别芯片内忙 */
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;//LCDPORT   D3-D6
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
 		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
@@ -134,19 +134,14 @@ void RA8875_WriteCmd(uint8_t _ucRegAddr)
 {
 	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 	{
-		
 		RA8875_CS_0();
 		SPI_ShiftByte(SPI_WRITE_CMD);
 		SPI_ShiftByte(_ucRegAddr);
 		RA8875_CS_1();
-	
 	}
 	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-	{GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_SET);//RS
-		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_RESET);
-		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_SET);
-		RA8875_REG = _ucRegAddr;	/* 设置寄存器地址 */	
-		GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
+	{
+		RA8875_REG = _ucRegAddr;	/* 设置寄存器地址 */
 	}
 }
 
@@ -162,7 +157,6 @@ void RA8875_WriteData(uint8_t _ucRegValue)
 {
 	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 	{
-		
 		RA8875_CS_0();
 		SPI_ShiftByte(SPI_WRITE_DATA);
 		SPI_ShiftByte(_ucRegValue);
@@ -170,9 +164,6 @@ void RA8875_WriteData(uint8_t _ucRegValue)
 	}
 	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
 	{
-		GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
-		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_RESET);
-		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_SET);
 		RA8875_RAM = _ucRegValue;	/* 设置寄存器地址 */
 	}
 }
@@ -187,20 +178,17 @@ void RA8875_WriteData(uint8_t _ucRegValue)
 */
 uint8_t RA8875_ReadData(void)
 {
-	uint8_t value;
+	uint8_t value = 0;
 	
 	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 	{
-		
 		RA8875_CS_0();
 		SPI_ShiftByte(SPI_READ_DATA);
 		value = SPI_ShiftByte(0x00);
 		RA8875_CS_1();
 	}
 	else if (g_RA8875_IF == RA_HARD_8080_16)	/* 8080硬件总线16bit */
-	{GPIO_WriteBit(GPIOE, GPIO_Pin_0,Bit_RESET);//RS
-		GPIO_WriteBit(GPIOD, GPIO_Pin_4,Bit_SET);
-		GPIO_WriteBit(GPIOD, GPIO_Pin_5,Bit_RESET);
+	{
 		value = RA8875_RAM;		/* 读取寄存器值 */
 	}
 
@@ -278,7 +266,7 @@ uint16_t RA8875_ReadData16(void)
 */
 uint8_t RA8875_ReadStatus(void)
 {
-	uint8_t value;
+	uint8_t value = 0;
 	
 	if (g_RA8875_IF == RA_HARD_SPI)	/* 硬件SPI接口 */
 	{
@@ -349,17 +337,17 @@ void RA8875_InitSPI(void)
 		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI3);
 		//GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI3);
 		/* 配置 SCK, MISO 、 MOSI 为复用功能 */
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);//LCDPORT
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI1);
 
 		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;
 		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+		GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 		/* 配置片选口线为推挽输出模式 */
 		RA8875_CS_1();		/* 片选置高，不选中 */

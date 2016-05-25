@@ -5,53 +5,53 @@
                           AREA ||i.BusFault_Handler||, CODE, READONLY, ALIGN=1
 
                   BusFault_Handler PROC
-;;;83     */
-;;;84     void BusFault_Handler(void)
+;;;89     */
+;;;90     void BusFault_Handler(void)
 000000  bf00              NOP      
                   |L1.2|
-;;;85     {
-;;;86       /* 当总线异常时进入死循环 */
-;;;87       while (1)
+;;;91     {
+;;;92       /* 当总线异常时进入死循环 */
+;;;93       while (1)
 000002  e7fe              B        |L1.2|
-;;;88       {
-;;;89       }
-;;;90     }
-;;;91     
+;;;94       {
+;;;95       }
+;;;96     }
+;;;97     
                           ENDP
 
 
                           AREA ||i.DebugMon_Handler||, CODE, READONLY, ALIGN=1
 
                   DebugMon_Handler PROC
-;;;115    */
-;;;116    void DebugMon_Handler(void)
+;;;121    */
+;;;122    void DebugMon_Handler(void)
 000000  4770              BX       lr
-;;;117    {
-;;;118    }
-;;;119    
+;;;123    {
+;;;124    }
+;;;125    
                           ENDP
 
 
                           AREA ||i.EXTI9_5_IRQHandler||, CODE, READONLY, ALIGN=2
 
                   EXTI9_5_IRQHandler PROC
-;;;122    *******************************************************************************/
-;;;123    void EXTI9_5_IRQHandler(void)
+;;;128    *******************************************************************************/
+;;;129    void EXTI9_5_IRQHandler(void)
 000000  b510              PUSH     {r4,lr}
-;;;124    {
-;;;125    	if(EXTI_GetITStatus(EXTI_LINE_TripSwitch) != RESET)
+;;;130    {
+;;;131    	if(EXTI_GetITStatus(EXTI_LINE_TripSwitch) != RESET)
 000002  2080              MOVS     r0,#0x80
 000004  f7fffffe          BL       EXTI_GetITStatus
 000008  b310              CBZ      r0,|L3.80|
-;;;126    	{
-;;;127    		if(cw_status==BACKWARD)
+;;;132    	{
+;;;133    		if(cw_status==BACKWARD)
 00000a  4812              LDR      r0,|L3.84|
 00000c  7800              LDRB     r0,[r0,#0]  ; cw_status
 00000e  2801              CMP      r0,#1
 000010  d11b              BNE      |L3.74|
-;;;128    		{
-;;;129    			//补足脉冲数
-;;;130    			PulseCount=PulseNum+AddedNum+500;
+;;;134    		{
+;;;135    			//补足脉冲数
+;;;136    			PulseCount=PulseNum+AddedNum+500;
 000012  4811              LDR      r0,|L3.88|
 000014  8800              LDRH     r0,[r0,#0]  ; PulseNum
 000016  4911              LDR      r1,|L3.92|
@@ -60,37 +60,37 @@
 00001c  f50070fa          ADD      r0,r0,#0x1f4
 000020  490f              LDR      r1,|L3.96|
 000022  8008              STRH     r0,[r1,#0]
-;;;131    			//电机中断和定时器关闭
-;;;132    			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
+;;;137    			//电机中断和定时器关闭
+;;;138    			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
 000024  2200              MOVS     r2,#0
 000026  2101              MOVS     r1,#1
 000028  0788              LSLS     r0,r1,#30
 00002a  f7fffffe          BL       TIM_ITConfig
-;;;133    			TIM_Cmd(TIM2,DISABLE);
+;;;139    			TIM_Cmd(TIM2,DISABLE);
 00002e  2100              MOVS     r1,#0
 000030  f04f4080          MOV      r0,#0x40000000
 000034  f7fffffe          BL       TIM_Cmd
-;;;134    			//关闭外部中断					 
-;;;135    			EXTI->IMR&=0xFFFFFF7F;
+;;;140    			//关闭外部中断					 
+;;;141    			EXTI->IMR&=0xFFFFFF7F;
 000038  480a              LDR      r0,|L3.100|
 00003a  6800              LDR      r0,[r0,#0]
 00003c  f0200080          BIC      r0,r0,#0x80
 000040  4908              LDR      r1,|L3.100|
 000042  6008              STR      r0,[r1,#0]
-;;;136    			TripSwitchStatus=1;
+;;;142    			TripSwitchStatus=1;
 000044  2001              MOVS     r0,#1
 000046  4908              LDR      r1,|L3.104|
 000048  7008              STRB     r0,[r1,#0]
                   |L3.74|
-;;;137    		}
-;;;138    		EXTI_ClearITPendingBit(EXTI_LINE_TripSwitch);
+;;;143    		}
+;;;144    		EXTI_ClearITPendingBit(EXTI_LINE_TripSwitch);
 00004a  2080              MOVS     r0,#0x80
 00004c  f7fffffe          BL       EXTI_ClearITPendingBit
                   |L3.80|
-;;;139    	}
-;;;140    }
+;;;145    	}
+;;;146    }
 000050  bd10              POP      {r4,pc}
-;;;141    
+;;;147    
                           ENDP
 
 000052  0000              DCW      0x0000
@@ -110,25 +110,25 @@
                           AREA ||i.HardFault_Handler||, CODE, READONLY, ALIGN=2
 
                   HardFault_Handler PROC
-;;;39     */
-;;;40     void HardFault_Handler(void)
+;;;45     */
+;;;46     void HardFault_Handler(void)
 000000  a109              ADR      r1,|L4.40|
-;;;41     {
-;;;42     #if 1
-;;;43       const char *pError = ERR_INFO;
-;;;44       uint8_t i;
-;;;45     
-;;;46       for (i = 0; i < sizeof(ERR_INFO); i++)
+;;;47     {
+;;;48     #if 1
+;;;49       const char *pError = ERR_INFO;
+;;;50       uint8_t i;
+;;;51     
+;;;52       for (i = 0; i < sizeof(ERR_INFO); i++)
 000002  2000              MOVS     r0,#0
 000004  e00b              B        |L4.30|
                   |L4.6|
-;;;47       {
-;;;48          USART1->DR = pError[i];
+;;;53       {
+;;;54          USART1->DR = pError[i];
 000006  5c0a              LDRB     r2,[r1,r0]
 000008  4b12              LDR      r3,|L4.84|
 00000a  809a              STRH     r2,[r3,#4]
-;;;49          /* 等待发送结束 */
-;;;50          while ((USART1->SR & USART_FLAG_TC) == (uint16_t)RESET);
+;;;55          /* 等待发送结束 */
+;;;56          while ((USART1->SR & USART_FLAG_TC) == (uint16_t)RESET);
 00000c  bf00              NOP      
                   |L4.14|
 00000e  4a11              LDR      r2,|L4.84|
@@ -136,23 +136,23 @@
 000012  f0020240          AND      r2,r2,#0x40
 000016  2a00              CMP      r2,#0
 000018  d0f9              BEQ      |L4.14|
-00001a  1c42              ADDS     r2,r0,#1              ;46
-00001c  b2d0              UXTB     r0,r2                 ;46
+00001a  1c42              ADDS     r2,r0,#1              ;52
+00001c  b2d0              UXTB     r0,r2                 ;52
                   |L4.30|
-00001e  282a              CMP      r0,#0x2a              ;46
+00001e  282a              CMP      r0,#0x2a              ;52
 000020  d3f1              BCC      |L4.6|
-;;;51       }
-;;;52     #endif
-;;;53     
-;;;54       /* 当硬件失效异常发生时进入死循环 */
-;;;55       while (1)
+;;;57       }
+;;;58     #endif
+;;;59     
+;;;60       /* 当硬件失效异常发生时进入死循环 */
+;;;61       while (1)
 000022  bf00              NOP      
                   |L4.36|
 000024  e7fe              B        |L4.36|
-;;;56       {
-;;;57       }
-;;;58     }
-;;;59     
+;;;62       {
+;;;63       }
+;;;64     }
+;;;65     
                           ENDP
 
 000026  0000              DCW      0x0000
@@ -176,167 +176,167 @@
                           AREA ||i.MemManage_Handler||, CODE, READONLY, ALIGN=1
 
                   MemManage_Handler PROC
-;;;67     */
-;;;68     void MemManage_Handler(void)
+;;;73     */
+;;;74     void MemManage_Handler(void)
 000000  bf00              NOP      
                   |L5.2|
-;;;69     {
-;;;70       /* 当内存管理异常发生时进入死循环 */
-;;;71       while (1)
+;;;75     {
+;;;76       /* 当内存管理异常发生时进入死循环 */
+;;;77       while (1)
 000002  e7fe              B        |L5.2|
-;;;72       {
-;;;73       }
-;;;74     }
-;;;75     
+;;;78       {
+;;;79       }
+;;;80     }
+;;;81     
                           ENDP
 
 
                           AREA ||i.NMI_Handler||, CODE, READONLY, ALIGN=1
 
                   NMI_Handler PROC
-;;;26     */
-;;;27     void NMI_Handler(void)
+;;;32     */
+;;;33     void NMI_Handler(void)
 000000  4770              BX       lr
-;;;28     {
-;;;29     }
-;;;30     
+;;;34     {
+;;;35     }
+;;;36     
                           ENDP
 
 
                           AREA ||i.SPI2_IRQHandler||, CODE, READONLY, ALIGN=2
 
                   SPI2_IRQHandler PROC
-;;;168    //AK5385中断
-;;;169    void SPI2_IRQHandler(void)
+;;;175    //AK5385中断
+;;;176    void SPI2_IRQHandler(void)
 000000  b510              PUSH     {r4,lr}
-;;;170    {
-;;;171    	u16 temp;
-;;;172    	//用于AK5351中断
-;;;173    	if (SPI_I2S_GetITStatus(SPI2, SPI_I2S_IT_RXNE) == SET)
+;;;177    {
+;;;178    	u16 temp;
+;;;179    	//用于AK5351中断
+;;;180    	if (SPI_I2S_GetITStatus(SPI2, SPI_I2S_IT_RXNE) == SET)
 000002  2160              MOVS     r1,#0x60
 000004  482d              LDR      r0,|L7.188|
 000006  f7fffffe          BL       SPI_I2S_GetITStatus
 00000a  2801              CMP      r0,#1
 00000c  d153              BNE      |L7.182|
-;;;174    	{
-;;;175    		temp=SPI_I2S_ReceiveData(SPI2);
+;;;181    	{
+;;;182    		temp=SPI_I2S_ReceiveData(SPI2);
 00000e  482b              LDR      r0,|L7.188|
 000010  f7fffffe          BL       SPI_I2S_ReceiveData
 000014  4604              MOV      r4,r0
-;;;176    		SPI_I2S_ClearITPendingBit(SPI2,SPI_I2S_IT_RXNE);
+;;;183    		SPI_I2S_ClearITPendingBit(SPI2,SPI_I2S_IT_RXNE);
 000016  2160              MOVS     r1,#0x60
 000018  4828              LDR      r0,|L7.188|
 00001a  f7fffffe          BL       SPI_I2S_ClearITPendingBit
-;;;177    		if(LastCh<10)
+;;;184    		if(LastCh<10)
 00001e  4828              LDR      r0,|L7.192|
 000020  6800              LDR      r0,[r0,#0]  ; LastCh
 000022  280a              CMP      r0,#0xa
 000024  da05              BGE      |L7.50|
-;;;178    		{			
-;;;179    			LastCh++;
+;;;185    		{			
+;;;186    			LastCh++;
 000026  4826              LDR      r0,|L7.192|
 000028  6800              LDR      r0,[r0,#0]  ; LastCh
 00002a  1c40              ADDS     r0,r0,#1
 00002c  4924              LDR      r1,|L7.192|
 00002e  6008              STR      r0,[r1,#0]  ; LastCh
                   |L7.48|
-;;;180    			return;
-;;;181    		}
-;;;182    		if(RxLeftIdx==0 && RxRightIdx==0 && temp%0x100==0)
-;;;183    		{
-;;;184    			LastCh=11;
-;;;185    		}
-;;;186    		else if(LastCh==11)
-;;;187    		{ 
-;;;188    			//如果为左声道
-;;;189    			if(SPI_I2S_GetFlagStatus(SPI2,I2S_FLAG_CHSIDE)==0)
-;;;190    			{
-;;;191    				AK_Left_Data[RxLeftIdx]=temp;
-;;;192    				RxLeftIdx++;
-;;;193    			}
-;;;194    			//如果为右声道
-;;;195    			else
-;;;196    			{
-;;;197    				AK_Right_Data[RxRightIdx]=temp;
-;;;198    				RxRightIdx++;
-;;;199    			}
-;;;200    			//语音芯片数据计数器
-;;;201    			//如果数据采集完毕
-;;;202    			if(RxRightIdx>=DataLength*2 && RxLeftIdx>=DataLength*2)
+;;;187    			return;
+;;;188    		}
+;;;189    		if(RxLeftIdx==0 && RxRightIdx==0 && temp%0x100==0)
+;;;190    		{
+;;;191    			LastCh=11;
+;;;192    		}
+;;;193    		else if(LastCh==11)
+;;;194    		{ 
+;;;195    			//如果为左声道
+;;;196    			if(SPI_I2S_GetFlagStatus(SPI2,I2S_FLAG_CHSIDE)==0)
+;;;197    			{
+;;;198    				AK_Left_Data[RxLeftIdx]=temp;
+;;;199    				RxLeftIdx++;
+;;;200    			}
+;;;201    			//如果为右声道
+;;;202    			else
 ;;;203    			{
-;;;204    				//关闭I2S 中断
-;;;205    				SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, DISABLE);
-;;;206    				LastCh=-1;
-;;;207    			}
-;;;208    		}
-;;;209    	}
-;;;210    }
+;;;204    				AK_Right_Data[RxRightIdx]=temp;
+;;;205    				RxRightIdx++;
+;;;206    			}
+;;;207    			//语音芯片数据计数器
+;;;208    			//如果数据采集完毕
+;;;209    			if(RxRightIdx>=DataLength*2 && RxLeftIdx>=DataLength*2)
+;;;210    			{
+;;;211    				//关闭I2S 中断
+;;;212    				SPI_I2S_ITConfig(SPI2, SPI_I2S_IT_RXNE, DISABLE);
+;;;213    				LastCh=-1;
+;;;214    			}
+;;;215    		}
+;;;216    	}
+;;;217    }
 000030  bd10              POP      {r4,pc}
                   |L7.50|
 000032  4924              LDR      r1,|L7.196|
-000034  6809              LDR      r1,[r1,#0]            ;182  ; RxLeftIdx
+000034  6809              LDR      r1,[r1,#0]            ;189  ; RxLeftIdx
 000036  b969              CBNZ     r1,|L7.84|
 000038  4923              LDR      r1,|L7.200|
-00003a  6809              LDR      r1,[r1,#0]            ;182  ; RxRightIdx
+00003a  6809              LDR      r1,[r1,#0]            ;189  ; RxRightIdx
 00003c  b951              CBNZ     r1,|L7.84|
-00003e  17e1              ASRS     r1,r4,#31             ;182
-000040  eb046111          ADD      r1,r4,r1,LSR #24      ;182
-000044  1209              ASRS     r1,r1,#8              ;182
-000046  eba42101          SUB      r1,r4,r1,LSL #8       ;182
+00003e  17e1              ASRS     r1,r4,#31             ;189
+000040  eb046111          ADD      r1,r4,r1,LSR #24      ;189
+000044  1209              ASRS     r1,r1,#8              ;189
+000046  eba42101          SUB      r1,r4,r1,LSL #8       ;189
 00004a  b919              CBNZ     r1,|L7.84|
-00004c  200b              MOVS     r0,#0xb               ;184
+00004c  200b              MOVS     r0,#0xb               ;191
 00004e  491c              LDR      r1,|L7.192|
-000050  6008              STR      r0,[r1,#0]            ;184  ; LastCh
+000050  6008              STR      r0,[r1,#0]            ;191  ; LastCh
 000052  e030              B        |L7.182|
                   |L7.84|
 000054  481a              LDR      r0,|L7.192|
-000056  6800              LDR      r0,[r0,#0]            ;186  ; LastCh
-000058  280b              CMP      r0,#0xb               ;186
+000056  6800              LDR      r0,[r0,#0]            ;193  ; LastCh
+000058  280b              CMP      r0,#0xb               ;193
 00005a  d12c              BNE      |L7.182|
-00005c  2104              MOVS     r1,#4                 ;189
+00005c  2104              MOVS     r1,#4                 ;196
 00005e  4817              LDR      r0,|L7.188|
 000060  f7fffffe          BL       SPI_I2S_GetFlagStatus
 000064  b950              CBNZ     r0,|L7.124|
 000066  4819              LDR      r0,|L7.204|
 000068  4916              LDR      r1,|L7.196|
-00006a  6809              LDR      r1,[r1,#0]            ;191  ; RxLeftIdx
-00006c  f8204011          STRH     r4,[r0,r1,LSL #1]     ;191
+00006a  6809              LDR      r1,[r1,#0]            ;198  ; RxLeftIdx
+00006c  f8204011          STRH     r4,[r0,r1,LSL #1]     ;198
 000070  4814              LDR      r0,|L7.196|
-000072  6800              LDR      r0,[r0,#0]            ;192  ; RxLeftIdx
-000074  1c40              ADDS     r0,r0,#1              ;192
+000072  6800              LDR      r0,[r0,#0]            ;199  ; RxLeftIdx
+000074  1c40              ADDS     r0,r0,#1              ;199
 000076  4913              LDR      r1,|L7.196|
-000078  6008              STR      r0,[r1,#0]            ;192  ; RxLeftIdx
+000078  6008              STR      r0,[r1,#0]            ;199  ; RxLeftIdx
 00007a  e009              B        |L7.144|
                   |L7.124|
 00007c  4814              LDR      r0,|L7.208|
 00007e  4912              LDR      r1,|L7.200|
-000080  6809              LDR      r1,[r1,#0]            ;197  ; RxRightIdx
-000082  f8204011          STRH     r4,[r0,r1,LSL #1]     ;197
+000080  6809              LDR      r1,[r1,#0]            ;204  ; RxRightIdx
+000082  f8204011          STRH     r4,[r0,r1,LSL #1]     ;204
 000086  4810              LDR      r0,|L7.200|
-000088  6800              LDR      r0,[r0,#0]            ;198  ; RxRightIdx
-00008a  1c40              ADDS     r0,r0,#1              ;198
+000088  6800              LDR      r0,[r0,#0]            ;205  ; RxRightIdx
+00008a  1c40              ADDS     r0,r0,#1              ;205
 00008c  490e              LDR      r1,|L7.200|
-00008e  6008              STR      r0,[r1,#0]            ;198  ; RxRightIdx
+00008e  6008              STR      r0,[r1,#0]            ;205  ; RxRightIdx
                   |L7.144|
 000090  480d              LDR      r0,|L7.200|
-000092  6800              LDR      r0,[r0,#0]            ;202  ; RxRightIdx
-000094  f5b05fe1          CMP      r0,#0x1c20            ;202
+000092  6800              LDR      r0,[r0,#0]            ;209  ; RxRightIdx
+000094  f5b05fe1          CMP      r0,#0x1c20            ;209
 000098  d30d              BCC      |L7.182|
 00009a  480a              LDR      r0,|L7.196|
-00009c  6800              LDR      r0,[r0,#0]            ;202  ; RxLeftIdx
-00009e  f5b05fe1          CMP      r0,#0x1c20            ;202
+00009c  6800              LDR      r0,[r0,#0]            ;209  ; RxLeftIdx
+00009e  f5b05fe1          CMP      r0,#0x1c20            ;209
 0000a2  d308              BCC      |L7.182|
-0000a4  2200              MOVS     r2,#0                 ;205
-0000a6  2160              MOVS     r1,#0x60              ;205
+0000a4  2200              MOVS     r2,#0                 ;212
+0000a6  2160              MOVS     r1,#0x60              ;212
 0000a8  4804              LDR      r0,|L7.188|
 0000aa  f7fffffe          BL       SPI_I2S_ITConfig
-0000ae  f04f30ff          MOV      r0,#0xffffffff        ;206
+0000ae  f04f30ff          MOV      r0,#0xffffffff        ;213
 0000b2  4903              LDR      r1,|L7.192|
-0000b4  6008              STR      r0,[r1,#0]            ;206  ; LastCh
+0000b4  6008              STR      r0,[r1,#0]            ;213  ; LastCh
                   |L7.182|
 0000b6  bf00              NOP      
 0000b8  e7ba              B        |L7.48|
-;;;211    //这么基础的C语言知识都忘了！
+;;;218    //这么基础的C语言知识都忘了！
                           ENDP
 
 0000ba  0000              DCW      0x0000
@@ -356,33 +356,32 @@
                           AREA ||i.TIM2_IRQHandler||, CODE, READONLY, ALIGN=2
 
                   TIM2_IRQHandler PROC
-;;;216    *******************************************************************************/
-;;;217    void TIM2_IRQHandler(void)
+;;;223    *******************************************************************************/
+;;;224    void TIM2_IRQHandler(void)
 000000  b510              PUSH     {r4,lr}
-;;;218    { 
-;;;219    	static u8 pulsetype;
-;;;220    	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
+;;;225    { 
+;;;226    	static u8 pulsetype;
+;;;227    	if(TIM_GetFlagStatus(TIM2,TIM_FLAG_Update)!=RESET)
 000002  2101              MOVS     r1,#1
 000004  0788              LSLS     r0,r1,#30
 000006  f7fffffe          BL       TIM_GetFlagStatus
 00000a  2800              CMP      r0,#0
 00000c  d075              BEQ      |L8.250|
-;;;221    	{
-;;;222    		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
+;;;228    	{
+;;;229    		GPIO_WriteBit(GPIO_M1CL, GPIO_Pin_M1CL,(BitAction)pulsetype);
 00000e  4864              LDR      r0,|L8.416|
 000010  7802              LDRB     r2,[r0,#0]  ; pulsetype
 000012  f44f6100          MOV      r1,#0x800
 000016  4863              LDR      r0,|L8.420|
 000018  f7fffffe          BL       GPIO_WriteBit
-;;;223    		pulsetype=~pulsetype;
+;;;230    		pulsetype=~pulsetype;
 00001c  4860              LDR      r0,|L8.416|
 00001e  7800              LDRB     r0,[r0,#0]  ; pulsetype
 000020  43c0              MVNS     r0,r0
 000022  495f              LDR      r1,|L8.416|
 000024  7008              STRB     r0,[r1,#0]
-;;;224    		
-;;;225    		//如果脉冲够数
-;;;226    		if(PulseCount>=PulseNum+AddedNum)
+;;;231    		//如果脉冲够数
+;;;232    		if(PulseCount>=PulseNum+AddedNum)
 000026  4860              LDR      r0,|L8.424|
 000028  8800              LDRH     r0,[r0,#0]  ; PulseNum
 00002a  4960              LDR      r1,|L8.428|
@@ -392,27 +391,27 @@
 000032  8809              LDRH     r1,[r1,#0]  ; PulseCount
 000034  4288              CMP      r0,r1
 000036  dc09              BGT      |L8.76|
-;;;227    		{
-;;;228    			//关闭中断及timer2
-;;;229    			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
+;;;233    		{
+;;;234    			//关闭中断及timer2
+;;;235    			TIM_ITConfig(TIM2, TIM_IT_Update, DISABLE);
 000038  2200              MOVS     r2,#0
 00003a  2101              MOVS     r1,#1
 00003c  0788              LSLS     r0,r1,#30
 00003e  f7fffffe          BL       TIM_ITConfig
-;;;230    			TIM_Cmd(TIM2,DISABLE);
+;;;236    			TIM_Cmd(TIM2,DISABLE);
 000042  2100              MOVS     r1,#0
 000044  f04f4080          MOV      r0,#0x40000000
 000048  f7fffffe          BL       TIM_Cmd
                   |L8.76|
-;;;231    		}
-;;;232    		//加压有加减速
-;;;233    		if(flagPress)
+;;;237    		}
+;;;238    		//加压有加减速
+;;;239    		if(flagPress)
 00004c  4859              LDR      r0,|L8.436|
 00004e  7800              LDRB     r0,[r0,#0]  ; flagPress
 000050  b3e8              CBZ      r0,|L8.206|
-;;;234    		{
-;;;235    			//如果出于匀速运行阶段
-;;;236    			if(PulseCount>294&&PulseCount<=PulseNum-294)
+;;;240    		{
+;;;241    			//如果出于匀速运行阶段
+;;;242    			if(PulseCount>294&&PulseCount<=PulseNum-294)
 000052  4857              LDR      r0,|L8.432|
 000054  8800              LDRH     r0,[r0,#0]  ; PulseCount
 000056  f5b07f93          CMP      r0,#0x126
@@ -424,19 +423,20 @@
 000066  8809              LDRH     r1,[r1,#0]  ; PulseCount
 000068  4288              CMP      r0,r1
 00006a  db04              BLT      |L8.118|
-;;;237    				TIM2->ARR=1157;
-00006c  f2404085          MOV      r0,#0x485
+;;;243    //				TIM2->ARR=1157;
+;;;244    				TIM2->ARR=1581;
+00006c  f240602d          MOV      r0,#0x62d
 000070  0781              LSLS     r1,r0,#30
 000072  62c8              STR      r0,[r1,#0x2c]
 000074  e089              B        |L8.394|
                   |L8.118|
-;;;238    			//如果处于加速阶段
-;;;239    			else if(PulseCount<294)
+;;;245    			//如果处于加速阶段
+;;;246    			else if(PulseCount<294)
 000076  484e              LDR      r0,|L8.432|
 000078  8800              LDRH     r0,[r0,#0]  ; PulseCount
 00007a  f5b07f93          CMP      r0,#0x126
 00007e  da0b              BGE      |L8.152|
-;;;240    				TIM2->ARR=moto_ac[PulseCount/2];
+;;;247    				TIM2->ARR=moto_ac[PulseCount/2];
 000080  494b              LDR      r1,|L8.432|
 000082  8808              LDRH     r0,[r1,#0]  ; PulseCount
 000084  eb0071d0          ADD      r1,r0,r0,LSR #31
@@ -447,8 +447,8 @@
 000094  62d1              STR      r1,[r2,#0x2c]
 000096  e078              B        |L8.394|
                   |L8.152|
-;;;241    			//如果出于减速阶段
-;;;242    			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
+;;;248    			//如果出于减速阶段
+;;;249    			else if((PulseNum-PulseCount)<294&&(PulseNum-PulseCount)>0)
 000098  4843              LDR      r0,|L8.424|
 00009a  8800              LDRH     r0,[r0,#0]  ; PulseNum
 00009c  4944              LDR      r1,|L8.432|
@@ -463,7 +463,7 @@
 0000b0  1a40              SUBS     r0,r0,r1
 0000b2  2800              CMP      r0,#0
 0000b4  dd10              BLE      |L8.216|
-;;;243    				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
+;;;250    				TIM2->ARR=moto_ac[(PulseNum-PulseCount)/2];
 0000b6  493c              LDR      r1,|L8.424|
 0000b8  8809              LDRH     r1,[r1,#0]  ; PulseNum
 0000ba  4a3d              LDR      r2,|L8.432|
@@ -481,40 +481,41 @@
 0000d4  62d1              STR      r1,[r2,#0x2c]
 0000d6  e058              B        |L8.394|
                   |L8.216|
-;;;244    			//如果是AddedNum 部分，最低速度运行
-;;;245    			else
-;;;246    				TIM2->ARR=moto_ac[0];				
+;;;251    			//如果是AddedNum 部分，最低速度运行
+;;;252    			else
+;;;253    				TIM2->ARR=moto_ac[0];				
 0000d8  4837              LDR      r0,|L8.440|
 0000da  6800              LDR      r0,[r0,#0]  ; moto_ac
 0000dc  f04f4180          MOV      r1,#0x40000000
 0000e0  62c8              STR      r0,[r1,#0x2c]
 0000e2  e052              B        |L8.394|
                   |L8.228|
-;;;247    		}
-;;;248    		else
-;;;249    		{	//匀速
-;;;250    			if(StartSpeed==TargeSpeed)
+;;;254    		}
+;;;255    		else
+;;;256    		{	//匀速
+;;;257    			if(StartSpeed==TargeSpeed)
 0000e4  4835              LDR      r0,|L8.444|
 0000e6  7800              LDRB     r0,[r0,#0]  ; StartSpeed
 0000e8  4935              LDR      r1,|L8.448|
 0000ea  7809              LDRB     r1,[r1,#0]  ; TargeSpeed
 0000ec  4288              CMP      r0,r1
 0000ee  d105              BNE      |L8.252|
-;;;251    			{
-;;;252    				TIM2->ARR=1157;
-0000f0  f2404085          MOV      r0,#0x485
+;;;258    			{
+;;;259    //				TIM2->ARR=1157;
+;;;260    				TIM2->ARR=1581;
+0000f0  f240602d          MOV      r0,#0x62d
 0000f4  0781              LSLS     r1,r0,#30
 0000f6  62c8              STR      r0,[r1,#0x2c]
 0000f8  e047              B        |L8.394|
                   |L8.250|
 0000fa  e04f              B        |L8.412|
                   |L8.252|
-;;;253    			}
-;;;254    			else
-;;;255    			{
-;;;256    				//不加压有加减速
-;;;257    				//如果出于匀速运行阶段
-;;;258    				if(PulseCount>324&&PulseCount<=PulseNum-324)
+;;;261    			}
+;;;262    			else
+;;;263    			{
+;;;264    				//不加压有加减速
+;;;265    				//如果出于匀速运行阶段
+;;;266    				if(PulseCount>324&&PulseCount<=PulseNum-324)
 0000fc  482c              LDR      r0,|L8.432|
 0000fe  8800              LDRH     r0,[r0,#0]  ; PulseCount
 000100  f5b07fa2          CMP      r0,#0x144
@@ -526,19 +527,20 @@
 000110  8809              LDRH     r1,[r1,#0]  ; PulseCount
 000112  4288              CMP      r0,r1
 000114  db05              BLT      |L8.290|
-;;;259    					TIM2->ARR=556;
-000116  f44f700b          MOV      r0,#0x22c
+;;;267    //					TIM2->ARR=556;
+;;;268    					TIM2->ARR=760;
+000116  f44f703e          MOV      r0,#0x2f8
 00011a  f04f4180          MOV      r1,#0x40000000
 00011e  62c8              STR      r0,[r1,#0x2c]
 000120  e033              B        |L8.394|
                   |L8.290|
-;;;260    				//如果处于加速阶段
-;;;261    				else if(PulseCount<324)
+;;;269    				//如果处于加速阶段
+;;;270    				else if(PulseCount<324)
 000122  4823              LDR      r0,|L8.432|
 000124  8800              LDRH     r0,[r0,#0]  ; PulseCount
 000126  f5b07fa2          CMP      r0,#0x144
 00012a  da0b              BGE      |L8.324|
-;;;262    					TIM2->ARR=Speedup_moto[PulseCount/2];
+;;;271    					TIM2->ARR=Speedup_moto[PulseCount/2];
 00012c  4920              LDR      r1,|L8.432|
 00012e  8808              LDRH     r0,[r1,#0]  ; PulseCount
 000130  eb0071d0          ADD      r1,r0,r0,LSR #31
@@ -549,8 +551,8 @@
 000140  62d1              STR      r1,[r2,#0x2c]
 000142  e022              B        |L8.394|
                   |L8.324|
-;;;263    				//如果出于减速阶段
-;;;264    				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
+;;;272    				//如果出于减速阶段
+;;;273    				else if((PulseNum-PulseCount)<324&&(PulseNum-PulseCount)>0)
 000144  4818              LDR      r0,|L8.424|
 000146  8800              LDRH     r0,[r0,#0]  ; PulseNum
 000148  4919              LDR      r1,|L8.432|
@@ -565,7 +567,7 @@
 00015c  1a40              SUBS     r0,r0,r1
 00015e  2800              CMP      r0,#0
 000160  dd0e              BLE      |L8.384|
-;;;265    					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
+;;;274    					TIM2->ARR=Speedup_moto[(PulseNum-PulseCount)/2];
 000162  4911              LDR      r1,|L8.424|
 000164  8809              LDRH     r1,[r1,#0]  ; PulseNum
 000166  4a12              LDR      r2,|L8.432|
@@ -579,31 +581,31 @@
 00017c  62d1              STR      r1,[r2,#0x2c]
 00017e  e004              B        |L8.394|
                   |L8.384|
-;;;266    				//如果是AddedNum 部分，最低速度运行
-;;;267    				else
-;;;268    					TIM2->ARR=Speedup_moto[0];	
+;;;275    				//如果是AddedNum 部分，最低速度运行
+;;;276    				else
+;;;277    					TIM2->ARR=Speedup_moto[0];	
 000180  4810              LDR      r0,|L8.452|
 000182  6800              LDR      r0,[r0,#0]  ; Speedup_moto
 000184  f04f4180          MOV      r1,#0x40000000
 000188  62c8              STR      r0,[r1,#0x2c]
                   |L8.394|
-;;;269    			}
-;;;270    		}
-;;;271    		PulseCount++;
+;;;278    			}
+;;;279    		}
+;;;280    		PulseCount++;
 00018a  4809              LDR      r0,|L8.432|
 00018c  8800              LDRH     r0,[r0,#0]  ; PulseCount
 00018e  1c40              ADDS     r0,r0,#1
 000190  4907              LDR      r1,|L8.432|
 000192  8008              STRH     r0,[r1,#0]
-;;;272    		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
+;;;281    		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	
 000194  2101              MOVS     r1,#1
 000196  0788              LSLS     r0,r1,#30
 000198  f7fffffe          BL       TIM_ClearITPendingBit
                   |L8.412|
-;;;273    	}
-;;;274    }	
+;;;282    	}
+;;;283    }	
 00019c  bd10              POP      {r4,pc}
-;;;275    
+;;;284    
                           ENDP
 
 00019e  0000              DCW      0x0000
@@ -631,23 +633,23 @@
                           AREA ||i.TIM5_IRQHandler||, CODE, READONLY, ALIGN=2
 
                   TIM5_IRQHandler PROC
-;;;145    //切光片电机使用TIM1中断
-;;;146    void TIM5_IRQHandler(void)
+;;;151    //切光片电机使用TIM1中断
+;;;152    void TIM5_IRQHandler(void)
 000000  b510              PUSH     {r4,lr}
-;;;147    {
-;;;148    	if(Step_LM<10000)	//加速过程
+;;;153    {
+;;;154    	if(Step_LM<10000)	//加速过程
 000002  4814              LDR      r0,|L9.84|
 000004  6800              LDR      r0,[r0,#0]  ; Step_LM
 000006  f2427110          MOV      r1,#0x2710
 00000a  4288              CMP      r0,r1
 00000c  d216              BCS      |L9.60|
-;;;149    	{
-;;;150    		//清除中断标志
-;;;151    		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+;;;155    	{
+;;;156    		//清除中断标志
+;;;157    		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
 00000e  2101              MOVS     r1,#1
 000010  4811              LDR      r0,|L9.88|
 000012  f7fffffe          BL       TIM_ClearITPendingBit
-;;;152    		TIM5->ARR=(Speedup[(u8)((Step_LM++)/50)]<<1)-1;
+;;;158    		TIM5->ARR=(Speedup[(u8)((Step_LM++)/50)]<<1)-1;
 000016  490f              LDR      r1,|L9.84|
 000018  6808              LDR      r0,[r1,#0]  ; Step_LM
 00001a  1c41              ADDS     r1,r0,#1
@@ -665,30 +667,31 @@
 000038  6011              STR      r1,[r2,#0]
 00003a  e009              B        |L9.80|
                   |L9.60|
-;;;153    	}
-;;;154    	else
-;;;155    	{					
-;;;156    		//转速达到启动PWM
-;;;157    		TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
+;;;159    	}
+;;;160    	else
+;;;161    	{					
+;;;162    		//转速达到启动PWM
+;;;163    		TIM_ITConfig(TIM5, TIM_IT_Update, DISABLE);
 00003c  2200              MOVS     r2,#0
 00003e  2101              MOVS     r1,#1
 000040  4805              LDR      r0,|L9.88|
 000042  f7fffffe          BL       TIM_ITConfig
-;;;158    //		TIM5->ARR=4499;
-;;;159    //		TIM5->CCER=0x000B;
-;;;160    //		TIM5->CNT=0x1193;//8b3
-;;;161    		TIM5->ARR=3071;
-000046  f64030ff          MOV      r0,#0xbff
+;;;164    //		TIM5->ARR=4499;
+;;;165    //		TIM5->CCER=0x000B;
+;;;166    //		TIM5->CNT=0x1193;//8b3
+;;;167    //		TIM5->ARR=3071;
+;;;168    //		TIM5->CCER=0x000B;
+;;;169    //		TIM5->CNT=0x08b3;
+;;;170    				TIM5->ARR=4199;
+000046  f2410067          MOV      r0,#0x1067
 00004a  4903              LDR      r1,|L9.88|
 00004c  312c              ADDS     r1,r1,#0x2c
 00004e  6008              STR      r0,[r1,#0]
                   |L9.80|
-;;;162    //		TIM5->CCER=0x000B;
-;;;163    //		TIM5->CNT=0x08b3;
-;;;164    	}	 	
-;;;165    }
+;;;171    	}	 	
+;;;172    }
 000050  bd10              POP      {r4,pc}
-;;;166    
+;;;173    
                           ENDP
 
 000052  0000              DCW      0x0000
@@ -702,334 +705,334 @@
                           AREA ||i.UsageFault_Handler||, CODE, READONLY, ALIGN=1
 
                   UsageFault_Handler PROC
-;;;99     */
-;;;100    void UsageFault_Handler(void)
+;;;105    */
+;;;106    void UsageFault_Handler(void)
 000000  bf00              NOP      
                   |L10.2|
-;;;101    {
-;;;102      /* 当用法异常时进入死循环 */
-;;;103      while (1)
+;;;107    {
+;;;108      /* 当用法异常时进入死循环 */
+;;;109      while (1)
 000002  e7fe              B        |L10.2|
-;;;104      {
-;;;105      }
-;;;106    }
-;;;107    
+;;;110      {
+;;;111      }
+;;;112    }
+;;;113    
                           ENDP
 
 
                           AREA ||.constdata||, DATA, READONLY, ALIGN=2
 
                   Speedup_moto
-                          DCD      0x00000800
-                          DCD      0x000007f1
-                          DCD      0x000007e9
-                          DCD      0x000007e1
-                          DCD      0x000007d7
-                          DCD      0x000007cc
-                          DCD      0x000007bf
-                          DCD      0x000007b2
-                          DCD      0x000007a4
-                          DCD      0x00000794
-                          DCD      0x00000784
-                          DCD      0x00000773
-                          DCD      0x00000761
-                          DCD      0x0000074e
-                          DCD      0x0000073b
-                          DCD      0x00000728
-                          DCD      0x00000713
-                          DCD      0x000006ff
-                          DCD      0x000006ea
-                          DCD      0x000006d5
-                          DCD      0x000006c0
-                          DCD      0x000006aa
-                          DCD      0x00000695
-                          DCD      0x0000067f
-                          DCD      0x0000066a
-                          DCD      0x00000654
-                          DCD      0x0000063f
-                          DCD      0x00000629
-                          DCD      0x00000614
-                          DCD      0x000005ff
-                          DCD      0x000005ea
-                          DCD      0x000005d5
-                          DCD      0x000005c0
-                          DCD      0x000005ac
-                          DCD      0x00000598
-                          DCD      0x00000584
-                          DCD      0x00000570
-                          DCD      0x0000055d
-                          DCD      0x0000054a
-                          DCD      0x00000537
-                          DCD      0x00000524
-                          DCD      0x00000512
-                          DCD      0x00000500
-                          DCD      0x000004ee
-                          DCD      0x000004dd
-                          DCD      0x000004cb
-                          DCD      0x000004ba
-                          DCD      0x000004aa
-                          DCD      0x00000499
-                          DCD      0x00000489
-                          DCD      0x00000479
-                          DCD      0x00000469
-                          DCD      0x0000045a
-                          DCD      0x0000044b
-                          DCD      0x0000043c
-                          DCD      0x0000042d
-                          DCD      0x0000041e
-                          DCD      0x00000410
-                          DCD      0x00000402
-                          DCD      0x000003f4
-                          DCD      0x000003e6
-                          DCD      0x000003d9
-                          DCD      0x000003cb
-                          DCD      0x000003be
-                          DCD      0x000003b1
-                          DCD      0x000003a5
-                          DCD      0x00000398
-                          DCD      0x0000038b
-                          DCD      0x0000037f
-                          DCD      0x00000373
-                          DCD      0x00000367
-                          DCD      0x0000035b
-                          DCD      0x0000034f
-                          DCD      0x00000343
-                          DCD      0x00000337
-                          DCD      0x0000032c
-                          DCD      0x00000320
-                          DCD      0x00000315
-                          DCD      0x00000309
-                          DCD      0x000002fe
-                          DCD      0x000002f3
-                          DCD      0x000002e7
-                          DCD      0x000002dc
-                          DCD      0x000002d0
-                          DCD      0x000002c5
-                          DCD      0x000002b9
-                          DCD      0x000002af
-                          DCD      0x000002a5
-                          DCD      0x0000029c
-                          DCD      0x00000295
-                          DCD      0x0000028e
-                          DCD      0x00000289
-                          DCD      0x00000284
-                          DCD      0x0000027f
-                          DCD      0x0000027a
-                          DCD      0x00000276
-                          DCD      0x00000273
-                          DCD      0x0000026f
-                          DCD      0x0000026c
-                          DCD      0x00000269
-                          DCD      0x00000266
-                          DCD      0x00000263
-                          DCD      0x00000260
-                          DCD      0x0000025e
-                          DCD      0x0000025b
-                          DCD      0x00000259
-                          DCD      0x00000257
-                          DCD      0x00000255
-                          DCD      0x00000253
-                          DCD      0x00000251
-                          DCD      0x0000024f
-                          DCD      0x0000024d
-                          DCD      0x0000024c
-                          DCD      0x0000024a
-                          DCD      0x00000249
-                          DCD      0x00000247
-                          DCD      0x00000246
-                          DCD      0x00000244
-                          DCD      0x00000243
-                          DCD      0x00000242
-                          DCD      0x00000241
-                          DCD      0x0000023f
-                          DCD      0x0000023e
-                          DCD      0x0000023d
-                          DCD      0x0000023c
-                          DCD      0x0000023b
-                          DCD      0x0000023a
-                          DCD      0x00000239
-                          DCD      0x00000239
-                          DCD      0x00000238
-                          DCD      0x00000237
-                          DCD      0x00000236
-                          DCD      0x00000235
-                          DCD      0x00000235
-                          DCD      0x00000234
-                          DCD      0x00000233
-                          DCD      0x00000233
-                          DCD      0x00000232
-                          DCD      0x00000232
-                          DCD      0x00000231
-                          DCD      0x00000231
-                          DCD      0x00000230
-                          DCD      0x00000230
-                          DCD      0x0000022f
-                          DCD      0x0000022f
-                          DCD      0x0000022e
-                          DCD      0x0000022e
-                          DCD      0x0000022e
-                          DCD      0x0000022d
-                          DCD      0x0000022d
-                          DCD      0x0000022d
-                          DCD      0x0000022d
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                          DCD      0x0000022c
-                  moto_ac
-                          DCD      0x00000800
-                          DCD      0x000007ff
-                          DCD      0x000007ff
-                          DCD      0x000007fe
-                          DCD      0x000007fd
-                          DCD      0x000007fc
-                          DCD      0x000007fa
+                          DCD      0x00000aef
+                          DCD      0x00000adb
+                          DCD      0x00000ad0
+                          DCD      0x00000ac5
+                          DCD      0x00000ab7
+                          DCD      0x00000aa8
+                          DCD      0x00000a96
+                          DCD      0x00000a84
+                          DCD      0x00000a71
+                          DCD      0x00000a5b
+                          DCD      0x00000a46
+                          DCD      0x00000a2e
+                          DCD      0x00000a16
+                          DCD      0x000009fc
+                          DCD      0x000009e2
+                          DCD      0x000009c8
+                          DCD      0x000009ab
+                          DCD      0x00000990
+                          DCD      0x00000973
+                          DCD      0x00000956
+                          DCD      0x0000093a
+                          DCD      0x0000091c
+                          DCD      0x000008ff
+                          DCD      0x000008e1
+                          DCD      0x000008c4
+                          DCD      0x000008a6
+                          DCD      0x00000889
+                          DCD      0x0000086b
+                          DCD      0x0000084f
+                          DCD      0x00000832
+                          DCD      0x00000815
                           DCD      0x000007f8
-                          DCD      0x000007f6
-                          DCD      0x000007f3
-                          DCD      0x000007f0
-                          DCD      0x000007ed
-                          DCD      0x000007ea
-                          DCD      0x000007e6
-                          DCD      0x000007e2
-                          DCD      0x000007de
-                          DCD      0x000007da
-                          DCD      0x000007d5
-                          DCD      0x000007d0
-                          DCD      0x000007cb
-                          DCD      0x000007c6
+                          DCD      0x000007dc
                           DCD      0x000007c0
-                          DCD      0x000007ba
-                          DCD      0x000007b4
-                          DCD      0x000007ae
-                          DCD      0x000007a7
-                          DCD      0x000007a0
-                          DCD      0x0000079a
-                          DCD      0x00000793
-                          DCD      0x0000078b
-                          DCD      0x00000784
-                          DCD      0x0000077c
-                          DCD      0x00000775
-                          DCD      0x0000076d
+                          DCD      0x000007a5
+                          DCD      0x0000078a
+                          DCD      0x0000076e
+                          DCD      0x00000754
+                          DCD      0x0000073a
+                          DCD      0x00000720
+                          DCD      0x00000706
+                          DCD      0x000006ee
+                          DCD      0x000006d5
+                          DCD      0x000006bd
+                          DCD      0x000006a5
+                          DCD      0x0000068d
+                          DCD      0x00000676
+                          DCD      0x00000660
+                          DCD      0x00000648
+                          DCD      0x00000633
+                          DCD      0x0000061d
+                          DCD      0x00000607
+                          DCD      0x000005f2
+                          DCD      0x000005de
+                          DCD      0x000005c9
+                          DCD      0x000005b5
+                          DCD      0x000005a0
+                          DCD      0x0000058d
+                          DCD      0x0000057a
+                          DCD      0x00000567
+                          DCD      0x00000554
+                          DCD      0x00000542
+                          DCD      0x0000052f
+                          DCD      0x0000051d
+                          DCD      0x0000050b
+                          DCD      0x000004fb
+                          DCD      0x000004e9
+                          DCD      0x000004d7
+                          DCD      0x000004c7
+                          DCD      0x000004b7
+                          DCD      0x000004a6
+                          DCD      0x00000496
+                          DCD      0x00000485
+                          DCD      0x00000475
+                          DCD      0x00000465
+                          DCD      0x00000456
+                          DCD      0x00000445
+                          DCD      0x00000436
+                          DCD      0x00000426
+                          DCD      0x00000417
+                          DCD      0x00000408
+                          DCD      0x000003f7
+                          DCD      0x000003e8
+                          DCD      0x000003d8
+                          DCD      0x000003c9
+                          DCD      0x000003b8
+                          DCD      0x000003ab
+                          DCD      0x0000039d
+                          DCD      0x00000391
+                          DCD      0x00000387
+                          DCD      0x0000037e
+                          DCD      0x00000377
+                          DCD      0x00000370
+                          DCD      0x00000369
+                          DCD      0x00000362
+                          DCD      0x0000035d
+                          DCD      0x00000359
+                          DCD      0x00000353
+                          DCD      0x0000034f
+                          DCD      0x0000034b
+                          DCD      0x00000347
+                          DCD      0x00000343
+                          DCD      0x0000033f
+                          DCD      0x0000033c
+                          DCD      0x00000338
+                          DCD      0x00000335
+                          DCD      0x00000332
+                          DCD      0x00000330
+                          DCD      0x0000032d
+                          DCD      0x0000032a
+                          DCD      0x00000327
+                          DCD      0x00000325
+                          DCD      0x00000323
+                          DCD      0x00000321
+                          DCD      0x0000031f
+                          DCD      0x0000031c
+                          DCD      0x0000031b
+                          DCD      0x00000318
+                          DCD      0x00000317
+                          DCD      0x00000316
+                          DCD      0x00000314
+                          DCD      0x00000312
+                          DCD      0x00000310
+                          DCD      0x0000030f
+                          DCD      0x0000030d
+                          DCD      0x0000030c
+                          DCD      0x0000030b
+                          DCD      0x00000309
+                          DCD      0x00000309
+                          DCD      0x00000308
+                          DCD      0x00000307
+                          DCD      0x00000305
+                          DCD      0x00000304
+                          DCD      0x00000304
+                          DCD      0x00000302
+                          DCD      0x00000301
+                          DCD      0x00000301
+                          DCD      0x00000300
+                          DCD      0x00000300
+                          DCD      0x000002fe
+                          DCD      0x000002fe
+                          DCD      0x000002fd
+                          DCD      0x000002fd
+                          DCD      0x000002fc
+                          DCD      0x000002fc
+                          DCD      0x000002fa
+                          DCD      0x000002fa
+                          DCD      0x000002fa
+                          DCD      0x000002f9
+                          DCD      0x000002f9
+                          DCD      0x000002f9
+                          DCD      0x000002f9
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                          DCD      0x000002f8
+                  moto_ac
+                          DCD      0x00000aef
+                          DCD      0x00000aee
+                          DCD      0x00000aee
+                          DCD      0x00000aec
+                          DCD      0x00000aeb
+                          DCD      0x00000aea
+                          DCD      0x00000ae7
+                          DCD      0x00000ae4
+                          DCD      0x00000ae1
+                          DCD      0x00000add
+                          DCD      0x00000ad9
+                          DCD      0x00000ad5
+                          DCD      0x00000ad1
+                          DCD      0x00000acc
+                          DCD      0x00000ac6
+                          DCD      0x00000ac1
+                          DCD      0x00000abb
+                          DCD      0x00000ab4
+                          DCD      0x00000aae
+                          DCD      0x00000aa7
+                          DCD      0x00000aa0
+                          DCD      0x00000a98
+                          DCD      0x00000a8f
+                          DCD      0x00000a87
+                          DCD      0x00000a7f
+                          DCD      0x00000a75
+                          DCD      0x00000a6c
+                          DCD      0x00000a64
+                          DCD      0x00000a5a
+                          DCD      0x00000a4f
+                          DCD      0x00000a46
+                          DCD      0x00000a3b
+                          DCD      0x00000a31
+                          DCD      0x00000a26
+                          DCD      0x00000a1b
+                          DCD      0x00000a10
+                          DCD      0x00000a05
+                          DCD      0x000009f9
+                          DCD      0x000009ee
+                          DCD      0x000009e3
+                          DCD      0x000009d7
+                          DCD      0x000009cb
+                          DCD      0x000009be
+                          DCD      0x000009b3
+                          DCD      0x000009a7
+                          DCD      0x0000099b
+                          DCD      0x0000098e
+                          DCD      0x00000982
+                          DCD      0x00000976
+                          DCD      0x0000096a
+                          DCD      0x0000095c
+                          DCD      0x00000950
+                          DCD      0x00000943
+                          DCD      0x00000937
+                          DCD      0x00000929
+                          DCD      0x0000091d
+                          DCD      0x00000911
+                          DCD      0x00000904
+                          DCD      0x000008f7
+                          DCD      0x000008ea
+                          DCD      0x000008de
+                          DCD      0x000008d2
+                          DCD      0x000008c5
+                          DCD      0x000008b8
+                          DCD      0x000008ac
+                          DCD      0x0000089f
+                          DCD      0x00000893
+                          DCD      0x00000887
+                          DCD      0x0000087a
+                          DCD      0x0000086e
+                          DCD      0x00000862
+                          DCD      0x00000855
+                          DCD      0x00000849
+                          DCD      0x0000083d
+                          DCD      0x00000832
+                          DCD      0x00000826
+                          DCD      0x00000819
+                          DCD      0x0000080d
+                          DCD      0x00000802
+                          DCD      0x000007f6
+                          DCD      0x000007eb
+                          DCD      0x000007de
+                          DCD      0x000007d4
+                          DCD      0x000007c9
+                          DCD      0x000007bc
+                          DCD      0x000007b1
+                          DCD      0x000007a6
+                          DCD      0x0000079b
+                          DCD      0x00000791
+                          DCD      0x00000786
+                          DCD      0x0000077b
+                          DCD      0x00000770
                           DCD      0x00000765
-                          DCD      0x0000075d
-                          DCD      0x00000755
-                          DCD      0x0000074c
-                          DCD      0x00000744
+                          DCD      0x0000075a
+                          DCD      0x00000750
+                          DCD      0x00000745
                           DCD      0x0000073c
-                          DCD      0x00000733
-                          DCD      0x0000072a
-                          DCD      0x00000721
-                          DCD      0x00000719
-                          DCD      0x00000710
-                          DCD      0x00000707
+                          DCD      0x00000731
+                          DCD      0x00000727
+                          DCD      0x0000071c
+                          DCD      0x00000713
+                          DCD      0x00000709
                           DCD      0x000006fe
                           DCD      0x000006f5
-                          DCD      0x000006ec
-                          DCD      0x000006e3
-                          DCD      0x000006d9
-                          DCD      0x000006d0
-                          DCD      0x000006c7
-                          DCD      0x000006be
-                          DCD      0x000006b4
-                          DCD      0x000006ab
-                          DCD      0x000006a2
-                          DCD      0x00000699
-                          DCD      0x0000068f
-                          DCD      0x00000686
-                          DCD      0x0000067d
-                          DCD      0x00000674
-                          DCD      0x0000066b
+                          DCD      0x000006eb
+                          DCD      0x000006e2
+                          DCD      0x000006d8
+                          DCD      0x000006ce
+                          DCD      0x000006c5
+                          DCD      0x000006bd
+                          DCD      0x000006b7
+                          DCD      0x000006af
+                          DCD      0x000006a7
+                          DCD      0x0000069f
+                          DCD      0x00000698
+                          DCD      0x00000690
+                          DCD      0x00000689
+                          DCD      0x00000683
+                          DCD      0x0000067c
+                          DCD      0x00000677
+                          DCD      0x00000671
+                          DCD      0x0000066c
+                          DCD      0x00000667
                           DCD      0x00000661
-                          DCD      0x00000658
-                          DCD      0x0000064f
-                          DCD      0x00000646
-                          DCD      0x0000063d
+                          DCD      0x0000065d
+                          DCD      0x00000659
+                          DCD      0x00000655
+                          DCD      0x00000651
+                          DCD      0x0000064d
+                          DCD      0x0000064a
+                          DCD      0x00000647
+                          DCD      0x00000643
+                          DCD      0x00000640
+                          DCD      0x0000063e
+                          DCD      0x0000063c
+                          DCD      0x00000639
+                          DCD      0x00000638
+                          DCD      0x00000635
                           DCD      0x00000634
-                          DCD      0x0000062b
-                          DCD      0x00000622
-                          DCD      0x00000619
-                          DCD      0x00000610
-                          DCD      0x00000607
-                          DCD      0x000005ff
-                          DCD      0x000005f6
-                          DCD      0x000005ed
-                          DCD      0x000005e4
-                          DCD      0x000005dc
-                          DCD      0x000005d3
-                          DCD      0x000005cb
-                          DCD      0x000005c2
-                          DCD      0x000005ba
-                          DCD      0x000005b2
-                          DCD      0x000005a9
-                          DCD      0x000005a1
-                          DCD      0x00000599
-                          DCD      0x00000591
-                          DCD      0x00000589
-                          DCD      0x00000581
-                          DCD      0x00000579
-                          DCD      0x00000571
-                          DCD      0x00000569
-                          DCD      0x00000561
-                          DCD      0x0000055a
-                          DCD      0x00000552
-                          DCD      0x0000054b
-                          DCD      0x00000543
-                          DCD      0x0000053c
-                          DCD      0x00000534
-                          DCD      0x0000052d
-                          DCD      0x00000526
-                          DCD      0x0000051e
-                          DCD      0x00000517
-                          DCD      0x00000510
-                          DCD      0x00000509
-                          DCD      0x00000502
-                          DCD      0x000004fb
-                          DCD      0x000004f4
-                          DCD      0x000004ee
-                          DCD      0x000004ea
-                          DCD      0x000004e4
-                          DCD      0x000004de
-                          DCD      0x000004d8
-                          DCD      0x000004d3
-                          DCD      0x000004cd
-                          DCD      0x000004c8
-                          DCD      0x000004c4
-                          DCD      0x000004bf
-                          DCD      0x000004bb
-                          DCD      0x000004b7
-                          DCD      0x000004b3
-                          DCD      0x000004af
-                          DCD      0x000004ab
-                          DCD      0x000004a8
-                          DCD      0x000004a5
-                          DCD      0x000004a2
-                          DCD      0x0000049f
-                          DCD      0x0000049c
-                          DCD      0x0000049a
-                          DCD      0x00000498
-                          DCD      0x00000495
-                          DCD      0x00000493
-                          DCD      0x00000491
-                          DCD      0x00000490
-                          DCD      0x0000048e
-                          DCD      0x0000048d
-                          DCD      0x0000048b
-                          DCD      0x0000048a
-                          DCD      0x00000489
-                          DCD      0x00000488
-                          DCD      0x00000487
-                          DCD      0x00000487
-                          DCD      0x00000486
-                          DCD      0x00000486
-                          DCD      0x00000486
-                          DCD      0x00000485
+                          DCD      0x00000633
+                          DCD      0x00000631
+                          DCD      0x00000630
+                          DCD      0x00000630
+                          DCD      0x0000062e
+                          DCD      0x0000062e
+                          DCD      0x0000062e
+                          DCD      0x0000062d
 
                           AREA ||.data||, DATA, ALIGN=2
 

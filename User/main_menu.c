@@ -145,7 +145,7 @@ uint8_t MainMenu(void)
 	fRefresh = 1;	/* 1表示需要刷新LCD */
 	while (1)
 	{
-//		bsp_Idle();
+		bsp_Idle();
 
 		if (fRefresh)
 		{

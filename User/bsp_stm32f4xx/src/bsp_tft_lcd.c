@@ -284,10 +284,10 @@ void LCD_DispStr(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont)
 		font_height = 24;
 		font_width = 24;
 		font_bytes = 72;
-		pAscDot = g_Ascii16;
+		pAscDot = g_Ascii24;
 		t=3;
 	#ifdef USE_SMALL_FONT
-		pHzDot = g_Hz24;
+		pHzDot = g_HZK24;
 	#else
 		AddrHZK = HZK12_ADDR;
 	#endif
@@ -297,10 +297,23 @@ void LCD_DispStr(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont)
 		font_height = 48;
 		font_width = 48;
 		font_bytes = 288;
-		pAscDot = g_Ascii16;
+		pAscDot = g_Ascii48;
 		t=6;
 	#ifdef USE_SMALL_FONT
 		pHzDot = g_Hz48;
+	#else
+		AddrHZK = HZK12_ADDR;
+	#endif
+	}
+	else if(_tFont->FontCode == FC_ST_64)
+	{
+		font_height = 64;
+		font_width = 64;
+		font_bytes = 512;
+		pAscDot = g_Ascii48;
+		t=8;
+	#ifdef USE_SMALL_FONT
+		pHzDot = g_Hz64;
 	#else
 		AddrHZK = HZK12_ADDR;
 	#endif
@@ -310,7 +323,7 @@ void LCD_DispStr(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont)
 		font_height = 96;
 		font_width = 96;
 		font_bytes = 1152;
-		pAscDot = g_Ascii16;
+		pAscDot = g_Ascii48;
 		t=12;
 	#ifdef USE_SMALL_FONT
 		pHzDot = g_Hz96;
@@ -340,8 +353,22 @@ void LCD_DispStr(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont)
 		if (code1 < 0x80)
 		{
 			/* 将ascii字符点阵复制到buf */
-			memcpy(buf, &pAscDot[code1 * (font_bytes / 2)], (font_bytes / 2));
-			width = font_width / 2;
+			if(font_bytes == 72)
+			{
+				memcpy(buf, &pAscDot[(code1-0x20) * 48], 48);
+				width = 16;
+			}
+			else if(font_bytes == 512)
+			{
+				memcpy(buf, &pAscDot[(code1-0x20) * 144], 144);
+				width = 24;
+				t=6;
+			}
+			else 
+			{
+				memcpy(buf, &pAscDot[(code1-0x20) * (font_bytes / 2)], (font_bytes / 2));
+				width = font_width / 2;
+			}
 		}
 		else
 		{
@@ -1722,7 +1749,7 @@ static void LCD_CtrlLinesConfig(void)
 	RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FMC, ENABLE);
 
 	/* 使能 GPIO时钟 */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE  | RCC_AHB1Periph_GPIOH| RCC_AHB1Periph_GPIOG, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE | RCC_AHB1Periph_GPIOG, ENABLE);
 
 	/* 设置 PD.00(D2), PD.01(D3), PD.04(NOE), PD.05(NWE), PD.08(D13), PD.09(D14),
 	 PD.10(D15), PD.14(D0), PD.15(D1) 为复用推挽输出 */
@@ -1737,22 +1764,20 @@ static void LCD_CtrlLinesConfig(void)
 	GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_FMC);
 	GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_FMC);
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3| GPIO_Pin_4 | GPIO_Pin_5 
-	                            | GPIO_Pin_6 | GPIO_Pin_7|GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 
-															| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14 |
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5 |
+	                            GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_14 |
 	                            GPIO_Pin_15;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOH, &GPIO_InitStructure);
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
 
 	/* 设置 PE.07(D4), PE.08(D5), PE.09(D6), PE.10(D7), PE.11(D8), PE.12(D9), PE.13(D10),
 	 PE.14(D11), PE.15(D12) 为复用推挽输出 */
-
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource4 , GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource5 , GPIO_AF_FMC);
-
+//	GPIO_PinAFConfig(GPIOE, GPIO_PinSource4 , GPIO_AF_FMC);
+//	GPIO_PinAFConfig(GPIOE, GPIO_PinSource5 , GPIO_AF_FMC);
+	
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource7 , GPIO_AF_FMC);
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource8 , GPIO_AF_FMC);
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource9 , GPIO_AF_FMC);
@@ -1762,24 +1787,28 @@ static void LCD_CtrlLinesConfig(void)
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource13 , GPIO_AF_FMC);
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource14 , GPIO_AF_FMC);
 	GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_FMC);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9| GPIO_Pin_4| GPIO_Pin_5| GPIO_Pin_6| GPIO_Pin_7| GPIO_Pin_2;
-	GPIO_Init(GPIOD, &GPIO_InitStructure);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
-	GPIO_Init(GPIOG, &GPIO_InitStructure);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_5| GPIO_Pin_6;
+	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 |
+	                            GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 |
+	                            GPIO_Pin_15;
 	GPIO_Init(GPIOE, &GPIO_InitStructure);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7| GPIO_Pin_5| GPIO_Pin_6;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	/* 设置 PD.13(A18 (RS))  为复用推挽输出 */
 	GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_FMC);
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOD, &GPIO_InitStructure);
 
 	/* 设置 PG12 (LCD/CS)) 为复用推挽输出 */
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, GPIO_AF_FMC);
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOG, &GPIO_InitStructure);
 }
 

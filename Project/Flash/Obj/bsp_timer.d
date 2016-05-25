@@ -37,7 +37,6 @@
 .\flash\obj\bsp_timer.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\flash\obj\bsp_timer.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\flash\obj\bsp_timer.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\flash\obj\bsp_timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\flash\obj\bsp_timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\flash\obj\bsp_timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\flash\obj\bsp_timer.o: ..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h

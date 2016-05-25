@@ -1,0 +1,1639 @@
+L 1 "..\User\fonts\pysearch.c"
+N/*
+N*********************************************************************************************************
+N*	                                  
+N*	Ä£¿éÃû³Æ : È«Æ´ÒôÊäÈë·¨
+N*	ÎÄ¼şÃû³Æ : MainTask.c
+N*	°æ    ±¾ : V1.0
+N*	Ëµ    Ã÷ : Õâ²¿·Öºº×Ö±íºÍ¼ìË÷º¯ÊıÀ´×ÔÍøÂç£¬Ê¹ÓÃ±¾¹¤³ÌÇë±£Ö¤´ËÎÄ¼şµÄÊôĞÔÊÇUTF-8¸ñÊ½.
+N*                                     
+N*	ĞŞ¸Ä¼ÇÂ¼ :
+N*		°æ±¾ºÅ    ÈÕÆÚ          ×÷Õß          ËµÃ÷
+N*		v1.0    2014-07-07    Eric2013        Ê×·¢
+N*	
+N*	Copyright (C), 2014-2015, °²¸»À³µç×Ó www.armfly.com
+N*
+N*********************************************************************************************************
+N*/
+N#include "pysearch.h"
+L 1 "..\User\fonts\pysearch.h" 1
+N/*
+N*********************************************************************************************************
+N*	                                  
+N*	Ä£¿éÃû³Æ : È«Æ´ÒôÊäÈë·¨
+N*	ÎÄ¼şÃû³Æ : MainTask.c
+N*	°æ    ±¾ : V1.0
+N*	Ëµ    Ã÷ : Õâ²¿·Öºº×Ö±íºÍ¼ìË÷º¯ÊıÀ´×ÔÍøÂç£¬Ê¹ÓÃ±¾¹¤³ÌÇë±£Ö¤´ËÎÄ¼şµÄÊôĞÔÊÇUTF-8¸ñÊ½
+N*                                     
+N*	ĞŞ¸Ä¼ÇÂ¼ :
+N*		°æ±¾ºÅ    ÈÕÆÚ          ×÷Õß          ËµÃ÷
+N*		v1.0    2014-07-07    Eric2013        Ê×·¢
+N*	
+N*	Copyright (C), 2014-2015, °²¸»À³µç×Ó www.armfly.com
+N*
+N*********************************************************************************************************
+N*/
+N
+Ntypedef struct
+N{
+N	const char *PYList;  	//Æ´Òô¼ìË÷×Ö·û´®
+N	int			num;		//×Üºº×ÖÊı
+N	const char *HZGB;		//ÒÔËù¶¨ÒåµÄÆ´Òô×éºÏµÄºº×ÖGBÂëµÄÖ¸Õë
+N}PinYinDef;
+N
+N
+N//Æ´Òô×éºÏµÄºº×Ö×Ö¿â
+N//Æ´Òô¼ìË÷µÄ½á¹¹Ìå
+Nstruct PinYinPCB
+N{
+N	char *PYSerList;  		//Æ´Òô¼ìË÷×Ö·û
+N	const unsigned char *PYRankOneList;  	//ÒÔËù¶¨ÒåµÄÆ´Òô×éºÏµÄºº×Ö×Ö¿âµÄÖ¸Õë
+N};
+N
+Nchar *PYSearch(unsigned char *msg , int *num);
+N
+N/***************************** °²¸»À³µç×Ó www.armfly.com (END OF FILE) *********************************/
+L 18 "..\User\fonts\pysearch.c" 2
+N#include "string.h"
+L 1 "C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h" 1
+N/* string.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.11 */
+N/* Copyright (C) Codemist Ltd., 1988-1993.                        */
+N/* Copyright 1991-1993 ARM Limited. All rights reserved.          */
+N/* version 0.04 */
+N
+N/*
+N * RCS $Revision: 185525 $
+N * Checkin $Date: 2014-05-29 12:44:48 +0100 (Thu, 29 May 2014) $
+N */
+N
+N/*
+N * string.h declares one type and several functions, and defines one macro
+N * useful for manipulating character arrays and other objects treated as
+N * character arrays. Various methods are used for determining the lengths of
+N * the arrays, but in all cases a char * or void * argument points to the
+N * initial (lowest addresses) character of the array. If an array is written
+N * beyond the end of an object, the behaviour is undefined.
+N */
+N
+N#ifndef __string_h
+N#define __string_h
+N#define __ARMCLIB_VERSION 5050106
+N
+N#define _ARMABI __declspec(__nothrow)
+N
+N  #ifndef __STRING_DECLS
+N  #define __STRING_DECLS
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S        namespace std {
+S        #define __CLIBNS std::
+S        extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N#if defined(__cplusplus) || !defined(__STRICT_ANSI__)
+X#if 0L || !0L
+N /* unconditional in C++ and non-strict C for consistency of debug info */
+N  #if __sizeof_ptr == 8
+X  #if 4 == 8
+S    typedef unsigned long size_t;   /* see <stddef.h> */
+N  #else
+N    typedef unsigned int size_t;   /* see <stddef.h> */
+N  #endif
+N#elif !defined(__size_t)
+S  #define __size_t 1
+S  #if __sizeof_ptr == 8
+S    typedef unsigned long size_t;   /* see <stddef.h> */
+S  #else
+S    typedef unsigned int size_t;   /* see <stddef.h> */
+S  #endif
+N#endif
+N
+N#undef NULL
+N#define NULL 0                   /* see <stddef.h> */
+N
+Nextern _ARMABI void *memcpy(void * __restrict /*s1*/,
+Xextern __declspec(__nothrow) void *memcpy(void * __restrict  ,
+N                    const void * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies n characters from the object pointed to by s2 into the object
+N    * pointed to by s1. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI void *memmove(void * /*s1*/,
+Xextern __declspec(__nothrow) void *memmove(void *  ,
+N                    const void * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies n characters from the object pointed to by s2 into the object
+N    * pointed to by s1. Copying takes place as if the n characters from the
+N    * object pointed to by s2 are first copied into a temporary array of n
+N    * characters that does not overlap the objects pointed to by s1 and s2,
+N    * and then the n characters from the temporary array are copied into the
+N    * object pointed to by s1.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strcpy(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strcpy(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies the string pointed to by s2 (including the terminating nul
+N    * character) into the array pointed to by s1. If copying takes place
+N    * between objects that overlap, the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strncpy(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strncpy(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies not more than n characters (characters that follow a null
+N    * character are not copied) from the array pointed to by s2 into the array
+N    * pointed to by s1. If copying takes place between objects that overlap,
+N    * the behaviour is undefined.
+N    * Returns: the value of s1.
+N    */
+N
+Nextern _ARMABI char *strcat(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strcat(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * appends a copy of the string pointed to by s2 (including the terminating
+N    * null character) to the end of the string pointed to by s1. The initial
+N    * character of s2 overwrites the null character at the end of s1.
+N    * Returns: the value of s1.
+N    */
+Nextern _ARMABI char *strncat(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strncat(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * appends not more than n characters (a null character and characters that
+N    * follow it are not appended) from the array pointed to by s2 to the end of
+N    * the string pointed to by s1. The initial character of s2 overwrites the
+N    * null character at the end of s1. A terminating null character is always
+N    * appended to the result.
+N    * Returns: the value of s1.
+N    */
+N
+N/*
+N * The sign of a nonzero value returned by the comparison functions is
+N * determined by the sign of the difference between the values of the first
+N * pair of characters (both interpreted as unsigned char) that differ in the
+N * objects being compared.
+N */
+N
+Nextern _ARMABI int memcmp(const void * /*s1*/, const void * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int memcmp(const void *  , const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the first n characters of the object pointed to by s1 to the
+N    * first n characters of the object pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the object pointed to by s1 is greater than, equal to, or
+N    *          less than the object pointed to by s2.
+N    */
+Nextern _ARMABI int strcmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strncmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strncmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares not more than n characters (characters that follow a null
+N    * character are not compared) from the array pointed to by s1 to the array
+N    * pointed to by s2.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strcasecmp(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcasecmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2,
+N    * case-insensitively as defined by the current locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strncasecmp(const char * /*s1*/, const char * /*s2*/, size_t /*n*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strncasecmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares not more than n characters (characters that follow a null
+N    * character are not compared) from the array pointed to by s1 to the array
+N    * pointed to by s2, case-insensitively as defined by the current locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2.
+N    */
+Nextern _ARMABI int strcoll(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) int strcoll(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * compares the string pointed to by s1 to the string pointed to by s2, both
+N    * interpreted as appropriate to the LC_COLLATE category of the current
+N    * locale.
+N    * Returns: an integer greater than, equal to, or less than zero, according
+N    *          as the string pointed to by s1 is greater than, equal to, or
+N    *          less than the string pointed to by s2 when both are interpreted
+N    *          as appropriate to the current locale.
+N    */
+N
+Nextern _ARMABI size_t strxfrm(char * __restrict /*s1*/, const char * __restrict /*s2*/, size_t /*n*/) __attribute__((__nonnull__(2)));
+Xextern __declspec(__nothrow) size_t strxfrm(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
+N   /*
+N    * transforms the string pointed to by s2 and places the resulting string
+N    * into the array pointed to by s1. The transformation function is such that
+N    * if the strcmp function is applied to two transformed strings, it returns
+N    * a value greater than, equal to or less than zero, corresponding to the
+N    * result of the strcoll function applied to the same two original strings.
+N    * No more than n characters are placed into the resulting array pointed to
+N    * by s1, including the terminating null character. If n is zero, s1 is
+N    * permitted to be a null pointer. If copying takes place between objects
+N    * that overlap, the behaviour is undefined.
+N    * Returns: The length of the transformed string is returned (not including
+N    *          the terminating null character). If the value returned is n or
+N    *          more, the contents of the array pointed to by s1 are
+N    *          indeterminate.
+N    */
+N
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const void *memchr(const void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Sextern "C++" void *memchr(void * __s, int __c, size_t __n) __attribute__((__nonnull__(1)));
+Sextern "C++" inline void *memchr(void * __s, int __c, size_t __n)
+S    { return const_cast<void *>(memchr(const_cast<const void *>(__s), __c, __n)); }
+N#else
+Nextern _ARMABI void *memchr(const void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) void *memchr(const void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the first occurence of c (converted to an unsigned char) in the
+N    * initial n characters (each interpreted as unsigned char) of the object
+N    * pointed to by s.
+N    * Returns: a pointer to the located character, or a null pointer if the
+N    *          character does not occur in the object.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Sextern "C++" char *strchr(char * __s, int __c) __attribute__((__nonnull__(1)));
+Sextern "C++" inline char *strchr(char * __s, int __c)
+S    { return const_cast<char *>(strchr(const_cast<const char *>(__s), __c)); }
+N#else
+Nextern _ARMABI char *strchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) char *strchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the first occurence of c (converted to an char) in the string
+N    * pointed to by s (including the terminating null character).
+N    * Returns: a pointer to the located character, or a null pointer if the
+N    *          character does not occur in the string.
+N    */
+N
+Nextern _ARMABI size_t strcspn(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strcspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * computes the length of the initial segment of the string pointed to by s1
+N    * which consists entirely of characters not from the string pointed to by
+N    * s2. The terminating null character is not considered part of s2.
+N    * Returns: the length of the segment.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strpbrk(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Sextern "C++" char *strpbrk(char * __s1, const char * __s2) __attribute__((__nonnull__(1,2)));
+Sextern "C++" inline char *strpbrk(char * __s1, const char * __s2)
+S    { return const_cast<char *>(strpbrk(const_cast<const char *>(__s1), __s2)); }
+N#else
+Nextern _ARMABI char *strpbrk(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strpbrk(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N#endif
+N   /*
+N    * locates the first occurence in the string pointed to by s1 of any
+N    * character from the string pointed to by s2.
+N    * Returns: returns a pointer to the character, or a null pointer if no
+N    *          character form s2 occurs in s1.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strrchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Sextern "C++" char *strrchr(char * __s, int __c) __attribute__((__nonnull__(1)));
+Sextern "C++" inline char *strrchr(char * __s, int __c)
+S    { return const_cast<char *>(strrchr(const_cast<const char *>(__s), __c)); }
+N#else
+Nextern _ARMABI char *strrchr(const char * /*s*/, int /*c*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) char *strrchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+N#endif
+N   /*
+N    * locates the last occurence of c (converted to a char) in the string
+N    * pointed to by s. The terminating null character is considered part of
+N    * the string.
+N    * Returns: returns a pointer to the character, or a null pointer if c does
+N    *          not occur in the string.
+N    */
+N
+Nextern _ARMABI size_t strspn(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * computes the length of the initial segment of the string pointed to by s1
+N    * which consists entirely of characters from the string pointed to by S2
+N    * Returns: the length of the segment.
+N    */
+N
+N#ifdef __cplusplus
+Sextern _ARMABI const char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Sextern "C++" char *strstr(char * __s1, const char * __s2) __attribute__((__nonnull__(1,2)));
+Sextern "C++" inline char *strstr(char * __s1, const char * __s2)
+S    { return const_cast<char *>(strstr(const_cast<const char *>(__s1), __s2)); }
+N#else
+Nextern _ARMABI char *strstr(const char * /*s1*/, const char * /*s2*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) char *strstr(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+N#endif
+N   /*
+N    * locates the first occurence in the string pointed to by s1 of the
+N    * sequence of characters (excluding the terminating null character) in the
+N    * string pointed to by s2.
+N    * Returns: a pointer to the located string, or a null pointer if the string
+N    *          is not found.
+N    */
+N
+Nextern _ARMABI char *strtok(char * __restrict /*s1*/, const char * __restrict /*s2*/) __attribute__((__nonnull__(2)));
+Xextern __declspec(__nothrow) char *strtok(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(2)));
+Nextern _ARMABI char *_strtok_r(char * /*s1*/, const char * /*s2*/, char ** /*ptr*/) __attribute__((__nonnull__(2,3)));
+Xextern __declspec(__nothrow) char *_strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+N#ifndef __STRICT_ANSI__
+Nextern _ARMABI char *strtok_r(char * /*s1*/, const char * /*s2*/, char ** /*ptr*/) __attribute__((__nonnull__(2,3)));
+Xextern __declspec(__nothrow) char *strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+N#endif
+N   /*
+N    * A sequence of calls to the strtok function breaks the string pointed to
+N    * by s1 into a sequence of tokens, each of which is delimited by a
+N    * character from the string pointed to by s2. The first call in the
+N    * sequence has s1 as its first argument, and is followed by calls with a
+N    * null pointer as their first argument. The separator string pointed to by
+N    * s2 may be different from call to call.
+N    * The first call in the sequence searches for the first character that is
+N    * not contained in the current separator string s2. If no such character
+N    * is found, then there are no tokens in s1 and the strtok function returns
+N    * a null pointer. If such a character is found, it is the start of the
+N    * first token.
+N    * The strtok function then searches from there for a character that is
+N    * contained in the current separator string. If no such character is found,
+N    * the current token extends to the end of the string pointed to by s1, and
+N    * subsequent searches for a token will fail. If such a character is found,
+N    * it is overwritten by a null character, which terminates the current
+N    * token. The strtok function saves a pointer to the following character,
+N    * from which the next search for a token will start.
+N    * Each subsequent call, with a null pointer as the value for the first
+N    * argument, starts searching from the saved pointer and behaves as
+N    * described above.
+N    * Returns: pointer to the first character of a token, or a null pointer if
+N    *          there is no token.
+N    *
+N    * strtok_r() is a common extension which works exactly like
+N    * strtok(), but instead of storing its state in a hidden
+N    * library variable, requires the user to pass in a pointer to a
+N    * char * variable which will be used instead. Any sequence of
+N    * calls to strtok_r() passing the same char ** pointer should
+N    * behave exactly like the corresponding sequence of calls to
+N    * strtok(). This means that strtok_r() can safely be used in
+N    * multi-threaded programs, and also that you can tokenise two
+N    * strings in parallel.
+N    */
+N
+Nextern _ARMABI void *memset(void * /*s*/, int /*c*/, size_t /*n*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) void *memset(void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * copies the value of c (converted to an unsigned char) into each of the
+N    * first n charactes of the object pointed to by s.
+N    * Returns: the value of s.
+N    */
+Nextern _ARMABI char *strerror(int /*errnum*/);
+Xextern __declspec(__nothrow) char *strerror(int  );
+N   /*
+N    * maps the error number in errnum to an error message string.
+N    * Returns: a pointer to the string, the contents of which are
+N    *          implementation-defined. The array pointed to shall not be
+N    *          modified by the program, but may be overwritten by a
+N    *          subsequent call to the strerror function.
+N    */
+Nextern _ARMABI size_t strlen(const char * /*s*/) __attribute__((__nonnull__(1)));
+Xextern __declspec(__nothrow) size_t strlen(const char *  ) __attribute__((__nonnull__(1)));
+N   /*
+N    * computes the length of the string pointed to by s.
+N    * Returns: the number of characters that precede the terminating null
+N    *          character.
+N    */
+N
+Nextern _ARMABI size_t strlcpy(char * /*dst*/, const char * /*src*/, size_t /*len*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strlcpy(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * copies the string src into the string dst, using no more than
+N    * len bytes of dst. Always null-terminates dst _within the
+N    * length len (i.e. will copy at most len-1 bytes of string plus
+N    * a NUL), unless len is actually zero.
+N    * 
+N    * Return value is the length of the string that _would_ have
+N    * been written, i.e. the length of src. Thus, the operation
+N    * succeeded without truncation if and only if ret < len;
+N    * otherwise, the value in ret tells you how big to make dst if
+N    * you decide to reallocate it. (That value does _not_ include
+N    * the NUL.)
+N    * 
+N    * This is a BSD-derived library extension, which we are
+N    * permitted to declare in a standard header because ISO defines
+N    * function names beginning with 'str' as reserved for future
+N    * expansion of <string.h>.
+N    */
+N
+Nextern _ARMABI size_t strlcat(char * /*dst*/, const char * /*src*/, size_t /*len*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) size_t strlcat(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+N   /*
+N    * concatenates the string src to the string dst, using no more
+N    * than len bytes of dst. Always null-terminates dst _within the
+N    * length len (i.e. will copy at most len-1 bytes of string plus
+N    * a NUL), unless len is actually zero.
+N    * 
+N    * Return value is the length of the string that _would_ have
+N    * been written, i.e. the length of src plus the original length
+N    * of dst. Thus, the operation succeeded without truncation if
+N    * and only if ret < len; otherwise, the value in ret tells you
+N    * how big to make dst if you decide to reallocate it. (That
+N    * value does _not_ include the NUL.)
+N    * 
+N    * If no NUL is encountered within the first len bytes of dst,
+N    * then the length of dst is considered to have been equal to
+N    * len for the purposes of the return value (as if there were a
+N    * NUL at dst[len]). Thus, the return value in this case is len
+N    * + strlen(src).
+N    * 
+N    * This is a BSD-derived library extension, which we are
+N    * permitted to declare in a standard header because ISO defines
+N    * function names beginning with 'str' as reserved for future
+N    * expansion of <string.h>.
+N    */
+N
+Nextern _ARMABI void _membitcpybl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpybl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpybb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpybb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpyhl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpyhl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpyhb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpyhb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpywl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpywl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitcpywb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitcpywb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovebl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovebl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovebb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovebb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovehl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovehl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovehb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovehb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovewl(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovewl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+Nextern _ARMABI void _membitmovewb(void * /*dest*/, const void * /*src*/, int /*destoffset*/, int /*srcoffset*/, size_t /*nbits*/) __attribute__((__nonnull__(1,2)));
+Xextern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+N    /*
+N     * Copies or moves a piece of memory from one place to another,
+N     * with one-bit granularity. So you can start or finish a copy
+N     * part way through a byte, and you can copy between regions
+N     * with different alignment within a byte.
+N     * 
+N     * All these functions have the same prototype: two void *
+N     * pointers for destination and source, then two integers
+N     * giving the bit offset from those pointers, and finally the
+N     * number of bits to copy.
+N     * 
+N     * Just like memcpy and memmove, the "cpy" functions copy as
+N     * fast as they can in the assumption that the memory regions
+N     * do not overlap, while the "move" functions cope correctly
+N     * with overlap.
+N     *
+N     * Treating memory as a stream of individual bits requires
+N     * defining a convention about what order those bits are
+N     * considered to be arranged in. The above functions support
+N     * multiple conventions:
+N     * 
+N     *  - the "bl" functions consider the unit of memory to be the
+N     *    byte, and consider the bits within each byte to be
+N     *    arranged in little-endian fashion, so that the LSB comes
+N     *    first. (For example, membitcpybl(a,b,0,7,1) would copy
+N     *    the MSB of the byte at b to the LSB of the byte at a.)
+N     * 
+N     *  - the "bb" functions consider the unit of memory to be the
+N     *    byte, and consider the bits within each byte to be
+N     *    arranged in big-endian fashion, so that the MSB comes
+N     *    first.
+N     * 
+N     *  - the "hl" functions consider the unit of memory to be the
+N     *    16-bit halfword, and consider the bits within each word
+N     *    to be arranged in little-endian fashion.
+N     * 
+N     *  - the "hb" functions consider the unit of memory to be the
+N     *    16-bit halfword, and consider the bits within each word
+N     *    to be arranged in big-endian fashion.
+N     * 
+N     *  - the "wl" functions consider the unit of memory to be the
+N     *    32-bit word, and consider the bits within each word to be
+N     *    arranged in little-endian fashion.
+N     * 
+N     *  - the "wb" functions consider the unit of memory to be the
+N     *    32-bit word, and consider the bits within each word to be
+N     *    arranged in big-endian fashion.
+N     */
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N  #endif /* __STRING_DECLS */
+N
+N  #ifdef __cplusplus
+S    #ifndef __STRING_NO_EXPORTS
+S      using ::std::size_t;
+S      using ::std::memcpy;
+S      using ::std::memmove;
+S      using ::std::strcpy;
+S      using ::std::strncpy;
+S      using ::std::strcat;
+S      using ::std::strncat;
+S      using ::std::memcmp;
+S      using ::std::strcmp;
+S      using ::std::strncmp;
+S      using ::std::strcasecmp;
+S      using ::std::strncasecmp;
+S      using ::std::strcoll;
+S      using ::std::strxfrm;
+S      using ::std::memchr;
+S      using ::std::strchr;
+S      using ::std::strcspn;
+S      using ::std::strpbrk;
+S      using ::std::strrchr;
+S      using ::std::strspn;
+S      using ::std::strstr;
+S      using ::std::strtok;
+S#ifndef __STRICT_ANSI__
+S      using ::std::strtok_r;
+S#endif
+S      using ::std::_strtok_r;
+S      using ::std::memset;
+S      using ::std::strerror;
+S      using ::std::strlen;
+S      using ::std::strlcpy;
+S      using ::std::strlcat;
+S      using ::std::_membitcpybl;
+S      using ::std::_membitcpybb;
+S      using ::std::_membitcpyhl;
+S      using ::std::_membitcpyhb;
+S      using ::std::_membitcpywl;
+S      using ::std::_membitcpywb;
+S      using ::std::_membitmovebl;
+S      using ::std::_membitmovebb;
+S      using ::std::_membitmovehl;
+S      using ::std::_membitmovehb;
+S      using ::std::_membitmovewl;
+S      using ::std::_membitmovewb;
+S    #endif /* __STRING_NO_EXPORTS */
+N  #endif /* __cplusplus */
+N
+N#endif
+N
+N/* end of string.h */
+N
+L 19 "..\User\fonts\pysearch.c" 2
+N
+N
+N/*
+N*********************************************************************************************************
+N*	                         ºº×ÖÁĞ±í
+N*********************************************************************************************************
+N*/
+Nconst unsigned char PY_mb_space []={""};
+Nconst unsigned char PY_mb_a     []={"°¡°¢ºÇß¹àÄëçï¹"}; 
+Nconst unsigned char PY_mb_ai    []={"°®°«°¤°¥°­°©°¬°¦°§°ª°¯°£°¨´ôàÉæÈè¨êÓŞßíÁàÈïÍö°"};
+Nconst unsigned char PY_mb_an    []={"°´°²°µ°¶°³°¸°°°±°·³§¹ãâÖŞîáíï§èñÚÏğÆÛû÷ö"};
+Nconst unsigned char PY_mb_ang   []={"°º°¹°»Ñö"};
+Nconst unsigned char PY_mb_ao    []={"°À°¼°Á°Â°¾°Ã°½°¿°ÄÏùŞÖæÁâÚæñà»ÛêåÛñúòüéáöË÷¡÷é"};
+Nconst unsigned char PY_mb_ba    []={"°Ñ°Ë°É°Ö°Î°Õ°Ï°Í°Å°Ç°Ó°Ô°È°Ğ°Ê°Ì°Ò°ÆôÎÜØá±öÑîÙ÷É"};
+Nconst unsigned char PY_mb_bai   []={"°Ù°×°Ú°Ü°Ø°İ°Û²®°ŞŞãßÂêş"};
+Nconst unsigned char PY_mb_ban   []={"°ë°ì°à°ã°è°á°æ°ß°å°é°â°ç°ê°ä°íñ­ÛàîÓô²Úæ"};
+Nconst unsigned char PY_mb_bang  []={"°ï°ô°ó°õ°÷°î°ñ°ö°ø°ğ°ò°ùäºİò"};
+Nconst unsigned char PY_mb_bao   []={"°ü±§±¨±¥±£±©±¡±¦±¬°ş±ªÅÙ±¢°ı±¤°ú°û±«ÅÚÆÙöµæßìÒñÙğ±õÀİá"};
+Nconst unsigned char PY_mb_bei   []={"±»±±±¶±­±³±¯±¸±®±°±´±²±µ±º±·±¹±ÛñØã£İíğÇöÍßÂ"};
+Nconst unsigned char PY_mb_ben   []={"±¾±¼±½±¿º»ï¼êÚÛÎÛĞ"};
+Nconst unsigned char PY_mb_beng  []={"±Ä±Á±Â±À±Å°ö±Ãê´àÔ"};
+Nconst unsigned char PY_mb_bi    []={"±È±Ê±Õ±Ç±Ì±Ø±Ü±Æ±Ï±Û±Ë±É±Ú±Í±Ò±×±Ù±Î±Ğ±Ó±Ö±İ±Ñ±ÔÃØÃÚïõŞµİ©ÜÅİÉØ°ñÔî¯ÙÂæÔáùóÙóëó÷ô°ÜêôÅâØîéõÏßÁã¹êÚääå¨èµßÙ÷Âåöåşæ¾"};
+Nconst unsigned char PY_mb_bian  []={"±ß±ä±ã±é±à±ç±â±á±Ş±å±æ±èâíí¾ØÒãêíÜòùñÛöıóÖÜĞñ¹ÛÍçÂ"};
+Nconst unsigned char PY_mb_biao  []={"±í±ê±ë±ìè¼æ»ì©ì­÷§ñ¦ì®ïğñÑæôïÚ"};
+Nconst unsigned char PY_mb_bie   []={"±ğ±ï±î±ñõ¿"};
+Nconst unsigned char PY_mb_bin   []={"±ö±ô±÷±ò±ó±õáÙë÷éëçÍ÷ÆÙÏéÄ÷ŞïÙçã"};
+Nconst unsigned char PY_mb_bing  []={"²¢²¡±ø±ù±û±ıÆÁ±ü±ú±şŞğéÄÙ÷Úû"};
+Nconst unsigned char PY_mb_bo    []={"²¦²¨²¥²´²©²®²µ²£°ş±¡²ª²¤²§²«²±²¯°ã°Ø²°²³²¬²­²²ÆÇ²·íçõËéŞÙñğ¾õÛà£Ş¬ô¤îàâÄë¢"};
+Nconst unsigned char PY_mb_bu    []={"²»²½²¹²¼²¿²¶²·²¾²¸±¤²º²ÀÆÒê³åÍêÎîßîĞõ³ß²"};
+Nconst unsigned char PY_mb_ca    []={"²Á²ğíåàê"};
+Nconst unsigned char PY_mb_cai   []={"²Â²Å²Ä²Æ²Ã²É²Ê²Ç²È²Ë²Ì"};
+Nconst unsigned char PY_mb_can   []={"²Ï²Ğ²ô²Î²Ò²Ñ²Í²Óæîè²åî÷õôÓ"};
+Nconst unsigned char PY_mb_cang  []={"²Ø²Ö²×²Õ²ÔØ÷"};
+Nconst unsigned char PY_mb_cao   []={"²İ²Ù²Ü²Û²ÚàĞô½ó©äî"};
+Nconst unsigned char PY_mb_ce    []={"²á²à²ß²â²Şâü"};
+Nconst unsigned char PY_mb_cen   []={"²Îá¯ä¹"};
+Nconst unsigned char PY_mb_ceng  []={"Ôø²ã²äàá"};
+Nconst unsigned char PY_mb_cha   []={"²é²å²æ²è²î²í²ë²ì²ç²êÉ²²ïé«é¶ïïñÃãââÇéßæ±è¾ïÊàê"};
+Nconst unsigned char PY_mb_chai  []={"²Ë²ñ²ğ²î²òîÎğûò²Ù­"};
+Nconst unsigned char PY_mb_chan  []={"²ú²ø²ô²ó²û²ü²ù²÷²õµ¥²öêèæ¿İÛÚÆÙæâÜåîó¸åñïââãäıìøæöõğå¤"};
+Nconst unsigned char PY_mb_chang []={"³¤³ª³£³¡³§³¢³¦³©²ı³¨³«³¥²şÉÑöğë©İÅã®æÏáäÛËãÑâêØöêÆÜÉæ½"};
+Nconst unsigned char PY_mb_chao  []={"³¯³­³¬³³³±³²³´³°½Ë´Â³®â÷ìÌñéêË"};
+Nconst unsigned char PY_mb_che   []={"³µ³·³¶³¸³¹³ß³ºÛåíº"};
+Nconst unsigned char PY_mb_chen  []={"³Ã³Æ³½³¼³¾³¿³Á³Â³Ä³È³À³»é´ŞÓÚÈí×Úßå·ö³àÁØ÷è¡"};
+Nconst unsigned char PY_mb_cheng []={"³É³ËÊ¢³Å³Æ³Ç³Ì³Ê³Ï³Í³Ñ³Ò³Î³È³ĞëóèßÛôîñàáîõõ¨êÉñÎèÇòÉØ©îª"};
+Nconst unsigned char PY_mb_chi   []={"³Ô³ß³Ù³Ø³á³Õ³à³İ³Ü³Ö³â³Ş³Ú³Û³ã³×õØÛæÜİÜ¯âÁæÊôùñİë·ßêñ¡ò¿à´ğ·í÷ó¤óø÷Îß³áÜó×àÍ"};
+Nconst unsigned char PY_mb_chong []={"³åÖØ³æ³ä³è³çÓ¿ÖÖô¾âçô©ï¥ã¿Üû"};
+Nconst unsigned char PY_mb_chou  []={"³é³î³ô³ğ³ó³í³ñ³ê³ï³ì³ë³òã°Ù±àüñ¬öÅ"};
+Nconst unsigned char PY_mb_chu   []={"³ö´¦³õ³ú³ı´¥³÷³ş´¡´¢Ğó³ü´£´¤³ù³ø³ûèúèÆÛ»âğç©Ø¡ãÀõé÷íòÜéË"};
+Nconst unsigned char PY_mb_chuai []={"´§ëúà¨àÜŞõõß"};
+Nconst unsigned char PY_mb_chuan []={"´©´¬´«´®´¨´­´ªë°å×îËô­â¶çİ"};
+Nconst unsigned char PY_mb_chuang[]={"´°´²´³´´´¯´±âë"};
+Nconst unsigned char PY_mb_chui  []={"´µ´¹´¶´¸´·×µé³é¢Úï"};
+Nconst unsigned char PY_mb_chun  []={"´º´½´¿´À´¼´¾´»òíİ»ğÈ"};
+Nconst unsigned char PY_mb_chuo  []={"´Á´ÂõÖà¨öºê¡"};
+Nconst unsigned char PY_mb_ci    []={"´Î´Ë´Ê´É´È´Æ´Å´Ç´Ì´ÄËÅ´Ã´Í²î×ÈßÚğËìôôÙ"};
+Nconst unsigned char PY_mb_cong  []={"´Ó´Ô´Ğ´Ò´Ï´ÑçıèÈäÈè®æõÜÊ"};
+Nconst unsigned char PY_mb_cou   []={"´Õé¨ê£ëí"};
+Nconst unsigned char PY_mb_cu    []={"´Ö´×´Ø´Ù×äáŞâ§İıõ¾õ¡éãõí"};
+Nconst unsigned char PY_mb_cuan  []={"´Ü´Ú´ÛÔÜß¥Ùàìàïé"};
+Nconst unsigned char PY_mb_cui   []={"´ß´à´İ´ä´Ş´ãË¥´á´âè­ßıã²İÍë¥éÁ"};
+Nconst unsigned char PY_mb_cun   []={"´å´ç´æ¶×ââñå"};
+Nconst unsigned char PY_mb_cuo   []={"´í´é´ê´ì´ë´èáÏØÈõºëâğîõãğûï±ïó"};
+Nconst unsigned char PY_mb_da    []={"´ó´ğ´ï´ò´î´ñËşóÎŞÇßÕñ×ğãâò÷°æ§í³àª÷²"};
+Nconst unsigned char PY_mb_dai   []={"´ø´ú´ô´÷´ı´ü´ş´õ´ûµ¡´ö´ó´ùß¾çéåÊá·ß°÷ìææçªÜ¤"};
+Nconst unsigned char PY_mb_dan   []={"µ«µ¥µ°µ£µ¯µ§µ¨µ­µ¤µ¢µ©µªµ®µ¦µ¬Ê¯ğãå£ğ÷İÌééíññõóìêæÙÙà¢"};
+Nconst unsigned char PY_mb_dang  []={"µ±µ³µ²µµµ´ÚÔîõå´İĞÛÊñÉí¸"};
+Nconst unsigned char PY_mb_dao   []={"µ½µÀµ¹µ¶µºµÁµ¾µ·µ¿µ¼µ¸µ»àüôîâáìâë®ß¶"};
+Nconst unsigned char PY_mb_de    []={"µÄµØµÃµÂµ×ï½"};
+Nconst unsigned char PY_mb_deng  []={"µÈµÆµËµÇ³ÎµÉµÊµÅíãïëàâáØê­ô£"};
+Nconst unsigned char PY_mb_di    []={"µØµÚµ×µÍµĞµÖµÎµÛµİµÕµÜµŞµÌµÄµÓÌáµÑµÏµÒµÔµÙêëÛ¡ÚĞÚ®àÖèÜ÷¾ôÆØµé¦íûæ·İ¶íÚïáÛæÙáíÆ"};
+Nconst unsigned char PY_mb_dia	[]={"àÇ"};
+Nconst unsigned char PY_mb_dian  []={"µãµçµêµîµíµàµßµæµâµëµìµäµèµåµáµéõÚîäÛãÚçñ²ô¡çèáÛñ°"};
+Nconst unsigned char PY_mb_diao  []={"µôµöµğµõµñµ÷µóµïµòÄñîöï¢öôõõ"};
+Nconst unsigned char PY_mb_die   []={"µùµøµşµúµûµüµıëºÜ¦ğ¬ŞéõŞñóöøÛìà©"};
+Nconst unsigned char PY_mb_ding  []={"¶¥¶¨¶¢¶©¶£¶¡¶¤¶¦¶§î®çàîúëëíÖğÛØêñôôúà¤"};
+Nconst unsigned char PY_mb_diu   []={"¶ªîû"};
+Nconst unsigned char PY_mb_dong  []={"¶¯¶«¶®¶´¶³¶¬¶­¶°¶±¶²á¼ğ´ÛíëËëØíÏë±á´ßË"};
+Nconst unsigned char PY_mb_dou   []={"¶¼¶·¶¹¶º¶¸¶¶¶»¶µ¶Áò½ñ¼óûİú"};
+Nconst unsigned char PY_mb_du    []={"¶Á¶È¶¾¶É¶Â¶À¶Ç¶Æ¶Ä¶Ã¶Å¶½¶¼¶¿¶Ê¶Ùó¼óÆà½äÂèüë¹÷ò÷ÇÜ¶"};
+Nconst unsigned char PY_mb_duan  []={"¶Î¶Ì¶Ï¶Ë¶Í¶Ğé²ìÑóı"};
+Nconst unsigned char PY_mb_dui   []={"¶Ô¶Ó¶Ñ¶Ò¶ØïæíÔí¡í­"};
+Nconst unsigned char PY_mb_dun   []={"¶Ö¶Ù¶×¶Õ¶Ø¶Û¶Ü¶Ú¶İ²»õ»ãçíïïæíâìÀí»"};
+Nconst unsigned char PY_mb_duo   []={"¶à¶ä¶á¶æ¶ç¶â¶å¶è¶é¶Ş¶ßÍÔ¶È¶ãõâãõßÍîìñÖßáç¶"};
+Nconst unsigned char PY_mb_e     []={"¶öÅ¶¶î¶ì¶ê¶ó¶í¶ï°¢¶ô¶ë¶ğ¶ñ¶ò¶õï°ÚÌÛÑïÉãÕİàÜÃéîæ¹İ­öùò¦ëñãµßÀØ¬ğÊåí"};
+Nconst unsigned char PY_mb_en    []={"¶÷ŞôàÅ"};
+Nconst unsigned char PY_mb_er    []={"¶ø¶ş¶ú¶ù¶ü¶û·¡¶ıçíöÜğ¹Ù¦åÇîï"};
+Nconst unsigned char PY_mb_fa    []={"·¢·¨·£·¥·¦·¤·§·©ÛÒíÀ"};
+Nconst unsigned char PY_mb_fan   []={"·´·¹·­·¬·¸·²·«·µ·º·±·³···¶·®·ª·¯·°ìÜŞÀî²Ş¬õìèóá¦"};
+Nconst unsigned char PY_mb_fang  []={"·Å·¿·À·Ä·¼·½·Ã·Â·»·Á·¾îÕáİÚúèÊô³öĞ"};
+Nconst unsigned char PY_mb_fei   []={"·Ç·É·Ê·Ñ·Î·Ï·Ë·Í·Ğ·Æ·Ì·Èóõòãëèìéåúì³áôÜÀã­ïĞö­ôäé¼äÇöîç³ğò"};
+Nconst unsigned char PY_mb_fen   []={"·Ö·İ·Ò·Û·Ø·Ü·ß·×·Ş·à·Ó·Ù·Ô·Õ·Úèûå¯ö÷çãÙÇ÷÷"};
+Nconst unsigned char PY_mb_feng  []={"·ç·â·ê·ì·ä·á·ã·è·ë·î·í·ï·å·æ·éí¿ÙºÛºİ×ããßô"};
+Nconst unsigned char PY_mb_fo    []={"·ğ"};
+Nconst unsigned char PY_mb_fou   []={"·ñó¾"};
+Nconst unsigned char PY_mb_fu    []={"¸±·ù·ö¸¡¸»¸£¸º·ü¸¶¸´·ş¸½¸©¸«¸°¸¿·÷·ò¸¸·û·õ·ó¸³¸¨¸®¸¯¸¹¸¾¸§¸²·ø·ô·ú·ğ·ı¸µ¸¼¸¥¸¢¸¤ÊĞ¸¦¸ª¸¬¸­¸·¸ÀíëíÉÜŞõÃõÆò¶ÜÀöÖá¥ÜòäæòİŞÔİÊòğöûòóç¦ç¨êçî·ïûÙëôïÙìèõİ³æÚğ¥æââöìğß»Û®Ü½åõ"};
+Nconst unsigned char PY_mb_ga    []={"¸Á¸ì¼Ğ¸Â¿§ÔşîÅÙ¤ê¸ŞÎæØæÙßÈ"};
+Nconst unsigned char PY_mb_gai   []={"¸Ã¸Ä¸Ç¸Å¸Æ½æ¸Èê®ÛòØ¤Úëêà"};
+Nconst unsigned char PY_mb_gan   []={"¸Ï¸É¸Ğ¸Ò¸Í¸Ê¸Î¸Ì¸Ë¸Ó¸Ñêºôûí·ğáãïÜÕß¦ç¤éÏä÷äÆŞÏÛá"};
+Nconst unsigned char PY_mb_gang  []={"¸Õ¸Ö¸Ù¸Û¸×¸Ú¸Ü¸Ô¸Ø¿¸óàî¸í°"};
+Nconst unsigned char PY_mb_gao   []={"¸ß¸ã¸æ¸å¸à¸İ¸á¸â¸ä¸ŞÛ¬Ú¾ê½çÉØºéÀï¯éÂŞ»"};
+Nconst unsigned char PY_mb_ge    []={"¸ö¸÷¸è¸î¸ç¸é¸ñ¸ó¸ô¸ï¿©¸ì¸ğ¸ò¸ê¸ë¸í¸ÇÒÙºÏ¸õíÑ÷Àò¢ñËÜªò´ÛÙïÓØîô´ØªàÃëõë¡æüÛÁ"};
+Nconst unsigned char PY_mb_gei   []={"¸ø"};
+Nconst unsigned char PY_mb_gen   []={"¸ú¸ùßçİ¢Ø¨ôŞ"};
+Nconst unsigned char PY_mb_geng  []={"¸ü¸û¾±¹£¹¢¸ı¸ş¹¡âÙöáßìç®"};
+Nconst unsigned char PY_mb_gong  []={"¹¤¹«¹¦¹²¹­¹¥¹¬¹©¹§¹°¹±¹ª¹®¹¯¹¨ºìëÅö¡çîò¼"};
+Nconst unsigned char PY_mb_gou   []={"¹»¹µ¹·¹³¹´¹º¹¹¹¶¹¸¾äá¸ì°èÛ÷¸êíçÃóÑÚ¸åÜæÅóôØş"};
+Nconst unsigned char PY_mb_gu    []={"¹Å¹É¹Ä¹È¹Ê¹Â¹¿¹Ã¹Ë¹Ì¹Í¹À¹¾¹Ç¹¼¹Á¹Æ¼Ö¹½èôğ³ãééïáÄİÔğÀ÷½îÜëûôşßÉöñÚ¬êôî­ì±ïÀêöğóõıòÁî¹ØÅ"};
+Nconst unsigned char PY_mb_gua   []={"¹Ò¹Î¹Ï¹Ñ¹Ğ¹ÓØÔßÉëÒğ»èéÚ´"};
+Nconst unsigned char PY_mb_guai  []={"¹Ö¹Õ¹ÔŞâ"};
+Nconst unsigned char PY_mb_guan  []={"¹Ø¹Ü¹Ù¹Û¹İ¹ß¹Ş¹à¹Ú¹á¹×ÂÚîÂñæİ¸ŞèäÊ÷¤ğÙÙÄ"};
+Nconst unsigned char PY_mb_guang []={"¹â¹ã¹äèæáîßÛë×"};
+Nconst unsigned char PY_mb_gui   []={"¹é¹ó¹í¹ò¹ì¹æ¹è¹ğ¹ñ¹ê¹î¹ë¹å¹ç¹ô¿ş¹ïÈ²âÑå³èíØÛ÷¬öÙğ§ØĞæ£êĞóşêÁ"};
+Nconst unsigned char PY_mb_gun   []={"¹ö¹÷¹õöçÙòíŞçµ"};
+Nconst unsigned char PY_mb_guo   []={"¹ı¹ú¹û¹ü¹ø¹ùÎĞÛöé¤ñøÙåâ£áÆŞâàşßÃë½òäòå"};
+Nconst unsigned char PY_mb_ha    []={"¹ş¸òÏºîş"};
+Nconst unsigned char PY_mb_hai   []={"»¹º£º¦¿Èº¤º¢º§º¡º¥àËõ°ëÜ"};
+Nconst unsigned char PY_mb_han   []={"º°º¬º¹º®ºººµº¨º«º¸º­º¯º©º²º±º³º´º¶º·ºªÚõİÕŞşå«ãÛñüòÀìÊò¥êÏ÷ı"};
+Nconst unsigned char PY_mb_hang  []={"ĞĞÏïº½º»º¼¿Ôñşãìç¬çñ"};
+Nconst unsigned char PY_mb_hao   []={"ºÃºÅºÆº¿º¾ºÂºÁºÀºÄºÑ¸äê»ò«å°àãòºàÆğ©İïå©Ş¶"};
+Nconst unsigned char PY_mb_he    []={"ºÍºÈºÏºÓºÌºËºÎºÇºÉºØºÕºÖºĞº×ºÊºÑºÒºÔÏÅàÀÛÀîÁôçãØò¢ÛÖÚ­æüêÂ"};
+Nconst unsigned char PY_mb_hei   []={"ºÚºÙ"};
+Nconst unsigned char PY_mb_hen   []={"ºÜºİºŞºÛ"};
+Nconst unsigned char PY_mb_heng  []={"ºáºãºßºâºàĞĞèìçñŞ¿"};
+Nconst unsigned char PY_mb_hong  []={"ºìºäºåºçºéºêºæºèºëÚ§ÙêŞ®ãÈŞ°Ùäİ¦ãü"};
+Nconst unsigned char PY_mb_hou   []={"ºóºñºğºíºîºòºïö×óóÜ©ááåËô×÷¿ğú"};
+Nconst unsigned char PY_mb_hu    []={"ºş»§ºô»¢ºø»¥ºú»¤ºı»¡ºöºüºûºù»¦ºõÏ·ºËºÍº÷»£ğÉÙüâïğ×óËìæìè÷½ä°ìïõ­çúàñìÃéõğ­ìÎõúğÀâ©ã±á²äïì²ßüéÎ"};
+Nconst unsigned char PY_mb_hua   []={"»°»¨»¯»­»ª»®»¬»©»«»íîüèëæèí¹"};
+Nconst unsigned char PY_mb_huai  []={"»µ»³»´»±»²»®õ×"};
+Nconst unsigned char PY_mb_huan  []={"»»»¹»½»·»¼»º»¶»Ã»Â»Á»À»¿»¸»¾äñâµß§åÕöéÛ¨÷ßå¾Û¼ïÌà÷ä¡İÈçÙä½"};
+Nconst unsigned char PY_mb_huang []={"»Æ»Å»Î»Ä»É»Ë»Ê»Ñ»Ì»È»Ç»Ğ»Í»ÏÚòëÁäêóòáåöü"};
+Nconst unsigned char PY_mb_hui   []={"»Ø»á»Ò»æ»Ó»ã»Ô»Ù»Ú»İ»Ş»Õ»Ö»à»Û»ß»×»ä»²»Ü»â»ååçä«çõŞ¥à¹í£ßÜêÍãÄ÷âÚ¶ó³Üîä§ßÔò³ÜöçÀ"};
+Nconst unsigned char PY_mb_hun   []={"»ì»è»ç»ë»é»êãÔçõâÆäãÚ»"};
+Nconst unsigned char PY_mb_huo   []={"»ò»î»ğ»ï»õºÍ»ñ»ö»í»ô»óàëïìñëØåŞ½ß«ïÁó¶îØâ·"};
+Nconst unsigned char PY_mb_ji    []={"¼¸¼°¼±¼È¼´»ú¼¦»ı¼Ç¼¶¼«¼Æ¼·¼º¼¾¼Ä¼ÍÏµ»ù¼¤¼ª¼¹¼Ê»÷»ø»û»ş¼¡¼¢¼£¼¥¼§¼¨¼¬¼­¼®¼©¼¯¼²¼³¼µ¼»¼¼¼½¼¿¼À¼Á¼Â¼Ã¼ÅÆÚÆäÆæ¼ÉÆë¼Ë¼Ì¸ø¸ï»üÛÔä©öİåìì´êªöêïúí¶ğ¢ê«ò±ÚµóÅôßóÇØŞß´İğõÒáÕŞáõÕö«ßóçÜÜùñ¤çáî¿Ø¢ÙÊÜ¸Ù¥êåé®÷ÙßÒŞªêé÷ä"};
+Nconst unsigned char PY_mb_jia   []={"¼Ò¼Ó¼Ù¼Û¼Ü¼×¼Ñ¼Ğ¼Î¼İ¼Ş¼Ï¼Ô¼Õ¼Ø¼ÚÇÑ¼ÖîòİçåÈê©ä¤ïØğèí¢áµõÊØÅÙ¤ëÎóÕçìğıÛ£ôÂòÌ"};
+Nconst unsigned char PY_mb_jian  []={"¼û¼ş¼õ¼â¼ä¼ü¼ú¼ç¼æ½¨¼ì¼ı¼å¼ò¼ô¼ß¼à¼á¼é½¡¼è¼ö½£½¥½¦½§¼øÇ³¼ù¼ñ¼í¼ã¼ó¼î¼ï¼ğ½¢¼÷¼ê¼ë½¤ôå÷µê§ÚÉêğèÅëìõÂçÌŞöê¯ë¦İÑöäóÈÚÙé¥àîå¿ñĞõİíúåÀğÏİóÙÔïµäÕ"};
+Nconst unsigned char PY_mb_jiang []={"½«½²½­½±½µ½¬½©½ª½´½¯½®½³Ç¿½°ºçôøíäçÖêññğç­Üüôİä®"};
+Nconst unsigned char PY_mb_jiao  []={"½Ğ½Å½»½Ç½Ì½Ï½É¾õ½¹½º½¿½ÊĞ£½Á½¾½Æ½½½Ã½¼½À½¶½Î½Ñ½·½¸½È½Â½Í½Ä½ËáèÜ´ÙÕòÔë¸á½õÓæ¯ğ¨ÜúğÔàİõ´Ù®äĞöŞŞØ"};
+Nconst unsigned char PY_mb_jie   []={"½Ó½Ú½Ö½è½Ô½Ø½â½ç½á½ì½ã½Ò½ä½é½×½Ù½æ½ß½à½ê½å¼Û¿¬½Õ½Û½Ü½İ½ë½Ş¼ÒÙÊèîà®Ş×÷ºôÉò»àµò¡öÚæ¼íÙÚ¦æİğÜÚµ"};
+Nconst unsigned char PY_mb_jin   []={"½ø½ü½ñ½ö½ô½ğ½ï¾¡¾¢½û½ş½õ½ú½î½ò½÷½í½ó½ı½ùâÛèªâËéÈñÆİÀİ£ñæàäçÆÚáæ¡êáêî"};
+Nconst unsigned char PY_mb_jing  []={"¾¹¾²¾®¾ª¾­¾µ¾©¾»¾´¾«¾°¾¯¾º¾³¾¶¾£¾§¾¨¾¬¾±¾¤¾¥¾¦¾¢¾·¾¸ëÂâ°ÚåëæåòØÙã½æºëÖİ¼ÙÓìºåÉö¦ãş"};
+Nconst unsigned char PY_mb_jiong []={"¾½¾¼ìçåÄ"};
+Nconst unsigned char PY_mb_jiu   []={"¾Í¾Å¾Æ¾É¾Ã¾¾¾È¾À¾Ë¾¿¾Â¾Ç¾Ê¾Á¾Ä¾Ì¾ÎôñğÕõíÙÖèÑèê÷İğ¯ãÎà±"};
+Nconst unsigned char PY_mb_ju    []={"¾ä¾Ù¾Ş¾Ö¾ß¾à¾â¾ç¾Ó¾Û¾Ğ¾Õ¾Ø¾Ú¾Ü¾å¾Ï¾Ñ¾ÔÇÒ¾İ¹ñ½Û¾ã³µ¾×¾Ò¾á¾æÙÆõ¶ñÕåğêøÜÚñÀì«ï¸é§ÜÄè¢Şäé°ö´ôòÜìöÂåáéÙõáé·÷¶îÒÚªèÛ"};
+Nconst unsigned char PY_mb_juan  []={"¾íÈ¦¾ë¾é¾è¾ê¾ì¾îÛ²ïÃîÃïÔáúèğä¸öÁ"};
+Nconst unsigned char PY_mb_jue   []={"¾ö¾ø¾õ½Ç¾ô¾ò¾÷¾ï¾ó¾ñ¾ğ½À½ÅèöàåéÓàµõûØãìßÛÇïãâ±çåáÈŞ§àÙÚÜõêæŞØÊ"};
+Nconst unsigned char PY_mb_jun   []={"¾ü¾ı¾ù¾ú¿¡¾ş¹ê¿¢¿¥¾û¿£¿¤óŞ÷åñäŞÜ"};
+Nconst unsigned char PY_mb_ka    []={"¿¨¿¦¿©¿§ëÌßÇØû"};
+Nconst unsigned char PY_mb_kai   []={"¿ª¿«¿­¿®¿¬ÛîØÜï´îøïÇâéâıİÜ"};
+Nconst unsigned char PY_mb_kan   []={"¿´¿³¿°¿¯Ç¶¿²¼÷¿±íèê¬Ù©î«İ¨ãÛ"};
+Nconst unsigned char PY_mb_kang  []={"¿¹¿»¿¸¿·¿µ¿¶¿ºîÖãÊØø"};
+Nconst unsigned char PY_mb_kao   []={"¿¿¿¼¿¾¿½èàêûåêîí"};
+Nconst unsigned char PY_mb_ke    []={"¿È¿É¿Ë¿Ã¿Æ¿Å¿Ì¿Î¿Í¿Ç¿Ê¿Á¿Â¿Ä¿ÀºÇã¡á³òòç¼òÂéğñ½îİë´ò¤î§ï¾ïıçæ÷Áğâà¾äÛæì"};
+Nconst unsigned char PY_mb_ken   []={"¿Ï¿Ğ¿Ò¿ÑñÌ"};
+Nconst unsigned char PY_mb_keng  []={"¿Ó¿Ôï¬"};
+Nconst unsigned char PY_mb_kong  []={"¿Õ¿×¿Ø¿ÖÙÅáÇóí"};
+Nconst unsigned char PY_mb_kou   []={"¿Ú¿Û¿Ù¿ÜŞ¢ÜÒíîóØßµ"};
+Nconst unsigned char PY_mb_ku    []={"¿Ş¿â¿à¿İ¿ã¿ß¿áØÚ÷¼à·Ü¥ç«"};
+Nconst unsigned char PY_mb_kua   []={"¿ç¿å¿æ¿ä¿èÙ¨"};
+Nconst unsigned char PY_mb_kuai  []={"¿ì¿é¿ê»á¿ëßàØáä«Û¦áöëÚ"};
+Nconst unsigned char PY_mb_kuan  []={"¿í¿î÷Å"};
+Nconst unsigned char PY_mb_kuang []={"¿ó¿ğ¿ñ¿ò¿ö¿õ¿ï¿ôÚ¿Ú÷æşŞÅÚ²ÛÛêÜßÑ"};
+Nconst unsigned char PY_mb_kui   []={"¿÷À¢¿ü¿úÀ£¿û¿ıÀ¡¿ø¿ş¿ùØÑã´Şñî¥õÍñùóñà­åÓêÒİŞã¦à°Ø¸òñÚóÙç"};
+Nconst unsigned char PY_mb_kun   []={"À¦À§À¥À¤öïï¿÷Õçûõ«ãÍã§"};
+Nconst unsigned char PY_mb_kuo   []={"À«À©À¨ÀªÊÊòÒèé"};
+Nconst unsigned char PY_mb_la    []={"À­À²À±À¯À°À®À¬À¶ÂäğøååíÇØİê¹"};
+Nconst unsigned char PY_mb_lai   []={"À´ÀµÀ³áÁáâäµäşêãíùïªñ®ô¥"};
+Nconst unsigned char PY_mb_lan   []={"À¶À¼ÀÃÀ¹ÀºÀÁÀ¸À¿ÀÂÀÄÀ»À¾À·À½ÀÀé­á°ñÜïçìµî½äí"};
+Nconst unsigned char PY_mb_lang  []={"ÀËÀÇÀÈÀÉÀÊÀÆÀÅïüòëİ¹à¥ï¶ãÏİõ"};
+Nconst unsigned char PY_mb_lao   []={"ÀÏÀÌÀÎÀÍÀÓÀÔÂäÀÑÀÒÂçÀĞÁÊñìï©õ²îîßëèááÀğì"};
+Nconst unsigned char PY_mb_le    []={"ÁËÀÖÀÕÀßØìß·ãî÷¦"};
+Nconst unsigned char PY_mb_lei   []={"ÀàÀÛÀáÀ×ÀİÀÕÀŞÀÙÀßÀØÀÜÀÚçĞÚ³ñçõªÙúæĞéÛàÏ"};
+Nconst unsigned char PY_mb_leng  []={"ÀäÀâÀãÜ¨ã¶"};
+Nconst unsigned char PY_mb_li    []={"ÀïÀëÁ¦Á¢ÀîÀıÁ¨ÀíÀûÀæÀåÀñÀúÀöÀôÀçÀèÀéÀêÀìÀğÀòÀóÀõÀ÷ÀøÀùÀüÀşÁ¡Á£Á¤Á¥Á§Ù³ÙµÛªÛŞÜÂİ°İñğ¿óÒ÷¯çÊõÈòÛï®ã¦å¢ôÏèÀó»Øªß¿íÂæËóöğİğßáûŞ¼äàöâìåèİà¦õ·éöîºæêî¾åÎà¬ö¨÷óòÃæ²"};
+Nconst unsigned char PY_mb_lia	[]={"Á©"};
+Nconst unsigned char PY_mb_lian  []={"Á¬ÁªÁ·Á«ÁµÁ³Á¶Á´Á²Á¯Á®Á±Á­Á°ó¹çöéçİüöãŞÆäòì¡ñÍå¥ñÏé¬"};
+Nconst unsigned char PY_mb_liang []={"Á½ÁÁÁ¾Á¹Á¸ÁºÁ¿Á¼ÁÀÁÂÁ©Á»Ü®ö¦õÔé£÷Ëİ¹"};
+Nconst unsigned char PY_mb_liao  []={"ÁËÁÏÁÃÁÄÁÌÁÆÁÎÁÇÁÉÁÅÁÈÁÍÁÊîÉŞ¤ŞÍå¼çÔâ²ğÓàÚ"};
+Nconst unsigned char PY_mb_lie   []={"ÁĞÁÑÁÔÁÓÁÒßÖÛøŞæ÷àôóõñÙıä£"};
+Nconst unsigned char PY_mb_lin   []={"ÁÖÁÙÁÜÁÚÁ×ÁÛÁŞÁßÁàÁÕÁØÁİåàá×İşôÔ÷ëõïê¥âŞãÁî¬éİì¢ßø"};
+Nconst unsigned char PY_mb_ling  []={"ÁíÁîÁìÁãÁåÁáÁéÁëÁäÁèÁêÁâÁæÁçÀâôáòÈÜßç±ê²Û¹ßÊãöèùèÚöìñöàò"};
+Nconst unsigned char PY_mb_liu   []={"ÁùÁ÷ÁôÁõÁøÁïÁòÁöÁñÁğÁóÂµÂ½ç¸ï³öÌïÖä¯æòì¼ğÒìÖåŞ"};
+Nconst unsigned char PY_mb_long  []={"ÁúÂ£ÁıÁûÂ¡Â¢ÅªÁüÁşÂ¤ÛâëÊççÜ×ãñèĞñªíÃ"};
+Nconst unsigned char PY_mb_lou   []={"Â¥Â§Â©ÂªÂ¶Â¦Â¨ÙÍò÷ïÎİäñï÷Ãà¶ğüáĞ"};
+Nconst unsigned char PY_mb_lu    []={"Â·Â¶Â¼Â¹Â½Â¯Â¬Â³Â±Â«Â­Â®ÂµÂ°ÂÌÂ²Â¸Â¾ÂºÂ»Â´ÁùöÔèÓäËŞ¤åÖãòéñëªóüéÖéûÛäëÍàà"};
+Nconst unsigned char PY_mb_luan  []={"ÂÒÂÑÂĞÂÍÂÏÂÎèïöÇÙõæ®ğ½"};
+Nconst unsigned char PY_mb_lue   []={"ÂÔÂÓï²"};
+Nconst unsigned char PY_mb_lun   []={"ÂÛÂÖÂÕÂ×ÂÙÂØÂÚàğ"};
+Nconst unsigned char PY_mb_luo   []={"ÂäÂŞÂàÂãÂâÀÓÂáÂİÂÜÂåÂæÂßÂç¿©ÜıäğÙùöÃÙÀíÑé¡ŞÛëáñ§Şûãøçóïİâ¤"};
+Nconst unsigned char PY_mb_lv    []={"ÂÌÂÊÂÁÂ¿ÂÃÂÅÂËÂÀÂÉÂÈÂÆÂÂÂÇÂÄÙÍëöéµãÌŞÛñÚïù"};
+Nconst unsigned char PY_mb_ma    []={"ÂğÂèÂíÂïÂéÂîÄ¨ÂëÂêÂìÄ¦ßéó¡áïæÖè¿"};
+Nconst unsigned char PY_mb_mai   []={"ÂòÂôÂõÂñÂóÂöÛ½ö²İ¤"};
+Nconst unsigned char PY_mb_man   []={"ÂúÂıÂ÷ÂşÂùÂûÂüÂøÂñÃ¡á£÷©Ü¬òıïÜò©÷´çÏì×"};
+Nconst unsigned char PY_mb_mang  []={"Ã¦Ã¢Ã¤Ã§Ã£Ã¥íËÚøòşäİ"};
+Nconst unsigned char PY_mb_mao   []={"Ã«Ã°Ã±Ã¨Ã¬Ã®Ã²Ã¯Ã³Ã­ÃªÃ©ë£Üâè£òú÷Öí®êÄêóî¦á¹Ùóó±ì¸ã÷"};
+Nconst unsigned char PY_mb_me    []={"Ã´÷á"};
+Nconst unsigned char PY_mb_mei   []={"Ã»Ã¿ÃºÃ¾ÃÀÃ¸ÃÃÃ¶Ã¹ÃµÃ¼Ã·ÃÂÃÁÃ½ÃÓÃÄÃÕÄ­áÒâ­ñÇäØä¼ğÌİ®÷ÈïÑé¹"};
+Nconst unsigned char PY_mb_men   []={"ÃÅÃÇÃÆŞÑìËí¯îÍ"};
+Nconst unsigned char PY_mb_meng  []={"ÃÍÃÎÃÉÃÌÃÏÃËÃÊÃÈÃ¥íæòìÛÂãÂİùó·òµëüô»ô¿Ş«"};
+Nconst unsigned char PY_mb_mi    []={"Ã×ÃÜÃÔÃĞÃÛÃÕÃÙÃØÃÖÃİÃÒÃÓÃÚÃÑŞÂ÷ãßäãè÷çìòâ¨åôÚ×ØÂëßåµôÍà×ôé"};
+Nconst unsigned char PY_mb_mian  []={"ÃæÃŞÃâÃàÃßÃåÃãÃáÃäëïäÏííãæö¼äÅ"};
+Nconst unsigned char PY_mb_miao  []={"ÃëÃçÃíÃîÃèÃéÃêÃìíğçÑç¿åãíµß÷èÂğÅ"};
+Nconst unsigned char PY_mb_mie   []={"ÃğÃïßãóúóºØ¿"};
+Nconst unsigned char PY_mb_min   []={"ÃñÃòÃôÃöÃóÃõçëíªçÅãÉçäÜåãıö¼÷ªáº"};
+Nconst unsigned char PY_mb_ming  []={"ÃûÃ÷ÃüÃùÃúÃøÃËÚ¤î¨êÔÜøäéõ¤"};
+Nconst unsigned char PY_mb_miu   []={"ÃıçÑ"};
+Nconst unsigned char PY_mb_mo    []={"ÃşÄ¥Ä¨Ä©Ä¤Ä«Ã»ÄªÄ¬Ä§Ä£Ä¦Ä¡Ä®Ä°ÂöÄ­ÍòÎŞÃ°Ä¯ï÷İë÷áÜÔºÙæÖÄ¢ñ¢éâïÒæÆÚÓõöõøâÉñò"};
+Nconst unsigned char PY_mb_mou   []={"Ä³Ä±Ä²íøòÖöÊÙ°çÑßè"};
+Nconst unsigned char PY_mb_mu    []={"Ä¾Ä¸Ä¶Ä»Ä¿Ä¹ÄÁÄ²Ä£ÄÂÄºÄµÄ´Ä¼Ä½ÄÀÄ·ÀÑîâë¤ÛéãåØïÜÙ"};
+Nconst unsigned char PY_mb_na    []={"ÄÇÄÃÄÄÄÉÄÆÄÈÄÅÄÏñÄŞàïÕëÇ"};
+Nconst unsigned char PY_mb_nai   []={"ÄËÄÍÄÌÄÎÄÊÄÄİÁÜµèÍØ¾Ù¦"};
+Nconst unsigned char PY_mb_nan   []={"ÄÑÄÏÄĞôöàïòïéªà«ëî"};
+Nconst unsigned char PY_mb_nang  []={"ÄÒâÎêÙàìß­"};
+Nconst unsigned char PY_mb_nao   []={"ÄÖÄÔÄÕÄÓÄ×Ø«îóè§ÛñßÎòÍâ®íĞ"};
+Nconst unsigned char PY_mb_ne    []={"ÄØÄÄÄÇÄÅÚ«"};
+Nconst unsigned char PY_mb_nei   []={"ÄÚÄÄÄÙÄÇ"};
+Nconst unsigned char PY_mb_nen   []={"ÄÛí¥"};
+Nconst unsigned char PY_mb_neng  []={"ÄÜ"};
+Nconst unsigned char PY_mb_ni    []={"ÄãÄàÄâÄåÄæÄØÄçÄßÄáÄäÄİÄŞîêêÇÛèìòâ¥Ù£âõöòíşì»"};
+Nconst unsigned char PY_mb_nian  []={"ÄêÄîÄíÄìÄéÄëÄèÕ³Ø¥ğ¤éıöÓöóÛş"};
+Nconst unsigned char PY_mb_niang []={"ÄïÄğ"};
+Nconst unsigned char PY_mb_niao  []={"ÄñÄòôÁÜàëåæÕ"};
+Nconst unsigned char PY_mb_nie   []={"ÄóÄøÄôÄõÄùÄ÷ÄöÚíŞÁà¿ô«õæò¨Ø¿"};
+Nconst unsigned char PY_mb_nin   []={"Äúí¥"};
+Nconst unsigned char PY_mb_ning  []={"Å¡ÄıÄşÄûÄüÅ¢Øúå¸ßÌñ÷"};
+Nconst unsigned char PY_mb_niu   []={"Å£Å¤Å¦Å¥áğâîæ¤ŞÖ"};
+Nconst unsigned char PY_mb_nong  []={"ÅªÅ¨Å©Å§ßæÙ¯"};
+Nconst unsigned char PY_mb_nu    []={"Å­Å¬Å«æÛæÀæååó"};
+Nconst unsigned char PY_mb_nuan  []={"Å¯"};
+Nconst unsigned char PY_mb_nue   []={"Å°Å±ÚÊ"};
+Nconst unsigned char PY_mb_nuo   []={"Å²ÅµÅ³Å´ÄÈßöÙĞï»Şù"};
+Nconst unsigned char PY_mb_nv    []={"Å®îÏí¤ô¬"};
+Nconst unsigned char PY_mb_o     []={"Å¶à¸àŞ"};
+Nconst unsigned char PY_mb_ou    []={"Å¼Å»Å·ÅºÅ¸ÇøÅ½Å¹âæê±Ú©ñî"};
+Nconst unsigned char PY_mb_pa    []={"ÅÂÅÀÅ¿Å¾°Ò°ÇÅÁÅÃÅÉóáèËİâ"};
+Nconst unsigned char PY_mb_pai   []={"ÅÉÅÅÅÄÅÆÆÈÅÇÅÈßßÙ½İå"};
+Nconst unsigned char PY_mb_pan   []={"ÅÌÅÎÅĞÅÊÅÏÅËÅÑÅÍ·¬°ãÅÖñáó´ñÈãúŞÕãİõç"};
+Nconst unsigned char PY_mb_pang  []={"ÅÔÅÖÅÕÅÓÅÒ°ò°õäèáİåÌó¦"};
+Nconst unsigned char PY_mb_pao   []={"ÅÜÅ×ÅÚÅİÅÙÅÛÅØáóŞËâÒğåëã"};
+Nconst unsigned char PY_mb_pei   []={"ÅãÅäÅâÅŞÅßÅåÅàÅæÅáì·ïÂàúõ¬ö¬àÎ"};
+Nconst unsigned char PY_mb_pen   []={"ÅçÅèäÔ"};
+Nconst unsigned char PY_mb_peng  []={"ÅöÅõÅïÅéÅîÅóÅíÅôÅëÅğÅòÅêÅìÅñâñÜ¡ó²àØ"};
+Nconst unsigned char PY_mb_pi    []={"ÅúÆ¤ÅûÆ¥Åü±ÙÅ÷Æ¨Æ¢Æ§Æ£Æ¦ÅùÅıÅşÆ¡Æ©Åø·ñõùØ§ÛÜæÇñ±Øòß¨Û¯ê¶èÁî¢òçÜ±ÚüßÁÚéîëâÏî¼Ûıç¢ÚğäÄàèò·ñÔ"};
+Nconst unsigned char PY_mb_pian  []={"Æ¬ÆªÆ­Æ«±ã±âôæçÂêúæéëİõäÚÒ"};
+Nconst unsigned char PY_mb_piao  []={"Æ±Æ®Æ¯Æ°ÆÓóªİ³æÎî©éèçÎàÑæôØâ"};
+Nconst unsigned char PY_mb_pie   []={"Æ³Æ²ÜÖë­"};
+Nconst unsigned char PY_mb_pin   []={"Æ·Æ¶Æ¸Æ´ÆµæÉé¯æ°êòò­"};
+Nconst unsigned char PY_mb_ping  []={"Æ½Æ¾Æ¿ÆÀÆÁÆ¹Æ¼Æ»Æº·ëæ³öÒèÒÙ·"};
+Nconst unsigned char PY_mb_po    []={"ÆÆÆÂÆÄÆÅÆÃÆÈ²´ÆÇÆÓ·±ÆÉóÍğ«îÇÚéÛ¶ê·ØÏçêîŞ"};
+Nconst unsigned char PY_mb_pou   []={"ÆÊŞåÙö"};
+Nconst unsigned char PY_mb_pu    []={"ÆËÆÌÆ×¸¬ÆÍÆÑÆÏÆÓÆĞÆØÆÎÆÙÆÒÆÔÆÖ±¤ÆÕ±©ïèàÛÙéäßå§ë«õëè±ïäƒW"};
+Nconst unsigned char PY_mb_qi    []={"ÆğÆäÆßÆøÆÚÆëÆ÷ÆŞÆïÆûÆåÆæÆÛÆáÆôÆİÆâÆñÆöÆúÆüÆîÆàÆóÆòÆõÆçÆíÆÜÆèÆêÆé»üÆù¼©ÆãÆıÆìì÷ñıæëá¨áªõèİ½Ş­èçí¬ÜÎÜùİÂÜ»ãàØ½÷¢Ù¹éÊàÒòÓôëØÁì¥ç÷÷èçùòàÛßè½İİíÓä¿ìóêÈç²"};
+Nconst unsigned char PY_mb_qia   []={"Ç¡¿¨ÆşÇ¢ñÊİÖ÷Ä"};
+Nconst unsigned char PY_mb_qian  []={"Ç°Ç®Ç§Ç£Ç³Ç©Ç·Ç¦Ç¶Ç¥Ç¨Ç¯Ç¬Ç´Ç«Ç±Ç¸ÏËÇ¤Ç²Ç­ÇµÇªá©îÔå½óéŞçåºÙ»ã»ã¥í©ò¯ÜÍİ¡ç×ÙİÜ·ÚäëÉÜçèıêùå¹"};
+Nconst unsigned char PY_mb_qiang []={"Ç¿Ç¹Ç½ÇÀÇ»ÇºÇ¼Ç¾½«òŞõÄê¨ñßãŞìÁïêïºïÏôÇéÉæÍ"};
+Nconst unsigned char PY_mb_qiao  []={"ÇÅÇÆÇÃÇÉÇÌÇÂ¿ÇÇÊÇËÇÄÇÎÇÏÈ¸ÇÇÇÈÇÍÇÁéÔÜñõÎíÍã¾ÚÛ÷³ã¸çØÚ½Øä"};
+Nconst unsigned char PY_mb_qie   []={"ÇĞÇÒÇÓÇÔÇÑÆöÛ§ôòã«ïÆæªóæã»Ù¤êü"};
+Nconst unsigned char PY_mb_qin   []={"Ç×ÇÙÇÖÇÚÇÜÇŞÇØÇÛÇßÇİÇÕßÄñûñæôÀÜËäÚâÛàºòûàßŞìéÕï·"};
+Nconst unsigned char PY_mb_qing  []={"ÇëÇáÇåÇàÇéÇçÇâÇãÇìÇæÇêÇ×ÇäÇèàõö¥éÑóäÜÜòß÷ôóÀöëíàôì"};
+Nconst unsigned char PY_mb_qiong []={"ÇîÇíõ¼ñ·ÚöòËÜäöÆóÌ"};
+Nconst unsigned char PY_mb_qiu   []={"ÇóÇòÇïÇğÇö³ğÇñÇôÇõ¹êé±òÇôÃôÜòøÛÏåÏÙ´ò°êäöúáìäĞ÷üåÙ"};
+Nconst unsigned char PY_mb_qu    []={"È¥È¡ÇøÈ¢ÇşÇúÇ÷È¤ÇüÇıÇùÇûÈ£Ğçó½Ş¾ìîŞ¡íáÛ¾Ú°ğ¶ãÖôğñ³áé÷ñè³ë¬êïòĞëÔöÄá«ÜÄ"};
+Nconst unsigned char PY_mb_quan  []={"È«È¨È°È¦È­È®ÈªÈ¯È§È¬È©îıóÜç¹Ú¹éúî°÷ÜãªòéÜõ"};
+Nconst unsigned char PY_mb_que   []={"È´È±È·È¸È³ÈµÈ²È¶ãÚã×í¨"};
+Nconst unsigned char PY_mb_qun   []={"ÈºÈ¹åÒ÷å"};
+Nconst unsigned char PY_mb_ran   []={"È¾È¼È»È½÷×ÜÛòÅ"};
+Nconst unsigned char PY_mb_rang  []={"ÈÃÈÂÈ¿ÈÁÈÀğ¦ìü"};
+Nconst unsigned char PY_mb_rao   []={"ÈÄÈÆÈÅÜéèãæ¬"};
+Nconst unsigned char PY_mb_re    []={"ÈÈÈôÈÇßö"};
+Nconst unsigned char PY_mb_ren   []={"ÈËÈÎÈÌÈÏÈĞÈÊÈÍÈÑÈÒÈÉâ¿éíØğÜóİØñÅïş"};
+Nconst unsigned char PY_mb_reng  []={"ÈÓÈÔ"};
+Nconst unsigned char PY_mb_ri    []={"ÈÕ"};
+Nconst unsigned char PY_mb_rong  []={"ÈİÈŞÈÚÈÜÈÛÈÙÈÖÈØÈßÈ×éÅáõáÉëÀòî"};
+Nconst unsigned char PY_mb_rou   []={"ÈâÈàÈáôÛõå÷·"};
+Nconst unsigned char PY_mb_ru    []={"ÈçÈëÈêÈåÈãÈéÈìÈèÈäÈæİêñàï¨àéçÈå¦Ş¸ò¬äáä²"};
+Nconst unsigned char PY_mb_ruan  []={"ÈíÈîëÃ"};
+Nconst unsigned char PY_mb_rui   []={"ÈğÈïÈñî£ÜÇò¸èÄŞ¨"};
+Nconst unsigned char PY_mb_run   []={"ÈòÈó"};
+Nconst unsigned char PY_mb_ruo   []={"ÈôÈõÙ¼óè"};
+Nconst unsigned char PY_mb_sa    []={"ÈöÈ÷ÈøêıØíØ¦ìªëÛ"};
+Nconst unsigned char PY_mb_sai   []={"ÈûÈùÈúË¼Èüàç"};
+Nconst unsigned char PY_mb_san   []={"ÈıÉ¢É¡ÈşâÌôÖë§ö±"};
+Nconst unsigned char PY_mb_sang  []={"É£É¥É¤òªíßŞú"};
+Nconst unsigned char PY_mb_sao   []={"É¨É©É¦É§ÉÒÜ£öşëıçÒğş"};
+Nconst unsigned char PY_mb_se    []={"É«É¬ÉªÈûØÄï¤ğ£"};
+Nconst unsigned char PY_mb_sen   []={"É­"};
+Nconst unsigned char PY_mb_seng  []={"É®"};
+Nconst unsigned char PY_mb_sha   []={"É±É³É¶É´ÉµÉ°É²É¯ÏÃÉ·É¼àÄßşöèö®ï¡ğğôÄêıì¦"};
+Nconst unsigned char PY_mb_shai  []={"É¹É¸É«õ§"};
+Nconst unsigned char PY_mb_shan  []={"É½ÉÁÉÀÉÆÉÈÉ¼É¾É¿µ¥Éº²ôÉÄÕ¤É»µ§ÉÅÉÂÉÇÉÃÉÉæÓóµÜÏìøõÇÛ·äú÷­æ©ØßæóğŞëşÚ¨îÌô®Ûï"};
+Nconst unsigned char PY_mb_shang []={"ÉÏÉËÉĞÉÌÉÍÉÎÉÊÌÀÉÑìØõüç´éäÛğ"};
+Nconst unsigned char PY_mb_shao  []={"ÉÙÉÕÉÓÉÚÉ×ÉÒÉÔÉÛÉØÉÜÉÖÕÙÇÊÜæÛ¿äûô¹òÙóâ"};
+Nconst unsigned char PY_mb_she   []={"ÉçÉäÉßÉèÉàÉãÉáÕÛÉæÉŞÉâÉåÉİì¨ØÇî´â¦÷êäÜÙÜ"};
+Nconst unsigned char PY_mb_shen  []={"ÉíÉìÉîÉôÉñÉõÉøÉöÉóÉêÉòÉğÉë²ÎÉéÊ²ÉïÉ÷İØôÖİ·Ú·ÚÅïòé©äÉò×ßÓëÏ"};
+Nconst unsigned char PY_mb_sheng []={"ÉùÊ¡Ê£ÉúÉıÉşÊ¤Ê¢Ê¥ÉûÉü³ËêÉäÅíòóÏáÓ"};
+Nconst unsigned char PY_mb_shi   []={"ÊÇÊ¹Ê®Ê±ÊÂÊÒÊĞÊ¯Ê¦ÊÔÊ·Ê½Ê¶Ê­Ê¸Ê°ÊºÊ»Ê¼ËÆĞêÊ¾Ê¿ÊÀÊÁ³×ÊÃÊÄÊÅÊÆÊ²Ö³ÖÅÊÈÊÉÊ§ÊÊÊËÊÌÊÍÊÎÊÏÊ¨Ê³ÊÑÊ´ÊÓÊµÊ©ÊªÊ«Ê¬õ¹İªÛõîæóÂöåöõêÛéøİéóßìÂÚÖß±õ§ó§"};
+Nconst unsigned char PY_mb_shou  []={"ÊÖÊÜÊÕÊ×ÊØÊİÊÚÊŞÊÛÊìÊÙô¼á÷ç·"};
+Nconst unsigned char PY_mb_shu   []={"ÊéÊ÷ÊıÊìÊäÊáÊåÊôÊøÊõÊöÊñÊòÊóÊçÊêÊëÊßÊèÊùÊúÊûÊüÊíÊşË¡ÊàÊîÊâÊãÊïÊğÊææ­Şóïø"};
+Nconst unsigned char PY_mb_shua  []={"Ë¢Ë£à§"};
+Nconst unsigned char PY_mb_shuai []={"Ë¤Ë¦ÂÊË§Ë¥ó°"};
+Nconst unsigned char PY_mb_shuan []={"Ë¨Ë©ãÅäÌ"};
+Nconst unsigned char PY_mb_shuang[]={"Ë«ËªË¬ãñæ×"};
+Nconst unsigned char PY_mb_shui  []={"Ë®Ë­Ë¯Ë°Ëµ"};
+Nconst unsigned char PY_mb_shun  []={"Ë³Ë±Ë²Ë´"};
+Nconst unsigned char PY_mb_shuo  []={"ËµÊıË¶Ë¸Ë·Ş÷åùéÃİôîå"};
+Nconst unsigned char PY_mb_si    []={"ËÄËÀË¿ËºËÆË½Ë»Ë¼ËÂË¾Ë¹Ê³ËÅ²ŞËÁËÇËÃËÈñêæáÙîòÏØËãáïÈãôóÓßĞğ¸æ¦ÛÌçÁìëäùÙ¹"};
+Nconst unsigned char PY_mb_song  []={"ËÍËÉËÊËÎËÌËĞËËËÏñµİ¿äÁã¤áÔÚ¡áÂâì"};
+Nconst unsigned char PY_mb_sou   []={"ËÒËÑËÓËÔàÕà²ì¬ÛÅŞ´ïËâÈî¤äÑòôËÓ"};
+Nconst unsigned char PY_mb_su    []={"ËØËÙËßËÜËŞË×ËÕËàËÚËÖËõËİËÛãºóùö¢öÕÙíà¼ÚÕİøä³"};
+Nconst unsigned char PY_mb_suan  []={"ËáËãËââ¡"};
+Nconst unsigned char PY_mb_sui   []={"ËêËæËéËäËëËìÄòËåËèËçËíËîíõÚÇå¡åäìİİ´î¡"};
+Nconst unsigned char PY_mb_sun   []={"ËïËğËñé¾İ¥â¸áøöÀ"};
+Nconst unsigned char PY_mb_suo   []={"ËùËõËøËöË÷ËóËòÉ¯ËôêıíüàÊßïèøàÂæ¶ôÈ"};
+Nconst unsigned char PY_mb_ta    []={"ËûËıËüÌ¤ËşËúÍØÌ¡Ì¢Ì£äâõÁ÷£í³é½äğåİîèãËàª"};
+Nconst unsigned char PY_mb_tai   []={"Ì«Ì§Ì¨Ì¬Ì¥Ì¦Ì©ÌªÌ­ìÆëÄõÌß¾öØîÑŞ·Û¢ææ"};
+Nconst unsigned char PY_mb_tan   []={"Ì¸Ì¾Ì½Ì²µ¯Ì¼Ì¯Ì¶Ì°Ì³ÌµÌºÌ¹Ì¿Ì±Ì·Ì®Ì´Ì»Û°ê¼ìşîãïÄå£ïâñû"};
+Nconst unsigned char PY_mb_tang  []={"ÌÉÌËÌÃÌÇÌÀÌÁÌÌÌÈÌÊÌÆÌÂÌÄÌÅó«éÌôÊõ±è©ïÛÙÎâ¼äçñíàûï¦ó¥"};
+Nconst unsigned char PY_mb_tao   []={"Ì×ÌÍÌÓÌÒÌÖÌÔÌÎÌÏÌÕÌĞÌÑØ»ßûä¬èº÷Òß¶ìâ"};
+Nconst unsigned char PY_mb_te    []={"ÌØìıí«ï«ß¯"};
+Nconst unsigned char PY_mb_teng  []={"ÌÛÌÚÌÙÌÜëø"};
+Nconst unsigned char PY_mb_ti    []={"ÌáÌæÌåÌâÌßÌãÌêÌŞÌİÌàÌäÌéÌçÌèÌëõ®ğÃç°ç¾ÙÃñÓåÑÜèã©"};
+Nconst unsigned char PY_mb_tian  []={"ÌìÌïÌíÌîÌğÌòÌñÌóµèŞİîäãÙãÃéåî±"};
+Nconst unsigned char PY_mb_tiao  []={"ÌõÌøÌôµ÷ÌöÌ÷ö¶óÔìöòè÷ØÙ¬ñ»öæÜæôĞ"};
+Nconst unsigned char PY_mb_tie   []={"ÌúÌùÌûİÆ÷Ñ"};
+Nconst unsigned char PY_mb_ting  []={"ÌıÍ£Í¦ÌüÍ¤Í§Í¥Í¢ÌşÍ¡ÜğİãæÃèèòÑöªî®îú"};
+Nconst unsigned char PY_mb_tong  []={"Í¬Í¨Í´Í­Í°Í²Í±Í³Í¯Í®Í©Í«¶²¶±ÍªäüÜíÙÚíÅá¼âúÙ¡àÌÛí"};
+Nconst unsigned char PY_mb_tou   []={"Í·ÍµÍ¸Í¶î×÷»"};
+Nconst unsigned char PY_mb_tu    []={"ÍÁÍ¼ÍÃÍ¿ÍÂÍºÍ»Í½Í¹Í¾ÍÀÜ¢İ±İËîÊõ©"};
+Nconst unsigned char PY_mb_tuan  []={"ÍÅÍÄî¶ŞÒåè"};
+Nconst unsigned char PY_mb_tui   []={"ÍÈÍÆÍËÍÊÍÇÍÉìÕß¯"};
+Nconst unsigned char PY_mb_tun   []={"ÍÌÍÍÍÊÍÎ¶ÚÙÛâ½êÕëà"};
+Nconst unsigned char PY_mb_tuo   []={"ÍÏÍÑÍĞÍ×ÍÔÍØÍÕÍÖÍÙÍÒÍÓÆÇØ±Ù¢ÛçâÕãûèØèŞéÒõÉóêõ¢íÈö¾"};
+Nconst unsigned char PY_mb_wa    []={"ÍÚÍßÍÜÍÛÍŞÍİ°¼ÍàØôæ´ëğ"};
+Nconst unsigned char PY_mb_wai   []={"ÍâÍááË"};
+Nconst unsigned char PY_mb_wan   []={"ÍêÍòÍíÍëÍæÍäÍìÍåÍèÍóÍğÍñÍéÍçÍãÍïÃäÍîÂûİ¸ëäòêçºÜ¹çşæıØàîµİÒ"};
+Nconst unsigned char PY_mb_wang  []={"ÍûÍüÍõÍùÍøÍöÍ÷ÍúÍôÍıÃ¢Øèã¯éş÷Í"};
+Nconst unsigned char PY_mb_wei   []={"ÎªÎ»Î´Î§Î¹Î¸Î¢Î¶Î²Î±ÍşÎ°ÎÀÎ£Î¥Î¯ÎºÎ¨Î¬Î·Î©Î¤Î¡ÎµÎ½Î¾Î«Î³Î¿Î¦Î®Î­Î¼ÒÅİÚàøôºöÛæ¸åÔãÇÚñãíçâä¶á¡áËÚóÚÃä¢ÙËâ«â¬áÍê¦è¸ì¿ìĞÛ×Ş±ğô"};
+Nconst unsigned char PY_mb_wen   []={"ÎÊÎÄÎÅÎÈÎÂÎÇÎÃÎÆÎÁÎÉãëãÓØØö©è·"};
+Nconst unsigned char PY_mb_weng  []={"ÎÌÎËÎÍİîŞ³"};
+Nconst unsigned char PY_mb_wo    []={"ÎÒÎÕÎÑÎÔÎÎÎÖÎÏÎĞÎÓÙÁá¢ö»ë¿İ«à¸ä×íÒ"};
+Nconst unsigned char PY_mb_wu    []={"ÎŞÎåÎİÎïÎèÎíÎóÎæÎÛÎòÎğÎÙÎäÎìÎñÎØÎéÎâÎçÎáÎêÎÚÎã¶ñÎÜÎßÎ×ÎîÎàÎëåüòÚêõå»Ø£âäÚãÚùâèæğì¶öÈØõè»ğÍæÄåÃğíÜÌìÉßíâĞğÄ÷ùä´ÛØ"};
+Nconst unsigned char PY_mb_xi    []={"Î÷Ï´Ï¸ÎüÏ·ÏµÏ²Ï¯Ï¡ÏªÏ¨ÎıÏ¥Ï¢Ï®Ï§Ï°ÎûÏ¦Ï¤ÎùÎõÏ£Ï­ÎşÎúÎôÏ±ÎøÏ³Ï©À°ÎöÏ¶ÆÜÏ«Ï¬òáŞÉä»İßâ¾åïçôæÒìùÙâôâñ¶ìûÙÒäÀİûô¸õèõµì¤ğªó¬ôËÜçáãÚôÛ­ßñêØó£ì¨éØãÒôÑìäêêİ¾÷ûñÓôª"};
+Nconst unsigned char PY_mb_xia   []={"ÏÂÏÅÏÄÏ¿ÏºÏ¹Ï¼ÏÁÏ»ÏÀÏ½ÏÃÏ¾»£áòåÚè¦èÔíÌóÁ÷ïßÈ"};
+Nconst unsigned char PY_mb_xian  []={"ÏÈÏßÏØÏÖÏÔÏÆÏĞÏ×ÏÓÏİÏÕÏÊÏÒÏÎÏÚÏŞÏÌÏÇÏÉÏÙÏÍÏËÏÜÏÏÏÑÏÛÏ³¼ûÜÈŞºá­ğïİ²ôÌæµò¹áıììÙşìŞõĞõÑõ£åßë¯ğÂóÚö±"};
+Nconst unsigned char PY_mb_xiang []={"ÏëÏòÏóÏîÏìÏãÏçÏàÏñÏäÏïÏíÏâÏá½µÏèÏéÏğÏêÏæÏåÜ¼İÙâÃâÔæøç½ó­öß÷Ï"};
+Nconst unsigned char PY_mb_xiao  []={"Ğ¡Ğ¦ÏûÏ÷ÏúÏôĞ§ÏüÏşĞ¤Ğ¢ÏõĞ¥ÏöÏøÏùĞ£æçßØäìåĞèÉç¯ÏıáÅóïèÕóã÷ÌòÙ"};
+Nconst unsigned char PY_mb_xie   []={"Ğ´Ğ©Ğ¬ĞªĞ±ÑªĞ»Ğ¶Ğ®Ğ¼Ğ·ĞºĞ¸Ğ¹Ğ¨Ğ°Ğ­ĞµĞ³Ğ«Ğ¯Ğ²½âÆõÒ¶ç¥ò¡çÓâ³é¿âİß¢ÙÉå¬äÍÙôéÇåâŞ¯õóÛÆÛÄ"};
+Nconst unsigned char PY_mb_xin   []={"ĞÂĞÄĞÀĞÅĞ¾Ğ½Ğ¿ĞÁÑ°ĞÆĞÃì§Ø¶İ·Ü°öÎê¿ïâ"};
+Nconst unsigned char PY_mb_xing  []={"ĞÔĞĞĞÍĞÎĞÇĞÑĞÕĞÈĞÌĞÓĞËĞÒĞÏĞÉĞÊÊ¡íÊã¬ÜşÚêß©Üô"};
+Nconst unsigned char PY_mb_xiong []={"ĞØĞÛĞ×ĞÖĞÜĞÚĞÙÜº"};
+Nconst unsigned char PY_mb_xiu   []={"ĞŞĞâĞåĞİĞßËŞĞáĞäĞãĞà³ôßİá¶âÊâÓäåğ¼õ÷÷Û"};
+Nconst unsigned char PY_mb_xu    []={"ĞíĞëĞèĞéĞêĞîĞøĞòĞğĞóĞõĞöĞçĞìĞñĞ÷ÓõĞïĞôĞæôÚÛÃèòä°Ş£çïÛ×äªñãõ¯Ú¼äÓìãíìí¹"};
+Nconst unsigned char PY_mb_xuan  []={"Ñ¡ĞüĞıĞşĞûĞúĞùÑ¤Ñ£Ñ¢È¯ÙØìÅÚÎİæŞïãùäÖäöè¯é¸êÑìÓíÛîçïàğç"};
+Nconst unsigned char PY_mb_xue   []={"Ñ§Ñ©ÑªÑ¥Ñ¨Ï÷Ñ¦õ½àå÷¨í´"};
+Nconst unsigned char PY_mb_xun   []={"Ñ°Ñ¶Ñ¬ÑµÑ­Ñ³Ñ®Ñ²Ñ¸Ñ±Ñ´Ñ·Ñ«»çÑ¯¿£ÙãÛ÷Ü÷Ş¦Ş¹á¾áßâ´âşä­ä±êÖõ¸öàÛ¨ñ¿"};
+Nconst unsigned char PY_mb_ya    []={"Ñ½Ñ¹ÑÀÑºÑ¿Ñ¼ÔşÑÂÑÆÑÇÑÄÑ¾ÑÅÑÃÑ»ÑÈÑÁØóÛëŞëá¬åÂæ«çğèâë²í¼íığéñâ"};
+Nconst unsigned char PY_mb_yan   []={"ÑÛÑÌÑØÑÎÑÔÑİÑÏÑÊÑÍÑ×ÑÚÑáÑçÑÒÑĞÑÓÑßÑéÑŞÑËÑâÑãÑäÑåÑæÑÑÑÜÑèÑàÑÕÑÖÑÉÑÙØÉİÎ÷ÊçüäÙìÍóÛØÍÙğâûéÜäÎÚİÙÈëÙêÌãÆÙ²Û±Û³åûáÃæÌî»õ¦÷Ğ÷úÇ¦ÒóÚçÜ¾ãÕëçØß"};
+Nconst unsigned char PY_mb_yang  []={"ÑùÑøÑòÑóÑöÑïÑíÑõÑ÷ÑîÑúÑôÑêÑëÑìÑğÑñì¾í¦áà÷±ãóòÕìÈâó"};
+Nconst unsigned char PY_mb_yao   []={"ÒªÒ¡Ò©Ò§ÑüÒ¤Ò¨ÑûÑıÒ¥Ò£Ò¦ÑşÒ«Ò¢Ô¿½ÄØ²Ø³ßºáÊáæçÛçòèÃé÷ê×ëÈğÎñº÷¥Å±ÌÕÔ¼ï¢"};
+Nconst unsigned char PY_mb_ye    []={"Ò²Ò¹ÒµÒ°Ò¶Ò¯Ò³ÒºÒ´Ò¸Ò±Ò­Ò®ÑÊÒ·Ò¬Ğ°ÚËÚşêÊìÇŞŞîôØÌ"};
+Nconst unsigned char PY_mb_yi    []={"Ò»ÒÔÒÑÒÚÒÂÒÆÒÀÒ×Ò½ÒÒÒÇÒàÒÎÒæÒĞÒÌÒíÒëÒÁÉßÒÅÊ³°¬ÒÈÒÉÒÊÒËÒìÒÍÒ¼ÒÏÒêÒ¾Ò¿ÒÓÒîÒÕÒÖÒïÒØ¶êÒÙÎ²ÒÛÒÜÒİÒŞÒßÒÃÒáÒâÒãÒäÒåÒÄÒçÒèÒéâøğêï×ñ¯âùæäì½ìÚôıñ´ì¥á»ÛİéìàÉß×Ü²àæØæÚ±âÂäôØıßŞğùâ¢íôôàŞÄÜÓÜèØîÙ«êİîÆçËåÆØ×ã¨÷ğôèß®ŞÈòæÛüŞÚáÚŞ²ß½éóïî"};
+Nconst unsigned char PY_mb_yin   []={"ÒòÒıÓ¡ÒøÒôÒûÒõÒşÒñÒ÷ÒüÒúÒğÒùÒóÒöÑÌÜ§Û´à³â¹Ø·ö¸ßÅÛßáşÛóö¯ò¾ë³î÷ñ¿ñ«ä¦Üá"};
+Nconst unsigned char PY_mb_ying  []={"Ó¦Ó²Ó°ÓªÓ­Ó³Ó¬Ó®Ó¥Ó¢Ó±Ó¨Ó¯Ó¤Ó£Ó§Ó«Ó©İÓéºİöñ¨ÜãğĞëôİºè¬Û«àÓŞüçøäŞäëÙøó¿å­âßÜşò£"};
+Nconst unsigned char PY_mb_yo    []={"Ó´Óıà¡"};
+Nconst unsigned char PY_mb_yong  []={"ÓÃÓ¿ÓÀÓµÓ¼ÓÂÓºÓ½Ó¾Ó¶Ó»Ó¸Ó¹Ó·ÓÁÙ¸ÛÕÜ­à¯ã¼çßïŞğ®÷«÷Ó"};
+Nconst unsigned char PY_mb_you   []={"ÓĞÓÖÓÉÓÒÓÍÓÎÓ×ÓÅÓÑÓËÓÇÓÈÓÌÓÕÓÆÓÊÓÏÓÓÓÄÓÔØüØÕÙ§İ¬İ¯İµßÏàóå¶èÖéàë»îğğàòÄòÊòööÏ÷î÷øòøôí"};
+Nconst unsigned char PY_mb_yu    []={"ÓëÓÚÓûÓãÓêÓàÓöÓïÓúÓüÓñÓæÓèÓşÓıÓŞÓğÓİÓéÓÙÓßÓìÓíÓîÓØÓáÓâÓòÓóÓô¹ÈÓõÓÛÓ÷ÓøÓùÓäÖàÓåÎ¾ÓÜÓçÔ¡Ô¢Ô£Ô¤Ô¥Ô¦ÎµåıáÎö§âÅãĞñ¾ğÁæ¥ŞíñÁêìô§ô¨ö¹İ÷ìÏîÚÚÄæúì¶óÄè¤Ø®í²ì£Ù¶ØñàôğÖâ×êÅİÇğõÚÍå÷àöğöìÙâÀØ¹ìÛëéáüİÒòâòõ"};
+Nconst unsigned char PY_mb_yuan  []={"Ô¶Ô±ÔªÔºÔ²Ô­Ô¸Ô°Ô®Ô³Ô¹Ô©Ô´ÔµÔ¬Ô¨Ô·Ô«Ô§Ô¯à÷ö½éÚæÂë¼íóğ°ŞòÜ¾ãäè¥ó¢óîÜ«Ûù"};
+Nconst unsigned char PY_mb_yue   []={"ÔÂÔ½Ô¼Ô¾ÔÄÀÖÔÀÔÃÔ»ËµÔÁÔ¿å®îáë¾ÙßèİéĞ"};
+Nconst unsigned char PY_mb_yun   []={"ÔÆÔËÔÎÔÊÔÈÔÏÔÉÔĞÔÅÔÌÔÍÔÇÔ±ìÙëµã¢ã³Û©Ü¿óŞè¹êÀáñéæç¡"};
+Nconst unsigned char PY_mb_za    []={"ÔÓÔÒÕ¦ÔÑÔúÔÛßÆŞÙ"};
+Nconst unsigned char PY_mb_zai   []={"ÔÚÔÙÔÖÔØÔÔÔ×ÔÕáÌçŞ×Ğ"};
+Nconst unsigned char PY_mb_zan   []={"ÔÛÔİÔÜÔŞô¢ôõôØè¶ŞÙêÃöÉ"};
+Nconst unsigned char PY_mb_zang  []={"ÔàÔáÔß²Øê°æàŞÊ"};
+Nconst unsigned char PY_mb_zao   []={"ÔçÔìÔâÔãÔîÔïÔæÔäÔêÔåÔíÔëÔèÔéßğ"};
+Nconst unsigned char PY_mb_ze    []={"ÔòÔğÔñÔóÕ¦²àóåô·àıåÅßõØÆê¾óĞØÓ"};
+Nconst unsigned char PY_mb_zei   []={"Ôô"};
+Nconst unsigned char PY_mb_zen   []={"ÔõÚÚ"};
+Nconst unsigned char PY_mb_zeng  []={"ÔöÔùÔ÷Ôø×ÛçÕîÀêµï­"};
+Nconst unsigned char PY_mb_zha   []={"ÔúÕ¨ÔüÕ¢Õ£Õ¥Õ§ÔşÕ©ÔûÔıÕ¡Şêß¸ßåßîâªíÄğäòÆ÷ş²éÀ¯Õ¤Õ¦à©é«×õ"};
+Nconst unsigned char PY_mb_zhai  []={"ÕªÕ­Õ®Õ«Õ¯ÔñµÔÕ¬²à¼ÀíÎñ©"};
+Nconst unsigned char PY_mb_zhan  []={"Õ¾Õ¼Õ½ÕµÕ´Õ³Õ±Õ¹Õ»Õ²²üÕºÕ¿ÕÀÕ¶Õ·Õ¸Õ°ÚŞŞøì¹"};
+Nconst unsigned char PY_mb_zhang []={"ÕÅÕÂ³¤ÕÊÕÌÕÉÕÆÕÇÕËÕÁÕÈÕÃÕÄÕÍÕÎÕÏØëæÑá¤Ûµè°áÖâ¯ó¯"};
+Nconst unsigned char PY_mb_zhao  []={"ÕÒ×ÅÕÕÕĞÕÖ×¦Õ×³¯ÕÑÕÓÕØ³°ÕÙÕÔèşîÈóÉÚ¯ßú"};
+Nconst unsigned char PY_mb_zhe   []={"×ÅÕâÕßÕÛÕÚÕİÕÜÕáÕàÕŞÕãèÏéüô÷ß¡ğÑíİñŞòØÚØ"};
+Nconst unsigned char PY_mb_zhen  []={"ÕæÕóÕòÕëÕğÕíÕñÕåÕäÕîÕïÕçÕèÕéÕêÕìçÇİèìõóğéôé»ğ¡êâëŞğ²ëÓä¥èåî³ÛÚé©"};
+Nconst unsigned char PY_mb_zheng []={"ÕıÕûÕöÕùÕõÕ÷ÕúÖ¤Ö¢Ö£ÕüÕôÕøÕşÖ¡á¿îÛï£óİÚºáç¶¡öë"};
+Nconst unsigned char PY_mb_zhi   []={"Ö»Ö®Ö±ÖªÖÆÖ¸Ö½Ö§Ö¥Ö¦ÖÉÖ¨Ö©ÖÊÖ«Ö¬Ö­ÖËÖ¯Ö°ÖÌÖ²µÖÖ³Ö´ÖµÖ¶Ö·ÖÇÖÍÖ¹ÖºÖÎÖ¼ÖÏÖ¾Ö¿ÖÀÖÁÖÂÖÃÖÄÊ¶ÖÅÊÏÖÈàùŞıíéèäè×éòâåìíòÎëùö£Û¤èÙåéÜÆìóåëğºôêõÙëÕæïéùğëÚìõÜïôÛúêŞØ´õ¥õôõÅèÎ¼¿"};
+Nconst unsigned char PY_mb_zhong []={"ÖĞÖØÖÖÖÓÖ×ÖÚÖÕÖÑÖÒÖÙÖÔõàô±ó®ïñÚ£âì"};
+Nconst unsigned char PY_mb_zhou  []={"ÖÜÖŞÖåÖàÖİÖáÖÛÖçÖèÖæÖßÖâÖãÖäôíëĞæûİ§ßúíØç§ô¦æ¨ôü"};
+Nconst unsigned char PY_mb_zhu   []={"×¡Ö÷ÖíÖñÖêÖóÖşÖøÖéÖëÖìÖîÖïÖğÖòÖôÖõÖöÖùÖúÖûÖüÖı×¢×£×¤Øùäóä¨ğñôãÜïÜÑéÍô¶èÌóçìÄÙªîùğæä¾ñÒõî÷æÛ¥éÆóÃÊôÊõ"};
+Nconst unsigned char PY_mb_zhua  []={"×¥×¦ÎÎ"};
+Nconst unsigned char PY_mb_zhuai []={"×§×ª"};
+Nconst unsigned char PY_mb_zhuan []={"×ª×¨×©×¬´«×«×­ò§âÍßùãç"};
+Nconst unsigned char PY_mb_zhuang[]={"×°×²×¯×³×®×´´±×±Ù×ŞÊí°"};
+Nconst unsigned char PY_mb_zhui  []={"×·×¹×º×¶×¸×µæíã·çÄö¿"};
+Nconst unsigned char PY_mb_zhun  []={"×¼×»ÍÍëÆñ¸"};
+Nconst unsigned char PY_mb_zhuo  []={"×½×À×Å×Ä×¾×Æ×Ç×¿×Á½É×Â×ÃßªìÌåªÚÂä·äÃÙ¾ïíìúí½"};
+Nconst unsigned char PY_mb_zi    []={"×Ö×Ô×Ó×Ï×Ñ×Ê×ËÖ¨×Ò×Ğ×É×Î×Õ×Ì×ÍÚÑÜëáÑæ¢æÜç»è÷ê¢êßí§íöïÅïöñèóÊôÒôôö¤ö·öö÷Ú×Èõş"};
+Nconst unsigned char PY_mb_zong  []={"×Ü×İ×Ú×Ø×Û×Ù××ÙÌôÕèÈëê"};
+Nconst unsigned char PY_mb_zou   []={"×ß×á×à×ŞöíÛ¸ÚîæãÚÁ"};
+Nconst unsigned char PY_mb_zu    []={"×é×å×ã×è×â×æ×çİÏïß×äÙŞ"};
+Nconst unsigned char PY_mb_zuan  []={"×ê×ë×¬ß¬çÚõò"};
+Nconst unsigned char PY_mb_zui   []={"×î×ì×í×ï¶Ñ¾×õşŞ©"};
+Nconst unsigned char PY_mb_zun   []={"×ğ×ñß¤é×÷®"};
+Nconst unsigned char PY_mb_zuo   []={"×ö×÷×ø×ó×ù×òÔä×ôÚèßòâôëÑìñ´é×ÁàÜóĞõ¡×õ"};
+N
+N/*
+N*********************************************************************************************************
+N*	                         Æ´Òô¼ìË÷µÄ½á¹¹ÌåÊı×é
+N*********************************************************************************************************
+N*/
+Nstruct PinYinPCB const PYRankTwoList_a[]=
+N{
+N	{"",PY_mb_a},
+N	{"i",PY_mb_ai},
+N	{"n",PY_mb_an},
+N	{"ng",PY_mb_ang},
+N	{"o",PY_mb_ao}
+N};
+N
+N
+Nstruct PinYinPCB const PYRankTwoList_b[]=
+N{
+N	{"a",PY_mb_ba},
+N	{"ai",PY_mb_bai},
+N	{"an",PY_mb_ban},
+N	{"ang",PY_mb_bang},
+N	{"ao",PY_mb_bao},
+N	{"ei",PY_mb_bei},
+N	{"en",PY_mb_ben},
+N	{"eng",PY_mb_beng},
+N	{"i",PY_mb_bi},
+N	{"ian",PY_mb_bian},
+N	{"iao",PY_mb_biao},
+N	{"ie",PY_mb_bie},
+N	{"in",PY_mb_bin},
+N	{"ing",PY_mb_bing},
+N	{"o",PY_mb_bo},
+N	{"u",PY_mb_bu}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_c[]=
+N{
+N	{"a",PY_mb_ca},
+N	{"ai",PY_mb_cai},
+N	{"an",PY_mb_can},
+N	{"ang",PY_mb_cang},
+N	{"ao",PY_mb_cao},
+N	{"e",PY_mb_ce},
+N	{"eng",PY_mb_ceng},
+N	{"ha",PY_mb_cha},
+N	{"hai",PY_mb_chai},
+N	{"han",PY_mb_chan},
+N	{"hang",PY_mb_chang},
+N	{"hao",PY_mb_chao},
+N	{"he",PY_mb_che},
+N	{"hen",PY_mb_chen},
+N	{"heng",PY_mb_cheng},
+N	{"hi",PY_mb_chi},
+N	{"hong",PY_mb_chong},
+N	{"hou",PY_mb_chou},
+N	{"hu",PY_mb_chu},
+N	{"huai",PY_mb_chuai},
+N	{"huan",PY_mb_chuan},
+N	{"huang",PY_mb_chuang},
+N	{"hui",PY_mb_chui},
+N	{"hun",PY_mb_chun},
+N	{"huo",PY_mb_chuo},
+N	{"i",PY_mb_ci},
+N	{"ong",PY_mb_cong},
+N	{"ou",PY_mb_cou},
+N	{"u",PY_mb_cu},
+N	{"uan",PY_mb_cuan},
+N	{"ui",PY_mb_cui},
+N	{"un",PY_mb_cun},
+N	{"uo",PY_mb_cuo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_d[]=
+N{
+N	{"a   ",PY_mb_da},
+N	{"ai",PY_mb_dai},
+N	{"an",PY_mb_dan},
+N	{"ang",PY_mb_dang},
+N	{"ao",PY_mb_dao},
+N	{"e",PY_mb_de},
+N	{"eng",PY_mb_deng},
+N	{"i",PY_mb_di},
+N	{"ian",PY_mb_dian},
+N	{"iao",PY_mb_diao},
+N	{"ie",PY_mb_die},
+N	{"ing",PY_mb_ding},
+N	{"iu",PY_mb_diu},
+N	{"ong",PY_mb_dong},
+N	{"ou",PY_mb_dou},
+N	{"u",PY_mb_du},
+N	{"uan",PY_mb_duan},
+N	{"ui",PY_mb_dui},
+N	{"un",PY_mb_dun},
+N	{"uo",PY_mb_duo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_e[]=
+N{
+N	{"",PY_mb_e},
+N	{"n",PY_mb_en},
+N	{"r",PY_mb_er}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_f[]=
+N{
+N	{"a",PY_mb_fa},
+N	{"an",PY_mb_fan},
+N	{"ang",PY_mb_fang},
+N	{"ei",PY_mb_fei},
+N	{"en",PY_mb_fen},
+N	{"eng",PY_mb_feng},
+N	{"o",PY_mb_fo},
+N	{"ou",PY_mb_fou},
+N	{"u",PY_mb_fu}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_g[]=
+N{
+N	{"a",PY_mb_ga},
+N	{"ai",PY_mb_gai},
+N	{"an",PY_mb_gan},
+N	{"ang",PY_mb_gang},
+N	{"ao",PY_mb_gao},
+N	{"e",PY_mb_ge},
+N	{"ei",PY_mb_gei},
+N	{"en",PY_mb_gan},
+N	{"eng",PY_mb_geng},
+N	{"ong",PY_mb_gong},
+N	{"ou",PY_mb_gou},
+N	{"u",PY_mb_gu},
+N	{"ua",PY_mb_gua},
+N	{"uai",PY_mb_guai},
+N	{"uan",PY_mb_guan},
+N	{"uang",PY_mb_guang},
+N	{"ui",PY_mb_gui},
+N	{"un",PY_mb_gun},
+N	{"uo",PY_mb_guo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_h[]=
+N{
+N	{"a",PY_mb_ha},
+N	{"ai",PY_mb_hai},
+N	{"an",PY_mb_han},
+N	{"ang",PY_mb_hang},
+N	{"ao",PY_mb_hao},
+N	{"e",PY_mb_he},
+N	{"ei",PY_mb_hei},
+N	{"en",PY_mb_hen},
+N	{"eng",PY_mb_heng},
+N	{"ong",PY_mb_hong},
+N	{"ou",PY_mb_hou},
+N	{"u",PY_mb_hu},
+N	{"ua",PY_mb_hua},
+N	{"uai",PY_mb_huai},
+N	{"uan",PY_mb_huan},
+N	{"uang ",PY_mb_huang},
+N	{"ui",PY_mb_hui},
+N	{"un",PY_mb_hun},
+N	{"uo",PY_mb_huo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_i[]=
+N{
+N	"",PY_mb_space
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_j[]=
+N{
+N	{"i",PY_mb_ji},
+N	{"ia",PY_mb_jia},
+N	{"ian",PY_mb_jian},
+N	{"iang",PY_mb_jiang},
+N	{"iao",PY_mb_jiao},
+N	{"ie",PY_mb_jie},
+N	{"in",PY_mb_jin},
+N	{"ing",PY_mb_jing},
+N	{"iong",PY_mb_jiong},
+N	{"iu",PY_mb_jiu},
+N	{"u",PY_mb_ju},
+N	{"uan",PY_mb_juan},
+N	{"ue",PY_mb_jue},
+N	{"un",PY_mb_jun}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_k[]=
+N{
+N	{"a",PY_mb_ka},
+N	{"ai",PY_mb_kai},
+N	{"an",PY_mb_kan},
+N	{"ang",PY_mb_kang},
+N	{"ao",PY_mb_kao},
+N	{"e",PY_mb_ke},
+N	{"en",PY_mb_ken},
+N	{"eng",PY_mb_keng},
+N	{"ong",PY_mb_kong},
+N	{"ou",PY_mb_kou},
+N	{"u",PY_mb_ku},
+N	{"ua",PY_mb_kua},
+N	{"uai",PY_mb_kuai},
+N	{"uan",PY_mb_kuan},
+N	{"uang",PY_mb_kuang},
+N	{"ui",PY_mb_kui},
+N	{"un",PY_mb_kun},
+N	{"uo",PY_mb_kuo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_l[]=
+N{
+N	{"a",PY_mb_la},
+N	{"ai",PY_mb_lai},
+N	{"an",PY_mb_lan},
+N	{"ang",PY_mb_lang},
+N	{"ao",PY_mb_lao},
+N	{"e",PY_mb_le},
+N	{"ei",PY_mb_lei},
+N	{"eng",PY_mb_leng},
+N	{"i",PY_mb_li},
+N	{"ian",PY_mb_lian},
+N	{"iang",PY_mb_liang},
+N	{"iao",PY_mb_liao},
+N	{"ie",PY_mb_lie},
+N	{"in",PY_mb_lin},
+N	{"ing",PY_mb_ling},
+N	{"iu",PY_mb_liu},
+N	{"ong",PY_mb_long},
+N	{"ou",PY_mb_lou},
+N	{"u",PY_mb_lu},
+N	{"uan",PY_mb_luan},
+N	{"ue",PY_mb_lue},
+N	{"un",PY_mb_lun},
+N	{"uo",PY_mb_luo},
+N	{"v",PY_mb_lv}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_m[]=
+N{
+N	{"a",PY_mb_ma},
+N	{"ai",PY_mb_mai},
+N	{"an",PY_mb_man},
+N	{"ang",PY_mb_mang},
+N	{"ao",PY_mb_mao},
+N	{"e",PY_mb_me},
+N	{"ei",PY_mb_mei},
+N	{"en",PY_mb_men},
+N	{"eng",PY_mb_meng},
+N	{"i",PY_mb_mi},
+N	{"ian",PY_mb_mian},
+N	{"iao",PY_mb_miao},
+N	{"ie",PY_mb_mie},
+N	{"in",PY_mb_min},
+N	{"ing",PY_mb_ming},
+N	{"iu",PY_mb_miu},
+N	{"o",PY_mb_mo},
+N	{"ou",PY_mb_mou},
+N	{"u",PY_mb_mu}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_n[]=
+N{
+N	{"a",PY_mb_na},
+N	{"ai",PY_mb_nai},
+N	{"an",PY_mb_nan},
+N	{"ang",PY_mb_nang},
+N	{"ao",PY_mb_nao},
+N	{"e",PY_mb_ne},
+N	{"ei",PY_mb_nei},
+N	{"en",PY_mb_nen},
+N	{"eng",PY_mb_neng},
+N	{"i",PY_mb_ni},
+N	{"ian",PY_mb_nian},
+N	{"iang",PY_mb_niang},
+N	{"iao",PY_mb_niao},
+N	{"ie",PY_mb_nie},
+N	{"in",PY_mb_nin},
+N	{"ing",PY_mb_ning},
+N	{"iu",PY_mb_niu},
+N	{"ong",PY_mb_nong},
+N	{"u",PY_mb_nu},
+N	{"uan",PY_mb_nuan},
+N	{"ue",PY_mb_nue},
+N	{"uo",PY_mb_nuo},
+N	{"v",PY_mb_nv}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_o[]=
+N{
+N	{"",PY_mb_o},
+N	{"u",PY_mb_ou}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_p[]=
+N{
+N	{"a",PY_mb_pa},
+N	{"ai",PY_mb_pai},
+N	{"an",PY_mb_pan},
+N	{"ang",PY_mb_pang},
+N	{"ao",PY_mb_pao},
+N	{"ei",PY_mb_pei},
+N	{"en",PY_mb_pen},
+N	{"eng",PY_mb_peng},
+N	{"i",PY_mb_pi},
+N	{"ian",PY_mb_pian},
+N	{"iao",PY_mb_piao},
+N	{"ie",PY_mb_pie},
+N	{"in",PY_mb_pin},
+N	{"ing",PY_mb_ping},
+N	{"o",PY_mb_po},
+N	{"ou",PY_mb_pou},
+N	{"u",PY_mb_pu}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_q[]=
+N{
+N	{"i",PY_mb_qi},
+N	{"ia",PY_mb_qia},
+N	{"ian",PY_mb_qian},
+N	{"iang",PY_mb_qiang},
+N	{"iao",PY_mb_qiao},
+N	{"ie",PY_mb_qie},
+N	{"in",PY_mb_qin},
+N	{"ing",PY_mb_qing},
+N	{"iong",PY_mb_qiong},
+N	{"iu",PY_mb_qiu},
+N	{"u",PY_mb_qu},
+N	{"uan",PY_mb_quan},
+N	{"ue",PY_mb_que},
+N	{"un",PY_mb_qun}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_r[]=
+N{
+N	{"an",PY_mb_ran},
+N	{"ang",PY_mb_rang},
+N	{"ao",PY_mb_rao},
+N	{"e",PY_mb_re},
+N	{"en",PY_mb_ren},
+N	{"eng",PY_mb_reng},
+N	{"i",PY_mb_ri},
+N	{"ong",PY_mb_rong},
+N	{"ou",PY_mb_rou},
+N	{"u",PY_mb_ru},
+N	{"uan",PY_mb_ruan},
+N	{"ui",PY_mb_rui},
+N	{"un",PY_mb_run},
+N	{"uo",PY_mb_ruo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_s[]=
+N{
+N	{"a",PY_mb_sa},
+N	{"ai",PY_mb_sai},
+N	{"an",PY_mb_san},
+N	{"ang",PY_mb_sang},
+N	{"ao",PY_mb_sao},
+N	{"e",PY_mb_se},
+N	{"en",PY_mb_sen},
+N	{"eng",PY_mb_seng},
+N	{"ha",PY_mb_sha},
+N	{"hai",PY_mb_shai},
+N	{"han",PY_mb_shan},
+N	{"hang ",PY_mb_shang},
+N	{"hao",PY_mb_shao},
+N	{"he",PY_mb_she},
+N	{"hen",PY_mb_shen},
+N	{"heng",PY_mb_sheng},
+N	{"hi",PY_mb_shi},
+N	{"hou",PY_mb_shou},
+N	{"hu",PY_mb_shu},
+N	{"hua",PY_mb_shua},
+N	{"huai",PY_mb_shuai},
+N	{"huan",PY_mb_shuan},
+N	{"huang",PY_mb_shuang},
+N	{"hui",PY_mb_shui},
+N	{"hun",PY_mb_shun},
+N	{"huo",PY_mb_shuo},
+N	{"i",PY_mb_si},
+N	{"ong",PY_mb_song},
+N	{"ou",PY_mb_sou},
+N	{"u",PY_mb_su},
+N	{"uan",PY_mb_suan},
+N	{"ui",PY_mb_sui},
+N	{"un",PY_mb_sun},
+N	{"uo",PY_mb_suo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_t[]=
+N{
+N	{"a",PY_mb_ta},
+N	{"ai",PY_mb_tai},
+N	{"an",PY_mb_tan},
+N	{"ang",PY_mb_tang},
+N	{"ao",PY_mb_tao},
+N	{"e",PY_mb_te},
+N	{"eng",PY_mb_teng},
+N	{"i",PY_mb_ti},
+N	{"ian",PY_mb_tian},
+N	{"iao",PY_mb_tiao},
+N	{"ie",PY_mb_tie},
+N	{"ing",PY_mb_ting},
+N	{"ong",PY_mb_tong},
+N	{"ou",PY_mb_tou},
+N	{"u",PY_mb_tu},
+N	{"uan",PY_mb_tuan},
+N	{"ui",PY_mb_tui},
+N	{"un",PY_mb_tun},
+N	{"uo",PY_mb_tuo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_u[]=
+N{
+N	{"",PY_mb_space}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_v[]=
+N{
+N	{"",PY_mb_space}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_w[]=
+N{
+N	{"a",PY_mb_wa},
+N	{"ai",PY_mb_wai},
+N	{"an",PY_mb_wan},
+N	{"ang",PY_mb_wang},
+N	{"ei",PY_mb_wei},
+N	{"en",PY_mb_wen},
+N	{"eng",PY_mb_weng},
+N	{"o",PY_mb_wo},
+N	{"u",PY_mb_wu}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_x[]=
+N{
+N	{"i",PY_mb_xi},
+N	{"ia",PY_mb_xia},
+N	{"ian",PY_mb_xiao},
+N	{"iang",PY_mb_xiang},
+N	{"iao",PY_mb_xiao},
+N	{"ie",PY_mb_xie},
+N	{"in",PY_mb_xin},
+N	{"ing",PY_mb_xing},
+N	{"iong",PY_mb_xiong},
+N	{"iu",PY_mb_xiu},
+N	{"u",PY_mb_xu},
+N	{"uan",PY_mb_xuan},
+N	{"ue",PY_mb_xue},
+N	{"un",PY_mb_xun}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_y[]=
+N{
+N	{"a",PY_mb_ya},
+N	{"an",PY_mb_yan},
+N	{"ang",PY_mb_yang},
+N	{"ao",PY_mb_yao},
+N	{"e",PY_mb_ye},
+N	{"i",PY_mb_yi},
+N	{"in",PY_mb_yin},
+N	{"ing",PY_mb_ying},
+N	{"o",PY_mb_yo},
+N	{"ong",PY_mb_yong},
+N	{"ou",PY_mb_you},
+N	{"u",PY_mb_yu},
+N	{"uan",PY_mb_yuan},
+N	{"ue",PY_mb_yue},
+N	{"un",PY_mb_yun}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_z[]=
+N{
+N	{"a",PY_mb_za},
+N	{"ai",PY_mb_zai},
+N	{"an",PY_mb_zan},
+N	{"ang",PY_mb_zang},
+N	{"ao",PY_mb_zao},
+N	{"e",PY_mb_ze},
+N	{"ei",PY_mb_zei},
+N	{"en",PY_mb_zen},
+N	{"eng",PY_mb_zeng},
+N	{"ha",PY_mb_zha},
+N	{"hai",PY_mb_zhai},
+N	{"han",PY_mb_zhan},
+N	{"hang",PY_mb_zhang},
+N	{"hao",PY_mb_zhao},
+N	{"he",PY_mb_zhe},
+N	{"hen",PY_mb_zhen},
+N	{"heng",PY_mb_zheng},
+N	{"hi",PY_mb_zhi},
+N	{"hong",PY_mb_zhong},
+N	{"hou",PY_mb_zhou},
+N	{"hu",PY_mb_zhu},
+N	{"hua",PY_mb_zhua},
+N	{"huai",PY_mb_zhuai},
+N	{"huan",PY_mb_zhuan},
+N	{"huang",PY_mb_zhuang},
+N	{"hui",PY_mb_zhui},
+N	{"hun",PY_mb_zhun},
+N	{"huo",PY_mb_zhuo},
+N	{"i",PY_mb_zi},
+N	{"ong",PY_mb_zong},
+N	{"ou",PY_mb_zou},
+N	{"u",PY_mb_zu},
+N	{"uan",PY_mb_zuan},
+N	{"ui",PY_mb_zui},
+N	{"un",PY_mb_zun},
+N	{"uo",PY_mb_zuo}
+N};
+N
+Nstruct PinYinPCB const PYRankTwoList_end[]=
+N{
+N	"",	PY_mb_space
+N};
+N
+N/*
+N*********************************************************************************************************
+N*	                         Æ´Òô¼ìË÷µÄ½á¹¹ÌåÊı×éµÄÖ¸Õë
+N*********************************************************************************************************
+N*/
+Nstruct PinYinPCB const *PYRankThreeList[]=
+N{  
+N	PYRankTwoList_a,
+N	PYRankTwoList_b,
+N	PYRankTwoList_c,
+N	PYRankTwoList_d,
+N	PYRankTwoList_e,
+N	PYRankTwoList_f,
+N	PYRankTwoList_g,
+N	PYRankTwoList_h,
+N	PYRankTwoList_i,
+N	PYRankTwoList_j,
+N	PYRankTwoList_k,
+N	PYRankTwoList_l,
+N	PYRankTwoList_m,
+N	PYRankTwoList_n,
+N	PYRankTwoList_o,
+N	PYRankTwoList_p,
+N	PYRankTwoList_q,
+N	PYRankTwoList_r,
+N	PYRankTwoList_s,
+N	PYRankTwoList_t,
+N	PYRankTwoList_u,
+N	PYRankTwoList_v,
+N	PYRankTwoList_w,
+N	PYRankTwoList_x,
+N	PYRankTwoList_y,
+N	PYRankTwoList_z,
+N	PYRankTwoList_end
+N};
+N
+N/*
+N*********************************************************************************************************
+N*	º¯ Êı Ãû: PYSearch
+N*	¹¦ÄÜËµÃ÷: ¼ìË÷Æ´ÒôµÄº¯Êı,Ê¹ÓÃºÜ¼òµ¥£¬Ö»ĞèÊäÈëÆ´Òô¾ÍĞĞ·µ»ØÕâ¸öÆ´Òô¶ÔÓ¦µÄºº×Ö¸öÊı¡£
+N*	ĞÎ    ²Î£ºmsg   Æ´Òô×Ö·û´®
+N*             num   ·µ»Ø´ËÆ´Òô¶ÔÓ¦µÄºº×Ö¸öÊı
+N*	·µ »Ø Öµ: Èç¹ûÕâ¸öÆ´Òô´æÔÚºº×ÖÓëÆä¶ÔÓ¦£¬·µ»Ø¼ìË÷µ½µÄºº×ÖµÄÖ¸Õë£¬Èç¹ûÃ»ÓĞ£¬·µ»Ø¿ÕÖ¸Õë
+N*********************************************************************************************************
+N*/										
+Nchar *PYSearch(unsigned char *msg , int *num)
+N{
+N	unsigned char count=0;
+N	unsigned char i=0;
+N	/*
+N		ÀıÈç¡®b'£¬ÒÔ¶ÁÒôÎª¡¯b'¿ªÍ·µÄËùÓĞºº×Ö
+N		b'µÄÏÂÒ»¸ö¡®c'£¬ÒÔ¶ÁÒôÎª¡¯c'¿ªÍ·µÄËùÓĞºº×Ö
+N		Í¨¹ıÕâ±È½ÏÁ½¸öÊı¾İµÄ´óĞ¡¿ÉÒÔµÃµ½¡¯b'µÄËùÓĞµÄÔªÒô+¸¨Òô
+N	*/
+N	struct PinYinPCB const *headpcb; 		
+N	struct PinYinPCB const *tailpcb;		
+N											
+N	while(msg[count] != 0) count++;			  /* ¼ÆËã¼ìË÷µÄÆ´ÒôµÄ×Ö½ÚÊı     */	
+N	
+N	for(i = 0; i < count; i++)				  /* ¼ì²é¼ìË÷µÄÆ´ÒôÊÇ·ñ·ûºÏ¹æ·¶ */
+N	{
+N		if((msg[i] >= 'a') && (msg[i]<='z'))  /* ÔÚÕâ¸öÇø¼äµÄÊı¾İÓĞĞ§       */
+N		{
+N			continue;
+N		}								   	  /* ÊäÈëµÄÊı¾İ·Ç·¨£¬·µ»Ø¿ÕÖ¸Õë */
+N		else
+N		{
+N		    return '\0';
+N		}
+N	}
+N	
+N	/* ÊäÈëµÄÊı¾İ·Ç·¨£¬·µ»Ø¿ÕÖ¸Õë */
+N	if((*msg == 'i')||(*msg == 'u')||(*msg == 'v')||(*msg == '\0'))	
+N	{
+N	    return '\0';
+N	}
+N	
+N	/* ÒÔ¶ÁÒôÎª*msg¿ªÍ·µÄËùÓĞÆ´Òô¼ìË÷ */
+N	tailpcb = PYRankThreeList[*msg - 'a'];	
+N	
+N 	/* ÒÔ¶ÁÒôÎª*msg+1¿ªÍ·µÄËùÓĞÆ´Òô¼ìË÷ */
+N	headpcb = PYRankThreeList[*msg - 'a' + 1];
+N	
+N	for(; tailpcb < headpcb; tailpcb++)
+N	{
+N		
+N		/* ¼ì²éÊäÈëµÄÆ´ÒôÓë¼ìË÷½á¹¹ÌåÖĞµÄÆ´ÒôÊÇ·ñÒ»ÖÂ */
+N		for(i = 0; i < count - 1; i++)				
+N		{	
+N			if(*((*tailpcb).PYSerList+i) != msg[i+1])
+N			{
+N				break;
+N			}
+N		}
+N		
+N		/* Ò»ÖÂ£¬·µ»ØÖ¸Õë */
+N		if(i == (count - 1))	 					
+N		{
+N			/* ÌØ±ğ×¢ÒâÏÂÃæÕâ¸öº¯Êı£¬ÒòÎªUTF-8±àÂë¸ñÊ½µÄºº×ÖÊÇ3¸ö×Ö½Ú */
+N			*num = strlen((const char *)(*tailpcb).PYRankOneList) / 3;
+N			return (char *)(*tailpcb).PYRankOneList;
+N		}
+N
+N	}
+N	
+N	/* ·ñÕß·µ»Ø¿ÕµÄÖ¸Õë */
+N	return '\0';								
+N}
+N
+N/***************************** °²¸»À³µç×Ó www.armfly.com (END OF FILE) *********************************/

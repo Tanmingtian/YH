@@ -143,7 +143,8 @@ typedef enum
 	FC_ST_12 = 1,	/* 宋体12x12点阵 （宽x高） */
 	FC_ST_24 = 2,
 	FC_ST_48 = 3,
-	FC_ST_96 = 4,
+	FC_ST_64 = 4,
+	FC_ST_96 = 5,
 }FONT_CODE_E;
 
 /* 字体属性结构, 用于LCD_DispStr() */
@@ -217,6 +218,9 @@ typedef struct
 	FONT_T *Font;			/* 字体 */
 	char *pCaption;
 	uint8_t Focus;			/* 焦点 */
+	char * acLabel;   /* 按钮对应的小写字符 */
+  char * acLabel1;  /* 按钮对应的大写字符 */
+  char         Control;   /* 按钮对应的控制位，1表示功能按钮，0表示普通按钮 */
 }BUTTON_T;
 
 /* 编辑框结构 */

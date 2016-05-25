@@ -55,7 +55,6 @@
 .\flash\obj\guidrv_template.o: ..\User\bsp_stm32f4xx\inc\LCD_RA8875.h
 .\flash\obj\guidrv_template.o: ..\User\bsp_stm32f4xx\inc\bsp_tft_lcd.h
 .\flash\obj\guidrv_template.o: ..\User\bsp_stm32f4xx\bsp.h
-.\flash\obj\guidrv_template.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\flash\obj\guidrv_template.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\flash\obj\guidrv_template.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\flash\obj\guidrv_template.o: ..\User\bsp_stm32f4xx\inc\bsp_uart_fifo.h

@@ -772,9 +772,6 @@
 
                           AREA ||i.bsp_StartAutoTimer||, CODE, READONLY, ALIGN=2
 
-                          REQUIRE _printf_percent
-                          REQUIRE _printf_s
-                          REQUIRE _printf_str
                   bsp_StartAutoTimer PROC
 ;;;301    */
 ;;;302    void bsp_StartAutoTimer(uint8_t _id, uint32_t _period)
@@ -784,78 +781,51 @@
 000004  460d              MOV      r5,r1
 ;;;304    	if (_id >= TMR_COUNT)
 000006  2c04              CMP      r4,#4
-000008  db06              BLT      |L12.24|
+000008  db01              BLT      |L12.14|
 ;;;305    	{
 ;;;306    		/* 打印出错的源代码文件名、函数名称 */
-;;;307    		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
-00000a  4a12              LDR      r2,|L12.84|
-00000c  a112              ADR      r1,|L12.88|
-00000e  a01c              ADR      r0,|L12.128|
-000010  f7fffffe          BL       __2printf
+;;;307    //		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 ;;;308    		while(1); /* 参数异常，死机等待看门狗复位 */
-000014  bf00              NOP      
-                  |L12.22|
-000016  e7fe              B        |L12.22|
-                  |L12.24|
+00000a  bf00              NOP      
+                  |L12.12|
+00000c  e7fe              B        |L12.12|
+                  |L12.14|
 ;;;309    	}
 ;;;310    
 ;;;311    	DISABLE_INT();  		/* 关中断 */
-000018  2001              MOVS     r0,#1
-00001a  f7fffffe          BL       __set_PRIMASK
+00000e  2001              MOVS     r0,#1
+000010  f7fffffe          BL       __set_PRIMASK
 ;;;312    
 ;;;313    	s_tTmr[_id].Count = _period;			/* 实时计数器初值 */
-00001e  eb040044          ADD      r0,r4,r4,LSL #1
-000022  491f              LDR      r1,|L12.160|
-000024  eb010080          ADD      r0,r1,r0,LSL #2
-000028  6045              STR      r5,[r0,#4]
+000014  eb040044          ADD      r0,r4,r4,LSL #1
+000018  490c              LDR      r1,|L12.76|
+00001a  eb010080          ADD      r0,r1,r0,LSL #2
+00001e  6045              STR      r5,[r0,#4]
 ;;;314    	s_tTmr[_id].PreLoad = _period;		/* 计数器自动重装值，仅自动模式起作用 */
-00002a  eb040044          ADD      r0,r4,r4,LSL #1
-00002e  eb010080          ADD      r0,r1,r0,LSL #2
-000032  6085              STR      r5,[r0,#8]
+000020  eb040044          ADD      r0,r4,r4,LSL #1
+000024  eb010080          ADD      r0,r1,r0,LSL #2
+000028  6085              STR      r5,[r0,#8]
 ;;;315    	s_tTmr[_id].Flag = 0;				/* 定时时间到标志 */
-000034  2000              MOVS     r0,#0
-000036  eb040144          ADD      r1,r4,r4,LSL #1
-00003a  4a19              LDR      r2,|L12.160|
-00003c  eb020181          ADD      r1,r2,r1,LSL #2
-000040  7048              STRB     r0,[r1,#1]
+00002a  2000              MOVS     r0,#0
+00002c  eb040144          ADD      r1,r4,r4,LSL #1
+000030  4a06              LDR      r2,|L12.76|
+000032  eb020181          ADD      r1,r2,r1,LSL #2
+000036  7048              STRB     r0,[r1,#1]
 ;;;316    	s_tTmr[_id].Mode = TMR_AUTO_MODE;	/* 自动工作模式 */
-000042  2001              MOVS     r0,#1
-000044  eb040144          ADD      r1,r4,r4,LSL #1
-000048  f8020021          STRB     r0,[r2,r1,LSL #2]
+000038  2001              MOVS     r0,#1
+00003a  eb040144          ADD      r1,r4,r4,LSL #1
+00003e  f8020021          STRB     r0,[r2,r1,LSL #2]
 ;;;317    
 ;;;318    	ENABLE_INT();  			/* 开中断 */
-00004c  2000              MOVS     r0,#0
-00004e  f7fffffe          BL       __set_PRIMASK
+000042  2000              MOVS     r0,#0
+000044  f7fffffe          BL       __set_PRIMASK
 ;;;319    }
-000052  bd70              POP      {r4-r6,pc}
+000048  bd70              POP      {r4-r6,pc}
 ;;;320    
                           ENDP
 
-                  |L12.84|
-                          DCD      |symbol_number.50|
-                  |L12.88|
-000058  2e2e5c55          DCB      "..\\User\\bsp_stm32f4xx\\src\\bsp_timer.c",0
-00005c  7365725c
-000060  6273705f
-000064  73746d33
-000068  32663478
-00006c  785c7372
-000070  635c6273
-000074  705f7469
-000078  6d65722e
-00007c  6300    
-00007e  00                DCB      0
-00007f  00                DCB      0
-                  |L12.128|
-000080  4572726f          DCB      "Error: file %s, function %s()\r\n",0
-000084  723a2066
-000088  696c6520
-00008c  25732c20
-000090  66756e63
-000094  74696f6e
-000098  20257328
-00009c  290d0a00
-                  |L12.160|
+00004a  0000              DCW      0x0000
+                  |L12.76|
                           DCD      s_tTmr
 
                           AREA ||i.bsp_StartHardTimer||, CODE, READONLY, ALIGN=2
@@ -1016,9 +986,6 @@
 
                           AREA ||i.bsp_StartTimer||, CODE, READONLY, ALIGN=2
 
-                          REQUIRE _printf_percent
-                          REQUIRE _printf_s
-                          REQUIRE _printf_str
                   bsp_StartTimer PROC
 ;;;273    */
 ;;;274    void bsp_StartTimer(uint8_t _id, uint32_t _period)
@@ -1028,83 +995,53 @@
 000004  460d              MOV      r5,r1
 ;;;276    	if (_id >= TMR_COUNT)
 000006  2c04              CMP      r4,#4
-000008  db06              BLT      |L14.24|
+000008  db01              BLT      |L14.14|
 ;;;277    	{
 ;;;278    		/* 打印出错的源代码文件名、函数名称 */
-;;;279    		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
-00000a  4a11              LDR      r2,|L14.80|
-00000c  a111              ADR      r1,|L14.84|
-00000e  a01b              ADR      r0,|L14.124|
-000010  f7fffffe          BL       __2printf
+;;;279    //		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 ;;;280    		while(1); /* 参数异常，死机等待看门狗复位 */
-000014  bf00              NOP      
-                  |L14.22|
-000016  e7fe              B        |L14.22|
-                  |L14.24|
+00000a  bf00              NOP      
+                  |L14.12|
+00000c  e7fe              B        |L14.12|
+                  |L14.14|
 ;;;281    	}
 ;;;282    
 ;;;283    	DISABLE_INT();  			/* 关中断 */
-000018  2001              MOVS     r0,#1
-00001a  f7fffffe          BL       __set_PRIMASK
+00000e  2001              MOVS     r0,#1
+000010  f7fffffe          BL       __set_PRIMASK
 ;;;284    
 ;;;285    	s_tTmr[_id].Count = _period;		/* 实时计数器初值 */
-00001e  eb040044          ADD      r0,r4,r4,LSL #1
-000022  491e              LDR      r1,|L14.156|
-000024  eb010080          ADD      r0,r1,r0,LSL #2
-000028  6045              STR      r5,[r0,#4]
+000014  eb040044          ADD      r0,r4,r4,LSL #1
+000018  490b              LDR      r1,|L14.72|
+00001a  eb010080          ADD      r0,r1,r0,LSL #2
+00001e  6045              STR      r5,[r0,#4]
 ;;;286    	s_tTmr[_id].PreLoad = _period;		/* 计数器自动重装值，仅自动模式起作用 */
-00002a  eb040044          ADD      r0,r4,r4,LSL #1
-00002e  eb010080          ADD      r0,r1,r0,LSL #2
-000032  6085              STR      r5,[r0,#8]
+000020  eb040044          ADD      r0,r4,r4,LSL #1
+000024  eb010080          ADD      r0,r1,r0,LSL #2
+000028  6085              STR      r5,[r0,#8]
 ;;;287    	s_tTmr[_id].Flag = 0;				/* 定时时间到标志 */
-000034  2000              MOVS     r0,#0
-000036  eb040144          ADD      r1,r4,r4,LSL #1
-00003a  4a18              LDR      r2,|L14.156|
-00003c  eb020181          ADD      r1,r2,r1,LSL #2
-000040  7048              STRB     r0,[r1,#1]
+00002a  2000              MOVS     r0,#0
+00002c  eb040144          ADD      r1,r4,r4,LSL #1
+000030  4a05              LDR      r2,|L14.72|
+000032  eb020181          ADD      r1,r2,r1,LSL #2
+000036  7048              STRB     r0,[r1,#1]
 ;;;288    	s_tTmr[_id].Mode = TMR_ONCE_MODE;	/* 1次性工作模式 */
-000042  eb040144          ADD      r1,r4,r4,LSL #1
-000046  f8020021          STRB     r0,[r2,r1,LSL #2]
+000038  eb040144          ADD      r1,r4,r4,LSL #1
+00003c  f8020021          STRB     r0,[r2,r1,LSL #2]
 ;;;289    
 ;;;290    	ENABLE_INT();  				/* 开中断 */
-00004a  f7fffffe          BL       __set_PRIMASK
+000040  f7fffffe          BL       __set_PRIMASK
 ;;;291    }
-00004e  bd70              POP      {r4-r6,pc}
+000044  bd70              POP      {r4-r6,pc}
 ;;;292    
                           ENDP
 
-                  |L14.80|
-                          DCD      __FUNCTION__
-                  |L14.84|
-000054  2e2e5c55          DCB      "..\\User\\bsp_stm32f4xx\\src\\bsp_timer.c",0
-000058  7365725c
-00005c  6273705f
-000060  73746d33
-000064  32663478
-000068  785c7372
-00006c  635c6273
-000070  705f7469
-000074  6d65722e
-000078  6300    
-00007a  00                DCB      0
-00007b  00                DCB      0
-                  |L14.124|
-00007c  4572726f          DCB      "Error: file %s, function %s()\r\n",0
-000080  723a2066
-000084  696c6520
-000088  25732c20
-00008c  66756e63
-000090  74696f6e
-000094  20257328
-000098  290d0a00
-                  |L14.156|
+000046  0000              DCW      0x0000
+                  |L14.72|
                           DCD      s_tTmr
 
                           AREA ||i.bsp_StopTimer||, CODE, READONLY, ALIGN=2
 
-                          REQUIRE _printf_percent
-                          REQUIRE _printf_s
-                          REQUIRE _printf_str
                   bsp_StopTimer PROC
 ;;;328    */
 ;;;329    void bsp_StopTimer(uint8_t _id)
@@ -1113,98 +1050,49 @@
 000002  4604              MOV      r4,r0
 ;;;331    	if (_id >= TMR_COUNT)
 000004  2c04              CMP      r4,#4
-000006  db06              BLT      |L15.22|
+000006  db01              BLT      |L15.12|
 ;;;332    	{
 ;;;333    		/* 打印出错的源代码文件名、函数名称 */
-;;;334    		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
-000008  4a0e              LDR      r2,|L15.68|
-00000a  a10f              ADR      r1,|L15.72|
-00000c  a018              ADR      r0,|L15.112|
-00000e  f7fffffe          BL       __2printf
+;;;334    //		BSP_Printf("Error: file %s, function %s()\r\n", __FILE__, __FUNCTION__);
 ;;;335    		while(1); /* 参数异常，死机等待看门狗复位 */
-000012  bf00              NOP      
-                  |L15.20|
-000014  e7fe              B        |L15.20|
-                  |L15.22|
+000008  bf00              NOP      
+                  |L15.10|
+00000a  e7fe              B        |L15.10|
+                  |L15.12|
 ;;;336    	}
 ;;;337    
 ;;;338    	DISABLE_INT();  	/* 关中断 */
-000016  2001              MOVS     r0,#1
-000018  f7fffffe          BL       __set_PRIMASK
+00000c  2001              MOVS     r0,#1
+00000e  f7fffffe          BL       __set_PRIMASK
 ;;;339    
 ;;;340    	s_tTmr[_id].Count = 0;				/* 实时计数器初值 */
-00001c  2000              MOVS     r0,#0
-00001e  eb040144          ADD      r1,r4,r4,LSL #1
-000022  4a1b              LDR      r2,|L15.144|
-000024  eb020181          ADD      r1,r2,r1,LSL #2
-000028  6048              STR      r0,[r1,#4]
+000012  2000              MOVS     r0,#0
+000014  eb040144          ADD      r1,r4,r4,LSL #1
+000018  4a07              LDR      r2,|L15.56|
+00001a  eb020181          ADD      r1,r2,r1,LSL #2
+00001e  6048              STR      r0,[r1,#4]
 ;;;341    	s_tTmr[_id].Flag = 0;				/* 定时时间到标志 */
-00002a  eb040144          ADD      r1,r4,r4,LSL #1
-00002e  eb020181          ADD      r1,r2,r1,LSL #2
-000032  7048              STRB     r0,[r1,#1]
+000020  eb040144          ADD      r1,r4,r4,LSL #1
+000024  eb020181          ADD      r1,r2,r1,LSL #2
+000028  7048              STRB     r0,[r1,#1]
 ;;;342    	s_tTmr[_id].Mode = TMR_ONCE_MODE;	/* 自动工作模式 */
-000034  eb040144          ADD      r1,r4,r4,LSL #1
-000038  f8020021          STRB     r0,[r2,r1,LSL #2]
+00002a  eb040144          ADD      r1,r4,r4,LSL #1
+00002e  f8020021          STRB     r0,[r2,r1,LSL #2]
 ;;;343    
 ;;;344    	ENABLE_INT();  		/* 开中断 */
-00003c  f7fffffe          BL       __set_PRIMASK
+000032  f7fffffe          BL       __set_PRIMASK
 ;;;345    }
-000040  bd10              POP      {r4,pc}
+000036  bd10              POP      {r4,pc}
 ;;;346    
                           ENDP
 
-000042  0000              DCW      0x0000
-                  |L15.68|
-                          DCD      |symbol_number.51|
-                  |L15.72|
-000048  2e2e5c55          DCB      "..\\User\\bsp_stm32f4xx\\src\\bsp_timer.c",0
-00004c  7365725c
-000050  6273705f
-000054  73746d33
-000058  32663478
-00005c  785c7372
-000060  635c6273
-000064  705f7469
-000068  6d65722e
-00006c  6300    
-00006e  00                DCB      0
-00006f  00                DCB      0
-                  |L15.112|
-000070  4572726f          DCB      "Error: file %s, function %s()\r\n",0
-000074  723a2066
-000078  696c6520
-00007c  25732c20
-000080  66756e63
-000084  74696f6e
-000088  20257328
-00008c  290d0a00
-                  |L15.144|
+                  |L15.56|
                           DCD      s_tTmr
 
                           AREA ||.bss||, DATA, NOINIT, ALIGN=2
 
                   s_tTmr
                           %        48
-
-                          AREA ||.constdata||, DATA, READONLY, ALIGN=0
-
-                  __FUNCTION__
-000000  6273705f          DCB      0x62,0x73,0x70,0x5f
-000004  53746172          DCB      0x53,0x74,0x61,0x72
-000008  7454696d          DCB      0x74,0x54,0x69,0x6d
-00000c  657200            DCB      0x65,0x72,0x00
-                  |symbol_number.50|
-00000f  62                DCB      0x62
-000010  73705f53          DCB      0x73,0x70,0x5f,0x53
-000014  74617274          DCB      0x74,0x61,0x72,0x74
-000018  4175746f          DCB      0x41,0x75,0x74,0x6f
-00001c  54696d65          DCB      0x54,0x69,0x6d,0x65
-000020  7200              DCB      0x72,0x00
-                  |symbol_number.51|
-000022  6273              DCB      0x62,0x73
-000024  705f5374          DCB      0x70,0x5f,0x53,0x74
-000028  6f705469          DCB      0x6f,0x70,0x54,0x69
-00002c  6d657200          DCB      0x6d,0x65,0x72,0x00
 
                           AREA ||.data||, DATA, ALIGN=2
 

@@ -233,7 +233,7 @@ void GT811_InitHard(void)
 	
 	ver = GT811_ReadVersion();
 
-	printf("GT811 Version : %04X\r\n", ver);
+//	printf("GT811 Version : %04X\r\n", ver);
 
 	/* I2C总线初始化在 bsp.c 中执行 */
 	
@@ -360,7 +360,7 @@ void GT811_Timer10ms(void)
 void GT811_Scan(void)
 {
 	uint8_t buf[48];
-	uint8_t i;
+//	uint8_t i;
 	static uint8_t s_tp_down = 0;
 	uint16_t x, y;
 	static uint16_t x_save, y_save;
@@ -476,7 +476,7 @@ void GT811_Scan(void)
 	x_save = x;	/* 保存坐标，用于释放事件 */
 	y_save = y;
 
-#if 1
+#if 0
 	for (i = 0; i < 34; i++)
 	{
 		printf("%02X ", buf[i]);
@@ -492,4 +492,4 @@ void GT811_Scan(void)
 #endif	
 }
 
-/***************************** (END OF FILE) *********************************/
+/***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/

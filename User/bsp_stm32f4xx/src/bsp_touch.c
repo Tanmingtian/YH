@@ -123,13 +123,13 @@ void TOUCH_InitHard(void)
 		
 	if (g_ChipID == IC_8875)
 	{
-		RA8875_TouchInit();
+		RA8875_TouchInit();//
 
 		g_tTP.usMaxAdc = 1023;	/* 10位ADC */
 	}
 	else
 	{	
-		TSC2046_InitHard();
+		TSC2046_InitHard();//电阻触摸芯片驱动
 
 		g_tTP.usMaxAdc = 4095;	/* 12位ADC */
 	}

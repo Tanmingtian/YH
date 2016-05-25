@@ -5,665 +5,627 @@
                           AREA ||i.SystemCheck||, CODE, READONLY, ALIGN=2
 
                   SystemCheck PROC
-;;;15     		float	tempA,tempB,tempC,tempD ;
+;;;15     double	tempA,tempB,tempC,tempD ;
 ;;;16     void SystemCheck(void)
-000000  b500              PUSH     {lr}
+000000  b510              PUSH     {r4,lr}
 ;;;17     {
-000002  ed2d8b10          VPUSH    {d8-d15}
-000006  b083              SUB      sp,sp,#0xc
+000002  ed2d8b0e          VPUSH    {d8-d14}
 ;;;18     	Valve_GPIO_Config();
-000008  f7fffffe          BL       Valve_GPIO_Config
+000006  f7fffffe          BL       Valve_GPIO_Config
 ;;;19     	while(1)
-00000c  e2dd              B        |L1.1482|
-                  |L1.14|
-;;;20     	{
-;;;21     		
-;;;22     		tempA = ADC_1(ADC_T_10A);	
-00000e  2008              MOVS     r0,#8
-000010  f7fffffe          BL       ADC_1
-000014  ee000a10          VMOV     s0,r0
-000018  eeb80a40          VCVT.F32.U32 s0,s0
-00001c  48fe              LDR      r0,|L1.1048|
-00001e  ed800a00          VSTR     s0,[r0,#0]
-;;;23     		tempA = 3.0 * tempA / 4096.0 / 2.0;
-000022  6800              LDR      r0,[r0,#0]  ; tempA
-000024  f7fffffe          BL       __aeabi_f2d
-000028  ec410b1b          VMOV     d11,r0,r1
-00002c  ed9f0bfb          VLDR     d0,|L1.1052|
-000030  ec532b10          VMOV     r2,r3,d0
-000034  f7fffffe          BL       __aeabi_dmul
-000038  ec410b1a          VMOV     d10,r0,r1
-00003c  ed9f0bf9          VLDR     d0,|L1.1060|
-000040  ec532b10          VMOV     r2,r3,d0
-000044  f7fffffe          BL       __aeabi_ddiv
-000048  ec410b19          VMOV     d9,r0,r1
-00004c  ed9f0bf7          VLDR     d0,|L1.1068|
-000050  ec532b10          VMOV     r2,r3,d0
-000054  f7fffffe          BL       __aeabi_ddiv
-000058  ec410b18          VMOV     d8,r0,r1
-00005c  f7fffffe          BL       __aeabi_d2f
-000060  49ed              LDR      r1,|L1.1048|
-000062  6008              STR      r0,[r1,#0]  ; tempA
-;;;24     		tempA = -(-232.6 * log(log10(37.4 * 1000.0 * tempA / (1.2 - tempA))) + 343.82);
-000064  4608              MOV      r0,r1
-000066  6800              LDR      r0,[r0,#0]  ; tempA
-000068  f7fffffe          BL       __aeabi_f2d
-00006c  ec410b1f          VMOV     d15,r0,r1
-000070  ed9f0bf0          VLDR     d0,|L1.1076|
-000074  ec532b10          VMOV     r2,r3,d0
-000078  f7fffffe          BL       __aeabi_drsub
-00007c  ec410b1d          VMOV     d13,r0,r1
-000080  48e5              LDR      r0,|L1.1048|
-000082  6800              LDR      r0,[r0,#0]  ; tempA
-000084  f7fffffe          BL       __aeabi_f2d
-000088  ec410b1f          VMOV     d15,r0,r1
-00008c  ed9f0beb          VLDR     d0,|L1.1084|
-000090  ec532b10          VMOV     r2,r3,d0
-000094  f7fffffe          BL       __aeabi_dmul
-000098  ec410b1e          VMOV     d14,r0,r1
-00009c  ec532b1d          VMOV     r2,r3,d13
-0000a0  f7fffffe          BL       __aeabi_ddiv
-0000a4  ec410b1c          VMOV     d12,r0,r1
-0000a8  eeb00a4c          VMOV.F32 s0,s24
-0000ac  eef00a6c          VMOV.F32 s1,s25
-0000b0  f7fffffe          BL       __hardfp_log10
-0000b4  eeb0ba40          VMOV.F32 s22,s0
-0000b8  eef0ba60          VMOV.F32 s23,s1
-0000bc  f7fffffe          BL       __hardfp_log
-0000c0  eeb0aa40          VMOV.F32 s20,s0
-0000c4  eef0aa60          VMOV.F32 s21,s1
-0000c8  ed9f0bde          VLDR     d0,|L1.1092|
-0000cc  ec532b10          VMOV     r2,r3,d0
-0000d0  ec510b1a          VMOV     r0,r1,d10
-0000d4  f7fffffe          BL       __aeabi_dmul
-0000d8  ec410b19          VMOV     d9,r0,r1
-0000dc  ed9f0bdb          VLDR     d0,|L1.1100|
-0000e0  ec532b10          VMOV     r2,r3,d0
-0000e4  f7fffffe          BL       __aeabi_dadd
-0000e8  ec410b18          VMOV     d8,r0,r1
-0000ec  f7fffffe          BL       __aeabi_dneg
-0000f0  e9cd0100          STRD     r0,r1,[sp,#0]
-0000f4  ed9d0b00          VLDR     d0,[sp,#0]
-0000f8  ec510b10          VMOV     r0,r1,d0
-0000fc  f7fffffe          BL       __aeabi_d2f
-000100  49c5              LDR      r1,|L1.1048|
-000102  6008              STR      r0,[r1,#0]  ; tempA
-;;;25     		A1=tempA*10;
-000104  4608              MOV      r0,r1
-000106  ed900a00          VLDR     s0,[r0,#0]
-00010a  eef20a04          VMOV.F32 s1,#10.00000000
-00010e  ee200a20          VMUL.F32 s0,s0,s1
-000112  eebc0ac0          VCVT.U32.F32 s0,s0
-000116  ee100a10          VMOV     r0,s0
-00011a  49ce              LDR      r1,|L1.1108|
-00011c  8008              STRH     r0,[r1,#0]
-;;;26     		tempB = ADC_1(ADC_T_10B);
-00011e  2009              MOVS     r0,#9
-000120  f7fffffe          BL       ADC_1
-000124  ee000a10          VMOV     s0,r0
-000128  eeb80a40          VCVT.F32.U32 s0,s0
-00012c  48ca              LDR      r0,|L1.1112|
-00012e  ed800a00          VSTR     s0,[r0,#0]
-;;;27     		tempB = 3.0 * tempB / 4096.0 / 2.0;
-000132  6800              LDR      r0,[r0,#0]  ; tempB
-000134  f7fffffe          BL       __aeabi_f2d
-000138  ec410b1b          VMOV     d11,r0,r1
-00013c  ed9f0bb7          VLDR     d0,|L1.1052|
-000140  ec532b10          VMOV     r2,r3,d0
-000144  f7fffffe          BL       __aeabi_dmul
-000148  ec410b1a          VMOV     d10,r0,r1
-00014c  ed9f0bb5          VLDR     d0,|L1.1060|
-000150  ec532b10          VMOV     r2,r3,d0
-000154  f7fffffe          BL       __aeabi_ddiv
-000158  ec410b19          VMOV     d9,r0,r1
-00015c  ed9f0bb3          VLDR     d0,|L1.1068|
-000160  ec532b10          VMOV     r2,r3,d0
-000164  f7fffffe          BL       __aeabi_ddiv
-000168  ec410b18          VMOV     d8,r0,r1
-00016c  f7fffffe          BL       __aeabi_d2f
-000170  49b9              LDR      r1,|L1.1112|
-000172  6008              STR      r0,[r1,#0]  ; tempB
-;;;28     		tempB = -(-232.6 * log(log10(37.4 * 1000.0 * tempB / (1.2 - tempB))) + 343.82);
-000174  4608              MOV      r0,r1
-000176  6800              LDR      r0,[r0,#0]  ; tempB
-000178  f7fffffe          BL       __aeabi_f2d
-00017c  ec410b1f          VMOV     d15,r0,r1
-000180  ed9f0bac          VLDR     d0,|L1.1076|
-000184  ec532b10          VMOV     r2,r3,d0
-000188  f7fffffe          BL       __aeabi_drsub
-00018c  ec410b1e          VMOV     d14,r0,r1
-000190  48b1              LDR      r0,|L1.1112|
-000192  6800              LDR      r0,[r0,#0]  ; tempB
-000194  f7fffffe          BL       __aeabi_f2d
-000198  ec410b1f          VMOV     d15,r0,r1
-00019c  ed9f0ba7          VLDR     d0,|L1.1084|
-0001a0  ec532b10          VMOV     r2,r3,d0
-0001a4  f7fffffe          BL       __aeabi_dmul
-0001a8  ec532b1e          VMOV     r2,r3,d14
-0001ac  e9cd0100          STRD     r0,r1,[sp,#0]
-0001b0  ed9d0b00          VLDR     d0,[sp,#0]
-0001b4  ec510b10          VMOV     r0,r1,d0
-0001b8  f7fffffe          BL       __aeabi_ddiv
-0001bc  ec410b1d          VMOV     d13,r0,r1
-0001c0  eeb00a4d          VMOV.F32 s0,s26
-0001c4  eef00a6d          VMOV.F32 s1,s27
-0001c8  f7fffffe          BL       __hardfp_log10
-0001cc  eeb0ca40          VMOV.F32 s24,s0
-0001d0  eef0ca60          VMOV.F32 s25,s1
-0001d4  f7fffffe          BL       __hardfp_log
-0001d8  eeb0ba40          VMOV.F32 s22,s0
-0001dc  eef0ba60          VMOV.F32 s23,s1
-0001e0  ed9f0b98          VLDR     d0,|L1.1092|
-0001e4  ec532b10          VMOV     r2,r3,d0
-0001e8  ec510b1b          VMOV     r0,r1,d11
+00000a  e2ad              B        |L1.1384|
+                  |L1.12|
+;;;20     	{	
+;;;21     		tempA = ADC_1(0);	
+00000c  2000              MOVS     r0,#0
+00000e  f7fffffe          BL       ADC_1
+000012  4604              MOV      r4,r0
+000014  f7fffffe          BL       __aeabi_ui2d
+000018  4afe              LDR      r2,|L1.1044|
+00001a  c203              STM      r2!,{r0,r1}
+;;;22     		tempA = 3.0 * tempA / 4096.0 / 2.0;
+00001c  48fd              LDR      r0,|L1.1044|
+00001e  ed900b00          VLDR     d0,[r0,#0]
+000022  ec532b10          VMOV     r2,r3,d0
+000026  ed9f0bfc          VLDR     d0,|L1.1048|
+00002a  ec510b10          VMOV     r0,r1,d0
+00002e  f7fffffe          BL       __aeabi_dmul
+000032  ec410b19          VMOV     d9,r0,r1
+000036  ed9f0bfa          VLDR     d0,|L1.1056|
+00003a  ec532b10          VMOV     r2,r3,d0
+00003e  f7fffffe          BL       __aeabi_ddiv
+000042  ec410b18          VMOV     d8,r0,r1
+000046  ed9f0bf8          VLDR     d0,|L1.1064|
+00004a  ec532b10          VMOV     r2,r3,d0
+00004e  f7fffffe          BL       __aeabi_ddiv
+000052  4af0              LDR      r2,|L1.1044|
+000054  c203              STM      r2!,{r0,r1}
+;;;23     		tempA = -(-232.6 * log(log10(37.4 * 1000.0 * tempA / (1.2 - tempA))) + 343.82);
+000056  48ef              LDR      r0,|L1.1044|
+000058  ed900b00          VLDR     d0,[r0,#0]
+00005c  ec532b10          VMOV     r2,r3,d0
+000060  ed9f0bf3          VLDR     d0,|L1.1072|
+000064  ec510b10          VMOV     r0,r1,d0
+000068  f7fffffe          BL       __aeabi_dsub
+00006c  ec410b1d          VMOV     d13,r0,r1
+000070  48e8              LDR      r0,|L1.1044|
+000072  ed900b00          VLDR     d0,[r0,#0]
+000076  ec532b10          VMOV     r2,r3,d0
+00007a  ed9f0bef          VLDR     d0,|L1.1080|
+00007e  ec510b10          VMOV     r0,r1,d0
+000082  f7fffffe          BL       __aeabi_dmul
+000086  ec410b1e          VMOV     d14,r0,r1
+00008a  ec532b1d          VMOV     r2,r3,d13
+00008e  f7fffffe          BL       __aeabi_ddiv
+000092  ec410b1c          VMOV     d12,r0,r1
+000096  eeb00a4c          VMOV.F32 s0,s24
+00009a  eef00a6c          VMOV.F32 s1,s25
+00009e  f7fffffe          BL       __hardfp_log10
+0000a2  eeb0ba40          VMOV.F32 s22,s0
+0000a6  eef0ba60          VMOV.F32 s23,s1
+0000aa  f7fffffe          BL       __hardfp_log
+0000ae  eeb0aa40          VMOV.F32 s20,s0
+0000b2  eef0aa60          VMOV.F32 s21,s1
+0000b6  ed9f0be2          VLDR     d0,|L1.1088|
+0000ba  ec532b10          VMOV     r2,r3,d0
+0000be  ec510b1a          VMOV     r0,r1,d10
+0000c2  f7fffffe          BL       __aeabi_dmul
+0000c6  ec410b19          VMOV     d9,r0,r1
+0000ca  ed9f0bdf          VLDR     d0,|L1.1096|
+0000ce  ec532b10          VMOV     r2,r3,d0
+0000d2  f7fffffe          BL       __aeabi_dadd
+0000d6  ec410b18          VMOV     d8,r0,r1
+0000da  f7fffffe          BL       __aeabi_dneg
+0000de  4acd              LDR      r2,|L1.1044|
+0000e0  c203              STM      r2!,{r0,r1}
+;;;24     		A1=tempA*10;
+0000e2  ed9f0bdb          VLDR     d0,|L1.1104|
+0000e6  ec532b10          VMOV     r2,r3,d0
+0000ea  48ca              LDR      r0,|L1.1044|
+0000ec  ed900b00          VLDR     d0,[r0,#0]
+0000f0  ec510b10          VMOV     r0,r1,d0
+0000f4  f7fffffe          BL       __aeabi_dmul
+0000f8  ec410b18          VMOV     d8,r0,r1
+0000fc  f7fffffe          BL       __aeabi_d2uiz
+000100  49d5              LDR      r1,|L1.1112|
+000102  8008              STRH     r0,[r1,#0]
+;;;25     		tempB = ADC_1(1);
+000104  2001              MOVS     r0,#1
+000106  f7fffffe          BL       ADC_1
+00010a  4604              MOV      r4,r0
+00010c  f7fffffe          BL       __aeabi_ui2d
+000110  4ad2              LDR      r2,|L1.1116|
+000112  c203              STM      r2!,{r0,r1}
+;;;26     		tempB = 3.0 * tempB / 4096.0 / 2.0;
+000114  48d1              LDR      r0,|L1.1116|
+000116  ed900b00          VLDR     d0,[r0,#0]
+00011a  ec532b10          VMOV     r2,r3,d0
+00011e  ed9f0bbe          VLDR     d0,|L1.1048|
+000122  ec510b10          VMOV     r0,r1,d0
+000126  f7fffffe          BL       __aeabi_dmul
+00012a  ec410b19          VMOV     d9,r0,r1
+00012e  ed9f0bbc          VLDR     d0,|L1.1056|
+000132  ec532b10          VMOV     r2,r3,d0
+000136  f7fffffe          BL       __aeabi_ddiv
+00013a  ec410b18          VMOV     d8,r0,r1
+00013e  ed9f0bba          VLDR     d0,|L1.1064|
+000142  ec532b10          VMOV     r2,r3,d0
+000146  f7fffffe          BL       __aeabi_ddiv
+00014a  4ac4              LDR      r2,|L1.1116|
+00014c  c203              STM      r2!,{r0,r1}
+;;;27     		tempB = -(-232.6 * log(log10(37.4 * 1000.0 * tempB / (1.2 - tempB))) + 343.82);
+00014e  48c3              LDR      r0,|L1.1116|
+000150  ed900b00          VLDR     d0,[r0,#0]
+000154  ec532b10          VMOV     r2,r3,d0
+000158  ed9f0bb5          VLDR     d0,|L1.1072|
+00015c  ec510b10          VMOV     r0,r1,d0
+000160  f7fffffe          BL       __aeabi_dsub
+000164  ec410b1d          VMOV     d13,r0,r1
+000168  48bc              LDR      r0,|L1.1116|
+00016a  ed900b00          VLDR     d0,[r0,#0]
+00016e  ec532b10          VMOV     r2,r3,d0
+000172  ed9f0bb1          VLDR     d0,|L1.1080|
+000176  ec510b10          VMOV     r0,r1,d0
+00017a  f7fffffe          BL       __aeabi_dmul
+00017e  ec410b1e          VMOV     d14,r0,r1
+000182  ec532b1d          VMOV     r2,r3,d13
+000186  f7fffffe          BL       __aeabi_ddiv
+00018a  ec410b1c          VMOV     d12,r0,r1
+00018e  eeb00a4c          VMOV.F32 s0,s24
+000192  eef00a6c          VMOV.F32 s1,s25
+000196  f7fffffe          BL       __hardfp_log10
+00019a  eeb0ba40          VMOV.F32 s22,s0
+00019e  eef0ba60          VMOV.F32 s23,s1
+0001a2  f7fffffe          BL       __hardfp_log
+0001a6  eeb0aa40          VMOV.F32 s20,s0
+0001aa  eef0aa60          VMOV.F32 s21,s1
+0001ae  ed9f0ba4          VLDR     d0,|L1.1088|
+0001b2  ec532b10          VMOV     r2,r3,d0
+0001b6  ec510b1a          VMOV     r0,r1,d10
+0001ba  f7fffffe          BL       __aeabi_dmul
+0001be  ec410b19          VMOV     d9,r0,r1
+0001c2  ed9f0ba1          VLDR     d0,|L1.1096|
+0001c6  ec532b10          VMOV     r2,r3,d0
+0001ca  f7fffffe          BL       __aeabi_dadd
+0001ce  ec410b18          VMOV     d8,r0,r1
+0001d2  f7fffffe          BL       __aeabi_dneg
+0001d6  4aa1              LDR      r2,|L1.1116|
+0001d8  c203              STM      r2!,{r0,r1}
+;;;28     		A2=tempB*10;
+0001da  ed9f0b9d          VLDR     d0,|L1.1104|
+0001de  ec532b10          VMOV     r2,r3,d0
+0001e2  489e              LDR      r0,|L1.1116|
+0001e4  ed900b00          VLDR     d0,[r0,#0]
+0001e8  ec510b10          VMOV     r0,r1,d0
 0001ec  f7fffffe          BL       __aeabi_dmul
-0001f0  ec410b1a          VMOV     d10,r0,r1
-0001f4  ed9f0b95          VLDR     d0,|L1.1100|
-0001f8  ec532b10          VMOV     r2,r3,d0
-0001fc  f7fffffe          BL       __aeabi_dadd
-000200  ec410b19          VMOV     d9,r0,r1
-000204  f7fffffe          BL       __aeabi_dneg
-000208  ec410b18          VMOV     d8,r0,r1
-00020c  f7fffffe          BL       __aeabi_d2f
-000210  4991              LDR      r1,|L1.1112|
-000212  6008              STR      r0,[r1,#0]  ; tempB
-;;;29     		A2=tempB*10;
-000214  4608              MOV      r0,r1
-000216  ed900a00          VLDR     s0,[r0,#0]
-00021a  eef20a04          VMOV.F32 s1,#10.00000000
-00021e  ee200a20          VMUL.F32 s0,s0,s1
-000222  eebc0ac0          VCVT.U32.F32 s0,s0
-000226  ee100a10          VMOV     r0,s0
-00022a  498c              LDR      r1,|L1.1116|
-00022c  8008              STRH     r0,[r1,#0]
-;;;30     		tempC = ADC_1(ADC_T18);
-00022e  200f              MOVS     r0,#0xf
-000230  f7fffffe          BL       ADC_1
-000234  ee000a10          VMOV     s0,r0
-000238  eeb80a40          VCVT.F32.U32 s0,s0
-00023c  4888              LDR      r0,|L1.1120|
-00023e  ed800a00          VSTR     s0,[r0,#0]
-;;;31     		tempC = 3.0 * tempC / 4096.0;
-000242  6800              LDR      r0,[r0,#0]  ; tempC
-000244  f7fffffe          BL       __aeabi_f2d
-000248  ec410b1a          VMOV     d10,r0,r1
-00024c  ed9f0b73          VLDR     d0,|L1.1052|
-000250  ec532b10          VMOV     r2,r3,d0
-000254  f7fffffe          BL       __aeabi_dmul
-000258  ec410b19          VMOV     d9,r0,r1
-00025c  ed9f0b71          VLDR     d0,|L1.1060|
-000260  ec532b10          VMOV     r2,r3,d0
-000264  f7fffffe          BL       __aeabi_ddiv
-000268  ec410b18          VMOV     d8,r0,r1
-00026c  f7fffffe          BL       __aeabi_d2f
-000270  497b              LDR      r1,|L1.1120|
-000272  6008              STR      r0,[r1,#0]  ; tempC
-;;;32     		tempC = (((2500.0*4.0*tempC)/(2.5*490.0))+(2500.0*100.0)/2600.0)/(1-((4.0*tempC)/(490.0*2.5))-(100.0/2600.0));
-000274  4608              MOV      r0,r1
-000276  6800              LDR      r0,[r0,#0]  ; tempC
-000278  f7fffffe          BL       __aeabi_f2d
-00027c  ec410b1e          VMOV     d14,r0,r1
-000280  ed9f0b78          VLDR     d0,|L1.1124|
-000284  ec532b10          VMOV     r2,r3,d0
-000288  f7fffffe          BL       __aeabi_dmul
-00028c  ec410b1d          VMOV     d13,r0,r1
-000290  ed9f0b76          VLDR     d0,|L1.1132|
-000294  ec532b10          VMOV     r2,r3,d0
-000298  f7fffffe          BL       __aeabi_ddiv
-00029c  ec410b1c          VMOV     d12,r0,r1
-0002a0  ed9f0b74          VLDR     d0,|L1.1140|
-0002a4  ec532b10          VMOV     r2,r3,d0
-0002a8  f7fffffe          BL       __aeabi_drsub
-0002ac  ec410b1b          VMOV     d11,r0,r1
-0002b0  ed9f0b72          VLDR     d0,|L1.1148|
-0002b4  ec532b10          VMOV     r2,r3,d0
-0002b8  f7fffffe          BL       __aeabi_dsub
-0002bc  ec410b19          VMOV     d9,r0,r1
-0002c0  4867              LDR      r0,|L1.1120|
-0002c2  6800              LDR      r0,[r0,#0]  ; tempC
-0002c4  f7fffffe          BL       __aeabi_f2d
-0002c8  ec410b1d          VMOV     d13,r0,r1
-0002cc  ed9f0b6d          VLDR     d0,|L1.1156|
-0002d0  ec532b10          VMOV     r2,r3,d0
-0002d4  f7fffffe          BL       __aeabi_dmul
-0002d8  ec410b1c          VMOV     d12,r0,r1
-0002dc  ed9f0b63          VLDR     d0,|L1.1132|
-0002e0  ec532b10          VMOV     r2,r3,d0
-0002e4  f7fffffe          BL       __aeabi_ddiv
-0002e8  ec410b1b          VMOV     d11,r0,r1
-0002ec  ed9f0b67          VLDR     d0,|L1.1164|
-0002f0  ec532b10          VMOV     r2,r3,d0
-0002f4  f7fffffe          BL       __aeabi_dadd
-0002f8  ec410b1a          VMOV     d10,r0,r1
-0002fc  ec532b19          VMOV     r2,r3,d9
-000300  f7fffffe          BL       __aeabi_ddiv
-000304  ec410b18          VMOV     d8,r0,r1
-000308  f7fffffe          BL       __aeabi_d2f
-00030c  4954              LDR      r1,|L1.1120|
-00030e  6008              STR      r0,[r1,#0]  ; tempC
-;;;33     		tempC = 0.001 * tempC * tempC + 2.3589 * tempC - 245.87;
-000310  4608              MOV      r0,r1
-000312  6800              LDR      r0,[r0,#0]  ; tempC
-000314  f7fffffe          BL       __aeabi_f2d
-000318  ec410b1c          VMOV     d12,r0,r1
-00031c  ed9f0b5d          VLDR     d0,|L1.1172|
+0001f0  ec410b18          VMOV     d8,r0,r1
+0001f4  f7fffffe          BL       __aeabi_d2uiz
+0001f8  4999              LDR      r1,|L1.1120|
+0001fa  8008              STRH     r0,[r1,#0]
+;;;29     		tempC = ADC_1(3);
+0001fc  2003              MOVS     r0,#3
+0001fe  f7fffffe          BL       ADC_1
+000202  4604              MOV      r4,r0
+000204  f7fffffe          BL       __aeabi_ui2d
+000208  4a96              LDR      r2,|L1.1124|
+00020a  c203              STM      r2!,{r0,r1}
+;;;30     		tempC = 3.0 * tempC / 4096.0;
+00020c  4895              LDR      r0,|L1.1124|
+00020e  ed900b00          VLDR     d0,[r0,#0]
+000212  ec532b10          VMOV     r2,r3,d0
+000216  ed9f0b80          VLDR     d0,|L1.1048|
+00021a  ec510b10          VMOV     r0,r1,d0
+00021e  f7fffffe          BL       __aeabi_dmul
+000222  ec410b18          VMOV     d8,r0,r1
+000226  ed9f0b7e          VLDR     d0,|L1.1056|
+00022a  ec532b10          VMOV     r2,r3,d0
+00022e  f7fffffe          BL       __aeabi_ddiv
+000232  4a8c              LDR      r2,|L1.1124|
+000234  c203              STM      r2!,{r0,r1}
+;;;31     		tempC = (((2500.0*4.0*tempC)/(2.5*490.0))+(2500.0*100.0)/2600.0)/(1-((4.0*tempC)/(490.0*2.5))-(100.0/2600.0));
+000236  488b              LDR      r0,|L1.1124|
+000238  ed900b00          VLDR     d0,[r0,#0]
+00023c  ec532b10          VMOV     r2,r3,d0
+000240  ed9f0b89          VLDR     d0,|L1.1128|
+000244  ec510b10          VMOV     r0,r1,d0
+000248  f7fffffe          BL       __aeabi_dmul
+00024c  ec410b1c          VMOV     d12,r0,r1
+000250  ed9f0b87          VLDR     d0,|L1.1136|
+000254  ec532b10          VMOV     r2,r3,d0
+000258  f7fffffe          BL       __aeabi_ddiv
+00025c  ec410b1b          VMOV     d11,r0,r1
+000260  ed9f0b85          VLDR     d0,|L1.1144|
+000264  ec532b10          VMOV     r2,r3,d0
+000268  f7fffffe          BL       __aeabi_drsub
+00026c  ec410b1a          VMOV     d10,r0,r1
+000270  ed9f0b83          VLDR     d0,|L1.1152|
+000274  ec532b10          VMOV     r2,r3,d0
+000278  f7fffffe          BL       __aeabi_dsub
+00027c  ec410b18          VMOV     d8,r0,r1
+000280  4878              LDR      r0,|L1.1124|
+000282  ed900b00          VLDR     d0,[r0,#0]
+000286  ec532b10          VMOV     r2,r3,d0
+00028a  ed9f0b7f          VLDR     d0,|L1.1160|
+00028e  ec510b10          VMOV     r0,r1,d0
+000292  f7fffffe          BL       __aeabi_dmul
+000296  ec410b1b          VMOV     d11,r0,r1
+00029a  ed9f0b75          VLDR     d0,|L1.1136|
+00029e  ec532b10          VMOV     r2,r3,d0
+0002a2  f7fffffe          BL       __aeabi_ddiv
+0002a6  ec410b1a          VMOV     d10,r0,r1
+0002aa  ed9f0b79          VLDR     d0,|L1.1168|
+0002ae  ec532b10          VMOV     r2,r3,d0
+0002b2  f7fffffe          BL       __aeabi_dadd
+0002b6  ec410b19          VMOV     d9,r0,r1
+0002ba  ec532b18          VMOV     r2,r3,d8
+0002be  f7fffffe          BL       __aeabi_ddiv
+0002c2  4a68              LDR      r2,|L1.1124|
+0002c4  c203              STM      r2!,{r0,r1}
+;;;32     		tempC = 0.001 * tempC * tempC + 2.3589 * tempC - 245.87;
+0002c6  4867              LDR      r0,|L1.1124|
+0002c8  ed900b00          VLDR     d0,[r0,#0]
+0002cc  ec532b10          VMOV     r2,r3,d0
+0002d0  ed9f0b71          VLDR     d0,|L1.1176|
+0002d4  ec510b10          VMOV     r0,r1,d0
+0002d8  f7fffffe          BL       __aeabi_dmul
+0002dc  ec410b19          VMOV     d9,r0,r1
+0002e0  4860              LDR      r0,|L1.1124|
+0002e2  ed900b00          VLDR     d0,[r0,#0]
+0002e6  ec532b10          VMOV     r2,r3,d0
+0002ea  ed9f0b6d          VLDR     d0,|L1.1184|
+0002ee  ec510b10          VMOV     r0,r1,d0
+0002f2  f7fffffe          BL       __aeabi_dmul
+0002f6  ec410b1b          VMOV     d11,r0,r1
+0002fa  485a              LDR      r0,|L1.1124|
+0002fc  ed900b00          VLDR     d0,[r0,#0]
+000300  ec532b10          VMOV     r2,r3,d0
+000304  ec510b1b          VMOV     r0,r1,d11
+000308  f7fffffe          BL       __aeabi_dmul
+00030c  ec410b1a          VMOV     d10,r0,r1
+000310  ec532b19          VMOV     r2,r3,d9
+000314  f7fffffe          BL       __aeabi_dadd
+000318  ec410b18          VMOV     d8,r0,r1
+00031c  ed9f0b62          VLDR     d0,|L1.1192|
 000320  ec532b10          VMOV     r2,r3,d0
-000324  f7fffffe          BL       __aeabi_dmul
-000328  ec410b1b          VMOV     d11,r0,r1
-00032c  484c              LDR      r0,|L1.1120|
-00032e  6800              LDR      r0,[r0,#0]  ; tempC
-000330  f7fffffe          BL       __aeabi_f2d
-000334  ec410b1c          VMOV     d12,r0,r1
-000338  4849              LDR      r0,|L1.1120|
-00033a  6800              LDR      r0,[r0,#0]  ; tempC
-00033c  f7fffffe          BL       __aeabi_f2d
-000340  ec410b1e          VMOV     d14,r0,r1
-000344  ed9f0b55          VLDR     d0,|L1.1180|
-000348  ec532b10          VMOV     r2,r3,d0
-00034c  f7fffffe          BL       __aeabi_dmul
-000350  ec410b1d          VMOV     d13,r0,r1
-000354  ec532b1c          VMOV     r2,r3,d12
-000358  f7fffffe          BL       __aeabi_dmul
-00035c  ec410b18          VMOV     d8,r0,r1
-000360  ec532b1b          VMOV     r2,r3,d11
-000364  f7fffffe          BL       __aeabi_dadd
-000368  ec410b1a          VMOV     d10,r0,r1
-00036c  ed9f0b4d          VLDR     d0,|L1.1188|
-000370  ec532b10          VMOV     r2,r3,d0
-000374  f7fffffe          BL       __aeabi_dsub
-000378  ec410b19          VMOV     d9,r0,r1
-00037c  f7fffffe          BL       __aeabi_d2f
-000380  4937              LDR      r1,|L1.1120|
-000382  6008              STR      r0,[r1,#0]  ; tempC
-;;;34     		A3=tempC*10;
-000384  4608              MOV      r0,r1
-000386  ed900a00          VLDR     s0,[r0,#0]
-00038a  eef20a04          VMOV.F32 s1,#10.00000000
-00038e  ee200a20          VMUL.F32 s0,s0,s1
-000392  eebc0ac0          VCVT.U32.F32 s0,s0
-000396  ee100a10          VMOV     r0,s0
-00039a  4944              LDR      r1,|L1.1196|
-00039c  8008              STRH     r0,[r1,#0]
-;;;35     		tempD = ADC_1(ADC_T42);
-00039e  200e              MOVS     r0,#0xe
-0003a0  f7fffffe          BL       ADC_1
-0003a4  ee000a10          VMOV     s0,r0
-0003a8  eeb80a40          VCVT.F32.U32 s0,s0
-0003ac  4840              LDR      r0,|L1.1200|
-0003ae  ed800a00          VSTR     s0,[r0,#0]
-;;;36     		tempD = 3.0 * tempD / 4096.0;
-0003b2  6800              LDR      r0,[r0,#0]  ; tempD
-0003b4  f7fffffe          BL       __aeabi_f2d
-0003b8  ec410b1a          VMOV     d10,r0,r1
-0003bc  ed9f0b17          VLDR     d0,|L1.1052|
-0003c0  ec532b10          VMOV     r2,r3,d0
-0003c4  f7fffffe          BL       __aeabi_dmul
-0003c8  ec410b19          VMOV     d9,r0,r1
-0003cc  ed9f0b15          VLDR     d0,|L1.1060|
-0003d0  ec532b10          VMOV     r2,r3,d0
-0003d4  f7fffffe          BL       __aeabi_ddiv
-0003d8  ec410b18          VMOV     d8,r0,r1
-0003dc  f7fffffe          BL       __aeabi_d2f
-0003e0  4933              LDR      r1,|L1.1200|
-0003e2  6008              STR      r0,[r1,#0]  ; tempD
-;;;37     		tempD = (((2500.0*4.0*tempD)/(490.0*2.5))+(2500.0*100.0)/2600.0)/(1-((4.0*tempD)/(490.0*2.5))-(100.0/2600.0));
-0003e4  4608              MOV      r0,r1
-0003e6  6800              LDR      r0,[r0,#0]  ; tempD
-0003e8  f7fffffe          BL       __aeabi_f2d
-0003ec  ec410b1e          VMOV     d14,r0,r1
-0003f0  ed9f0b1c          VLDR     d0,|L1.1124|
-0003f4  ec532b10          VMOV     r2,r3,d0
-0003f8  f7fffffe          BL       __aeabi_dmul
-0003fc  ec410b1d          VMOV     d13,r0,r1
-000400  ed9f0b1a          VLDR     d0,|L1.1132|
-000404  ec532b10          VMOV     r2,r3,d0
-000408  f7fffffe          BL       __aeabi_ddiv
-00040c  ec410b1c          VMOV     d12,r0,r1
-000410  ed9f0b18          VLDR     d0,|L1.1140|
-000414  e04e              B        |L1.1204|
-000416  0000              DCW      0x0000
-                  |L1.1048|
+000324  f7fffffe          BL       __aeabi_dsub
+000328  4a4e              LDR      r2,|L1.1124|
+00032a  c203              STM      r2!,{r0,r1}
+;;;33     		A3=tempC*10;
+00032c  ed9f0b48          VLDR     d0,|L1.1104|
+000330  ec532b10          VMOV     r2,r3,d0
+000334  484b              LDR      r0,|L1.1124|
+000336  ed900b00          VLDR     d0,[r0,#0]
+00033a  ec510b10          VMOV     r0,r1,d0
+00033e  f7fffffe          BL       __aeabi_dmul
+000342  ec410b18          VMOV     d8,r0,r1
+000346  f7fffffe          BL       __aeabi_d2uiz
+00034a  4959              LDR      r1,|L1.1200|
+00034c  8008              STRH     r0,[r1,#0]
+;;;34     		tempD = ADC_1(2);
+00034e  2002              MOVS     r0,#2
+000350  f7fffffe          BL       ADC_1
+000354  4604              MOV      r4,r0
+000356  f7fffffe          BL       __aeabi_ui2d
+00035a  4a56              LDR      r2,|L1.1204|
+00035c  c203              STM      r2!,{r0,r1}
+;;;35     		tempD = 3.0 * tempD / 4096.0;
+00035e  4855              LDR      r0,|L1.1204|
+000360  ed900b00          VLDR     d0,[r0,#0]
+000364  ec532b10          VMOV     r2,r3,d0
+000368  ed9f0b2b          VLDR     d0,|L1.1048|
+00036c  ec510b10          VMOV     r0,r1,d0
+000370  f7fffffe          BL       __aeabi_dmul
+000374  ec410b18          VMOV     d8,r0,r1
+000378  ed9f0b29          VLDR     d0,|L1.1056|
+00037c  ec532b10          VMOV     r2,r3,d0
+000380  f7fffffe          BL       __aeabi_ddiv
+000384  4a4b              LDR      r2,|L1.1204|
+000386  c203              STM      r2!,{r0,r1}
+;;;36     		tempD = (((2500.0*4.0*tempD)/(490.0*2.5))+(2500.0*100.0)/2600.0)/(1-((4.0*tempD)/(490.0*2.5))-(100.0/2600.0));
+000388  484a              LDR      r0,|L1.1204|
+00038a  ed900b00          VLDR     d0,[r0,#0]
+00038e  ec532b10          VMOV     r2,r3,d0
+000392  ed9f0b35          VLDR     d0,|L1.1128|
+000396  ec510b10          VMOV     r0,r1,d0
+00039a  f7fffffe          BL       __aeabi_dmul
+00039e  ec410b1c          VMOV     d12,r0,r1
+0003a2  ed9f0b33          VLDR     d0,|L1.1136|
+0003a6  ec532b10          VMOV     r2,r3,d0
+0003aa  f7fffffe          BL       __aeabi_ddiv
+0003ae  ec410b1b          VMOV     d11,r0,r1
+0003b2  ed9f0b31          VLDR     d0,|L1.1144|
+0003b6  ec532b10          VMOV     r2,r3,d0
+0003ba  f7fffffe          BL       __aeabi_drsub
+0003be  ec410b1a          VMOV     d10,r0,r1
+0003c2  ed9f0b2f          VLDR     d0,|L1.1152|
+0003c6  ec532b10          VMOV     r2,r3,d0
+0003ca  f7fffffe          BL       __aeabi_dsub
+0003ce  ec410b18          VMOV     d8,r0,r1
+0003d2  4838              LDR      r0,|L1.1204|
+0003d4  ed900b00          VLDR     d0,[r0,#0]
+0003d8  ec532b10          VMOV     r2,r3,d0
+0003dc  ed9f0b2a          VLDR     d0,|L1.1160|
+0003e0  ec510b10          VMOV     r0,r1,d0
+0003e4  f7fffffe          BL       __aeabi_dmul
+0003e8  ec410b1b          VMOV     d11,r0,r1
+0003ec  ed9f0b20          VLDR     d0,|L1.1136|
+0003f0  ec532b10          VMOV     r2,r3,d0
+0003f4  f7fffffe          BL       __aeabi_ddiv
+0003f8  ec410b1a          VMOV     d10,r0,r1
+0003fc  ed9f0b24          VLDR     d0,|L1.1168|
+000400  ec532b10          VMOV     r2,r3,d0
+000404  f7fffffe          BL       __aeabi_dadd
+000408  ec410b19          VMOV     d9,r0,r1
+00040c  ec532b18          VMOV     r2,r3,d8
+000410  e052              B        |L1.1208|
+000412  0000              DCW      0x0000
+                  |L1.1044|
                           DCD      tempA
-                  |L1.1052|
-00041c  00000000          DCFD     0x4008000000000000 ; 3
-000420  40080000
-                  |L1.1060|
-000424  00000000          DCFD     0x40b0000000000000 ; 4096
-000428  40b00000
-                  |L1.1068|
-00042c  00000000          DCFD     0x4000000000000000 ; 2
-000430  40000000
-                  |L1.1076|
-000434  33333333          DCFD     0x3ff3333333333333 ; 1.2
-000438  3ff33333
-                  |L1.1084|
-00043c  00000000          DCFD     0x40e2430000000000 ; 37400
-000440  40e24300
-                  |L1.1092|
-000444  33333333          DCFD     0xc06d133333333333 ; -232.59999999999999
-000448  c06d1333
-                  |L1.1100|
-00044c  b851eb85          DCFD     0x40757d1eb851eb85 ; 343.81999999999999
-000450  40757d1e
-                  |L1.1108|
-                          DCD      ||A1||
+                  |L1.1048|
+000418  00000000          DCFD     0x4008000000000000 ; 3
+00041c  40080000
+                  |L1.1056|
+000420  00000000          DCFD     0x40b0000000000000 ; 4096
+000424  40b00000
+                  |L1.1064|
+000428  00000000          DCFD     0x4000000000000000 ; 2
+00042c  40000000
+                  |L1.1072|
+000430  33333333          DCFD     0x3ff3333333333333 ; 1.2
+000434  3ff33333
+                  |L1.1080|
+000438  00000000          DCFD     0x40e2430000000000 ; 37400
+00043c  40e24300
+                  |L1.1088|
+000440  33333333          DCFD     0xc06d133333333333 ; -232.59999999999999
+000444  c06d1333
+                  |L1.1096|
+000448  b851eb85          DCFD     0x40757d1eb851eb85 ; 343.81999999999999
+00044c  40757d1e
+                  |L1.1104|
+000450  00000000          DCFD     0x4024000000000000 ; 10
+000454  40240000
                   |L1.1112|
-                          DCD      tempB
+                          DCD      ||A1||
                   |L1.1116|
-                          DCD      ||A2||
+                          DCD      tempB
                   |L1.1120|
-                          DCD      tempC
+                          DCD      ||A2||
                   |L1.1124|
-000464  00000000          DCFD     0x4010000000000000 ; 4
-000468  40100000
-                  |L1.1132|
-00046c  00000000          DCFD     0x4093240000000000 ; 1225
-000470  40932400
-                  |L1.1140|
-000474  00000000          DCFD     0x3ff0000000000000 ; 1
-000478  3ff00000
-                  |L1.1148|
-00047c  13b13b14          DCFD     0x3fa3b13b13b13b14 ; 0.038461538461538464
-000480  3fa3b13b
-                  |L1.1156|
-000484  00000000          DCFD     0x40c3880000000000 ; 10000
-000488  40c38800
-                  |L1.1164|
-00048c  9d89d89e          DCFD     0x405809d89d89d89e ; 96.15384615384616
-000490  405809d8
-                  |L1.1172|
-000494  f6944674          DCFD     0x4002df06f6944674 ; 2.3589000000000002
-000498  4002df06
-                  |L1.1180|
-00049c  d2f1a9fc          DCFD     0x3f50624dd2f1a9fc ; 0.001
-0004a0  3f50624d
-                  |L1.1188|
-0004a4  0a3d70a4          DCFD     0x406ebbd70a3d70a4 ; 245.87
-0004a8  406ebbd7
-                  |L1.1196|
-                          DCD      ||A3||
+                          DCD      tempC
+                  |L1.1128|
+000468  00000000          DCFD     0x4010000000000000 ; 4
+00046c  40100000
+                  |L1.1136|
+000470  00000000          DCFD     0x4093240000000000 ; 1225
+000474  40932400
+                  |L1.1144|
+000478  00000000          DCFD     0x3ff0000000000000 ; 1
+00047c  3ff00000
+                  |L1.1152|
+000480  13b13b14          DCFD     0x3fa3b13b13b13b14 ; 0.038461538461538464
+000484  3fa3b13b
+                  |L1.1160|
+000488  00000000          DCFD     0x40c3880000000000 ; 10000
+00048c  40c38800
+                  |L1.1168|
+000490  9d89d89e          DCFD     0x405809d89d89d89e ; 96.15384615384616
+000494  405809d8
+                  |L1.1176|
+000498  f6944674          DCFD     0x4002df06f6944674 ; 2.3589000000000002
+00049c  4002df06
+                  |L1.1184|
+0004a0  d2f1a9fc          DCFD     0x3f50624dd2f1a9fc ; 0.001
+0004a4  3f50624d
+                  |L1.1192|
+0004a8  0a3d70a4          DCFD     0x406ebbd70a3d70a4 ; 245.87
+0004ac  406ebbd7
                   |L1.1200|
-                          DCD      tempD
+                          DCD      ||A3||
                   |L1.1204|
-0004b4  ec532b10          VMOV     r2,r3,d0
-0004b8  f7fffffe          BL       __aeabi_drsub
-0004bc  ec410b1b          VMOV     d11,r0,r1
-0004c0  ed1f0b12          VLDR     d0,|L1.1148|
+                          DCD      tempD
+                  |L1.1208|
+0004b8  f7fffffe          BL       __aeabi_ddiv
+0004bc  4a2d              LDR      r2,|L1.1396|
+0004be  c203              STM      r2!,{r0,r1}
+;;;37     		tempD = (tempD - 100.0) / 0.385 - 1;
+0004c0  ed9f0b2d          VLDR     d0,|L1.1400|
 0004c4  ec532b10          VMOV     r2,r3,d0
-0004c8  f7fffffe          BL       __aeabi_dsub
-0004cc  ec410b19          VMOV     d9,r0,r1
-0004d0  4846              LDR      r0,|L1.1516|
-0004d2  6800              LDR      r0,[r0,#0]  ; tempD
-0004d4  f7fffffe          BL       __aeabi_f2d
-0004d8  ec410b1d          VMOV     d13,r0,r1
-0004dc  ed1f0b17          VLDR     d0,|L1.1156|
-0004e0  ec532b10          VMOV     r2,r3,d0
-0004e4  f7fffffe          BL       __aeabi_dmul
-0004e8  ec410b1c          VMOV     d12,r0,r1
-0004ec  ed1f0b21          VLDR     d0,|L1.1132|
-0004f0  ec532b10          VMOV     r2,r3,d0
-0004f4  f7fffffe          BL       __aeabi_ddiv
-0004f8  ec410b1b          VMOV     d11,r0,r1
-0004fc  ed1f0b1d          VLDR     d0,|L1.1164|
-000500  ec532b10          VMOV     r2,r3,d0
-000504  f7fffffe          BL       __aeabi_dadd
-000508  ec410b1a          VMOV     d10,r0,r1
-00050c  ec532b19          VMOV     r2,r3,d9
-000510  f7fffffe          BL       __aeabi_ddiv
-000514  ec410b18          VMOV     d8,r0,r1
-000518  f7fffffe          BL       __aeabi_d2f
-00051c  4933              LDR      r1,|L1.1516|
-00051e  6008              STR      r0,[r1,#0]  ; tempD
-;;;38     		tempD = (tempD - 100.0) / 0.385 - 1;
-000520  4608              MOV      r0,r1
-000522  6800              LDR      r0,[r0,#0]  ; tempD
-000524  f7fffffe          BL       __aeabi_f2d
-000528  ec410b1b          VMOV     d11,r0,r1
-00052c  ed9f0b30          VLDR     d0,|L1.1520|
-000530  ec532b10          VMOV     r2,r3,d0
-000534  f7fffffe          BL       __aeabi_dsub
-000538  ec410b1a          VMOV     d10,r0,r1
-00053c  ed9f0b2e          VLDR     d0,|L1.1528|
-000540  ec532b10          VMOV     r2,r3,d0
-000544  f7fffffe          BL       __aeabi_ddiv
-000548  ec410b19          VMOV     d9,r0,r1
-00054c  ed1f0b37          VLDR     d0,|L1.1140|
-000550  ec532b10          VMOV     r2,r3,d0
-000554  f7fffffe          BL       __aeabi_dsub
-000558  ec410b18          VMOV     d8,r0,r1
-00055c  f7fffffe          BL       __aeabi_d2f
-000560  4922              LDR      r1,|L1.1516|
-000562  6008              STR      r0,[r1,#0]  ; tempD
-;;;39     		A4=tempD*10;
-000564  4608              MOV      r0,r1
-000566  ed900a00          VLDR     s0,[r0,#0]
-00056a  eef20a04          VMOV.F32 s1,#10.00000000
-00056e  ee200a20          VMUL.F32 s0,s0,s1
-000572  eebc0ac0          VCVT.U32.F32 s0,s0
-000576  ee100a10          VMOV     r0,s0
-00057a  4921              LDR      r1,|L1.1536|
-00057c  8008              STRH     r0,[r1,#0]
-;;;40     		bsp_DelayMS(5);
-00057e  2005              MOVS     r0,#5
-000580  f7fffffe          BL       bsp_DelayMS
-;;;41     		if(A1>85&&A1<110&&A2>85&&A2<110&&A3>150&&A3<250&&A4>360&&A4<505)
-000584  481f              LDR      r0,|L1.1540|
-000586  8800              LDRH     r0,[r0,#0]  ; A1
-000588  2855              CMP      r0,#0x55
-00058a  dd1e              BLE      |L1.1482|
-00058c  481d              LDR      r0,|L1.1540|
-00058e  8800              LDRH     r0,[r0,#0]  ; A1
-000590  286e              CMP      r0,#0x6e
-000592  da1a              BGE      |L1.1482|
-000594  481c              LDR      r0,|L1.1544|
-000596  8800              LDRH     r0,[r0,#0]  ; A2
-000598  2855              CMP      r0,#0x55
-00059a  dd16              BLE      |L1.1482|
-00059c  481a              LDR      r0,|L1.1544|
-00059e  8800              LDRH     r0,[r0,#0]  ; A2
-0005a0  286e              CMP      r0,#0x6e
-0005a2  da12              BGE      |L1.1482|
-0005a4  4819              LDR      r0,|L1.1548|
-0005a6  8800              LDRH     r0,[r0,#0]  ; A3
-0005a8  2896              CMP      r0,#0x96
-0005aa  dd0e              BLE      |L1.1482|
-0005ac  4817              LDR      r0,|L1.1548|
-0005ae  8800              LDRH     r0,[r0,#0]  ; A3
-0005b0  28fa              CMP      r0,#0xfa
-0005b2  da0a              BGE      |L1.1482|
-0005b4  4812              LDR      r0,|L1.1536|
-0005b6  8800              LDRH     r0,[r0,#0]  ; A4
-0005b8  f5b07fb4          CMP      r0,#0x168
-0005bc  dd05              BLE      |L1.1482|
-0005be  4810              LDR      r0,|L1.1536|
-0005c0  8800              LDRH     r0,[r0,#0]  ; A4
-0005c2  f5b07ffc          CMP      r0,#0x1f8
-0005c6  dc00              BGT      |L1.1482|
-;;;42     		{
-;;;43     			break;
-0005c8  e000              B        |L1.1484|
-                  |L1.1482|
-0005ca  e520              B        |L1.14|
-                  |L1.1484|
-0005cc  bf00              NOP      
-;;;44     		}
-;;;45     	}
-;;;46     	Motor_Init();	
-0005ce  f7fffffe          BL       Motor_Init
-;;;47     	PowerCheck();
-0005d2  f7fffffe          BL       PowerCheck
-;;;48     	m=Test();
-0005d6  f7fffffe          BL       Test
-0005da  490d              LDR      r1,|L1.1552|
-0005dc  6008              STR      r0,[r1,#0]  ; m
-;;;49     	PerkCheck();
-0005de  f7fffffe          BL       PerkCheck
-;;;50     }
-0005e2  b003              ADD      sp,sp,#0xc
-0005e4  ecbd8b10          VPOP     {d8-d15}
-0005e8  bd00              POP      {pc}
-;;;51     /*
+0004c8  482a              LDR      r0,|L1.1396|
+0004ca  ed900b00          VLDR     d0,[r0,#0]
+0004ce  ec510b10          VMOV     r0,r1,d0
+0004d2  f7fffffe          BL       __aeabi_dsub
+0004d6  ec410b19          VMOV     d9,r0,r1
+0004da  ed9f0b29          VLDR     d0,|L1.1408|
+0004de  ec532b10          VMOV     r2,r3,d0
+0004e2  f7fffffe          BL       __aeabi_ddiv
+0004e6  ec410b18          VMOV     d8,r0,r1
+0004ea  ed1f0b1d          VLDR     d0,|L1.1144|
+0004ee  ec532b10          VMOV     r2,r3,d0
+0004f2  f7fffffe          BL       __aeabi_dsub
+0004f6  4a1f              LDR      r2,|L1.1396|
+0004f8  c203              STM      r2!,{r0,r1}
+;;;38     		A4=tempD*10;
+0004fa  ed1f0b2b          VLDR     d0,|L1.1104|
+0004fe  ec532b10          VMOV     r2,r3,d0
+000502  481c              LDR      r0,|L1.1396|
+000504  ed900b00          VLDR     d0,[r0,#0]
+000508  ec510b10          VMOV     r0,r1,d0
+00050c  f7fffffe          BL       __aeabi_dmul
+000510  ec410b18          VMOV     d8,r0,r1
+000514  f7fffffe          BL       __aeabi_d2uiz
+000518  491b              LDR      r1,|L1.1416|
+00051a  8008              STRH     r0,[r1,#0]
+;;;39     		bsp_DelayMS(5);
+00051c  2005              MOVS     r0,#5
+00051e  f7fffffe          BL       bsp_DelayMS
+;;;40     		if(A1>85&&A1<110&&A2>85&&A2<110&&A3>150&&A3<250&&A4>360&&A4<505)
+000522  481a              LDR      r0,|L1.1420|
+000524  8800              LDRH     r0,[r0,#0]  ; A1
+000526  2855              CMP      r0,#0x55
+000528  dd1e              BLE      |L1.1384|
+00052a  4818              LDR      r0,|L1.1420|
+00052c  8800              LDRH     r0,[r0,#0]  ; A1
+00052e  286e              CMP      r0,#0x6e
+000530  da1a              BGE      |L1.1384|
+000532  4817              LDR      r0,|L1.1424|
+000534  8800              LDRH     r0,[r0,#0]  ; A2
+000536  2855              CMP      r0,#0x55
+000538  dd16              BLE      |L1.1384|
+00053a  4815              LDR      r0,|L1.1424|
+00053c  8800              LDRH     r0,[r0,#0]  ; A2
+00053e  286e              CMP      r0,#0x6e
+000540  da12              BGE      |L1.1384|
+000542  4814              LDR      r0,|L1.1428|
+000544  8800              LDRH     r0,[r0,#0]  ; A3
+000546  2896              CMP      r0,#0x96
+000548  dd0e              BLE      |L1.1384|
+00054a  4812              LDR      r0,|L1.1428|
+00054c  8800              LDRH     r0,[r0,#0]  ; A3
+00054e  28fa              CMP      r0,#0xfa
+000550  da0a              BGE      |L1.1384|
+000552  480d              LDR      r0,|L1.1416|
+000554  8800              LDRH     r0,[r0,#0]  ; A4
+000556  f5b07fb4          CMP      r0,#0x168
+00055a  dd05              BLE      |L1.1384|
+00055c  480a              LDR      r0,|L1.1416|
+00055e  8800              LDRH     r0,[r0,#0]  ; A4
+000560  f5b07ffc          CMP      r0,#0x1f8
+000564  dc00              BGT      |L1.1384|
+;;;41     		{
+;;;42     			break;
+000566  e000              B        |L1.1386|
+                  |L1.1384|
+000568  e550              B        |L1.12|
+                  |L1.1386|
+00056a  bf00              NOP      
+;;;43     		}
+;;;44     	}
+;;;45     //	Motor_Init();	
+;;;46     //	PowerCheck();
+;;;47     //	m=Test();
+;;;48     //	PerkCheck();
+;;;49     }
+00056c  ecbd8b0e          VPOP     {d8-d14}
+000570  bd10              POP      {r4,pc}
+;;;50     /*
                           ENDP
 
-0005ea  0000              DCW      0x0000
-                  |L1.1516|
+000572  0000              DCW      0x0000
+                  |L1.1396|
                           DCD      tempD
-                  |L1.1520|
-0005f0  00000000          DCFD     0x4059000000000000 ; 100
-0005f4  40590000
-                  |L1.1528|
-0005f8  0a3d70a4          DCFD     0x3fd8a3d70a3d70a4 ; 0.38500000000000001
-0005fc  3fd8a3d7
-                  |L1.1536|
+                  |L1.1400|
+000578  00000000          DCFD     0x4059000000000000 ; 100
+00057c  40590000
+                  |L1.1408|
+000580  0a3d70a4          DCFD     0x3fd8a3d70a3d70a4 ; 0.38500000000000001
+000584  3fd8a3d7
+                  |L1.1416|
                           DCD      ||A4||
-                  |L1.1540|
+                  |L1.1420|
                           DCD      ||A1||
-                  |L1.1544|
+                  |L1.1424|
                           DCD      ||A2||
-                  |L1.1548|
+                  |L1.1428|
                           DCD      ||A3||
-                  |L1.1552|
-                          DCD      m
 
                           AREA ||i.main||, CODE, READONLY, ALIGN=2
 
                   main PROC
-;;;59     u8 test=1;
-;;;60     int main(void)
+;;;58     u8 test=1;
+;;;59     int main(void)
 000000  f7fffffe          BL       bsp_Init
-;;;61     {
-;;;62     	bsp_Init();	/* 为了是main函数看起来更简洁些，我们将硬件初始化的代码封装到这个函数 */
-;;;63     	LoadParam();	/* 读取应用程序参数, 该函数在param.c */
+;;;60     {
+;;;61     	bsp_Init();	/* 为了是main函数看起来更简洁些，我们将硬件初始化的代码封装到这个函数 */
+;;;62     	LoadParam();	/* 读取应用程序参数, 该函数在param.c */
 000004  f7fffffe          BL       LoadParam
-;;;64     
-;;;65     	LCD_InitHard();	/* 初始化显示器硬件(配置GPIO和FSMC,给LCD发送初始化指令) */
+;;;63     
+;;;64     	LCD_InitHard();	/* 初始化显示器硬件(配置GPIO和FSMC,给LCD发送初始化指令) */
 000008  f7fffffe          BL       LCD_InitHard
-;;;66     	TOUCH_InitHard();
+;;;65     	TOUCH_InitHard();
 00000c  f7fffffe          BL       TOUCH_InitHard
-;;;67     	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_CRC, ENABLE);
+;;;66     	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_CRC, ENABLE);
 000010  2101              MOVS     r1,#1
 000012  0308              LSLS     r0,r1,#12
 000014  f7fffffe          BL       RCC_AHB1PeriphClockCmd
-;;;68     //LCD_ClrScr(CL_BLUE);  		/* 清屏，【背景蓝色 */
-;;;69     
-;;;70     //LCD_SetBackLight(g_tParam.ucBackLight);		/* 设置背光亮度。 */
-;;;71     	ucStatus = MS_MAIN_MENU;	/* 初始状态 = 图标界面 */
+;;;67     //LCD_ClrScr(CL_BLUE);  		/* 清屏，【背景蓝色 */
+;;;68     
+;;;69     //LCD_SetBackLight(g_tParam.ucBackLight);		/* 设置背光亮度。 */
+;;;70     	ucStatus = MS_MAIN_MENU;	/* 初始状态 = 图标界面 */
 000018  2000              MOVS     r0,#0
-00001a  491b              LDR      r1,|L2.136|
+00001a  4919              LDR      r1,|L2.128|
 00001c  8008              STRH     r0,[r1,#0]
-;;;72     	
-;;;73     //	LightModulation(ON);
-;;;74     //	while(test)
-;;;75     //	{
-;;;76     //		bsp_DelayMS(10000);
-;;;77     //		AK_Test();
-;;;78     //	}
-;;;79     
-;;;80     	SystemCheck();
-00001e  f7fffffe          BL       SystemCheck
-;;;81     	while (1)
-000022  e02f              B        |L2.132|
-                  |L2.36|
-;;;82     	{
-;;;83     		switch (ucStatus)
-000024  4818              LDR      r0,|L2.136|
-000026  8800              LDRH     r0,[r0,#0]  ; ucStatus
-000028  2807              CMP      r0,#7
-00002a  d226              BCS      |L2.122|
-00002c  e8dff000          TBB      [pc,r0]
-000030  04090f13          DCB      0x04,0x09,0x0f,0x13
-000034  171b1f00          DCB      0x17,0x1b,0x1f,0x00
-;;;84     		{
-;;;85     //		case MS_CALIBRATION:
-;;;86     //			 	TOUCH_Calibration();		/* 校准触摸, 该界面实现在bsp_touch.c */
-;;;87     //			 	ucStatus = MS_MAIN_MENU; 	/* 校准完毕后，返回到主界面 */
-;;;88     //			 	break;
-;;;89     			 case MS_MAIN_MENU:
-;;;90     					
-;;;91     					ucStatus = MainMenu();		/* 主界面状态 */
-000038  f7fffffe          BL       MainMenu
-00003c  4912              LDR      r1,|L2.136|
-00003e  8008              STRH     r0,[r1,#0]
-;;;92     					break;
-000040  e01f              B        |L2.130|
-;;;93     			 case MS_MEASURETURE:			/* 样品检测 */
-;;;94     
-;;;95     					MainTask();
-000042  f7fffffe          BL       MainTask
-;;;96     					ucStatus = MS_MAIN_MENU;     		 
-000046  2000              MOVS     r0,#0
-000048  490f              LDR      r1,|L2.136|
-00004a  8008              STRH     r0,[r1,#0]
-;;;97     					break;
-00004c  e019              B        |L2.130|
-;;;98     			 case MS_QC:			/* 质量控制 */
-;;;99     			 
-;;;100    					ucStatus = MS_MAIN_MENU;
-00004e  2000              MOVS     r0,#0
-000050  490d              LDR      r1,|L2.136|
-000052  8008              STRH     r0,[r1,#0]
-;;;101    					break;
-000054  e015              B        |L2.130|
-;;;102    			 case MS_PREFERENCES:			/* 参数设置 */
-;;;103    			
-;;;104    					ucStatus = MS_MAIN_MENU;
-000056  2000              MOVS     r0,#0
-000058  490b              LDR      r1,|L2.136|
-00005a  8008              STRH     r0,[r1,#0]
-;;;105    					break;
-00005c  e011              B        |L2.130|
-;;;106    			 case MS_RECORD:			/* 检测记录 */
-;;;107    			 
-;;;108    					ucStatus = MS_MAIN_MENU;
-00005e  2000              MOVS     r0,#0
-000060  4909              LDR      r1,|L2.136|
-000062  8008              STRH     r0,[r1,#0]
-;;;109    					break;
-000064  e00d              B        |L2.130|
-;;;110    			 case MS_PRINT:			/* 打印 */
-;;;111    			 
-;;;112    					ucStatus = MS_MAIN_MENU;
-000066  2000              MOVS     r0,#0
-000068  4907              LDR      r1,|L2.136|
-00006a  8008              STRH     r0,[r1,#0]
-;;;113    					break;
-00006c  e009              B        |L2.130|
-;;;114    			 case MS_MAINTAINING:			/* 维护 */
-;;;115    					
-;;;116    					TOUCH_Calibration();
-00006e  f7fffffe          BL       TOUCH_Calibration
-;;;117    					ucStatus = MS_MAIN_MENU;
+;;;71     	
+;;;72     //	LightModulation(ON);
+;;;73     //	while(test)
+;;;74     //	{
+;;;75     //		bsp_DelayMS(10000);
+;;;76     //		AK_Test();
+;;;77     //	}
+;;;78     
+;;;79     //	SystemCheck();
+;;;80     	while (1)
+00001e  e02d              B        |L2.124|
+                  |L2.32|
+;;;81     	{
+;;;82     		switch (ucStatus)
+000020  4817              LDR      r0,|L2.128|
+000022  8800              LDRH     r0,[r0,#0]  ; ucStatus
+000024  2807              CMP      r0,#7
+000026  d224              BCS      |L2.114|
+000028  e8dff000          TBB      [pc,r0]
+00002c  04090f13          DCB      0x04,0x09,0x0f,0x13
+000030  171b1f00          DCB      0x17,0x1b,0x1f,0x00
+;;;83     		{
+;;;84     //		case MS_CALIBRATION:
+;;;85     //			 	TOUCH_Calibration();		/* 校准触摸, 该界面实现在bsp_touch.c */
+;;;86     //			 	ucStatus = MS_MAIN_MENU; 	/* 校准完毕后，返回到主界面 */
+;;;87     //			 	break;
+;;;88     			 case MS_MAIN_MENU:
+;;;89     					
+;;;90     					ucStatus = MainMenu();		/* 主界面状态 */
+000034  f7fffffe          BL       MainMenu
+000038  4911              LDR      r1,|L2.128|
+00003a  8008              STRH     r0,[r1,#0]
+;;;91     					break;
+00003c  e01d              B        |L2.122|
+;;;92     			 case MS_MEASURETURE:			/* 样品检测 */
+;;;93     
+;;;94     					MainTask();
+00003e  f7fffffe          BL       MainTask
+;;;95     					ucStatus = MS_MAIN_MENU;     		 
+000042  2000              MOVS     r0,#0
+000044  490e              LDR      r1,|L2.128|
+000046  8008              STRH     r0,[r1,#0]
+;;;96     					break;
+000048  e017              B        |L2.122|
+;;;97     			 case MS_QC:			/* 质量控制 */
+;;;98     			 
+;;;99     					ucStatus = MS_MAIN_MENU;
+00004a  2000              MOVS     r0,#0
+00004c  490c              LDR      r1,|L2.128|
+00004e  8008              STRH     r0,[r1,#0]
+;;;100    					break;
+000050  e013              B        |L2.122|
+;;;101    			 case MS_PREFERENCES:			/* 参数设置 */
+;;;102    			
+;;;103    					ucStatus = MS_MAIN_MENU;
+000052  2000              MOVS     r0,#0
+000054  490a              LDR      r1,|L2.128|
+000056  8008              STRH     r0,[r1,#0]
+;;;104    					break;
+000058  e00f              B        |L2.122|
+;;;105    			 case MS_RECORD:			/* 检测记录 */
+;;;106    			 
+;;;107    					ucStatus = MS_MAIN_MENU;
+00005a  2000              MOVS     r0,#0
+00005c  4908              LDR      r1,|L2.128|
+00005e  8008              STRH     r0,[r1,#0]
+;;;108    					break;
+000060  e00b              B        |L2.122|
+;;;109    			 case MS_PRINT:			/* 打印 */
+;;;110    			 
+;;;111    					ucStatus = MS_MAIN_MENU;
+000062  2000              MOVS     r0,#0
+000064  4906              LDR      r1,|L2.128|
+000066  8008              STRH     r0,[r1,#0]
+;;;112    					break;
+000068  e007              B        |L2.122|
+;;;113    			 case MS_MAINTAINING:			/* 维护 */
+;;;114    					
+;;;115    //					TOUCH_Calibration();
+;;;116    					ucStatus = MS_MAIN_MENU;
+00006a  2000              MOVS     r0,#0
+00006c  4904              LDR      r1,|L2.128|
+00006e  8008              STRH     r0,[r1,#0]
+;;;117    					break;
+000070  e003              B        |L2.122|
+                  |L2.114|
+;;;118    			default:
+;;;119    				
+;;;120    					ucStatus = MS_MAIN_MENU;
 000072  2000              MOVS     r0,#0
-000074  4904              LDR      r1,|L2.136|
+000074  4902              LDR      r1,|L2.128|
 000076  8008              STRH     r0,[r1,#0]
-;;;118    					break;
-000078  e003              B        |L2.130|
+;;;121    					break;
+000078  bf00              NOP      
                   |L2.122|
-;;;119    			default:
-;;;120    				
-;;;121    					ucStatus = MS_MAIN_MENU;
-00007a  2000              MOVS     r0,#0
-00007c  4902              LDR      r1,|L2.136|
-00007e  8008              STRH     r0,[r1,#0]
-;;;122    					break;
-000080  bf00              NOP      
-                  |L2.130|
-000082  bf00              NOP                            ;92
-                  |L2.132|
-000084  e7ce              B        |L2.36|
-;;;123    		}
-;;;124    	}
-;;;125        
-;;;126    	
-;;;127    }
-;;;128    
+00007a  bf00              NOP                            ;91
+                  |L2.124|
+00007c  e7d0              B        |L2.32|
+;;;122    		}
+;;;123    	}
+;;;124        
+;;;125    	
+;;;126    }
+;;;127    
                           ENDP
 
-000086  0000              DCW      0x0000
-                  |L2.136|
+00007e  0000              DCW      0x0000
+                  |L2.128|
                           DCD      ucStatus
 
-                          AREA ||.data||, DATA, ALIGN=2
+                          AREA ||.data||, DATA, ALIGN=3
 
                   ||A1||
 000000  0000              DCB      0x00,0x00
@@ -674,17 +636,17 @@
                   ||A4||
 000006  0000              DCB      0x00,0x00
                   tempA
-                          DCD      0x00000000
+                          %        8
                   tempB
-                          DCD      0x00000000
+                          %        8
                   tempC
-                          DCD      0x00000000
+                          %        8
                   tempD
-                          DCD      0x00000000
+                          %        8
                   ucStatus
-000018  0000              DCB      0x00,0x00
+000028  0000              DCB      0x00,0x00
                   test
-00001a  01                DCB      0x01
+00002a  01                DCB      0x01
 
 ;*** Start embedded assembler ***
 

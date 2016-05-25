@@ -36507,7 +36507,7 @@ N                                   This value must be a multiple of 0x200. */
 N/******************************************************************************/
 N/************************* PLL Parameters *************************************/
 N/* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */
-N#define PLL_M     10 //10
+N#define PLL_M     25 //10
 N/* USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ */
 N#define PLL_Q      7
 N
@@ -36520,7 +36520,7 @@ N#endif /* STM32F40_41xxx */
 N
 N#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
 X#if 1L || 0L
-N#define PLL_N      200//360
+N#define PLL_N     336//360
 N/* SYSCLK = PLL_VCO / PLL_P */
 N#define PLL_P      2
 N#endif /* STM32F427_437x || STM32F429_439xx */
@@ -36561,8 +36561,9 @@ N#endif /* STM32F40_41xxx */
 N
 N#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
 X#if 1L || 0L
+N uint32_t SystemCoreClock = 168000000;
 N//  uint32_t SystemCoreClock = 180000000;
-N  uint32_t SystemCoreClock = 61440000;
+N//  uint32_t SystemCoreClock = 61440000;
 N#endif /* STM32F427_437x || STM32F429_439xx */
 N
 N#if defined (STM32F401xx)
@@ -36813,7 +36814,7 @@ N#endif /* STM32F401xx */
 N   
 N    /* Configure the main PLL */
 N    RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
-X    ((RCC_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x3800))->PLLCFGR = 10 | (200 << 6) | (((2 >> 1) -1) << 16) |
+X    ((RCC_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x3800))->PLLCFGR = 25 | (336 << 6) | (((2 >> 1) -1) << 16) |
 N                   (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
 X                   (((uint32_t)0x00400000)) | (7 << 24);
 N

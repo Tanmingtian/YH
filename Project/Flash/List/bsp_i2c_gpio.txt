@@ -21,7 +21,7 @@
 00000c  f88d0004          STRB     r0,[sp,#4]
 ;;;62     	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;		/* 设为开漏模式 */
 000010  f88d0006          STRB     r0,[sp,#6]
-;;;63     	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;	/* 上下拉电阻不使能 */
+;;;63     	GPIO_InitStructure.GPIO_PuPd =  GPIO_PuPd_NOPULL;	/* 上下拉电阻不使能 */
 000014  2000              MOVS     r0,#0
 000016  f88d0007          STRB     r0,[sp,#7]
 ;;;64     	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;	/* IO口最大速度 */
@@ -155,13 +155,13 @@
 ;;;92     
 ;;;93     		实际应用选择400KHz左右的速率即可
 ;;;94     	*/
-;;;95     	for (i = 0; i < 30; i++);
+;;;95     	for (i = 0; i < 32; i++);
 000002  e001              B        |L4.8|
                   |L4.4|
 000004  1c41              ADDS     r1,r0,#1
 000006  b2c8              UXTB     r0,r1
                   |L4.8|
-000008  281e              CMP      r0,#0x1e
+000008  2820              CMP      r0,#0x20
 00000a  dbfb              BLT      |L4.4|
 ;;;96     }
 00000c  4770              BX       lr

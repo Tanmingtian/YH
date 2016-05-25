@@ -436,6 +436,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\stm32f4xx_it.c</FilePath>
             </File>
+            <File>
+              <FileName>typewriting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\typewriting.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -507,11 +512,6 @@
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_spi_bus.c</FilePath>
             </File>
             <File>
-              <FileName>LCD_ILI9488.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_tsc2046.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_tsc2046.c</FilePath>
@@ -540,6 +540,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_ILI9488.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -715,6 +720,31 @@
               <FileName>SongFont.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\fonts\SongFont.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc48.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc48.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hzk24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hzk24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hz64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hz64.c</FilePath>
+            </File>
+            <File>
+              <FileName>pysearch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\pysearch.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1265,6 +1295,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\stm32f4xx_it.c</FilePath>
             </File>
+            <File>
+              <FileName>typewriting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\typewriting.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1336,11 +1371,6 @@
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_spi_bus.c</FilePath>
             </File>
             <File>
-              <FileName>LCD_ILI9488.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_tsc2046.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_tsc2046.c</FilePath>
@@ -1369,6 +1399,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_ILI9488.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1544,6 +1579,31 @@
               <FileName>SongFont.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\fonts\SongFont.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc48.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc48.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hzk24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hzk24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hz64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hz64.c</FilePath>
+            </File>
+            <File>
+              <FileName>pysearch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\pysearch.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2094,6 +2154,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\stm32f4xx_it.c</FilePath>
             </File>
+            <File>
+              <FileName>typewriting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\typewriting.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2165,11 +2230,6 @@
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_spi_bus.c</FilePath>
             </File>
             <File>
-              <FileName>LCD_ILI9488.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_tsc2046.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_tsc2046.c</FilePath>
@@ -2198,6 +2258,11 @@
               <FileName>bsp_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\bsp_stm32f4xx\src\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_ILI9488.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp_stm32f4xx\src\LCD_ILI9488.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2373,6 +2438,31 @@
               <FileName>SongFont.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\fonts\SongFont.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc48.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc48.c</FilePath>
+            </File>
+            <File>
+              <FileName>asc24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\asc24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hzk24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hzk24.c</FilePath>
+            </File>
+            <File>
+              <FileName>hz64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\hz64.c</FilePath>
+            </File>
+            <File>
+              <FileName>pysearch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fonts\pysearch.c</FilePath>
             </File>
           </Files>
         </Group>

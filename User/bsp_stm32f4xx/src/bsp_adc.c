@@ -4,7 +4,7 @@
 *	模块名称 : ADC驱动模块
 *	文件名称 : bsp_adc.c
 *	版    本 : V1.0
-*	说    明 : ADC3工作在注入模式
+*	说    明 : ADC多通道扫描
 *	修改记录 :
 *		版本号    日期        作者     说明
 *		V1.0    2014-01-08  armfly   正式发布
@@ -17,10 +17,11 @@
 
 
 /* define ---------------------------------------------------------------------*/
-#define ADC3_DR_ADDRESS    ((uint32_t)0x4001224C)
+#define ADC1_DR_ADDRESS          ((uint32_t)0x4001204C)
 
-/* 供本文件使用 --------------------------------------------------------------*/
-static void TIM1_Config(void);
+/* 变量 ----------------------------------------------------------------------*/
+__IO uint16_t uhADCConvertedValue[5];
+
 /*
 *********************************************************************************************************
 *	函 数 名: bsp_InitADC
@@ -30,112 +31,141 @@ static void TIM1_Config(void);
 *********************************************************************************************************
 */
 void bsp_InitADC(void)
-{  
-    ADC_InitTypeDef       ADC_InitStructure;
-    ADC_CommonInitTypeDef ADC_CommonInitStructure;
-    GPIO_InitTypeDef      GPIO_InitStructure;  
-    NVIC_InitTypeDef NVIC_InitStructure;
+{
+	ADC_InitTypeDef       ADC_InitStructure;
+	ADC_CommonInitTypeDef ADC_CommonInitStructure;
+	DMA_InitTypeDef       DMA_InitStructure;
+	GPIO_InitTypeDef      GPIO_InitStructure;
+	
+	/* 使能外设时钟 */
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2 | RCC_AHB1Periph_GPIOA  | RCC_AHB1Periph_GPIOB| RCC_AHB1Periph_GPIOC, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+    
+    
+   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+    
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+    
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-    /* 配置ADC中断，用于注入中断模式 */
-    NVIC_InitStructure.NVIC_IRQChannel = ADC_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure);
+	/* DMA2 Stream0 channel0 配置-------------------------------------------------- */
+	DMA_InitStructure.DMA_Channel = DMA_Channel_0;  
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)ADC1_DR_ADDRESS;
+	DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)&uhADCConvertedValue;;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
+	DMA_InitStructure.DMA_BufferSize = 4;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
+    
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+	DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;         
+	DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
+	DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+	DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+	DMA_Init(DMA2_Stream0, &DMA_InitStructure);
 
-    /* 使能 ADC3, DMA2 和 GPIO 时钟 --------------------------------------------*/
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC3, ENABLE);
-
-    /* 配置ADC引脚 -------------------------------------------------------------*/
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
-    GPIO_Init(GPIOF, &GPIO_InitStructure);
-
-    /* ADC 公共部分初始化 -------------------------------------------------------*/
-    ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
-    ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div8;
+	/* DMA2_Stream0 enable */
+	DMA_Cmd(DMA2_Stream0, ENABLE);
+    
+    /****************************************************************************   
+	  PCLK2 = HCLK / 2 
+	  下面选择的是2分频
+	  ADCCLK = PCLK2 /8 = HCLK / 8 = 168 / 8 = 21M
+      ADC采样频率： Sampling Time + Conversion Time = 480 + 12 cycles = 492cyc
+                    Conversion Time = 21MHz / 492cyc = 42.6ksps. 
+	*****************************************************************************/
+    
+	/* ADC Common 配置 ----------------------------------------------------------*/
+     ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
+    ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
     ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
     ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
     ADC_CommonInit(&ADC_CommonInitStructure);
 
-    /* ADC3 初始化 --------------------------------------------------------------*/
-    ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
-    ADC_InitStructure.ADC_ScanConvMode = DISABLE;
-    ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
-    ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigInjecConvEdge_None;
-    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC3;
-    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
-    ADC_InitStructure.ADC_NbrOfConversion = 1;
-    ADC_Init(ADC3, &ADC_InitStructure);
+	/* ADC1 regular channel 12 configuration ************************************/
+	ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+	ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+	ADC_InitStructure.ADC_NbrOfConversion = 4;
+    ADC_Init(ADC1, &ADC_InitStructure);
+    
+     /* Enable ADC1 DMA */
+    ADC_DMACmd(ADC1, ENABLE);
 
-    /* ADC3 注入通道配置 -----------------------------------------------------------*/
-    ADC_InjectedChannelConfig(ADC3, ADC_Channel_7, 1, ADC_SampleTime_3Cycles);
-    /* 设置注入序列长度 */
-    ADC_InjectedSequencerLengthConfig(ADC3, 1); 
-    /* 注入通道外部触发配置 */
-    ADC_ExternalTrigInjectedConvConfig(ADC3, ADC_ExternalTrigInjecConv_T1_CC4);
-    ADC_ExternalTrigInjectedConvEdgeConfig(ADC3, ADC_ExternalTrigInjecConvEdge_Rising);
+  	ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 5, ADC_SampleTime_15Cycles);
+    /* ADC1 regular channel18 (VBAT) configuration ******************************/
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_15Cycles);
+    /* ADC1 regular channel18 (VBAT) configuration *****************************/
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_9, 2, ADC_SampleTime_15Cycles);
     
-    /* 使能注入中断 */
-    ADC_ITConfig(ADC3, ADC_IT_JEOC, ENABLE);
+    /* ADC1 regular channels 10, 11 configuration */ 
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 3, ADC_SampleTime_15Cycles);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_15, 4, ADC_SampleTime_15Cycles);   
+
+//    /* Enable VBAT channel */
+//    ADC_VBATCmd(ENABLE); 
+//    
+//    ADC_TempSensorVrefintCmd(ENABLE); 
+
+    /* Enable DMA request after last transfer (Single-ADC mode) */
+    ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);
+
+    /* Enable ADC1 **************************************************************/
+    ADC_Cmd(ADC1, ENABLE);
     
-    /* 使能ADC3 */
-    ADC_Cmd(ADC3, ENABLE);
-    
-    TIM1_Config();
+        /* Start ADC1 Software Conversion */
+    ADC_SoftwareStartConv(ADC1);
 }
+
 
 /*
-*********************************************************************************************************
-*	函 数 名: TIM1_Config
-*	功能说明: 配置定时器1，用于触发ADC，每秒更新一次
-*	形    参: 无
-*	返 回 值: 无
-*********************************************************************************************************
+*************************************************************************************************
+  VSENSE：温度传感器的当前输出电压，与ADC_DR 寄存器中的结果ADC_ConvertedValue之间的转换关系为： 
+            ADC_ConvertedValue * Vdd
+  VSENSE = --------------------------
+            Vdd_convert_value(0xFFF)  
+    ADC转换结束以后，读取ADC_DR寄存器中的结果，转换温度值计算公式如下：
+          V25 - VSENSE
+  T(℃) = ------------  + 25
+           Avg_Slope
+  V25：  温度传感器在25℃时 的输出电压，典型值0.76 V。
+  Avg_Slope：温度传感器输出电压和温度的关联参数，典型值2.5 mV/℃。
+************************************************************************************************
 */
-static void TIM1_Config(void)
-{
-    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-    TIM_OCInitTypeDef  TIM_OCInitStructure;
-    
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);			   			//使能定时器1时钟
-    
-    TIM_Cmd(TIM1, DISABLE);	
-    
-     /* --------------------------------------------------------
-    system_stm32f4xx.c 文件中 void SetSysClock(void) 函数对时钟的配置如下：
-
-    HCLK = SYSCLK / 1     (AHB1Periph)
-    PCLK2 = HCLK / 2      (APB2Periph)
-    PCLK1 = HCLK / 4      (APB1Periph)
-
-    因为APB1 prescaler != 1, 所以 APB1上的TIMxCLK = PCLK1 x 2 = SystemCoreClock / 2;
-    因为APB2 prescaler != 1, 所以 APB2上的TIMxCLK = PCLK2 x 2 = SystemCoreClock;
-
-    APB1 定时器有 TIM2, TIM3 ,TIM4, TIM5, TIM6, TIM7, TIM12, TIM13, TIM14
-    APB2 定时器有 TIM1, TIM8 ,TIM9, TIM10, TIM11
-          
-    TIM6 更新周期是 = TIM1CLK / （TIM_Period + 1）/（TIM_Prescaler + 1）
-    ----------------------------------------------------------- */
-    
-    TIM_TimeBaseStructInit(&TIM_TimeBaseStructure); 				   //初始化定时器1的寄存器为复位值
-    TIM_TimeBaseStructure.TIM_Period = 168000000 / 10000-1;    //ARR自动重装载寄存器周期的值(定时时间）到设置频率后产生个更新或者中断(也是说定时时间到)
-    TIM_TimeBaseStructure.TIM_Prescaler = 16800-1;   						   //PSC时钟预分频数 例如：时钟频率=TIM1CLK/(时钟预分频+1)
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;    				   //CR1->CKD时间分割值
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  	   //CR1->CMS[1:0]和DIR定时器模式 向上计数
-    TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
-
-    TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1; 				      //CCMR2在向上计数时，一旦TIMx_CNT<TIMx_CCR1时通道1为有效电平，否则为无效电平
-    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;         //CCER 输出使能          
-    TIM_OCInitStructure.TIM_Pulse = TIM_TimeBaseStructure.TIM_Period / 2;//CCR3同计数器TIMx_CNT的比较，并在OC4端口上产生输出信号 
-    TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;    	     //CCER输出极性设置	高电平有效     
-    TIM_OC4Init(TIM1, &TIM_OCInitStructure);
-    //TIM_OC3PreloadConfig(TIM1, TIM_OCPreload_Enable);					 //CMR2 设置预装载使能  更新事件产生时写入有效
-    //TIM_ARRPreloadConfig(TIM1, ENABLE);		   		 				 //CR1  设置ARR自动重装 更新事件产生时写入有效
-    TIM_Cmd(TIM1, ENABLE);	
-    TIM_CtrlPWMOutputs(TIM1, ENABLE);  								   //使能PWM 输出
-}
+//float GetTemp(uint16_t advalue)
+//{
+//    float Vtemp_sensor;
+//    float  Current_Temp;
+//    
+//    Vtemp_sensor = advalue * 3.3/ 4095;  				           
+//    Current_Temp = (Vtemp_sensor - 0.76)/0.0025 + 25;  
+//    
+//    return Current_Temp;
+//}
 
 /***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/

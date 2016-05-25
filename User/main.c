@@ -7,32 +7,31 @@
 #include "main.h"
 #include "measurement.h"
 #include "param.h"
-#include "PROGBAR.h"
 #include "motor.h"
 #include "math.h"
-extern volatile unsigned int m;
-		u16	A1,A2,A3,A4;
-		float	tempA,tempB,tempC,tempD ;
+
+
+u16	A1,A2,A3,A4;
+double	tempA,tempB,tempC,tempD ;
 void SystemCheck(void)
 {
 	Valve_GPIO_Config();
 	while(1)
-	{
-		
-		tempA = ADC_1(ADC_T_10A);	
+	{	
+		tempA = ADC_1(0);	
 		tempA = 3.0 * tempA / 4096.0 / 2.0;
 		tempA = -(-232.6 * log(log10(37.4 * 1000.0 * tempA / (1.2 - tempA))) + 343.82);
 		A1=tempA*10;
-		tempB = ADC_1(ADC_T_10B);
+		tempB = ADC_1(1);
 		tempB = 3.0 * tempB / 4096.0 / 2.0;
 		tempB = -(-232.6 * log(log10(37.4 * 1000.0 * tempB / (1.2 - tempB))) + 343.82);
 		A2=tempB*10;
-		tempC = ADC_1(ADC_T18);
+		tempC = ADC_1(3);
 		tempC = 3.0 * tempC / 4096.0;
 		tempC = (((2500.0*4.0*tempC)/(2.5*490.0))+(2500.0*100.0)/2600.0)/(1-((4.0*tempC)/(490.0*2.5))-(100.0/2600.0));
 		tempC = 0.001 * tempC * tempC + 2.3589 * tempC - 245.87;
 		A3=tempC*10;
-		tempD = ADC_1(ADC_T42);
+		tempD = ADC_1(2);
 		tempD = 3.0 * tempD / 4096.0;
 		tempD = (((2500.0*4.0*tempD)/(490.0*2.5))+(2500.0*100.0)/2600.0)/(1-((4.0*tempD)/(490.0*2.5))-(100.0/2600.0));
 		tempD = (tempD - 100.0) / 0.385 - 1;
@@ -43,10 +42,10 @@ void SystemCheck(void)
 			break;
 		}
 	}
-	Motor_Init();	
-	PowerCheck();
-	m=Test();
-	PerkCheck();
+//	Motor_Init();	
+//	PowerCheck();
+//	m=Test();
+//	PerkCheck();
 }
 /*
 *********************************************************************************************************
@@ -77,7 +76,7 @@ int main(void)
 //		AK_Test();
 //	}
 
-	SystemCheck();
+//	SystemCheck();
 	while (1)
 	{
 		switch (ucStatus)
@@ -113,7 +112,7 @@ int main(void)
 					break;
 			 case MS_MAINTAINING:			/* Î¬»¤ */
 					
-					TOUCH_Calibration();
+//					TOUCH_Calibration();
 					ucStatus = MS_MAIN_MENU;
 					break;
 			default:

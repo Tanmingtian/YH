@@ -58,14 +58,15 @@ void bsp_Init(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_TIM4|RCC_APB1Periph_TIM5|RCC_APB1Periph_SPI2 ,ENABLE);
 	NVIC_Configuration();
 	bsp_InitTimer();	/* 初始化系统滴答定时器 (此函数会开中断) */
-	bsp_InitExtSRAM();	/* 配置FSMC总线, 用于SRAM访问 */
-	bsp_InitNorFlash();	/* 初始化FSMC NOR Flash */
+//	bsp_InitExtSRAM();	/* 配置FSMC总线, 用于SRAM访问 */
+//	bsp_InitNorFlash();	/* 初始化FSMC NOR Flash */
 	bsp_InitI2C();		/* 配置I2C总线 */
 	bsp_InitSPIBus();	/* 配置SPI总线 */
 	AK5385_Config();
 	bsp_DelayMS(20);	/* 后面的设备需要延迟后初始化 */
 	Speaker_Config();	
-	ADC_Config();
+//	ADC_Config();
+	bsp_InitADC();
 	EXTI_Config();
   LightModulation_Config();
   Motor_Config();
@@ -100,7 +101,6 @@ void bsp_RunPer1s(void)
 //extern __IO uint8_t s_ucRA8875BusyNow;
 void bsp_RunPer10ms(void)
 {
-//	bsp_KeyScan();		/* 按键扫描 */
 	/* RA8875 触摸*/
 	if (g_ChipID == IC_8875)
 	{
@@ -129,7 +129,6 @@ void bsp_RunPer10ms(void)
 void bsp_RunPer1ms(void)
 {
 	TOUCH_Scan();		/* 触摸扫描 */
-
 	//PS2_Timer();		/* PS/2键盘和鼠标定时处理 */
 	
 	GT811_Timer10ms();	/* 电容触摸屏程序计数器 */
@@ -155,9 +154,9 @@ void bsp_Idle(void)
 	//GUI_Exec();
 
 	/* 例如 uIP 协议，可以插入uip轮询函数 */
-
-	GT811_Scan();	/* 触摸扫描 */
-	
+	GT811_Scan();
+	bsp_KeyScan();
+//	GT811_Scan();	/* 触摸扫描 */
 //	if (bsp_GetKey2() == SYS_DOWN_K1K2)	/* K1 K2 组合键用于截屏 */
 //	{
 //		static uint16_t s_file_no = 0;

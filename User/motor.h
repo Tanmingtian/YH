@@ -165,10 +165,18 @@
 	#define ON 1
 	#define OFF 0
 #endif
+//定义样品在位端口
+#define SWITCH1  PFin(7)
+#define SWITCH2  PIin(11)
+#define SWITCH3  PIin(10)
+#define SWITCH4  PIin(9)
+#define SWITCH5  PCin(13)
+#define SWITCH6  PIin(8)
 //定义打印机端口
-#define STB  PBout(8)
-#define SEL  PEin(0)  
-#define BUSY  PBin(9)
+//#define STB  PBout(8)
+//#define SEL  PEin(0)  
+//#define BUSY  PBin(9)
+extern uint16_t uhADCConvertedValue[5];
 extern uint8_t ButtonStatus;
 //小电机加速和记脉冲变量
 extern volatile unsigned int Step_LM;
@@ -191,6 +199,8 @@ extern volatile uint16_t StepCount_2;
 extern volatile uint16_t AddedNum;	 
 extern volatile uint8_t 	cw_status;
 extern volatile u8 flagPress;
+extern unsigned int 	m;
+extern double 	m_lCf[9];
 #define T m_lCf[7]	  //试压最大压力，小于5400
 //AK5351 ±?á?
 #define DataLength 3600

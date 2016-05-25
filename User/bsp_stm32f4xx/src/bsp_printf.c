@@ -22,7 +22,7 @@
 */
 
 #include "stm32f4xx.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 /*
 *********************************************************************************************************
@@ -32,17 +32,17 @@
 *	返 回 值: 无
 *********************************************************************************************************
 */
-int fputc(int ch, FILE *f)
-{
-	/* 写一个字节到USART1 */
-	USART_SendData(USART1, (uint8_t) ch);
+//int fputc(int ch, FILE *f)
+//{
+//	/* 写一个字节到USART1 */
+//	USART_SendData(USART1, (uint8_t) ch);
 
-	/* 等待发送结束 */
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
-	{}
+//	/* 等待发送结束 */
+//	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
+//	{}
 
-	return ch;
-}
+//	return ch;
+//}
 
 /*
 *********************************************************************************************************
@@ -52,10 +52,10 @@ int fputc(int ch, FILE *f)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-int fgetc(FILE *f)
-{
-	/* 等待串口1输入数据 */
-	while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
+//int fgetc(FILE *f)
+//{
+//	/* 等待串口1输入数据 */
+//	while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
 
-	return (int)USART_ReceiveData(USART1);
-}
+//	return (int)USART_ReceiveData(USART1);
+//}

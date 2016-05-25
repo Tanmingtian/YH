@@ -30,7 +30,7 @@
 */
 
 #include "stm32f4xx.h"
-#include <stdio.h>
+//#include <stdio.h>
 #include <string.h>
 #include "bsp_tft_lcd.h"
 #include "fonts.h"

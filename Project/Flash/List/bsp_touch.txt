@@ -800,7 +800,7 @@
 000030  2875              CMP      r0,#0x75
 000032  d106              BNE      |L11.66|
 ;;;125    	{
-;;;126    		RA8875_TouchInit();
+;;;126    		RA8875_TouchInit();//
 000034  f7fffffe          BL       RA8875_TouchInit
 ;;;127    
 ;;;128    		g_tTP.usMaxAdc = 1023;	/* 10位ADC */
@@ -812,7 +812,7 @@
 ;;;129    	}
 ;;;130    	else
 ;;;131    	{	
-;;;132    		TSC2046_InitHard();
+;;;132    		TSC2046_InitHard();//电阻触摸芯片驱动
 000042  f7fffffe          BL       TSC2046_InitHard
 ;;;133    
 ;;;134    		g_tTP.usMaxAdc = 4095;	/* 12位ADC */

@@ -60,7 +60,7 @@ void bsp_InitI2C(void)
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		/* 设为输出口 */
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;		/* 设为开漏模式 */
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;	/* 上下拉电阻不使能 */
+	GPIO_InitStructure.GPIO_PuPd =  GPIO_PuPd_NOPULL;	/* 上下拉电阻不使能 */
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;	/* IO口最大速度 */
 
 	GPIO_InitStructure.GPIO_Pin = I2C_SCL_PIN | I2C_SDA_PIN;
@@ -92,7 +92,7 @@ static void i2c_Delay(void)
 
 		实际应用选择400KHz左右的速率即可
 	*/
-	for (i = 0; i < 30; i++);
+	for (i = 0; i < 32; i++);
 }
 
 /*
